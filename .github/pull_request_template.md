@@ -3,5 +3,8 @@ Please always provide the [GitHub issue(s)](../issues) your PR is for, as well a
 Fix #<gh-issue-id>
 
 Test URLs:
-- Before: https://main--{repo}--{owner}.hlx.live/
-- After: https://<branch>--{repo}--{owner}.hlx.live/
+- Before: https://main--learninga-z--aemsites.hlx.page/
+- After: https://<branch>--learninga-z--aemsites.hlx.page/
+
+Testing criteria - what should the reviewer look for in your PR:
+

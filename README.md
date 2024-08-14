@@ -1,11 +1,11 @@
 # Your Project's Title...
-Your project's description...
+Edge Delivery Project for www.learninga-z.com
 
 ## Environments
-- Preview: https://main--{repo}--{owner}.hlx.page/
-- Live: https://main--{repo}--{owner}.hlx.live/
+- Preview: https://main--learninga-z--aemsites.hlx.page/
+- Live: https://main--learninga-z--aemsites.hlx.live/
 
-## Installation
+## Installation - you might need to use "sudo"
 
 ```sh
 npm i
