@@ -2,7 +2,6 @@ import {
   buildBlock,
   loadHeader,
   loadFooter,
-  decorateButtons,
   decorateIcons,
   decorateSections,
   decorateBlocks,
@@ -52,6 +51,71 @@ function buildAutoBlocks(main) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
   }
+}
+
+/**
+ * Extracts color information from the given anchor element's text content.
+ * @param {HTMLElement} anchor - The anchor element from which to extract color information.
+ * @returns {Object|null} - An object containing the extracted background color
+ * and text color, or null if no color information is found.
+ */
+function extractColor(anchor) {
+  const text = anchor.textContent;
+  let backgroundColor = 'red';
+  let textColor = 'white';
+  const regex = /{([^}]+)(?:\|([^}]+))?}/;
+  const matches = text.match(regex);
+  if (matches) {
+    backgroundColor = matches[1] ? matches[1] : backgroundColor;
+    textColor = matches[2] ? matches[2] : textColor;
+    anchor.textContent = text.replace(regex, '');
+    anchor.title = anchor.textContent;
+    return { backgroundColor, textColor };
+  }
+  return null;
+}
+
+/**
+ * Decorates paragraphs containing a single link as buttons.
+ * @param {Element} element container element
+ */
+function decorateButtons(element) {
+  element.querySelectorAll('a').forEach((a) => {
+    a.title = a.title || a.textContent;
+    if (a.href !== a.textContent) {
+      const colors = extractColor(a);
+      const up = a.parentElement;
+      const twoup = a.parentElement.parentElement;
+      if (!a.querySelector('img')) {
+        if (colors) {
+          a.classList.add(`bgcolor-${colors.backgroundColor}`);
+          a.classList.add(`textcolor-${colors.textColor}`);
+        }
+        if (up.childNodes.length === 1 && (up.tagName === 'P' || up.tagName === 'DIV')) {
+          a.classList.add('button'); // default
+          up.classList.add('button-container');
+        }
+        if (
+          up.childNodes.length === 1
+          && up.tagName === 'STRONG'
+          && twoup.childNodes.length === 1
+          && twoup.tagName === 'P'
+        ) {
+          a.classList.add('button', 'primary');
+          twoup.classList.add('button-container');
+        }
+        if (
+          up.childNodes.length === 1
+          && up.tagName === 'EM'
+          && twoup.childNodes.length === 1
+          && twoup.tagName === 'P'
+        ) {
+          a.classList.add('button', 'secondary');
+          twoup.classList.add('button-container');
+        }
+      }
+    }
+  });
 }
 
 /**
