@@ -61,16 +61,16 @@ function buildAutoBlocks(main) {
  */
 function extractColor(anchor) {
   const text = anchor.textContent;
-  let backgroundColor = 'red';
-  let textColor = 'white';
-  const regex = /{([^}]+)(?:\|([^}]+))?}/;
+  let colorOne = 'red';
+  let colorTwo = 'white';
+  const regex = /{([^|}]+)(?:\|([^}]+))?}/;
   const matches = text.match(regex);
   if (matches) {
-    backgroundColor = matches[1] ? matches[1] : backgroundColor;
-    textColor = matches[2] ? matches[2] : textColor;
+    colorOne = matches[1] ? matches[1] : colorOne;
+    colorTwo = matches[2] ? matches[2] : colorTwo;
     anchor.textContent = text.replace(regex, '');
     anchor.title = anchor.textContent;
-    return { backgroundColor, textColor };
+    return { colorOne, colorTwo };
   }
   return null;
 }
@@ -84,13 +84,10 @@ function decorateButtons(element) {
     a.title = a.title || a.textContent;
     if (a.href !== a.textContent) {
       const colors = extractColor(a);
+      console.log(colors);
       const up = a.parentElement;
       const twoup = a.parentElement.parentElement;
       if (!a.querySelector('img')) {
-        if (colors) {
-          a.classList.add(`bgcolor-${colors.backgroundColor}`);
-          a.classList.add(`textcolor-${colors.textColor}`);
-        }
         if (up.childNodes.length === 1 && (up.tagName === 'P' || up.tagName === 'DIV')) {
           a.classList.add('button'); // default
           up.classList.add('button-container');
@@ -101,6 +98,10 @@ function decorateButtons(element) {
           && twoup.childNodes.length === 1
           && twoup.tagName === 'P'
         ) {
+          if (colors) {
+            a.classList.add(`bgcolor-${colors.colorOne}`);
+            a.classList.add(`textcolor-${colors.colorTwo}`);
+          }
           a.classList.add('button', 'primary');
           twoup.classList.add('button-container');
         }
@@ -110,6 +111,9 @@ function decorateButtons(element) {
           && twoup.childNodes.length === 1
           && twoup.tagName === 'P'
         ) {
+          if (colors) {
+            a.classList.add(`textcolor-${colors.colorOne}`);
+          }
           a.classList.add('button', 'secondary');
           twoup.classList.add('button-container');
         }
