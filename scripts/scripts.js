@@ -84,7 +84,6 @@ function decorateButtons(element) {
     a.title = a.title || a.textContent;
     if (a.href !== a.textContent) {
       const colors = extractColor(a);
-      console.log(colors);
       const up = a.parentElement;
       const twoup = a.parentElement.parentElement;
       if (!a.querySelector('img')) {
