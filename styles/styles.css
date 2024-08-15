@@ -99,6 +99,18 @@
   src: local('Arial');
 }
 
+@font-face {
+  font-family: montserrat-normal-400-fallback;
+  size-adjust: 111.311%;
+  src: local("Arial");
+}
+
+@font-face {
+  font-family: solway-normal-400-fallback;
+  size-adjust: 113.741%;
+  src: local("Arial");
+}
+
 @media (width >= 900px) {
   :root {
     /* body sizes */
