@@ -18,12 +18,6 @@
   --text-color: #131313;
   --link-color: #3b63fb;
   --link-hover-color: #1d3ecf;
-  --background-color: white;
-  --light-color: #f8f8f8;
-  --dark-color: #505050;
-  --text-color: #131313;
-  --link-color: #3b63fb;
-  --link-hover-color: #1d3ecf;
   --berry: #C83192;
   --bright-blue: #00B3E2;
   --bright-green: #C1D52F;
@@ -66,8 +60,8 @@
   --rk-blue-dark: #1E7DDD
 
   /* fonts */
-  --body-font-family: roboto, roboto-fallback, sans-serif;
-  --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
+  --body-font-family: roboto, roboto-fallback, sans-serif, montserrat-normal-400-fallback;
+  --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif, solway-normal-400-fallback;
 
   /* body sizes */
   --body-font-size-m: 22px;
@@ -100,13 +94,13 @@
 }
 
 @font-face {
-  font-family: montserrat-normal-400-fallback;
+  font-family: 'montserrat-normal-400-fallback';
   size-adjust: 111.311%;
   src: local("Arial");
 }
 
 @font-face {
-  font-family: solway-normal-400-fallback;
+  font-family: 'solway-normal-400-fallback';
   size-adjust: 113.741%;
   src: local("Arial");
 }
