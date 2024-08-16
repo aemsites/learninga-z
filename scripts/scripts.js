@@ -125,7 +125,7 @@ function loadDelayed() {
 
 async function loadPage() {
   //make a fetch request to get the document http://localhost:8080/content/wknd/us/en/adventures/riverside-camping-australia.html
-  const response = await fetch('http://localhost:8080/content/wknd/us/en/adventures/riverside-camping-australia.html');
+  const response = await fetch('http://localhost:8080/etc.clientlibs/wknd/clientlibs/clientlib-site.lc-3037f5026ad3524914701791035ca88c-lc.min.js');
   const text = await response.text();
   console.log(text);
   await loadEager(document);
