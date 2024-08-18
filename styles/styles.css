@@ -60,8 +60,8 @@
   --rk-blue-dark: #1E7DDD;
 
   /* fonts */
-  --body-font-family: montserrat-normal-400, sans-serif, montserrat-normal-400-fallback;
-  --heading-font-family: solway-normal-400, sans-serif, solway-normal-400-fallback;
+  --body-font-family: montserrat-normal, sans-serif, montserrat-normal-fallback;
+  --heading-font-family: solway-normal, sans-serif, solway-normal-fallback;
 
   /* font weight */
   --font-weight-light: 300;
@@ -102,13 +102,13 @@
 }
 
 @font-face {
-  font-family: 'montserrat-normal-400-fallback';
+  font-family: montserrat-normal-fallback;
   size-adjust: 111.311%;
   src: local("Arial");
 }
 
 @font-face {
-  font-family: 'solway-normal-400-fallback';
+  font-family: solway-normal-fallback;
   size-adjust: 113.741%;
   src: local("Arial");
 }
