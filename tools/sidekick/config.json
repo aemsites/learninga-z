@@ -1,0 +1,24 @@
+{
+    "project": "LearningA-Z",
+    "host": "",
+    "plugins": [
+      {
+        "id": "library",
+        "title": "Library",
+        "environments": [
+          "edit"
+        ],
+        "url": "/tools/sidekick/library/library.html",
+        "includePaths": [
+          "**.docx**"
+        ]
+      },
+      {
+        "id": "tagger",
+        "title": "Tagger",
+        "environments": [ "edit" ],
+        "url": "/tools/tagger/index.html"
+      }
+    ]
+  }
+  
