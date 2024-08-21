@@ -72,14 +72,14 @@ function extractColor(anchor) {
     anchor.title = anchor.textContent;
     return { colorOne, colorTwo };
   }
-  return null;
+  return { colorOne, colorTwo };
 }
 
 /**
  * Decorates paragraphs containing a single link as buttons.
  * @param {Element} element container element
  */
-function decorateButtons(element) {
+export function decorateButtons(element) {
   element.querySelectorAll('a').forEach((a) => {
     a.title = a.title || a.textContent;
     if (a.href !== a.textContent) {
@@ -95,7 +95,7 @@ function decorateButtons(element) {
           up.childNodes.length === 1
           && up.tagName === 'STRONG'
           && twoup.childNodes.length === 1
-          && twoup.tagName === 'P'
+          && (twoup.tagName === 'P' || twoup.tagName === 'LI')
         ) {
           if (colors) {
             a.classList.add(`bgcolor-${colors.colorOne}`);
