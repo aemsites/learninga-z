@@ -6,6 +6,27 @@ header .nav-wrapper {
   z-index: 5;
 }
 
+header .nav-wrapper .nav-announcement {
+  background-color: #F48C21;
+  padding: .5em 0;
+  position: relative;
+  z-index: 10;
+  margin: 0;
+  text-align: center;
+}
+
+header .nav-wrapper .nav-announcement a {
+  color: var(--white);
+  background-color: var(--orange);
+  font-weight: 600;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  text-decoration: none;
+  display: block;
+}
+
 header nav {
   padding-right: 15px;
   padding-left: 15px;
@@ -15,6 +36,7 @@ header nav {
   justify-content: space-between;
   align-items: center;
   max-width: 100%;
+  position: relative;
 }
 
 header .nav-brand {
@@ -30,10 +52,10 @@ header .nav-brand * {
 }
 
 header .nav-sections {
+  height: var(--nav-height);
   display: flex;
   align-items: center;
   float: right;
-  height: 100%;
   padding-left: 15px;
   padding-right: 15px;
   margin: 0 -25px;

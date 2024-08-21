@@ -120,11 +120,27 @@ export default async function decorate(block) {
   nav.id = 'nav';
   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
 
-  const classes = ['brand', 'sections', 'tools'];
+  const classes = ['announcement', 'brand', 'sections', 'tools'];
   classes.forEach((c, i) => {
     const section = nav.children[i];
     if (section) section.classList.add(`nav-${c}`);
   });
+
+  const navWrapper = document.createElement('div');
+  navWrapper.className = 'nav-wrapper';
+
+  const navAnnouncement = nav.querySelector('.nav-announcement');
+  if (navAnnouncement) {
+    if (navAnnouncement.querySelector('a')) {
+      const announcementLink = navAnnouncement.querySelector('a');
+      announcementLink.className = '';
+      const announcementWrapper = document.createElement('div');
+      announcementWrapper.className = 'nav-announcement';
+      announcementWrapper.append(announcementLink);
+      navWrapper.append(announcementWrapper);
+      navAnnouncement.remove();
+    }
+  }
 
   const navBrand = nav.querySelector('.nav-brand');
   const brandLink = navBrand.querySelector('.button');
@@ -160,8 +176,6 @@ export default async function decorate(block) {
   toggleMenu(nav, navSections, isDesktop.matches);
   isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
 
-  const navWrapper = document.createElement('div');
-  navWrapper.className = 'nav-wrapper';
   navWrapper.append(nav);
   decorateButtons(nav);
   block.append(navWrapper);

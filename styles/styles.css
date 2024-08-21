@@ -73,8 +73,7 @@
 
   /* body sizes */
   --body-font-size-m: 22px;
-  --body-font-size-s: 19px;
-  --body-font-size-xs: 17px;
+  --body-font-size-s: 16px;
 
   /* heading sizes */
   --heading-font-size-xxl: 55px;
@@ -85,7 +84,7 @@
   --heading-font-size-xs: 22px;
 
   /* nav height */
-  --nav-height: 64px;
+  --nav-height: 93px;
 }
 
 /* fallback fonts */
@@ -130,7 +129,7 @@ body {
   background-color: var(--background-color);
   color: var(--text-color);
   font-family: var(--body-font-family);
-  font-size: var(--body-font-size-m);
+  font-size: var(--body-font-size-s);
   line-height: 1.4286;
 }
 
@@ -208,7 +207,7 @@ button {
 }
 
 /* links */
-a:any-link {
+a:any-link, a {
   color: var(--link-color);
   text-decoration: none;
   word-break: break-word;
