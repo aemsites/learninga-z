@@ -52,12 +52,12 @@
 
 .carousel .carousel-slide .carousel-slide-content h2 {
   color: #31409A;
+  font-size: 26px;
 }
 
-.carousel .carousel-slide .carousel-slide-content h4 {
+.carousel .carousel-slide .carousel-slide-content p {
   color: inherit;
-  font-family: Montserrat, sans-serif;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 500;
   text-transform: none;
 }
