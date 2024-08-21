@@ -475,9 +475,11 @@ function decorateSections(main) {
             .split(',')
             .filter((style) => style)
             .map((style) => toClassName(style.trim()));
+          // style name is appended to the section class, not section-outer
           styles.forEach((style) => section.classList.add(style));
         } else {
-          section.dataset[toCamelCase(key)] = meta[key];
+          // Theme & other meta is appended to section-outer
+          sectionOuter.dataset[toCamelCase(key)] = meta[key];
         }
       });
       sectionMeta.parentNode.remove();

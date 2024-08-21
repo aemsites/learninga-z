@@ -182,6 +182,10 @@ blockquote {
   margin-bottom: 0.25em;
 }
 
+.center {
+  text-align: center;
+}
+
 code,
 pre {
   font-size: var(--body-font-size-s);
@@ -193,6 +197,10 @@ pre {
   background-color: var(--light-color);
   overflow-x: auto;
   white-space: pre;
+}
+
+main {
+  margin-bottom: 80px;
 }
 
 main > div > div {
@@ -245,58 +253,59 @@ button {
 .button.bgcolor-red {
   background-color: var(--red);
   border-color: var(--red);
-}
 
-.button.bgcolor-red:hover {
-  color: var(--red);
-  border-color: var(--red);
+  &:hover {
+    color: var(--red);
+    border-color: var(--red);
+  }
 }
 
 .button.bgcolor-gold {
   background-color: var(--gold);
   border-color: var(--gold);
-}
 
-.button.bgcolor-gold:hover {
-  color: var(--gold);
-  border-color: var(--gold);
+  &:hover {
+    color: var(--gold);
+    border-color: var(--gold);
+  }
 }
 
 .button.bgcolor-light-blue {
   background-color: var(--faz-light-blue);
   border-color: var(--faz-light-blue);
-}
 
-.button.bgcolor-light-blue:hover {
-  color: var(--faz-light-blue);
-  border-color: var(--faz-light-blue);
+  &:hover {
+    color: var(--faz-light-blue);
+    border-color: var(--faz-light-blue);
+  }
 }
 
 .button.bgcolor-berry {
   background-color: var(--berry);
   border-color: var(--berry);
-}
 
-.button.bgcolor-berry:hover {
-  color: var(--berry);
-  border-color: var(--berry);
+  &:hover {
+    color: var(--berry);
+    border-color: var(--berry);
+  }
 }
 
 .button.textcolor-white {
   color: var(--white);
-}
 
-.button.textcolor-white:hover {
-  background-color: var(--white);
+  &:hover {
+    background-color: var(--white);
+  }
 }
 
 .button.textcolor-black {
   color: var(--laz-black);
+
+  &:hover {
+    background-color: var(--laz-black);
+  }
 }
 
-.button.textcolor-black:hover {
-  background-color: var(--laz-black);
-}
 
 /* primary button colors end */
 
@@ -345,6 +354,28 @@ li {
 
 /* secondary button colors end */
 
+/* themes - TBD if we use product names for these or not */
+[data-theme="laz-blue"] {
+  background-color: var(--laz-blue);
+  color: var(--white);
+
+  a:any-link {
+    color: var(--white);
+    text-decoration: underline;
+  }
+}
+
+[data-theme="yellow"] {
+  background-color: var(--yellow);
+}
+
+[data-theme="purple"] {
+  background-color: var(--purple);
+  color: var(--white);
+}
+
+/* end themes */
+
 main img {
   max-width: 100%;
   width: auto;
@@ -363,24 +394,36 @@ main img {
 }
 
 /* sections */
-main > .section-outer > .section {
-  margin: 40px 0;
+main > .section-outer {
+  margin: auto;
 }
 
-main > .section-outer > .section > div {
-  max-width: 1200px;
-  margin: auto;
-  padding: 0 24px;
+main > .section-outer > .section {
+  margin: 0 10px;
+  padding: 48px 15px;
+  max-width: 750px;
 }
 
 main > .section:first-of-type {
   margin-top: 0;
 }
 
-@media (width >= 900px) {
-  main > .section-outer > .section > div {
-    padding: 0 32px;
+@media (width >= 768px) {
+  main > .section-outer > .section {
+    margin: 0 auto;
   }
+}
+
+@media (width >= 992px) {
+  main > .section-outer > .section {
+    max-width: 970px;
+  }
+}
+
+@media (width >= 1200px) {
+    main > .section-outer > .section {
+        max-width: 1170px;
+    }
 }
 
 /* section metadata */
