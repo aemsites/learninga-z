@@ -56,14 +56,12 @@
 
 .carousel .carousel-slide .carousel-slide-content h4 {
   color: inherit;
-  font-size: 18px;
-  font-weight: 500;
-  text-transform: none;
   font-family: 'Montserrat', sans-serif;
   font-size: 18px;
   font-weight: 500;
   text-transform: none;
 }
+
 .carousel .carousel-slide-indicators {
   display: flex;
   flex-wrap: wrap;
