@@ -59,10 +59,12 @@
   --rk-blue: #D9E7F5;
   --rk-blue-dark: #1E7DDD;
   --dark-purple: #613aaf; /* H3 color */
+  --dark-gray: #56524e;
+  --dark-olive-green: #3E3F30;
 
   /* fonts */
-  --body-font-family: montserrat-normal, sans-serif, montserrat-normal-fallback;
-  --heading-font-family: solway-normal, sans-serif, solway-normal-fallback;
+  --body-font-family: 'Montserrat', sans-serif, montserrat-normal-fallback;
+  --heading-font-family: 'Solway', sans-serif, solway-normal-fallback;
 
   /* font weight */
   --font-weight-light: 300;
@@ -87,7 +89,7 @@
   --heading-font-size-xs: 22px;
 
   /* nav height */
-  --nav-height: 64px;
+  --nav-height: 93px;
 }
 
 /* fallback fonts */
@@ -117,6 +119,13 @@
 
 *, ::before, ::after {
   box-sizing: border-box;
+}
+
+img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  border-style: none;
 }
 
 body {
@@ -217,7 +226,7 @@ button {
 }
 
 /* links */
-a:any-link {
+a:any-link, a {
   color: var(--link-color);
   text-decoration: none;
   word-break: break-word;
@@ -367,6 +376,7 @@ button {
     margin-top: 50px;
   }
 
+
   h2 {
     font-size: var(--heading-font-size-s);
   }
@@ -375,6 +385,30 @@ button {
     font-size: var(--body-font-size-m);
     color: var(--dark-purple);
   }
+
+/* List */
+
+ul {
+  list-style: none;
+  margin: 10px;
+}
+
+ul, ol, ul ul, ol ol {
+  margin-top: 0;
+  margin-bottom: 30px;
+}
+
+li {
+  cursor: default;
+  text-transform: uppercase;
+}
+
+/* themes - TBD if we use product names for these or not */
+
+[data-theme="laz-blue"] {
+  background-color: var(--laz-blue);
+  color: var(--white);
+
 
   h4 {
     color: inherit;
