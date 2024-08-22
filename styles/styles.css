@@ -406,6 +406,8 @@ nav li {
   background-color: var(--purple);
   color: var(--white);
 
+  /* noinspection Stylelint */
+
   a {
     text-decoration: underline;
   }
