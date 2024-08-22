@@ -28,6 +28,7 @@ header .nav-wrapper .nav-announcement a {
 }
 
 header nav {
+  height: var(--nav-height);
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
@@ -37,12 +38,15 @@ header nav {
   align-items: center;
   max-width: 100%;
   position: relative;
+  top: 10px;
+  width: 100%;
 }
 
 header .nav-brand {
   width: 200px;
   top: 50%;
   height: auto;
+  padding: 0 15px;
 }
 
 header .nav-brand * {
@@ -50,13 +54,11 @@ header .nav-brand * {
 }
 
 header .nav-sections {
-  height: var(--nav-height);
-  display: flex;
+  display: none;
   align-items: center;
   float: right;
   padding-left: 15px;
   position: relative;
-  top: 50%;
 }
 
 header .nav-sections ul{
@@ -72,8 +74,8 @@ header .nav-sections ul li {
   display: inline-block;
   padding: 0;
   height: 100%;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 6px;
+  margin-right: 6px;
   font-family: var(--heading-font-family);
 }
 
@@ -123,13 +125,29 @@ header .nav-sections ul li a.button {
   font-size: var(--body-font-size-xs);
 }
 
-header .nav-hamburger {
-  display: none;
-}
 
 header .nav-sections ul li .icon img {
   height: 75%;
   width: 75%;
+}
+
+/* mobile styles */
+header .nav-hamburger {
+  display: block;
+  position: relative;
+  width: 60px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 0 15px;
+  float: right;
+}
+
+header .nav-hamburger .navicon-line {
+  height: 5px;
+  margin-bottom: 3px;
+  background-color: var(--dark-olive-green);
+  border-radius: 1px;
 }
 
 @media (width >= 768px) {
@@ -141,6 +159,17 @@ header .nav-sections ul li .icon img {
 @media (width >= 992px) {
   header nav {
     max-width: 970px;
+    top: 0;
+  }
+
+  header .nav-hamburger {
+    display: none;
+  }
+
+  header .nav-sections {
+    display: flex;
+    margin: 0 -15px;
+    padding-right: 15px;
   }
 }
 
@@ -155,9 +184,9 @@ header .nav-sections ul li .icon img {
     padding-right: 15px;
   }
 
-  header .nav-brand img{
+  header .nav-brand {
     max-height: 100%;
-    width: 100%;
+    width: 30%;
     height: 45px;
   }
 
@@ -165,6 +194,11 @@ header .nav-sections ul li .icon img {
     margin: 0 -25px;
     padding-left: 15px;
     padding-right: 15px;
+  }
+
+  header .nav-sections ul li {
+    margin-left: 10px;
+    margin-right: 10px;
   }
 
   header .nav-sections ul li a {

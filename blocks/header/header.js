@@ -166,14 +166,12 @@ export default async function decorate(block) {
   // hamburger for mobile
   const hamburger = document.createElement('div');
   hamburger.classList.add('nav-hamburger');
-  hamburger.innerHTML = `<button type="button" aria-controls="nav" aria-label="Open navigation">
-      <span class="nav-hamburger-icon"></span>
-    </button>`;
+  hamburger.innerHTML = '<div class="navicon-line"></div><div class="navicon-line"></div><div class="navicon-line"></div>';
   hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
   nav.append(hamburger);
   nav.setAttribute('aria-expanded', 'false');
   // prevent mobile nav behavior on window resize
-  toggleMenu(nav, navSections, isDesktop.matches);
+  //toggleMenu(nav, navSections, isDesktop.matches);
   isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
 
   navWrapper.append(nav);
