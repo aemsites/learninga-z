@@ -406,8 +406,6 @@ nav li {
   background-color: var(--purple);
   color: var(--white);
 
-  /* noinspection Stylelint */
-
   a {
     text-decoration: underline;
   }
@@ -427,9 +425,7 @@ nav li {
     font-size: var(--body-font-size-m);
     }
 
-  /* noinspection Stylelint */
-
-  a {
+  a { /* stylelint-disable-line */
     text-decoration: underline;
   }
 
