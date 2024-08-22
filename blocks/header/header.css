@@ -7,7 +7,7 @@ header .nav-wrapper {
 }
 
 header .nav-wrapper .nav-announcement {
-  background-color: #F48C21;
+  background-color: var(--orange);
   padding: .5em 0;
   position: relative;
   z-index: 10;
@@ -18,7 +18,7 @@ header .nav-wrapper .nav-announcement {
 header .nav-wrapper .nav-announcement a {
   color: var(--white);
   background-color: var(--orange);
-  font-weight: 600;
+  font-weight: var(--font-weight-bold);
   text-align: center;
   padding: 0;
   margin: 0;
@@ -40,12 +40,10 @@ header nav {
 }
 
 header .nav-brand {
-  float: left;
-  position: relative;
-  width: 30%;
-  height: 45px;
+  width: 200px;
   top: 50%;
-} 
+  height: auto;
+}
 
 header .nav-brand * {
   height: 100%;
@@ -57,8 +55,6 @@ header .nav-sections {
   align-items: center;
   float: right;
   padding-left: 15px;
-  padding-right: 15px;
-  margin: 0 -25px;
   position: relative;
   top: 50%;
 }
@@ -68,9 +64,8 @@ header .nav-sections ul{
   align-items: center;
   float: right;
   height: 100%;
-  padding-left: 15px;
-  padding-right: 15px;
-  margin: 0 -25px;
+  padding: 0;
+  margin: 0 -10px;
 }
 
 header .nav-sections ul li {
@@ -82,34 +77,37 @@ header .nav-sections ul li {
   font-family: var(--heading-font-family);
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 header .nav-sections ul li a {
   position: relative;
-  color: #56524e;
+  color: var(--dark-gray);
   font-weight: bold;
-  font-size: 16px;
+  font-size: var(--body-font-size-xs);
   letter-spacing: .25px;
   text-decoration: none;
   transition: all .2s;
   height: 100%;
   float: left;
   padding-right: 18px;
-}
+  text-wrap: nowrap;
+  word-break: normal;
 
-header .nav-sections ul li a::before {
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s, visibility 0.3s;
-  display: block;
-  content: "";
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 0 20.5px 7px;
-  border-color: transparent transparent #E21D46;
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  margin-left: -20px;
+  &::before {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    display: block;
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 20.5px 7px;
+    border-color: transparent transparent var(--red);
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-left: -20px;
+  }
 }
 
 header .nav-sections ul li:not(.button-container) a::after {
@@ -120,8 +118,18 @@ header .nav-sections ul li:not(.button-container) a::after {
   transform: rotate(90deg) translate(-7px,0) scale(0.45);
 }
 
+header .nav-sections ul li a.button {
+  padding: 8px 15px 6px;
+  font-size: var(--body-font-size-xs);
+}
+
 header .nav-hamburger {
   display: none;
+}
+
+header .nav-sections ul li .icon img {
+  height: 75%;
+  width: 75%;
 }
 
 @media (width >= 768px) {
@@ -130,10 +138,46 @@ header .nav-hamburger {
   }
 }
 
+@media (width >= 992px) {
+  header nav {
+    max-width: 970px;
+  }
+}
+
 
 @media (width >= 1200px) {
   header nav {
     max-width: 1170px;
+  }
+
+  header .nav-sections {
+    margin: 0 -25px;
+    padding-right: 15px;
+  }
+
+  header .nav-brand img{
+    max-height: 100%;
+    width: 100%;
+    height: 45px;
+  }
+
+  header .nav-sections ul {
+    margin: 0 -25px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  header .nav-sections ul li a {
+    font-size: var(--body-font-size-s);
+  }
+
+  header .nav-sections ul li a.button {
+    font-size: var(--body-font-size-s);
+  }
+
+  header .nav-sections ul li .icon img {
+    height: 100%;
+    width: 100%;
   }
 }
 
