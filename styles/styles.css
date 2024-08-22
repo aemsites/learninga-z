@@ -154,15 +154,21 @@ h4,
 h5,
 h6 {
   margin-top: 0;
-  margin-bottom: 1em;
+  margin-bottom: .5em;
   font-weight: 700;
-  line-height: 1.35;
+  line-height: 1.1;
   scroll-margin: 40px;
   color: var(--laz-logo-blue);
 }
 
-h5 { font-size: var(--heading-font-size-s); }
-h6 { font-size: var(--heading-font-size-xs); }
+h1, h2, h3 {
+  font-family: var(--heading-font-family);
+}
+
+h4, h5, h6 {
+  font-family: var(--body-font-family);
+}
+
 
 p,
 dl,
@@ -246,205 +252,242 @@ button {
 }
 
 /* primary button colors */
-.button.bgcolor-red {
-  background-color: var(--red);
-  border-color: var(--red);
 
-  &:hover {
-    color: var(--red);
+.button.primary {
+  &.bgcolor-red {
+    background-color: var(--red);
     border-color: var(--red);
+    color: var(--white);
+
+    &:hover {
+      color: var(--red);
+      border-color: var(--red);
+    }
   }
-}
 
-.button.bgcolor-gold {
-  background-color: var(--gold);
-  border-color: var(--gold);
-
-  &:hover {
-    color: var(--gold);
-    border-color: var(--gold);
-  }
-}
-
-.button.bgcolor-light-blue {
-  background-color: var(--faz-light-blue);
-  border-color: var(--faz-light-blue);
-
-  &:hover {
-    color: var(--faz-light-blue);
-    border-color: var(--faz-light-blue);
-  }
-}
-
-.button.bgcolor-berry {
-  background-color: var(--berry);
-  border-color: var(--berry);
-
-  &:hover {
-    color: var(--berry);
+  &.bgcolor-berry {
+    background-color: var(--berry);
     border-color: var(--berry);
-  }
-}
+    color: var(--white);
 
-.button.textcolor-white {
-  color: var(--white);
+    &:hover {
+      color: var(--berry);
+      border-color: var(--berry);
+    }
+  }
+
+  &.bgcolor-gold {
+    background-color: var(--gold);
+    border-color: var(--gold);
+
+    &:hover {
+      color: var(--gold);
+      border-color: var(--gold);
+    }
+  }
+
+  &.bgcolor-light-blue {
+    background-color: var(--faz-light-blue);
+    border-color: var(--faz-light-blue);
+
+    &:hover {
+      color: var(--faz-light-blue);
+      border-color: var(--faz-light-blue);
+    }
+  }
+
+  &.bgcolor-green {
+    background-color: var(--green);
+    border-color: var(--green);
+    color: var(--white);
+
+    &:hover {
+      color: var(--green);
+      border-color: var(--green);
+    }
+  }
+
+  &.textcolor-black {
+    color: var(--laz-black);
+
+    &:hover {
+      background-color: var(--laz-black);
+    }
+  }
+
+  &.textcolor-white {
+    color: var(--white);
+
+    &:hover {
+      background-color: var(--white);
+    }
+  }
 
   &:hover {
     background-color: var(--white);
   }
 }
 
-.button.textcolor-black {
-  color: var(--laz-black);
+/* end primary button colors */
 
-  &:hover {
-    background-color: var(--laz-black);
+
+  a.button.secondary,
+  button.secondary {
+    background-color: unset;
+    border: 2px solid;
   }
-}
 
-
-/* primary button colors end */
-
-a.button.secondary,
-button.secondary {
-  background-color: unset;
-  border: 2px solid;
-}
-
-/* secondary button colors */
-.button.secondary.textcolor-red {
-  color: var(--red);
-  border-color: var(--red);
-}
-
-.button.secondary.textcolor-light-blue {
-  color: var(--faz-light-blue);
-  border-color: var(--faz-light-blue);
-}
-
-.button.secondary.textcolor-berry {
-  color: var(--berry);
-  border-color: var(--berry);
-}
-
-.button.secondary.textcolor-black {
-  color: var(--laz-black);
-  border-color: var(--laz-black);
-}
-
-/* themes - TBD if we use product names for these or not */
-
-/* default theme */
-
-h1 {
-  font-family: var(--heading-font-family);
-  font-size: var(--heading-font-size-l);
-  margin-top: 50px;
-}
-
-h2 {
-  font-family: var(--heading-font-family);
-  font-size: var(--heading-font-size-s);
-}
-
-h3 {
-  font-family: var(--heading-font-family);
-  font-size: var(--body-font-size-m);
-  color: var(--dark-purple);
-}
-
-h4 {
-  color: inherit;
-  font-weight: var(--font-weight-medium);
-  font-size: var(--body-font-size-m);
-  font-family: var(--body-font-family);
-}
-
-[data-theme="laz-blue"] {
-  background-color: var(--laz-blue);
-  color: var(--white);
-
-  a:any-link {
-    color: var(--white);
-    text-decoration: underline;
+  /* secondary button colors */
+  .button.secondary.textcolor-red {
+    color: var(--red);
+    border-color: var(--red);
   }
-}
 
-[data-theme="yellow"] {
-  background-color: var(--yellow);
-}
-
-[data-theme="purple"] {
-  background-color: var(--purple);
-  color: var(--white);
-}
-
-/* end themes */
-
-main img {
-  max-width: 100%;
-  width: auto;
-  height: auto;
-}
-
-.icon {
-  display: inline-block;
-  height: 24px;
-  width: 24px;
-}
-
-.icon img {
-  height: 100%;
-  width: 100%;
-}
-
-/* sections */
-main > .section-outer {
-  margin: auto;
-}
-
-main > .section-outer > .section {
-  margin: 0 10px;
-  padding: 48px 15px;
-  max-width: 750px;
-}
-
-main > .section:first-of-type {
-  margin-top: 0;
-}
-
-@media (width >= 768px) {
-  main > .section-outer > .section {
-    margin: 0 auto;
+  .button.secondary.textcolor-light-blue {
+    color: var(--faz-light-blue);
+    border-color: var(--faz-light-blue);
   }
+
+  .button.secondary.textcolor-berry {
+    color: var(--berry);
+    border-color: var(--berry);
+  }
+
+  .button.secondary.textcolor-black {
+    color: var(--laz-black);
+    border-color: var(--laz-black);
+  }
+
+  /* themes - TBD if we use product names for these or not */
+
+  /* default theme */
 
   h1 {
-    font-size: var(--heading-font-size-3xl);
+    font-size: var(--heading-font-size-l);
     margin-top: 50px;
   }
 
   h2 {
-    font-size: var(--heading-font-size-xxl);
-    line-height: 1.1;
+    font-size: var(--heading-font-size-s);
   }
-}
 
-@media (width >= 992px) {
-  main > .section-outer > .section {
-    max-width: 970px;
+  h3 {
+    font-size: var(--body-font-size-m);
+    color: var(--dark-purple);
   }
-}
 
-@media (width >= 1200px) {
-    main > .section-outer > .section {
-        max-width: 1170px;
+  h4 {
+    color: inherit;
+    font-weight: var(--font-weight-medium);
+    font-size: var(--body-font-size-m);
+  }
+
+  [data-theme="laz-blue"] {
+    background-color: var(--laz-blue);
+    color: var(--white);
+
+    h1, h2, h3, h4, h5, h6 {
+      color: var(--white);
     }
-}
 
-/* section metadata */
-main .section.light,
-main .section.highlight {
-  background-color: var(--light-color);
-  margin: 0;
-  padding: 40px 0;
-}
+    a {
+      text-decoration: underline;
+    }
+
+    a:any-link {
+      color: var(--white);
+    }
+  }
+
+  [data-theme="yellow"] {
+    background-color: var(--yellow);
+
+    a:any-link {
+      color: var(--text-color);
+      text-decoration: underline;
+    }
+  }
+
+  [data-theme="purple"] {
+    background-color: var(--purple);
+    color: var(--white);
+
+    h1, h2, h3, h4, h5, h6 {
+      color: var(--white);
+    }
+
+    a:link {
+      color: var(--white);
+      text-decoration: underline;
+    }
+  }
+
+  /* end themes */
+
+  main img {
+    max-width: 100%;
+    width: auto;
+    height: auto;
+  }
+
+  .icon {
+    display: inline-block;
+    height: 24px;
+    width: 24px;
+  }
+
+  .icon img {
+    height: 100%;
+    width: 100%;
+  }
+
+  /* sections */
+  main > .section-outer {
+    margin: auto;
+  }
+
+  main > .section-outer > .section {
+    margin: 0 10px;
+    padding: 48px 15px;
+    max-width: 750px;
+  }
+
+  main > .section:first-of-type {
+    margin-top: 0;
+  }
+
+  @media (width >= 768px) {
+    main > .section-outer > .section {
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: var(--heading-font-size-3xl);
+      margin-top: 50px;
+    }
+
+    h2 {
+      font-size: var(--heading-font-size-xxl);
+      line-height: 1.1;
+    }
+  }
+
+  @media (width >= 992px) {
+    main > .section-outer > .section {
+      max-width: 970px;
+    }
+  }
+
+  @media (width >= 1200px) {
+    main > .section-outer > .section {
+      max-width: 1170px;
+    }
+  }
+
+  /* section metadata */
+  main .section.light,
+  main .section.highlight {
+    background-color: var(--light-color);
+    margin: 0;
+    padding: 40px 0;
+  }
