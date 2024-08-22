@@ -178,7 +178,6 @@ h4, h5, h6 {
   font-family: var(--body-font-family);
 }
 
-
 p,
 dl,
 ol,
@@ -238,8 +237,7 @@ a:hover {
 }
 
 /* buttons */
-a.button:any-link,
-button {
+.button.primary, .button.secondary {
   display: inline-block;
   max-width: 100%;
   margin: 12px 0;
@@ -388,47 +386,52 @@ button {
 
 /* List */
 
-ul {
+nav ul {
   list-style: none;
   margin: 10px;
 }
 
-ul, ol, ul ul, ol ol {
+nav ul, ol, ul ul, ol ol {
   margin-top: 0;
   margin-bottom: 30px;
 }
 
-li {
+nav li {
   cursor: default;
   text-transform: uppercase;
 }
 
 /* themes - TBD if we use product names for these or not */
+[data-theme="purple"] {
+  background-color: var(--purple);
+  color: var(--white);
+
+  a {
+    text-decoration: underline;
+  }
+
+  h1, h2, h3, h4, h5, h6, a:any-link {
+    color: var(--white);
+  }
+}
 
 [data-theme="laz-blue"] {
   background-color: var(--laz-blue);
   color: var(--white);
 
-
   h4 {
     color: inherit;
     font-weight: var(--font-weight-medium);
     font-size: var(--body-font-size-m);
+    }
+
+  /* noinspection Stylelint */
+
+  a {
+    text-decoration: underline;
   }
 
-  [data-theme="laz-blue"] {
-    background-color: var(--laz-blue);
-    color: var(--white);
-
-    h1, h2, h3, h4, h5, h6 {
-      color: var(--white);
-    }
-
-    a {
-      text-decoration: underline;
-    }
-
-    a:any-link {
+    h1, h2, h3, h4, h5, h6, a:any-link  {
       color: var(--white);
     }
   }
@@ -438,20 +441,6 @@ li {
 
     a:any-link {
       color: var(--text-color);
-      text-decoration: underline;
-    }
-  }
-
-  [data-theme="purple"] {
-    background-color: var(--purple);
-    color: var(--white);
-
-    h1, h2, h3, h4, h5, h6 {
-      color: var(--white);
-    }
-
-    a:link {
-      color: var(--white);
       text-decoration: underline;
     }
   }
