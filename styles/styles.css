@@ -61,6 +61,15 @@
   --dark-gray: #56524e;
   --dark-olive-green: #3E3F30;
 
+  /* product colors */
+  --product-navy-blue: #12457e;
+  --product-berry: #c83192;
+  --product-dark-blue: #005cb9;
+  --product-red: #ea1947;
+  --product-green: #128641;
+  --product-purple: #92479a;
+  --product-orange: #f05b32;
+
   /* fonts */
   --body-font-family: 'Montserrat', sans-serif, montserrat-normal-fallback;
   --heading-font-family: 'Solway', sans-serif, solway-normal-fallback;
@@ -161,17 +170,25 @@ h3,
 h4,
 h5,
 h6 {
-  margin-top: 0.8em;
-  margin-bottom: 0.25em;
+  margin-top: 0;
+  margin-bottom: 1em;
   font-family: var(--heading-font-family);
-  font-weight: 600;
-  line-height: 1.25;
+  font-weight: 500;
+  line-height: 1.35;
   scroll-margin: 40px;
 }
 
 h1 { font-size: var(--heading-font-size-xxl); }
 h2 { font-size: var(--heading-font-size-xl); }
-h3 { font-size: var(--heading-font-size-l); }
+
+h3 { 
+  display: inline-block;
+  font-size: 18px;
+  font-weight: 700;
+  position: relative;
+  font-family: var(--body-font-family);
+ }
+
 h4 { font-size: var(--heading-font-size-m); }
 h5 { font-size: var(--heading-font-size-s); }
 h6 { font-size: var(--heading-font-size-xs); }
@@ -353,7 +370,6 @@ ul, ol, ul ul, ol ol {
 
 li {
   cursor: default;
-  text-transform: uppercase;
 }
 
 /* secondary button colors end */

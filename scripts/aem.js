@@ -417,9 +417,26 @@ function decorateIcon(span, prefix = '', alt = '') {
   const iconName = Array.from(span.classList)
     .find((c) => c.startsWith('icon-'))
     .substring(5);
+  const svgSrc = `${window.hlx.codeBasePath}${prefix}/icons/${iconName}.svg`;
+  const pngSrc = `${window.hlx.codeBasePath}${prefix}/icons/${iconName}.png`;
   const img = document.createElement('img');
   img.dataset.iconName = iconName;
-  img.src = `${window.hlx.codeBasePath}${prefix}/icons/${iconName}.svg`;
+  img.alt = alt;
+  img.loading = 'lazy';
+
+  fetch(svgSrc)
+    .then((response) => {
+      if (response.ok) {
+        img.src = svgSrc;
+      } else {
+        img.src = pngSrc;
+      }
+    })
+    .catch(() => {
+      img.src = pngSrc;
+    });
+
+  span.append(img);
   img.alt = alt;
   img.loading = 'lazy';
   span.append(img);
@@ -475,11 +492,9 @@ function decorateSections(main) {
             .split(',')
             .filter((style) => style)
             .map((style) => toClassName(style.trim()));
-          // style name is appended to the section class, not section-outer
           styles.forEach((style) => section.classList.add(style));
         } else {
-          // Theme & other meta is appended to section-outer
-          sectionOuter.dataset[toCamelCase(key)] = meta[key];
+          section.dataset[toCamelCase(key)] = meta[key];
         }
       });
       sectionMeta.parentNode.remove();

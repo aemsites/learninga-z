@@ -37,7 +37,6 @@ header nav {
   justify-content: space-between;
   align-items: center;
   max-width: 100%;
-  position: relative;
   top: 10px;
   width: 100%;
 }
@@ -58,7 +57,6 @@ header .nav-sections {
   align-items: center;
   float: right;
   padding-left: 15px;
-  position: relative;
 }
 
 header .nav-sections ul{
@@ -77,6 +75,7 @@ header .nav-sections ul li {
   margin-left: 6px;
   margin-right: 6px;
   font-family: var(--heading-font-family);
+  text-transform: uppercase;
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
@@ -94,31 +93,16 @@ header .nav-sections ul li a {
   text-wrap: nowrap;
   word-break: normal;
 
-  &::before {
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s, visibility 0.3s;
-    display: block;
-    content: "";
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 0 20.5px 7px;
-    border-color: transparent transparent var(--red);
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    margin-left: -20px;
-  }
 }
 
-header .nav-sections ul li:not(.button-container) a::after {
+header .nav-sections ul li:not(.button-container) a:not(.button)::after {
   content: url("/icons/solutions-right.svg");
   position: absolute;
   top: 0;
   right: 0;
   transform: rotate(90deg) translate(-7px,0) scale(0.45);
 }
+
 
 header .nav-sections ul li a.button {
   padding: 8px 15px 6px;
@@ -148,6 +132,134 @@ header .nav-hamburger .navicon-line {
   margin-bottom: 3px;
   background-color: var(--dark-olive-green);
   border-radius: 1px;
+}
+
+
+/* secondary nav */
+header .megamenu-container {
+  border-top: 2px solid #e21d46;
+  width: 100%;
+  background-color: #fff;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+  z-index: 200;
+  position: absolute;
+  left: 0;
+  top: 132px;
+  padding: 50px 0 58px;
+  height: auto;
+  box-shadow: 0 5px 10px 0 rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+header .nav-sections ul li[aria-expanded="true"] .megamenu-container {
+  opacity: 1;
+  visibility: visible;
+}
+
+header .megamenu {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 15px;
+}
+
+header .megamenu .section-outer {
+  padding: 0 15px;
+}
+
+header .megamenu ul {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+header .megamenu ul li {
+  height: 60px;
+  position: relative;
+  text-transform: none;
+  display: flex;
+  padding-right: 10px;
+  margin-left: 0;
+}
+
+/* align everything under header .megamenu ul li vertically centered */
+header .megamenu ul li .icon, header .megamenu ul li a {
+  display: inline-block;
+  vertical-align: middle;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+header .megamenu ul li .icon{
+  background-color: #e21d46;
+  min-height: 40px;
+  width: 40px;
+  float: left;
+  border-radius: 50%;
+  max-width: 30%;
+  position: relative;
+  color: #fff;
+}
+
+header .megamenu ul li a {
+  font-size: 16px;
+  font-weight: bold;
+  color: #555;
+  line-height: 1.3;
+  transition: all .2s;
+  z-index: 30;
+  padding-left: 15px;
+  max-width: 70%;
+  float: left;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+header .megamenu .default-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+header .megamenu ul > li:not(.button-container) > a:not(.button)::after {
+  content: none;
+}
+
+header .megamenu .columns > div {
+  align-items: flex-start;
+}
+
+/* icon bg colors */
+header .megamenu .dark-blue .icon{
+  background-color: var(--product-dark-blue);
+}
+
+header .megamenu .berry .icon{
+  background-color: var(--product-berry);
+}
+
+header .megamenu .orange .icon{
+  background-color: var(--product-orange);
+}
+
+header .megamenu .green .icon{
+  background-color: var(--product-green);
+}
+
+header .megamenu .purple .icon{
+  background-color: var(--product-purple);
+}
+
+header .megamenu .red .icon{
+  background-color: var(--product-red);
+}
+
+header .megamenu li.navy-blue .icon{
+  background-color: var(--product-navy-blue);
 }
 
 @media (width >= 768px) {
@@ -212,6 +324,10 @@ header .nav-hamburger .navicon-line {
   header .nav-sections ul li .icon img {
     height: 100%;
     width: 100%;
+  }
+
+  header .megamenu {
+    max-width: 1170px;
   }
 }
 

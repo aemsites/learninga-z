@@ -59,7 +59,7 @@ function buildAutoBlocks(main) {
  * @returns {Object|null} - An object containing the extracted background color
  * and text color, or null if no color information is found.
  */
-function extractColor(anchor) {
+export function extractColor(anchor) {
   const text = anchor.textContent;
   let colorOne = 'red';
   let colorTwo = 'white';
@@ -83,7 +83,6 @@ export function decorateButtons(element) {
   element.querySelectorAll('a').forEach((a) => {
     a.title = a.title || a.textContent;
     if (a.href !== a.textContent) {
-      const colors = extractColor(a);
       const up = a.parentElement;
       const twoup = a.parentElement.parentElement;
       if (!a.querySelector('img')) {
@@ -97,6 +96,7 @@ export function decorateButtons(element) {
           && twoup.childNodes.length === 1
           && (twoup.tagName === 'P' || twoup.tagName === 'LI')
         ) {
+          const colors = extractColor(a);
           if (colors) {
             a.classList.add(`bgcolor-${colors.colorOne}`);
             a.classList.add(`textcolor-${colors.colorTwo}`);
@@ -108,8 +108,9 @@ export function decorateButtons(element) {
           up.childNodes.length === 1
           && up.tagName === 'EM'
           && twoup.childNodes.length === 1
-          && twoup.tagName === 'P'
+          && (twoup.tagName === 'P' || twoup.tagName === 'LI')
         ) {
+          const colors = extractColor(a);
           if (colors) {
             a.classList.add(`textcolor-${colors.colorOne}`);
           }
