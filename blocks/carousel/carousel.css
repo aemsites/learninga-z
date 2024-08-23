@@ -29,7 +29,6 @@
   justify-content: center;
   position: relative;
   width: 100%;
-  min-height: min(50vw, calc(100dvh - var(--header-height)));
   user-select: none;
 }
 
@@ -79,6 +78,7 @@
   border-radius: 50%;
   background-color: #cbcbcb;
   transition: background-color 0.2s;
+  border: none;
 }
 
 .carousel .carousel-slide-indicator button:disabled,
@@ -110,6 +110,7 @@
   background-color: #dadada;
   transition: background-color 0.2s;
   color: white;
+  border: none;
 }
 
 .carousel .carousel-navigation-buttons button:hover,

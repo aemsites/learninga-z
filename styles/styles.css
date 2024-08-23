@@ -58,6 +58,7 @@
   --vaz-blue-pastel: #ECEFF4;
   --rk-blue: #D9E7F5;
   --rk-blue-dark: #1E7DDD;
+  --dark-purple: #613aaf; /* H3 color */
   --dark-gray: #56524e;
   --dark-olive-green: #3E3F30;
 
@@ -74,16 +75,16 @@
 
 
   /* body sizes */
-  --body-font-size-m: 22px;
+  --body-font-size-m: 18px;
   --body-font-size-s: 16px;
   --body-font-size-xs: 14px;
 
-
   /* heading sizes */
-  --heading-font-size-xxl: 55px;
-  --heading-font-size-xl: 44px;
-  --heading-font-size-l: 34px;
-  --heading-font-size-m: 27px;
+  --heading-font-size-3xl: 60px;
+  --heading-font-size-xxl: 44px;
+  --heading-font-size-xl: 38px;
+  --heading-font-size-l: 36px;
+  --heading-font-size-m: 30px;
   --heading-font-size-s: 24px;
   --heading-font-size-xs: 22px;
 
@@ -161,20 +162,21 @@ h3,
 h4,
 h5,
 h6 {
-  margin-top: 0.8em;
-  margin-bottom: 0.25em;
-  font-family: var(--heading-font-family);
-  font-weight: 600;
-  line-height: 1.25;
+  margin-top: 0;
+  margin-bottom: .5em;
+  font-weight: 700;
+  line-height: 1.1;
   scroll-margin: 40px;
+  color: var(--laz-logo-blue);
 }
 
-h1 { font-size: var(--heading-font-size-xxl); }
-h2 { font-size: var(--heading-font-size-xl); }
-h3 { font-size: var(--heading-font-size-l); }
-h4 { font-size: var(--heading-font-size-m); }
-h5 { font-size: var(--heading-font-size-s); }
-h6 { font-size: var(--heading-font-size-xs); }
+h1, h2, h3 {
+  font-family: var(--heading-font-family);
+}
+
+h4, h5, h6 {
+  font-family: var(--body-font-family);
+}
 
 p,
 dl,
@@ -182,8 +184,12 @@ ol,
 ul,
 pre,
 blockquote {
-  margin-top: 0.8em;
-  margin-bottom: 0.25em;
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
+.footnote {
+  font-size: var(--body-font-size-xs);
 }
 
 .center {
@@ -231,8 +237,7 @@ a:hover {
 }
 
 /* buttons */
-a.button:any-link,
-button {
+.button.primary, .button.secondary {
   display: inline-block;
   max-width: 100%;
   margin: 12px 0;
@@ -254,186 +259,256 @@ button {
 }
 
 /* primary button colors */
-.button.bgcolor-red {
-  background-color: var(--red);
-  border-color: var(--red);
 
-  &:hover {
-    color: var(--red);
+.button.primary {
+  &.bgcolor-red {
+    background-color: var(--red);
     border-color: var(--red);
+    color: var(--white);
+
+    &:hover {
+      color: var(--red);
+      border-color: var(--red);
+    }
   }
-}
 
-.button.bgcolor-gold {
-  background-color: var(--gold);
-  border-color: var(--gold);
-
-  &:hover {
-    color: var(--gold);
-    border-color: var(--gold);
-  }
-}
-
-.button.bgcolor-light-blue {
-  background-color: var(--faz-light-blue);
-  border-color: var(--faz-light-blue);
-
-  &:hover {
-    color: var(--faz-light-blue);
-    border-color: var(--faz-light-blue);
-  }
-}
-
-.button.bgcolor-berry {
-  background-color: var(--berry);
-  border-color: var(--berry);
-
-  &:hover {
-    color: var(--berry);
+  &.bgcolor-berry {
+    background-color: var(--berry);
     border-color: var(--berry);
-  }
-}
+    color: var(--white);
 
-.button.textcolor-white {
-  color: var(--white);
+    &:hover {
+      color: var(--berry);
+      border-color: var(--berry);
+    }
+  }
+
+  &.bgcolor-gold {
+    background-color: var(--gold);
+    border-color: var(--gold);
+
+    &:hover {
+      color: var(--gold);
+      border-color: var(--gold);
+    }
+  }
+
+  &.bgcolor-light-blue {
+    background-color: var(--faz-light-blue);
+    border-color: var(--faz-light-blue);
+
+    &:hover {
+      color: var(--faz-light-blue);
+      border-color: var(--faz-light-blue);
+    }
+  }
+
+  &.bgcolor-green {
+    background-color: var(--green);
+    border-color: var(--green);
+    color: var(--white);
+
+    &:hover {
+      color: var(--green);
+      border-color: var(--green);
+    }
+  }
+
+  &.textcolor-black {
+    color: var(--laz-black);
+
+    &:hover {
+      background-color: var(--laz-black);
+    }
+  }
+
+  &.textcolor-white {
+    color: var(--white);
+
+    &:hover {
+      background-color: var(--white);
+    }
+  }
 
   &:hover {
     background-color: var(--white);
   }
 }
 
-.button.textcolor-black {
-  color: var(--laz-black);
+/* end primary button colors */
 
-  &:hover {
-    background-color: var(--laz-black);
+
+  a.button.secondary,
+  button.secondary {
+    background-color: unset;
+    border: 2px solid;
   }
-}
+
+  /* secondary button colors */
+  .button.secondary.textcolor-red {
+    color: var(--red);
+    border-color: var(--red);
+  }
+
+  .button.secondary.textcolor-light-blue {
+    color: var(--faz-light-blue);
+    border-color: var(--faz-light-blue);
+  }
+
+  .button.secondary.textcolor-berry {
+    color: var(--berry);
+    border-color: var(--berry);
+  }
+
+  .button.secondary.textcolor-black {
+    color: var(--laz-black);
+    border-color: var(--laz-black);
+  }
+
+  /* themes - TBD if we use product names for these or not */
+
+  /* default theme */
+
+  h1 {
+    font-size: var(--heading-font-size-l);
+    margin-top: 50px;
+  }
 
 
-/* primary button colors end */
+  h2 {
+    font-size: var(--heading-font-size-s);
+  }
 
-a.button.secondary,
-button.secondary {
-  background-color: unset;
-  border: 2px solid;
-}
-
-/* secondary button colors */
-.button.secondary.textcolor-red {
-  color: var(--red);
-  border-color: var(--red);
-}
-
-.button.secondary.textcolor-light-blue {
-  color: var(--faz-light-blue);
-  border-color: var(--faz-light-blue);
-}
-
-.button.secondary.textcolor-berry {
-  color: var(--berry);
-  border-color: var(--berry);
-}
-
-.button.secondary.textcolor-black {
-  color: var(--laz-black);
-  border-color: var(--laz-black);
-}
+  h3 {
+    font-size: var(--body-font-size-m);
+    color: var(--dark-purple);
+  }
 
 /* List */
-ul {
+
+nav ul {
   list-style: none;
   margin: 10px;
 }
 
-ul, ol, ul ul, ol ol {
+nav ul, ol, ul ul, ol ol {
   margin-top: 0;
   margin-bottom: 30px;
 }
 
-li {
+nav li {
   cursor: default;
   text-transform: uppercase;
 }
 
-/* secondary button colors end */
-
 /* themes - TBD if we use product names for these or not */
+[data-theme="purple"] {
+  background-color: var(--purple);
+  color: var(--white);
+
+  a {
+    text-decoration: underline;
+  }
+
+  h1, h2, h3, h4, h5, h6, a:any-link {
+    color: var(--white);
+  }
+}
+
 [data-theme="laz-blue"] {
   background-color: var(--laz-blue);
   color: var(--white);
 
-  a:any-link {
-    color: var(--white);
+  h4 {
+    color: inherit;
+    font-weight: var(--font-weight-medium);
+    font-size: var(--body-font-size-m);
+    }
+
+  a { /* stylelint-disable-line */
     text-decoration: underline;
   }
-}
 
-[data-theme="yellow"] {
-  background-color: var(--yellow);
-}
-
-[data-theme="purple"] {
-  background-color: var(--purple);
-  color: var(--white);
-}
-
-/* end themes */
-
-main img {
-  max-width: 100%;
-  width: auto;
-  height: auto;
-}
-
-.icon {
-  display: inline-block;
-  height: 24px;
-  width: 24px;
-}
-
-.icon img {
-  height: 100%;
-  width: 100%;
-}
-
-/* sections */
-main > .section-outer {
-  margin: auto;
-}
-
-main > .section-outer > .section {
-  margin: 0 10px;
-  padding: 48px 15px;
-  max-width: 750px;
-}
-
-main > .section:first-of-type {
-  margin-top: 0;
-}
-
-@media (width >= 768px) {
-  main > .section-outer > .section {
-    margin: 0 auto;
-  }
-}
-
-@media (width >= 992px) {
-  main > .section-outer > .section {
-    max-width: 970px;
-  }
-}
-
-@media (width >= 1200px) {
-    main > .section-outer > .section {
-        max-width: 1170px;
+    h1, h2, h3, h4, h5, h6, a:any-link  {
+      color: var(--white);
     }
-}
+  }
 
-/* section metadata */
-main .section.light,
-main .section.highlight {
-  background-color: var(--light-color);
-  margin: 0;
-  padding: 40px 0;
-}
+  [data-theme="yellow"] {
+    background-color: var(--yellow);
+
+    a:any-link {
+      color: var(--text-color);
+      text-decoration: underline;
+    }
+  }
+
+  /* end themes */
+
+  main img {
+    max-width: 100%;
+    width: auto;
+    height: auto;
+  }
+
+  .icon {
+    display: inline-block;
+    height: 24px;
+    width: 24px;
+  }
+
+  .icon img {
+    height: 100%;
+    width: 100%;
+  }
+
+  /* sections */
+  main > .section-outer {
+    margin: auto;
+  }
+
+  main > .section-outer > .section {
+    margin: 0 10px;
+    padding: 48px 15px;
+    max-width: 750px;
+  }
+
+  main > .section:first-of-type {
+    margin-top: 0;
+  }
+
+  @media (width >= 768px) {
+    main > .section-outer > .section {
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: var(--heading-font-size-3xl);
+      margin-top: 50px;
+    }
+
+    h2 {
+      font-size: var(--heading-font-size-xxl);
+      line-height: 1.1;
+    }
+  }
+
+  @media (width >= 992px) {
+    main > .section-outer > .section {
+      max-width: 970px;
+    }
+  }
+
+  @media (width >= 1200px) {
+    main > .section-outer > .section {
+      max-width: 1170px;
+    }
+  }
+
+  /* section metadata */
+  main .section.light,
+  main .section.highlight {
+    background-color: var(--light-color);
+    margin: 0;
+    padding: 40px 0;
+  }
