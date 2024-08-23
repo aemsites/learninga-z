@@ -57,6 +57,11 @@ header .nav-sections {
   align-items: center;
   float: right;
   padding-left: 15px;
+  height: 100%;
+}
+
+header .nav-sections > .section, header .nav-sections > .section > div {
+  height: 100%;
 }
 
 header .nav-sections ul{
@@ -87,11 +92,11 @@ header .nav-sections ul li a {
   letter-spacing: .25px;
   text-decoration: none;
   transition: all .2s;
-  height: 100%;
   float: left;
   padding-right: 18px;
   text-wrap: nowrap;
   word-break: normal;
+  top: 50%;
 
 }
 
