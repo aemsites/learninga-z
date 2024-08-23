@@ -57,10 +57,12 @@
 
 .flip-card-back p {
   font-size: 16px;
+  color: white;
 }
 
 .flip-card-back h2 {
   font-size: 20px;
+  color: white;
 }
 
 .flip-card:hover .flip-card-inner {
