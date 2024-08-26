@@ -105,9 +105,7 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
 }
 
 function applyColors(secondaryNav) {
-  console.log(secondaryNav);
   secondaryNav.querySelectorAll('a').forEach((anchor) => {
-    console.log(anchor);
     const { colorOne } = extractColor(anchor);
     anchor.parentElement.classList.add(colorOne);
   });
