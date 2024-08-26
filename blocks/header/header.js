@@ -183,9 +183,15 @@ export default async function decorate(block) {
       if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
       navSection.addEventListener('mouseenter', () => {
         if (isDesktop.matches) {
-          const expanded = navSection.getAttribute('aria-expanded') === 'true';
           toggleAllNavSections(navSections);
-          navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+          navSection.setAttribute('aria-expanded', 'true');
+        }
+      });
+
+      navSection.addEventListener('mouseleave', () => {
+        if (isDesktop.matches) {
+          toggleAllNavSections(navSections);
+          navSection.setAttribute('aria-expanded', 'false');
         }
       });
     });
