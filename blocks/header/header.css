@@ -215,6 +215,12 @@ header .megamenu ul li .icon{
   color: var(--white);
 }
 
+header .megamenu ul li .icon img {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 header .megamenu ul li a {
   font-weight: bold;
   color: var(--dark-gray);
