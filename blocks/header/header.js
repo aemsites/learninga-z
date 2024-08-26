@@ -1,6 +1,6 @@
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
-import { decorateButtons } from '../../scripts/scripts.js';
+import { decorateButtons, extractColor } from '../../scripts/scripts.js';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 900px)');
@@ -104,6 +104,24 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
   }
 }
 
+function applyColors(secondaryNav) {
+  secondaryNav.querySelectorAll('a').forEach((anchor) => {
+    const { colorOne } = extractColor(anchor);
+    anchor.parentElement.classList.add(colorOne);
+  });
+}
+
+function loadSecondaryNavFragment(navChildFragmentLink, secondaryNav) {
+  const navChildFragmentPath = navChildFragmentLink.getAttribute('href');
+  const navChildFragment = document.createElement('div');
+  navChildFragment.className = 'megamenu';
+  loadFragment(navChildFragmentPath).then((fragment) => {
+    while (fragment.firstElementChild) navChildFragment.append(fragment.firstElementChild);
+    secondaryNav.replaceChildren(navChildFragment);
+    applyColors(secondaryNav);
+  });
+}
+
 /**
  * loads and decorates the header, mainly the nav
  * @param {Element} block The header block element
@@ -152,12 +170,26 @@ export default async function decorate(block) {
   const navSections = nav.querySelector('.nav-sections');
   if (navSections) {
     navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
+      const secondaryNav = document.createElement('div');
+      secondaryNav.className = 'megamenu-container';
+      const navChildFragmentLink = navSection.querySelector('a[href*="/fragment"]');
+      if (navChildFragmentLink) {
+        loadSecondaryNavFragment(navChildFragmentLink, secondaryNav);
+        navChildFragmentLink.closest('ul').remove();
+      }
+      navSection.append(secondaryNav);
       if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
-      navSection.addEventListener('click', () => {
+      navSection.addEventListener('mouseenter', () => {
         if (isDesktop.matches) {
-          const expanded = navSection.getAttribute('aria-expanded') === 'true';
           toggleAllNavSections(navSections);
-          navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+          navSection.setAttribute('aria-expanded', 'true');
+        }
+      });
+
+      navSection.addEventListener('mouseleave', () => {
+        if (isDesktop.matches) {
+          toggleAllNavSections(navSections);
+          navSection.setAttribute('aria-expanded', 'false');
         }
       });
     });

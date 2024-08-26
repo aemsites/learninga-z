@@ -61,6 +61,16 @@
   --dark-purple: #613aaf; /* H3 color */
   --dark-gray: #56524e;
   --dark-olive-green: #3E3F30;
+  --charcoal-gray: #45423f;
+
+    /* product colors */
+    --product-navy-blue: #12457e;
+    --product-berry: #c83192;
+    --product-dark-blue: #005cb9;
+    --product-red: #ea1947;
+    --product-green: #128641;
+    --product-purple: #92479a;
+    --product-orange: #f05b32;
 
   /* fonts */
   --body-font-family: 'Montserrat', sans-serif, montserrat-normal-fallback;
