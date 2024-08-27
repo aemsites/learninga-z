@@ -492,9 +492,11 @@ function decorateSections(main) {
             .split(',')
             .filter((style) => style)
             .map((style) => toClassName(style.trim()));
+          // style name is appended to div.section
           styles.forEach((style) => section.classList.add(style));
         } else {
-          section.dataset[toCamelCase(key)] = meta[key];
+          // Theme + other meta is appended to div.section-outer
+          sectionOuter.dataset[toCamelCase(key)] = meta[key];
         }
       });
       sectionMeta.parentNode.remove();
