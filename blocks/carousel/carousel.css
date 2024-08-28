@@ -24,12 +24,12 @@
   flex: 0 0 100%;
   scroll-snap-align: start;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
   position: relative;
-  width: 100%;
+  width: 90%;
   user-select: none;
+  justify-content: space-between;
 }
 
 .carousel .carousel-slide .carousel-slide-image picture {
@@ -47,19 +47,14 @@
 
 .carousel .carousel-slide .carousel-slide-content {
   flex: 0 60%;
+  margin: 40px;
+  justify-content: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;  
 }
 
-.carousel .carousel-slide .carousel-slide-content h2 {
-  color: var(--laz-logo-blue);
-  font-size: 26px;
-}
 
-.carousel .carousel-slide .carousel-slide-content p {
-  color: inherit;
-  font-size: 14px;
-  font-weight: 500;
-  text-transform: none;
-}
 
 .carousel .carousel-slide-indicators {
   display: flex;
@@ -88,15 +83,10 @@
 }
 
 .carousel .carousel-navigation-buttons {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: -110px;
-  right: -110px;
+  position: relative;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
   z-index: 1;
+  justify-content: space-between;
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
@@ -137,19 +127,41 @@
   left: calc(50% - 2px);
 }
 
-@media (width >= 600px) {
-  .carousel .carousel-navigation-buttons {
-    left: -110px;
-    right: -110px;
-  }
-
+@media (width >= 300px) {
   .carousel .carousel-slide .carousel-slide-content {
     --slide-content-width: calc((100% - 184px) / 2);
-
-    margin: 60px;
+    
   }
 
   .carousel .carousel-slide .carousel-slide-content[data-align='justify'] {
     --slide-content-width: auto;
   }
+}
+
+@media (width >= 1200px) {
+  .carousel .carousel-slide {
+    flex-direction: row;
+    padding-left: 80px;
+    padding-right: 80px;
+    }
+
+    .carousel .carousel-slide .carousel-slide-content h2 {
+      font-size: 26px;
+    }
+    
+    .carousel .carousel-slide .carousel-slide-content p {
+      font-weight: 500;
+    }
+  
+    .carousel .carousel-navigation-buttons {
+      transform: translateY(-500%);
+    }
+
+    .carousel .carousel-navigation-buttons button.slide-next {
+      right:-80px
+    }
+
+    .carousel .carousel-navigation-buttons button.slide-prev {
+      left:-80px
+    }
 }
