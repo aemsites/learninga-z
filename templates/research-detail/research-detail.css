@@ -1,1 +1,49 @@
-/* home page specific styles */
+.research-detail main {
+    .section-outer > .section {
+        padding: 24px 15px;
+    }
+
+    .section-outer:last-of-type .default-content-wrapper {
+        text-align: center;
+    }
+}
+
+@media (width >= 768px) {
+    .research-detail main {
+        max-width: 750px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (width >= 992px) {
+    .research-detail main {
+        display: grid;
+        grid-template-columns: 61% 36%;
+        grid-template-areas:
+        "content sidebar";
+        gap: 40px;
+        max-width: 970px;
+        position: relative;
+
+        .section-outer:not(last-of-type) {
+            grid-area: auto / content;
+        }
+
+        .section-outer:last-of-type {
+            grid-area: sidebar;
+            grid-column-start: 2;
+            grid-row: 1 / -1;
+            margin-top: 100px;
+            padding-right: 25px;
+            height: 100%;
+            display: flex;
+        }
+    }
+}
+
+@media (width >= 1200px) {
+    .research-detail main {
+        max-width: 1170px;
+    }
+}
