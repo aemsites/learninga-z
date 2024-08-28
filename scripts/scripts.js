@@ -12,6 +12,7 @@ import {
   loadCSS,
   sampleRUM,
   getMetadata,
+  toClassName,
 } from './aem.js';
 
 /**
@@ -44,10 +45,14 @@ async function loadFonts() {
 /**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
+ * @param {Function} templateModule The template module
  */
-function buildAutoBlocks(main) {
+function buildAutoBlocks(main, templateModule = undefined) {
   try {
     buildHeroBlock(main);
+    if (templateModule && templateModule.default) {
+      templateModule.default(main);
+    }
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
@@ -126,41 +131,47 @@ export function decorateButtons(element) {
 /**
  * Decorates the main element.
  * @param {Element} main The main element
+ * @param {Function} templateModule The template module
  */
 // eslint-disable-next-line import/prefer-default-export
-export function decorateMain(main) {
+export function decorateMain(main, templateModule) {
   // hopefully forward compatible button decoration
   decorateButtons(main);
   decorateIcons(main);
-  buildAutoBlocks(main);
+  buildAutoBlocks(main, templateModule);
   decorateSections(main);
   decorateBlocks(main);
 }
 
-async function loadTemplate(doc, templateName) {
-  try {
-    const cssLoaded = new Promise((resolve) => {
-      loadCSS(`${window.hlx.codeBasePath}/templates/${templateName}/${templateName}.css`, resolve);
-    });
-    const decorationComplete = new Promise((resolve) => {
-      (async () => {
-        try {
-          const mod = await import(`../templates/${templateName}/${templateName}.js`);
-          if (mod.default) {
-            await mod.default(doc);
-          }
-        } catch (error) {
-          // eslint-disable-next-line no-console
-          console.log(`failed to load module for ${templateName}`, error);
-        }
-        resolve();
-      })();
-    });
-    await Promise.all([cssLoaded, decorationComplete]);
-  } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log(`failed to load block ${templateName}`, error);
+/**
+ * Loads the template module.
+ * @param {string} templateName The template name
+ * Need to add the template name to the validTemplates array.
+ */
+const validTemplates = [
+  'home',
+  'blog-article',
+  'blog-author',
+  'video-detail',
+  'research-detail',
+  'product',
+];
+async function loadTemplate() {
+  const templateName = toClassName(getMetadata('template'));
+  if (templateName && validTemplates.includes(templateName)) {
+    try {
+      const cssLoaded = loadCSS(`${window.hlx.codeBasePath}/templates/${templateName}/${templateName}.css`);
+      const mod = await import(
+        `${window.hlx.codeBasePath}/templates/${templateName}/${templateName}.js`
+      );
+      await cssLoaded;
+      return mod;
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.log(`failed to load template ${templateName}`, error);
+    }
   }
+  return undefined;
 }
 
 /**
@@ -170,9 +181,10 @@ async function loadTemplate(doc, templateName) {
 async function loadEager(doc) {
   document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
+  const templateModule = await loadTemplate();
   const main = doc.querySelector('main');
   if (main) {
-    decorateMain(main);
+    decorateMain(main, templateModule);
     document.body.classList.add('appear');
     await loadSection(main.querySelector('.section'), waitForFirstImage);
   }
