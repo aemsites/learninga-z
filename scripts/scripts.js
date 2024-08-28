@@ -45,6 +45,7 @@ async function loadFonts() {
 /**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
+ * @param {Function} templateModule The template module
  */
 function buildAutoBlocks(main, templateModule = undefined) {
   try {
@@ -130,6 +131,7 @@ export function decorateButtons(element) {
 /**
  * Decorates the main element.
  * @param {Element} main The main element
+ * @param {Function} templateModule The template module
  */
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main, templateModule) {
@@ -141,12 +143,24 @@ export function decorateMain(main, templateModule) {
   decorateBlocks(main);
 }
 
-const validTemplates = [];
+/**
+ * Loads the template module.
+ * @param {string} templateName The template name
+ * Need to add the template name to the validTemplates array.
+ */
+const validTemplates = [
+  'home',
+  'blog-article',
+  'blog-author',
+  'video-detail',
+  'research-detail',
+  'product',
+];
 async function loadTemplate() {
   const templateName = toClassName(getMetadata('template'));
   if (templateName && validTemplates.includes(templateName)) {
     try {
-      const cssLoaded = loadCSS(`${window.hlx.codeBasePath}/template/${templateName}/${templateName}.css`);
+      const cssLoaded = loadCSS(`${window.hlx.codeBasePath}/templates/${templateName}/${templateName}.css`);
       const mod = await import(
         `${window.hlx.codeBasePath}/templates/${templateName}/${templateName}.js`
       );
