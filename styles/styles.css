@@ -93,8 +93,8 @@
   --heading-font-size-3xl: 60px;
   --heading-font-size-xxl: 44px;
   --heading-font-size-xl: 38px;
-  --heading-font-size-l: 36px;
-  --heading-font-size-m: 30px;
+  --heading-font-size-l: 32px;
+  --heading-font-size-m: 28px;
   --heading-font-size-s: 24px;
   --heading-font-size-xs: 22px;
 
@@ -220,7 +220,7 @@ pre {
 }
 
 main {
-  margin-bottom: 80px;
+  margin-bottom: 50px;
 }
 
 main > div > div {
@@ -377,16 +377,18 @@ a:hover {
 
   /* themes - TBD if we use product names for these or not */
 
-  /* default theme */
+  /* default theme works for blogs, research, and default templates */
 
   h1 {
-    font-size: var(--heading-font-size-l);
-    margin-top: 50px;
+    margin: 50px 0 1em;
+    line-height: 1.2;
   }
 
 
   h2 {
-    font-size: var(--heading-font-size-s);
+    font-size: var(--body-font-size-m);
+    margin-bottom: 1em;
+    line-height: 1.35;
   }
 
   h3 {
@@ -395,6 +397,9 @@ a:hover {
   }
 
 /* List */
+main ul {
+  margin-bottom: 30px;
+}
 
 nav ul {
   list-style: none;
@@ -404,6 +409,10 @@ nav ul {
 nav ul, ol, ul ul, ol ol {
   margin-top: 0;
   margin-bottom: 30px;
+}
+
+main li {
+  margin-bottom: 10px;
 }
 
 nav li {
@@ -444,6 +453,19 @@ nav li {
     }
   }
 
+[data-theme="red"] {
+  .button.primary {
+    background-color: var(--red);
+    border-color: var(--red);
+    color: var(--white);
+
+    &:hover {
+      color: var(--red);
+      border-color: var(--red);
+    }
+  }
+}
+
   [data-theme="yellow"] {
     background-color: var(--yellow);
 
@@ -478,7 +500,7 @@ nav li {
   }
 
   main > .section-outer > .section {
-    margin: 0 10px;
+    margin: 0 auto;
     padding: 48px 15px;
     max-width: 750px;
   }
@@ -493,13 +515,7 @@ nav li {
     }
 
     h1 {
-      font-size: var(--heading-font-size-3xl);
-      margin-top: 50px;
-    }
-
-    h2 {
-      font-size: var(--heading-font-size-xxl);
-      line-height: 1.1;
+      font-size: var(--heading-font-size-m);
     }
   }
 
