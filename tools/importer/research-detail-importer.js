@@ -97,18 +97,9 @@ const createMetadataBlock = (main, document) => {
     meta.Description = desc.content;
   }
 
-  // find the <meta property="og:image"> element
-  const img = document.querySelector('[property="og:image"]');
-  if (img) {
-    // create an <img> element
-    const el = document.createElement('img');
-    el.src = img.content;
-    meta.Image = el;
-  }
-
   meta.Products = getProducts(main);
 
-  meta.PubDate = getPubDate(document);
+  meta.Date = getPubDate(document);
 
   // helper to create the metadata block
   const block = WebImporter.Blocks.getMetadataBlock(document, meta);
