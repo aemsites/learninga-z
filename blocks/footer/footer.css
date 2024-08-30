@@ -26,7 +26,7 @@ footer .email-banner {
 }
 
 footer .email-banner a {
-  color: #555;
+  color: var(--dark-gray);
   text-decoration: underline;
 }
 
@@ -43,10 +43,11 @@ footer .columns img {
   width: 150px;
 }
 
-footer .footer .columns>div {
+footer .footer .columns > div {
   display: flex;
   flex-direction: column;
   gap: 24px;
+  align-items: flex-start;
 }
 
 footer .footer .columns ul {
@@ -61,14 +62,14 @@ footer .footer .columns ul li {
   padding: 0 5px;
   font-weight: 600;
   font-size: 16px;
-  color: #555;
+  color: var(--dark-gray);
   text-transform: uppercase;
   word-wrap: break-word;
 }
 
 footer .footer .columns ul li a {
   font-size: 14px;
-  color: #263238;
+  color: var(--charcoal-blue);
 }
 
 footer .columns-container .default-content-wrapper p {
@@ -76,7 +77,7 @@ footer .columns-container .default-content-wrapper p {
 }
 
 footer .footer .columns-container .default-content-wrapper p a{
-  color: #31409A;
+  color: var(--royal-blue);
   text-decoration: underline;
 }
 
@@ -113,15 +114,15 @@ footer .social-links .icon-instagram {
 }
 
 footer .social-links img {
+  position: absolute;
   width: 24px;
   height: 24px;
-  margin: 0 auto;
-  transform: translate(25%, 25%);
+  left: 15%;
+  transform: translate(0, 25%);
 }
 
-footer .social-links .icon-facebook:hover img {
-  transform: translateY(10px);
-  top: -10px;
+footer .social-links .icon:hover img {
+  transform: translate(0, -10px);
   transition: transform .4s cubic-bezier(.87,-.41,.19,1.44) .2s, top .2s;
 }
 
@@ -138,7 +139,7 @@ footer .cambium-banner p {
 footer .cambium-banner p a {
   color: white;
   margin: 0;
-  font-size: 18px;
+  font-size: var(--body-font-size-m);
   text-align: center;
   width: 100%;
   display: block;
@@ -173,10 +174,6 @@ footer .cambium-banner img {
 @media (width >= 1200px) {
   footer .footer .section:not(.cambium-banner) {
     max-width: 1170px;
-  }
-
-  footer .footer .section-outer {
-    flex-direction: row;
   }
 
   footer .footer .columns>div {
