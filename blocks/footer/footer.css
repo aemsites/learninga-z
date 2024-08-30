@@ -5,16 +5,89 @@ footer {
 
 footer .footer > div {
   margin: auto;
-  max-width: 1200px;
-  padding: 40px 24px 24px;
+}
+
+footer .footer .section-outer {
+  display: flex;
+  justify-content: center;
+}
+
+footer .footer .section-outer .section {
+  width: 100%;
+}
+
+footer .email-banner {
+ padding: 25px 0;
 }
 
 footer .footer p {
   margin: 0;
 }
 
-@media (width >= 900px) {
-  footer .footer > div {
-    padding: 40px 32px 24px;
+footer .columns-img-col {
+  flex-grow: 0;
+  width: 25%;
+}
+
+footer .columns img {
+  width: 150px;
+}
+
+footer .footer .columns ul {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+}
+
+footer .footer .columns ul li {
+  padding: 0 5px;
+  font-weight: 600;
+  font-size: 16px;
+  color: #555;
+  text-transform: uppercase;
+}
+
+footer .footer .columns ul li a {
+  font-size: 14px;
+  color: #263238;
+}
+
+footer .columns-container .default-content-wrapper p {
+  padding: 30px 0 10px;
+}
+
+footer .social-links-container {
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+footer .cambium-banner {
+  background-color: var(--dark-color);
+  color: var(--light-color);
+  padding: 1.5em;
+}
+
+@media (width >= 768px) {
+  footer .footer .section:not(.cambium-banner) {
+    max-width: 750px;
+  }
+}
+
+@media (width >= 992px) {
+  footer .footer .section:not(.cambium-banner) {
+    max-width: 970px;
+  }
+}
+
+@media (width >= 1200px) {
+  footer .footer .section:not(.cambium-banner) {
+    max-width: 1170px;
+  }
+}
+
+@media (width >= 1660px) {
+  footer .footer .section:not(.cambium-banner) {
+    max-width: 1527px;
   }
 }
