@@ -129,6 +129,24 @@ export function decorateButtons(element) {
 }
 
 /**
+ * Decorates linked images by replacing the link element with the corresponding image element.
+ * @param {HTMLElement} main - The main element containing the linked images.
+ */
+function decorateLinkedImages(main) {
+  const pictures = main.querySelectorAll('picture');
+  pictures.forEach((picture) => {
+    const next = picture.nextElementSibling;
+    if (next && next.tagName === 'A') {
+      const a = next;
+      a.replaceChildren(picture);
+    } else if (next && next.tagName === 'BR' && next.nextElementSibling && next.nextElementSibling.tagName === 'A') {
+      const a = next.nextElementSibling;
+      a.replaceChildren(picture);
+    }
+  });
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  * @param {Function} templateModule The template module
@@ -141,6 +159,7 @@ export function decorateMain(main, templateModule) {
   buildAutoBlocks(main, templateModule);
   decorateSections(main);
   decorateBlocks(main);
+  decorateLinkedImages(main);
 }
 
 /**
