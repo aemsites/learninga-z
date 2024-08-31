@@ -43,11 +43,28 @@ header nav {
   width: 100%;
 }
 
+header nav.breadcrumbs {
+  width: 100%;
+  height: 50px;
+  position: relative;
+  background-color: var(--red);
+  color: white;
+  font-size: var(--body-font-size-xxs);
+  display: flex;
+  gap: 6px;
+  justify-content: left;
+
+  a {
+    color: white;
+    font-weight: 700;
+  }
+}
+
 header .nav-brand {
   width: 200px;
   top: 50%;
   height: auto;
-  padding: 0 15px;
+  padding: 0;
 }
 
 header .nav-brand * {
@@ -317,6 +334,10 @@ header .megamenu li.navy-blue .icon{
 }
 
 @media (width >= 992px) {
+  header .nav-brand {
+    width: 220px;
+  }
+
   header nav {
     max-width: 970px;
     top: 0;
@@ -331,12 +352,18 @@ header .megamenu li.navy-blue .icon{
     margin: 0 -15px;
     padding-right: 15px;
   }
+
+  header .nav-sections ul li {
+    font-family: var(--body-font-family);
+    text-transform: none;
+  }
 }
 
 
 @media (width >= 1200px) {
   header nav {
     max-width: 1170px;
+    height: calc(var(--nav-height) + 40px);
   }
 
   header .nav-sections {
@@ -346,8 +373,6 @@ header .megamenu li.navy-blue .icon{
 
   header .nav-brand {
     max-height: 100%;
-    width: 30%;
-    height: 45px;
   }
 
   header .nav-sections ul {

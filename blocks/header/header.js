@@ -122,6 +122,67 @@ function loadSecondaryNavFragment(navChildFragmentLink, secondaryNav) {
   });
 }
 
+/* BREADCRUMBS START */
+
+// Last part of the breadcrumb is page title
+const getPageTitle = async (url) => {
+  const resp = await fetch(url);
+  if (resp.ok) {
+    const html = document.createElement('div');
+    html.innerHTML = await resp.text();
+    return html.querySelector('title').innerText;
+  }
+  return '';
+};
+
+// Get all paths except the current one
+const getAllPathsExceptCurrent = async (paths) => {
+  const result = [];
+  // remove first and last slash characters
+  const pathsList = paths.replace(/^\/|\/$/g, '').split('/');
+  // removing first path part is making the rest not show
+  // pathsList.shift();
+  for (let i = 0; i < pathsList.length - 1; i += 1) {
+    const pathPart = pathsList[i];
+    const prevPath = result[i - 1] ? result[i - 1].path : '';
+    const path = `${prevPath}/${pathPart}`;
+    const url = `${window.location.origin}${path}`;
+    /* eslint-disable-next-line no-await-in-loop */
+    const name = await getPageTitle(url);
+    if (name) {
+      result.push({ path, name, url });
+    }
+  }
+  return result;
+};
+
+const createLink = (path) => {
+  const pathLink = document.createElement('a');
+  pathLink.href = path.url;
+  pathLink.innerText = path.name;
+  return pathLink;
+};
+
+async function buildBreadcrumbs() {
+  const breadcrumb = document.createElement('nav');
+  breadcrumb.className = 'breadcrumbs';
+  breadcrumb.setAttribute('aria-label', 'Breadcrumb');
+  breadcrumb.innerHTML = '';
+  const HomeLink = createLink({ path: '', name: 'Home', url: window.location.origin });
+  const breadcrumbLinks = [HomeLink.outerHTML];
+  const path = window.location.pathname;
+  const paths = await getAllPathsExceptCurrent(path);
+
+  paths.forEach((pathPart) => breadcrumbLinks.push(createLink(pathPart).outerHTML));
+  const currentPath = document.createElement('span');
+  currentPath.innerText = document.querySelector('title').innerText;
+  breadcrumbLinks.push(currentPath.outerHTML);
+
+  breadcrumb.innerHTML = breadcrumbLinks.join('<span class="breadcrumb-separator"> / </span>');
+  return breadcrumb;
+}
+/* END BREADCRUMBS */
+
 /**
  * loads and decorates the header, mainly the nav
  * @param {Element} block The header block element
@@ -158,55 +219,55 @@ export default async function decorate(block) {
       navWrapper.append(announcementWrapper);
       navAnnouncement.remove();
     }
-  }
 
-  const navBrand = nav.querySelector('.nav-brand');
-  const brandLink = navBrand.querySelector('.button');
-  if (brandLink) {
-    brandLink.className = '';
-    brandLink.closest('.button-container').className = '';
-  }
+    const navBrand = nav.querySelector('.nav-brand');
+    const brandLink = navBrand.querySelector('.button');
+    if (brandLink) {
+      brandLink.className = '';
+      brandLink.closest('.button-container').className = '';
+    }
 
-  const navSections = nav.querySelector('.nav-sections');
-  if (navSections) {
-    navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
-      const secondaryNav = document.createElement('div');
-      secondaryNav.className = 'megamenu-container';
-      const navChildFragmentLink = navSection.querySelector('a[href*="/fragment"]');
-      if (navChildFragmentLink) {
-        loadSecondaryNavFragment(navChildFragmentLink, secondaryNav);
-        navChildFragmentLink.closest('ul').remove();
-      }
-      navSection.append(secondaryNav);
-      if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
-      navSection.addEventListener('mouseenter', () => {
-        if (isDesktop.matches) {
-          toggleAllNavSections(navSections);
-          navSection.setAttribute('aria-expanded', 'true');
+    const navSections = nav.querySelector('.nav-sections');
+    if (navSections) {
+      navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
+        const secondaryNav = document.createElement('div');
+        secondaryNav.className = 'megamenu-container';
+        const navChildFragmentLink = navSection.querySelector('a[href*="/fragment"]');
+        if (navChildFragmentLink) {
+          loadSecondaryNavFragment(navChildFragmentLink, secondaryNav);
+          navChildFragmentLink.closest('ul').remove();
         }
-      });
+        navSection.append(secondaryNav);
+        if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
+        navSection.addEventListener('mouseenter', () => {
+          if (isDesktop.matches) {
+            toggleAllNavSections(navSections);
+            navSection.setAttribute('aria-expanded', 'true');
+          }
+        });
 
-      navSection.addEventListener('mouseleave', () => {
-        if (isDesktop.matches) {
-          toggleAllNavSections(navSections);
-          navSection.setAttribute('aria-expanded', 'false');
-        }
+        navSection.addEventListener('mouseleave', () => {
+          if (isDesktop.matches) {
+            toggleAllNavSections(navSections);
+            navSection.setAttribute('aria-expanded', 'false');
+          }
+        });
       });
-    });
+    }
+
+    // hamburger for mobile
+    const hamburger = document.createElement('div');
+    hamburger.classList.add('nav-hamburger');
+    hamburger.innerHTML = '<div class="navicon-line"></div><div class="navicon-line"></div><div class="navicon-line"></div>';
+    hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
+    nav.append(hamburger);
+    nav.setAttribute('aria-expanded', 'false');
+    // prevent mobile nav behavior on window resize
+    // toggleMenu(nav, navSections, isDesktop.matches);
+    isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
+    navWrapper.append(nav);
+    decorateButtons(nav);
+    block.append(navWrapper);
+    navWrapper.append(await buildBreadcrumbs());
   }
-
-  // hamburger for mobile
-  const hamburger = document.createElement('div');
-  hamburger.classList.add('nav-hamburger');
-  hamburger.innerHTML = '<div class="navicon-line"></div><div class="navicon-line"></div><div class="navicon-line"></div>';
-  hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
-  nav.append(hamburger);
-  nav.setAttribute('aria-expanded', 'false');
-  // prevent mobile nav behavior on window resize
-  // toggleMenu(nav, navSections, isDesktop.matches);
-  isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
-
-  navWrapper.append(nav);
-  decorateButtons(nav);
-  block.append(navWrapper);
 }

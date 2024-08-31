@@ -88,6 +88,7 @@
   --body-font-size-m: 18px;
   --body-font-size-s: 16px;
   --body-font-size-xs: 14px;
+  --body-font-size-xxs: 13px;
 
   /* heading sizes */
   --heading-font-size-3xl: 60px;
@@ -153,7 +154,7 @@ body.appear {
 }
 
 header {
-  height: var(--nav-height);
+  height: calc(var(--nav-height) + 50px);
 }
 
 header .header,
@@ -526,6 +527,10 @@ nav li {
   }
 
   @media (width >= 1200px) {
+    main {
+      top: 50px;
+    }
+
     main > .section-outer > .section {
       max-width: 1170px;
     }
