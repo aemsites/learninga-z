@@ -211,9 +211,11 @@ async function loadEager(doc) {
   document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
 
+/* // TODO: Might need this for hiding breadcrumbs in campaign pgs
   if (getMetadata('breadcrumbs').toLowerCase() === 'true') {
     document.body.dataset.breadcrumbs = true;
   }
+ */
 
   const templateModule = await loadTemplate();
   const main = doc.querySelector('main');

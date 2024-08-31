@@ -268,6 +268,9 @@ export default async function decorate(block) {
     navWrapper.append(nav);
     decorateButtons(nav);
     block.append(navWrapper);
+    // TODO: Might wrap this around a condition to only show on certain pages
+    // if (getMetadata('breadcrumbs').toLowerCase() === 'true') {
     navWrapper.append(await buildBreadcrumbs());
+    // }
   }
 }
