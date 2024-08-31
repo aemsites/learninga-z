@@ -51,7 +51,8 @@ header nav.breadcrumbs {
   color: white;
   font-size: var(--body-font-size-xxs);
   display: flex;
-  gap: 6px;
+  flex-wrap: wrap;
+  column-gap: 6px;
   justify-content: left;
 
   a {
@@ -178,7 +179,7 @@ header .megamenu-container {
   top: 132px;
   padding: 50px 0 58px;
   height: auto;
-  box-shadow: 0 5px 10px 0 rgba(0 0 0 15%);
+  box-shadow: 0 5px 10px 0 rgb(0 0 0 / 15%);
   display: flex;
   align-items: center;
   justify-content: center;
