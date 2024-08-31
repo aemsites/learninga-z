@@ -35,53 +35,10 @@ function buildHeroBlock(main) {
  * @param {string} keyword - The keyword to check in the URL path
  * @returns {boolean} True if we are loading content for the specified keyword
  */
+// Might need this for the breadcrumbs and other things
 export function locationCheck(keyword) {
   return window.location.pathname.includes(keyword);
 }
-
-/**
- * Helper function to create DOM elements
- * @param {string} tag DOM element to be created
- * @param {Object} attributes attributes to be added
- * @param {HTMLElement|SVGElement|string} html HTML or SVG to append to/after new element
- */
-/*
-export function createTag(tag, attributes, html = undefined) {
-  const el = document.createElement(tag);
-  if (html) {
-    if (html instanceof HTMLElement || html instanceof SVGElement) {
-      el.append(html);
-    } else {
-      el.insertAdjacentHTML('beforeend', html);
-    }
-  }
-  if (attributes) {
-    Object.entries(attributes).forEach(([key, val]) => {
-      el.setAttribute(key, val);
-    });
-  }
-  return el;
-}
-
- */
-
-/**
- * Builds breadcrumb block and prepends to main in a new section.
- * @param {Element} main The container element
- */
-/*
-function buildBreadcrumbBlock(container) {
-  const hideBreadcrumbVal = getMetadata('hide-breadcrumb') || 'no';
-  const hideBreadcrumb = hideBreadcrumbVal.toLowerCase() === 'yes' || hideBreadcrumbVal.toLowerCase() === 'true';
-  if (window.location.pathname !== '/' && window.isErrorPage !== true && !hideBreadcrumb) {
-//    const breadcrumbSection = createTag('div', { class: 'breadcrumb-section' });
-    const breadcrumbSection = document.createElement('div');
-    breadcrumbSection.append(buildBlock('breadcrumbs', { elems: [] }));
-    container.prepend(breadcrumbSection);
-  }
-}
-
- */
 
 /**
  * load fonts.css and set a session storage flag
@@ -103,7 +60,6 @@ async function loadFonts() {
 function buildAutoBlocks(main, templateModule = undefined) {
   try {
     buildHeroBlock(main);
-//    buildBreadcrumbBlock(main);
     if (templateModule && templateModule.default) {
       templateModule.default(main);
     }
@@ -192,7 +148,6 @@ export function decorateMain(main, templateModule) {
   // hopefully forward compatible button decoration
   decorateButtons(main);
   decorateIcons(main);
-  // buildBreadcrumbBlock(main);
   buildAutoBlocks(main, templateModule);
   decorateSections(main);
   decorateBlocks(main);
@@ -240,7 +195,6 @@ async function loadEager(doc) {
   if (getMetadata('breadcrumbs').toLowerCase() === 'true') {
     document.body.dataset.breadcrumbs = true;
   }
-
 
   const templateModule = await loadTemplate();
   const main = doc.querySelector('main');
