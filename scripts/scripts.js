@@ -260,7 +260,6 @@ function loadDelayed() {
  */
 export function redirectTagPage() {
   const windowHref = window.location.href;
-  console.log(windowHref);
   const url = new URL(windowHref);
   const basePath = url.pathname;
   const params = new URLSearchParams(url.search);
@@ -282,7 +281,6 @@ export function redirectTagPage() {
     params.delete('product');
     // If there are no remaining query parameters, construct the new URL without the question mark.
     const newLoc = params.toString() ? `${newPath}?${params.toString()}` : newPath;
-    console.log(newLoc);
     window.location.replace(newLoc);
   }
 }
