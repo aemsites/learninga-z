@@ -153,7 +153,6 @@ export function decorateButtons(element) {
 export function groupMultipleButtons(main) {
   const buttons = main.querySelectorAll('p.button-container');
   buttons.forEach((button) => {
-    console.log(button);
     if (button.nextElementSibling && button.nextElementSibling.classList.contains('button-container')) {
       const siblingButton = button.nextElementSibling;
       if (siblingButton && !button.parentElement.classList.contains('buttons-container')) {
