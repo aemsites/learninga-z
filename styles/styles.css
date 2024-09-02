@@ -270,6 +270,18 @@ a:hover {
   transition: color 0.4s, background-color 0.4s;
 }
 
+
+/* Buttons Container */
+.buttons-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.buttons-container a.button {
+  margin: 8px;
+}
+
 /* primary button colors */
 
 .button.primary {

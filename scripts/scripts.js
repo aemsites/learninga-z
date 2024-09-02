@@ -81,6 +81,24 @@ export function extractColor(anchor) {
   return { colorOne, colorTwo };
 }
 
+export function createTag(tag, attributes, html = undefined) {
+  const element = document.createElement(tag);
+  if (html) {
+    if (html instanceof HTMLElement || html instanceof SVGElement) {
+      element.append(html);
+    } else {
+      element.insertAdjacentHTML('beforeend', html);
+    }
+  }
+  if (attributes) {
+    Object.entries(attributes)
+      .forEach(([key, val]) => {
+        element.setAttribute(key, val);
+      });
+  }
+  return element;
+}
+
 /**
  * Decorates paragraphs containing a single link as buttons.
  * @param {Element} element container element
@@ -123,6 +141,25 @@ export function decorateButtons(element) {
           a.classList.add('button', 'secondary');
           twoup.classList.add('button-container');
         }
+      }
+    }
+  });
+}
+
+/**
+ * When there are 2 buttons in a row, display them next to each other.
+ */
+
+export function groupMultipleButtons(main) {
+  const buttons = main.querySelectorAll('p.button-container');
+  buttons.forEach((button) => {
+    console.log(button);
+        if (button.nextElementSibling && button.nextElementSibling.classList.contains('button-container')) {
+      const siblingButton = button.nextElementSibling;
+      if (siblingButton && !button.parentElement.classList.contains('buttons-container')) {
+        const buttonContainer = createTag('div', { class: 'buttons-container' });
+        button.parentElement.insertBefore(buttonContainer, button);
+        buttonContainer.append(button, siblingButton);
       }
     }
   });
@@ -232,7 +269,7 @@ async function loadLazy(doc) {
   if (templateName) {
     await loadTemplate(doc, templateName);
   }
-
+  groupMultipleButtons(main);
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
