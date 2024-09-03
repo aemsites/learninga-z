@@ -254,7 +254,39 @@ function loadDelayed() {
   // load anything that can be postponed to the latest here
 }
 
+/**
+ * Redirect tag page with url parameter to
+ * tag page in url path.
+ */
+export function redirectTagPage() {
+  const windowHref = window.location.href;
+  const url = new URL(windowHref);
+  const basePath = url.pathname;
+  const params = new URLSearchParams(url.search);
+  const productMapping = {
+    8614: 'raz-kids',
+    8602: 'raz-plus',
+    8253: 'foundationsa-z',
+    8619: 'vocabularya-z',
+    8624: 'sciencea-z',
+    8629: 'writinga-z',
+    8607: 'raz-plus-ell',
+    // 8634: 'readinga-z',
+    // that one doesn't exist yet
+  };
+
+  const productId = params.get('product');
+  if (productId && productMapping[productId]) {
+    const newPath = `${basePath}/${productMapping[productId]}`;
+    params.delete('product');
+    // If there are no remaining query parameters, construct the new URL without the question mark.
+    const newLoc = params.toString() ? `${newPath}?${params.toString()}` : newPath;
+    window.location.replace(newLoc);
+  }
+}
+
 async function loadPage() {
+  redirectTagPage();
   await loadEager(document);
   await loadLazy(document);
   loadDelayed();
