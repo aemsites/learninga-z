@@ -103,6 +103,8 @@
 
   /* nav height */
   --nav-height: 93px;
+  --breadcrumb-height: 50px;
+  --announcement-height: 40px;
 }
 
 /* fallback fonts */
@@ -156,7 +158,19 @@ body.appear {
 }
 
 header {
-  height: calc(var(--nav-height) + 50px);
+  height: var(--nav-height);
+
+  &:has(.nav-announcement) {
+    height: calc(var(--nav-height) + var(--announcement-height));
+  }
+
+  &:has(.breadcrumbs-outer) {
+    height: calc(var(--nav-height) + var(--breadcrumb-height));
+
+    &:has(.nav-announcement) {
+      height: calc(var(--nav-height) + var(--announcement-height) + var(--breadcrumb-height));
+    }
+  }
 }
 
 header .header,
@@ -423,10 +437,26 @@ nav li {
   text-transform: uppercase;
 }
 
-/* themes - TBD if we use product names for these or not */
+/*********
+THEMES
+*********/
+.breadcrumbs-outer {
+  background-color: var(--navy-blue);
+}
+
+body.purple {
+  .breadcrumbs-outer {
+    background-color: var(--purple);
+  }
+}
+
 [data-theme="purple"] {
   background-color: var(--purple);
   color: var(--white);
+
+  header .breadcrumbs-outer {
+    background-color: var(--purple);
+  }
 
   a {
     text-decoration: underline;
@@ -434,6 +464,12 @@ nav li {
 
   h1, h2, h3, h4, h5, h6, a:any-link {
     color: var(--white);
+  }
+}
+
+body.laz-blue {
+  .breadcrumbs-outer {
+    background-color: var(--laz-blue);
   }
 }
 
@@ -456,6 +492,12 @@ nav li {
     }
   }
 
+body.red {
+  .breadcrumbs-outer {
+    background-color: var(--red);
+  }
+}
+
 [data-theme="red"] {
   .button.primary {
     background-color: var(--red);
@@ -469,8 +511,18 @@ nav li {
   }
 }
 
+body.yellow {
+  .breadcrumbs-outer {
+    background-color: var(--yellow);
+  }
+}
+
   [data-theme="yellow"] {
     background-color: var(--yellow);
+
+    header .breadcrumbs-outer {
+      background-color: var(--yellow);
+    }
 
     a:any-link {
       color: var(--text-color);

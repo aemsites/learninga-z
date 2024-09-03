@@ -124,7 +124,6 @@ function loadSecondaryNavFragment(navChildFragmentLink, secondaryNav) {
 
 /* BREADCRUMBS START */
 
-// Last part of the breadcrumb is page title
 const getPageTitle = async (url) => {
   const resp = await fetch(url);
   if (resp.ok) {
@@ -140,8 +139,6 @@ const getAllPathsExceptCurrent = async (paths) => {
   const result = [];
   // remove first and last slash characters
   const pathsList = paths.replace(/^\/|\/$/g, '').split('/');
-  // removing first path part is making the rest not show
-  // pathsList.shift();
   for (let i = 0; i < pathsList.length - 1; i += 1) {
     const pathPart = pathsList[i];
     const prevPath = result[i - 1] ? result[i - 1].path : '';
@@ -153,6 +150,7 @@ const getAllPathsExceptCurrent = async (paths) => {
       result.push({ path, name, url });
     }
   }
+  result.shift();
   return result;
 };
 
@@ -164,6 +162,10 @@ const createLink = (path) => {
 };
 
 async function buildBreadcrumbs() {
+  const outerSection = document.createElement('div');
+  outerSection.className = 'breadcrumbs-outer';
+  const container = document.createElement('div');
+  container.className = 'section breadcrumbs-container';
   const breadcrumb = document.createElement('nav');
   breadcrumb.className = 'breadcrumbs';
   breadcrumb.setAttribute('aria-label', 'Breadcrumb');
@@ -174,12 +176,11 @@ async function buildBreadcrumbs() {
   const paths = await getAllPathsExceptCurrent(path);
 
   paths.forEach((pathPart) => breadcrumbLinks.push(createLink(pathPart).outerHTML));
-  const currentPath = document.createElement('span');
-  currentPath.innerText = document.querySelector('title').innerText;
-  breadcrumbLinks.push(currentPath.outerHTML);
 
   breadcrumb.innerHTML = breadcrumbLinks.join('<span class="breadcrumb-separator"> / </span>');
-  return breadcrumb;
+  outerSection.appendChild(container);
+  container.appendChild(breadcrumb);
+  return outerSection;
 }
 /* END BREADCRUMBS */
 
@@ -268,9 +269,9 @@ export default async function decorate(block) {
     navWrapper.append(nav);
     decorateButtons(nav);
     block.append(navWrapper);
-    // TODO: Might wrap this around a condition to only show on certain pages
-    // if (getMetadata('breadcrumbs').toLowerCase() === 'true') {
-    navWrapper.append(await buildBreadcrumbs());
-    // }
+    const breadcrumbsMetadata = getMetadata('breadcrumbs').toLowerCase();
+    if (breadcrumbsMetadata !== 'off' && breadcrumbsMetadata !== 'false') {
+      navWrapper.append(await buildBreadcrumbs());
+    }
   }
 }
