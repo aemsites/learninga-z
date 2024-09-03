@@ -1,7 +1,10 @@
-.errorpage h1 {
-    font-size: 48px;
-}
-
 .errorpage .columns > div {
     align-items: flex-start;
+    flex-direction: column-reverse;
+}
+
+@media (width >= 992px) {
+    .errorpage .columns > div {
+        flex-direction: row;
+    }
 }

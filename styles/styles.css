@@ -522,7 +522,7 @@ nav li {
     }
 
     h1 {
-      font-size: var(--heading-font-size-m);
+      font-size: var(--heading-font-size-xl);
     }
   }
 

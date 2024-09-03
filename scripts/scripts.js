@@ -174,6 +174,7 @@ const validTemplates = [
   'video-detail',
   'research-detail',
   'product',
+  'errorpage',
 ];
 async function loadTemplate() {
   const templateName = toClassName(getMetadata('template'));
