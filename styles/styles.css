@@ -377,6 +377,11 @@ a:hover {
     border-color: var(--laz-black);
   }
 
+  .button.secondary.textcolor-gold {
+    color: var(--gold);
+    border-color: var(--gold);
+  }
+
   /* themes - TBD if we use product names for these or not */
 
   /* default theme works for blogs, research, and default templates */
