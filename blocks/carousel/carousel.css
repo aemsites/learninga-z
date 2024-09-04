@@ -27,9 +27,18 @@
   flex-direction: column;
   align-items: center;
   position: relative;
-  width: 90%;
   user-select: none;
   justify-content: space-between;
+}
+
+.carousel .carousel-slide .carousel-slide-content h2 {
+  font-size: 44px;
+  font-weight: 700 !important;
+}
+
+.carousel .carousel-slide .carousel-slide-content p {
+  font-size: 18px;
+  font-weight: 500;
 }
 
 .carousel .carousel-slide .carousel-slide-image picture {
@@ -38,8 +47,6 @@
 }
 
 .carousel .carousel-slide .carousel-slide-image picture > img {
-  height: 100%;
-  width: 100%;
   flex: 0 40%;
   border-radius: 20px;
   user-select: none;
@@ -48,13 +55,10 @@
 .carousel .carousel-slide .carousel-slide-content {
   flex: 0 60%;
   margin: 40px;
-  justify-content: flex-start;
   display: flex;
   flex-direction: column;
-  align-items: center;  
+  align-items: center;
 }
-
-
 
 .carousel .carousel-slide-indicators {
   display: flex;
@@ -129,7 +133,7 @@
   left: calc(50% - 4px);
 }
 
-@media (width >= 1200px) {
+@media (width >= 1296px) {
   .carousel .carousel-slide {
     flex-direction: row;
     padding-left: 80px;
@@ -137,11 +141,16 @@
     }
 
     .carousel .carousel-slide .carousel-slide-content h2 {
-      font-size: 26px;
+      font-size: 30px;
+      font-weight: 700 !important;
     }
     
     .carousel .carousel-slide .carousel-slide-content p {
       font-weight: 500;
+    }
+
+    .carousel .carousel-slide .carousel-slide-content {
+      align-items: start;
     }
   
     .carousel .carousel-navigation-buttons {
@@ -149,10 +158,10 @@
     }
 
     .carousel .carousel-navigation-buttons button.slide-next {
-      right:-80px
+      right: -80px
     }
 
     .carousel .carousel-navigation-buttons button.slide-prev {
-      left:-80px
+      left: -80px
     }
 }
