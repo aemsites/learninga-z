@@ -3,7 +3,7 @@ import { loadFragment } from '../fragment/fragment.js';
 import { decorateButtons, extractColor } from '../../scripts/scripts.js';
 
 // media query match that indicates mobile/tablet width
-const isDesktop = window.matchMedia('(min-width: 900px)');
+const isDesktop = window.matchMedia('(min-width: 1024px)');
 
 function closeOnEscape(e) {
   if (e.code === 'Escape') {
@@ -122,68 +122,6 @@ function loadSecondaryNavFragment(navChildFragmentLink, secondaryNav) {
   });
 }
 
-/* BREADCRUMBS START */
-
-const getPageTitle = async (url) => {
-  const resp = await fetch(url);
-  if (resp.ok) {
-    const html = document.createElement('div');
-    html.innerHTML = await resp.text();
-    return html.querySelector('title').innerText;
-  }
-  return '';
-};
-
-// Get all paths except the current one
-const getAllPathsExceptCurrent = async (paths) => {
-  const result = [];
-  // remove first and last slash characters
-  const pathsList = paths.replace(/^\/|\/$/g, '').split('/');
-  for (let i = 0; i < pathsList.length - 1; i += 1) {
-    const pathPart = pathsList[i];
-    const prevPath = result[i - 1] ? result[i - 1].path : '';
-    const path = `${prevPath}/${pathPart}`;
-    const url = `${window.location.origin}${path}`;
-    /* eslint-disable-next-line no-await-in-loop */
-    const name = await getPageTitle(url);
-    if (name) {
-      result.push({ path, name, url });
-    }
-  }
-  result.shift();
-  return result;
-};
-
-const createLink = (path) => {
-  const pathLink = document.createElement('a');
-  pathLink.href = path.url;
-  pathLink.innerText = path.name;
-  return pathLink;
-};
-
-async function buildBreadcrumbs() {
-  const outerSection = document.createElement('div');
-  outerSection.className = 'breadcrumbs-outer';
-  const container = document.createElement('div');
-  container.className = 'section breadcrumbs-container';
-  const breadcrumb = document.createElement('nav');
-  breadcrumb.className = 'breadcrumbs';
-  breadcrumb.setAttribute('aria-label', 'Breadcrumb');
-  breadcrumb.innerHTML = '';
-  const HomeLink = createLink({ path: '', name: 'Home', url: window.location.origin });
-  const breadcrumbLinks = [HomeLink.outerHTML];
-  const path = window.location.pathname;
-  const paths = await getAllPathsExceptCurrent(path);
-
-  paths.forEach((pathPart) => breadcrumbLinks.push(createLink(pathPart).outerHTML));
-
-  breadcrumb.innerHTML = breadcrumbLinks.join('<span class="breadcrumb-separator"> / </span>');
-  outerSection.appendChild(container);
-  container.appendChild(breadcrumb);
-  return outerSection;
-}
-/* END BREADCRUMBS */
-
 /**
  * loads and decorates the header, mainly the nav
  * @param {Element} block The header block element
@@ -269,9 +207,5 @@ export default async function decorate(block) {
     navWrapper.append(nav);
     decorateButtons(nav);
     block.append(navWrapper);
-    const breadcrumbsMetadata = getMetadata('breadcrumbs').toLowerCase();
-    if (breadcrumbsMetadata !== 'off' && breadcrumbsMetadata !== 'false') {
-      navWrapper.append(await buildBreadcrumbs());
-    }
   }
 }

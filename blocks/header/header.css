@@ -38,32 +38,10 @@ header nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 100%;
+  max-width: 991px;
   top: 10px;
   width: 100%;
 }
-
-header .breadcrumbs-outer {
-  .breadcrumbs-container {
-    margin: unset;
-  }
-
-  nav.breadcrumbs {
-    color: white;
-    font-size: var(--body-font-size-xxs);
-    display: flex;
-    flex-wrap: wrap;
-    column-gap: 6px;
-    justify-content: left;
-    height: 50px;
-
-    a {
-      color: white;
-      font-weight: 700;
-    }
-  }
-}
-
 
 header .nav-brand {
   width: 200px;
@@ -92,7 +70,6 @@ header .nav-sections > .section, header .nav-sections > .section > div, header .
 header .nav-sections ul{
   display: flex;
   align-items: center;
-  float: right;
   height: 100%;
   padding: 0;
   margin: 0 -10px;
@@ -101,24 +78,17 @@ header .nav-sections ul{
 header .nav-sections ul li {
   display: inline-block;
   padding: 0;
-  height: 100%;
   margin-left: 6px;
   margin-right: 6px;
   font-family: var(--heading-font-family);
   text-transform: uppercase;
 }
 
-header .nav-sections ul li .icon, header .nav-sections ul li .button {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
 header .nav-sections ul li a {
   position: relative;
   color: var(--dark-gray);
   font-weight: bold;
-  font-size: var(--body-font-size-xs);
+  font-size: var(--body-font-size-s);
   letter-spacing: .25px;
   text-decoration: none;
   transition: all .2s;
@@ -144,9 +114,13 @@ header .nav-sections ul li a.button {
 }
 
 
-header .nav-sections ul li .icon img {
-  height: 75%;
-  width: 75%;
+header .nav-sections ul li .icon-search {
+  height: 22px;
+  width: 20px;
+
+  img {
+    margin-top: 10px;
+  }
 }
 
 /* mobile styles */
@@ -200,10 +174,6 @@ header .megamenu {
   padding: 0 15px;
 }
 
-header .megamenu .section-outer {
-  padding: 0 15px;
-}
-
 header .megamenu ul {
   display: flex;
   flex-direction: column;
@@ -224,6 +194,7 @@ header .megamenu ul li .icon, header .megamenu ul li a {
   vertical-align: middle;
   top: 50%;
   transform: translateY(-50%);
+  font-size: 14px;
 }
 
 header .megamenu ul li .icon{
@@ -332,13 +303,7 @@ header .megamenu li.navy-blue .icon{
   background-color: var(--product-navy-blue);
 }
 
-@media (width >= 768px) {
-  header nav {
-    max-width: 750px;
-  }
-}
-
-@media (width >= 992px) {
+@media (width >= 1024px) {
   header .nav-brand {
     width: 220px;
   }
@@ -368,16 +333,20 @@ header .megamenu li.navy-blue .icon{
 @media (width >= 1200px) {
   header nav {
     max-width: 1170px;
-    height: calc(var(--nav-height) + 40px);
   }
 
   header .nav-sections {
     margin: 0 -25px;
     padding-right: 15px;
+    height: auto;
   }
 
   header .nav-brand {
     max-height: 100%;
+
+    * {
+      height: 38px;
+    }
   }
 
   header .nav-sections ul {

@@ -203,6 +203,70 @@ async function loadTemplate() {
   return undefined;
 }
 
+/* BREADCRUMBS START */
+
+const getPageTitle = async (url) => {
+  const resp = await fetch(url);
+  if (resp.ok) {
+    const html = document.createElement('div');
+    html.innerHTML = await resp.text();
+    return html.querySelector('title').innerText;
+  }
+  return '';
+};
+
+// Get all paths except the current one
+const getAllPathsExceptCurrent = async (paths) => {
+  const result = [];
+  // remove first and last slash characters
+  const pathsList = paths.replace(/^\/|\/$/g, '').split('/');
+  for (let i = 0; i < pathsList.length - 1; i += 1) {
+    const pathPart = pathsList[i];
+    const prevPath = result[i - 1] ? result[i - 1].path : '';
+    const path = `${prevPath}/${pathPart}`;
+    const url = `${window.location.origin}${path}`;
+    /* eslint-disable-next-line no-await-in-loop */
+    const name = await getPageTitle(url);
+    if (name) {
+      result.push({ path, name, url });
+    }
+  }
+  result.shift();
+  return result;
+};
+
+const createLink = (path) => {
+  const pathLink = document.createElement('a');
+  pathLink.href = path.url;
+  pathLink.innerText = path.name;
+  return pathLink;
+};
+
+async function buildBreadcrumbs() {
+  const outerSection = document.createElement('div');
+  const breadcrumbsMetadata = getMetadata('breadcrumbs').toLowerCase();
+  if (breadcrumbsMetadata !== 'off' && breadcrumbsMetadata !== 'false') {
+    // Even if breadcrumbs are disabled, we need an empty div to keep the layout consistent
+    outerSection.className = 'breadcrumbs-outer';
+    const container = document.createElement('div');
+    container.className = 'section breadcrumbs-container';
+    const breadcrumb = document.createElement('nav');
+    breadcrumb.className = 'breadcrumbs';
+    breadcrumb.setAttribute('aria-label', 'Breadcrumb');
+    breadcrumb.innerHTML = '';
+    const HomeLink = createLink({ path: '', name: 'Home', url: window.location.origin });
+    const breadcrumbLinks = [HomeLink.outerHTML];
+    const path = window.location.pathname;
+    const paths = await getAllPathsExceptCurrent(path);
+    paths.forEach((pathPart) => breadcrumbLinks.push(createLink(pathPart).outerHTML));
+    breadcrumb.innerHTML = breadcrumbLinks.join('<span class="breadcrumb-separator"> / </span>');
+    outerSection.appendChild(container);
+    container.appendChild(breadcrumb);
+  }
+  return outerSection;
+}
+/* END BREADCRUMBS */
+
 /**
  * Loads everything needed to get to LCP.
  * @param {Element} doc The container element
@@ -210,19 +274,13 @@ async function loadTemplate() {
 async function loadEager(doc) {
   document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
-
-  /* // TODO: Might need this for hiding breadcrumbs in campaign pgs
-  if (getMetadata('breadcrumbs').toLowerCase() === 'true') {
-    document.body.dataset.breadcrumbs = true;
-  }
- */
-
   const templateModule = await loadTemplate();
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main, templateModule);
     document.body.classList.add('appear');
     await loadSection(main.querySelector('.section'), waitForFirstImage);
+    main.prepend(await buildBreadcrumbs());
   }
 
   sampleRUM.enhance();
