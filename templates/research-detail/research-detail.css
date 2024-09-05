@@ -55,7 +55,7 @@
             grid-row: 2 / -1;
             margin-top: 50px;
             display: flex;
-            max-width: 320px;
+            width: 320px;
             justify-self: start;
         }
 
@@ -76,7 +76,7 @@
         }
 
         .section-outer:last-of-type {
-            max-width: 380px;
+            width: 400px;
         }
     }
 
