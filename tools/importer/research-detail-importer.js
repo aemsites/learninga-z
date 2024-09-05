@@ -88,18 +88,22 @@ const createMetadataBlock = (main, document) => {
   // find the <title> element
   const title = document.querySelector('title');
   if (title) {
-    meta.Title = title.innerHTML.replace(/[\n\t]/gm, '');
+    meta.title = title.innerHTML.replace(/[\n\t]/gm, '');
   }
 
   // find the <meta property="og:description"> element
   const desc = document.querySelector('[property="og:description"]');
   if (desc) {
-    meta.Description = desc.content;
+    meta.description = desc.content;
   }
 
-  meta.Products = getProducts(main);
+  meta.products = getProducts(main);
 
-  meta.Date = getPubDate(document);
+  meta.date = getPubDate(document);
+
+  meta.category = '';
+
+  meta.tags = [];
 
   // helper to create the metadata block
   const block = WebImporter.Blocks.getMetadataBlock(document, meta);
