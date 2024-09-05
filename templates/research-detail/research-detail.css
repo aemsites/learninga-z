@@ -55,8 +55,11 @@
             grid-row: 2 / -1;
             margin-top: 50px;
             display: flex;
-            width: 320px;
             justify-self: start;
+
+            .section {
+                width: 320px;
+            }
         }
 
         .breadcrumbs-container {
@@ -75,7 +78,7 @@
             max-width: 760px;
         }
 
-        .section-outer:last-of-type {
+        .section-outer:last-of-type .section {
             width: 400px;
         }
     }
