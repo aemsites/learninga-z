@@ -56,9 +56,7 @@ export default async function decorate(block) {
   if (productName && VALID_PRODUCTS.includes(productName)) {
     // get the product name from the url
     researchDetailPages = await getResearchPagesByProduct(productName);
-    console.log('researchDetailPages ', researchDetailPages);
   } else if (urlArray.length > 0) {
-    console.log('no product name');
     researchDetailPages = await getResearchPagesByProduct();
   }
 
