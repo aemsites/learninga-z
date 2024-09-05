@@ -75,8 +75,8 @@
     --product-orange: #f05b32;
 
   /* fonts */
-  --body-font-family: 'Montserrat', sans-serif, montserrat-normal-fallback;
-  --heading-font-family: 'Solway', sans-serif, solway-normal-fallback;
+  --body-font-family: 'Montserrat', montserrat-normal-fallback;
+  --heading-font-family: 'Solway', solway-normal-fallback;
 
   /* font weight */
   --font-weight-light: 300;
@@ -107,20 +107,11 @@
 
 /* fallback fonts */
 @font-face {
-  font-family: roboto-condensed-fallback;
-  size-adjust: 88.82%;
-  src: local('Arial');
-}
-
-@font-face {
-  font-family: roboto-fallback;
-  size-adjust: 99.529%;
-  src: local('Arial');
-}
-
-@font-face {
   font-family: montserrat-normal-fallback;
-  size-adjust: 111.311%;
+  size-adjust: 113%;
+  ascent-override: 93%;
+  descent-override: 12%;
+  line-gap-override: normal;
   src: local("Arial");
 }
 
