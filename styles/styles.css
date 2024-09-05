@@ -9,7 +9,7 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-
+/* stylelint-disable no-descending-specificity */
 :root {
   /* colors */
   --background-color: white;
@@ -102,8 +102,7 @@
   --heading-font-size-xs: 22px;
 
   /* nav height */
-  --nav-height: 93px;
-  --announcement-height: 40px;
+  --nav-height: 90px;
 }
 
 /* fallback fonts */
@@ -162,11 +161,7 @@ body.appear {
 }
 
 header {
-  height: var(--nav-height);
-
-  &:has(.nav-announcement) {
-    height: calc(var(--nav-height) + var(--announcement-height));
-  }
+  height: calc(var(--nav-height) + 40px); /* 40px is the announcement bar */
 }
 
 header .header,
@@ -436,6 +431,7 @@ nav li {
 
 .breadcrumbs-outer {
   grid-area: breadcrumb;
+  background-color: var(--navy-blue);
 
   .breadcrumbs-container {
     margin: 0 auto;
@@ -461,9 +457,6 @@ nav li {
 /*********
 THEMES
 *********/
-.breadcrumbs-outer {
-  background-color: var(--navy-blue);
-}
 
 body.purple {
   .breadcrumbs-outer {
@@ -474,10 +467,6 @@ body.purple {
 [data-theme="purple"] {
   background-color: var(--purple);
   color: var(--white);
-
-  .breadcrumbs-outer {
-    background-color: var(--purple);
-  }
 
   a {
     text-decoration: underline;
@@ -504,7 +493,7 @@ body.laz-blue {
     font-size: var(--body-font-size-m);
     }
 
-  a { /* stylelint-disable-line */
+  a {
     text-decoration: underline;
   }
 
