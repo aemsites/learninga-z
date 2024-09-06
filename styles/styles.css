@@ -403,7 +403,6 @@ a:hover {
     line-height: 1.2;
   }
 
-
   h2 {
     font-size: var(--body-font-size-m);
     margin-bottom: 1em;
@@ -439,7 +438,8 @@ nav li {
   text-transform: uppercase;
 }
 
-/* themes - TBD if we use product names for these or not */
+/* end default theme */
+
 [data-theme="purple"] {
   background-color: var(--purple);
   color: var(--white);
@@ -471,6 +471,16 @@ nav li {
       color: var(--white);
     }
   }
+
+body.red {
+  .breadcrumbs-outer {
+    background-color: var(--red);
+  }
+
+  .related-posts :is(h3, a, a:hover) {
+    color: var(--red);
+  }
+}
 
 [data-theme="red"] {
   .button.primary {
