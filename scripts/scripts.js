@@ -31,6 +31,16 @@ function buildHeroBlock(main) {
 }
 
 /**
+ * Determine if we are serving content for a specific keyword
+ * @param {string} keyword - The keyword to check in the URL path
+ * @returns {boolean} True if we are loading content for the specified keyword
+ */
+// Might need this for the breadcrumbs and other things
+export function locationCheck(keyword) {
+  return window.location.pathname.includes(keyword);
+}
+
+/**
  * load fonts.css and set a session storage flag
  */
 async function loadFonts() {
@@ -255,6 +265,70 @@ export async function lookupBlogs(pathNames) {
   return (result);
 }
 
+/* BREADCRUMBS START */
+
+const getPageTitle = async (url) => {
+  const resp = await fetch(url);
+  if (resp.ok) {
+    const html = document.createElement('div');
+    html.innerHTML = await resp.text();
+    return html.querySelector('title').innerText;
+  }
+  return '';
+};
+
+// Get all paths except the current one
+const getAllPathsExceptCurrent = async (paths) => {
+  const result = [];
+  // remove first and last slash characters
+  const pathsList = paths.replace(/^\/|\/$/g, '').split('/');
+  for (let i = 0; i < pathsList.length - 1; i += 1) {
+    const pathPart = pathsList[i];
+    const prevPath = result[i - 1] ? result[i - 1].path : '';
+    const path = `${prevPath}/${pathPart}`;
+    const url = `${window.location.origin}${path}`;
+    /* eslint-disable-next-line no-await-in-loop */
+    const name = await getPageTitle(url);
+    if (name) {
+      result.push({ path, name, url });
+    }
+  }
+  result.shift();
+  return result;
+};
+
+const createLink = (path) => {
+  const pathLink = document.createElement('a');
+  pathLink.href = path.url;
+  pathLink.innerText = path.name;
+  return pathLink;
+};
+
+async function buildBreadcrumbs() {
+  const outerSection = document.createElement('div');
+  const breadcrumbsMetadata = getMetadata('breadcrumbs').toLowerCase();
+  if (breadcrumbsMetadata !== 'off' && breadcrumbsMetadata !== 'false') {
+    // Even if breadcrumbs are disabled, we need an empty div to keep the layout consistent
+    outerSection.className = 'breadcrumbs-outer';
+    const container = document.createElement('div');
+    container.className = 'section breadcrumbs-container';
+    const breadcrumb = document.createElement('nav');
+    breadcrumb.className = 'breadcrumbs';
+    breadcrumb.setAttribute('aria-label', 'Breadcrumb');
+    breadcrumb.innerHTML = '';
+    const HomeLink = createLink({ path: '', name: 'Home', url: window.location.origin });
+    const breadcrumbLinks = [HomeLink.outerHTML];
+    const path = window.location.pathname;
+    const paths = await getAllPathsExceptCurrent(path);
+    paths.forEach((pathPart) => breadcrumbLinks.push(createLink(pathPart).outerHTML));
+    breadcrumb.innerHTML = breadcrumbLinks.join('<span class="breadcrumb-separator"> / </span>');
+    outerSection.appendChild(container);
+    container.appendChild(breadcrumb);
+  }
+  return outerSection;
+}
+/* END BREADCRUMBS */
+
 /**
  * Loads everything needed to get to LCP.
  * @param {Element} doc The container element
@@ -268,6 +342,7 @@ async function loadEager(doc) {
     decorateMain(main, templateModule);
     document.body.classList.add('appear');
     await loadSection(main.querySelector('.section'), waitForFirstImage);
+    main.prepend(await buildBreadcrumbs());
   }
 
   sampleRUM.enhance();
@@ -289,6 +364,8 @@ async function loadEager(doc) {
 async function loadLazy(doc) {
   const main = doc.querySelector('main');
   await loadSections(main);
+  // const breadcrumb = await breadcrumbs(doc);
+  // main.prepend(breadcrumb);
 
   const templateName = getMetadata('template');
   if (templateName) {
@@ -298,10 +375,8 @@ async function loadLazy(doc) {
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
-
   loadHeader(doc.querySelector('header'));
   loadFooter(doc.querySelector('footer'));
-
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
 }
