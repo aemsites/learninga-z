@@ -1,3 +1,5 @@
+import { populateCard } from '../card/card.js';
+
 const VALID_PRODUCTS = ['writinga-z', 'readinga-z', 'vocabularya-z', 'sciencea-z', 'raz-kids', 'raz-plus', 'raz-plus-ell', 'foundationsa-z'];
 const RESEARCH_QUERY_PATH = '/site/resources/research-and-efficacy/query-index.json';
 const researchPages = [];
@@ -61,19 +63,17 @@ export default async function decorate(block) {
   }
 
   await groupResearchPagesByType(researchDetailPages);
+  // Display ESSA pages first, then Case Studies, then Research Base,
+  // then More Studies and Publications
   if (essa.length > 0) {
     const h2 = document.createElement('h2');
     h2.textContent = 'ESSA — Proven Results';
     block.append(h2);
-    const ul = document.createElement('ul');
-    block.append(ul);
+    const div = document.createElement('div');
+    block.append(div);
+    div.className = 'cards-wrapper';
     essa.forEach((page) => {
-      const li = document.createElement('li');
-      const a = document.createElement('a');
-      a.href = page.path;
-      a.textContent = page.title;
-      li.append(a);
-      ul.append(li);
+      populateCard(div, page);
     });
   }
 
@@ -81,15 +81,11 @@ export default async function decorate(block) {
     const h2 = document.createElement('h2');
     h2.textContent = 'Case Studies';
     block.append(h2);
-    const ul = document.createElement('ul');
-    block.append(ul);
+    const div = document.createElement('div');
+    block.append(div);
+    div.className = 'cards-wrapper';
     caseStudies.forEach((page) => {
-      const li = document.createElement('li');
-      const a = document.createElement('a');
-      a.href = page.path;
-      a.textContent = page.title;
-      li.append(a);
-      ul.append(li);
+      populateCard(div, page);
     });
   }
 
@@ -97,15 +93,11 @@ export default async function decorate(block) {
     const h2 = document.createElement('h2');
     h2.textContent = 'Research Base';
     block.append(h2);
-    const ul = document.createElement('ul');
-    block.append(ul);
+    const div = document.createElement('div');
+    block.append(div);
+    div.className = 'cards-wrapper';
     researchBase.forEach((page) => {
-      const li = document.createElement('li');
-      const a = document.createElement('a');
-      a.href = page.path;
-      a.textContent = page.title;
-      li.append(a);
-      ul.append(li);
+      populateCard(div, page);
     });
   }
 
@@ -113,15 +105,11 @@ export default async function decorate(block) {
     const h2 = document.createElement('h2');
     h2.textContent = 'More Studies and Publications';
     block.append(h2);
-    const ul = document.createElement('ul');
-    block.append(ul);
+    const div = document.createElement('div');
+    block.append(div);
+    div.className = 'cards-wrapper';
     moreStudies.forEach((page) => {
-      const li = document.createElement('li');
-      const a = document.createElement('a');
-      a.href = page.path;
-      a.textContent = page.title;
-      li.append(a);
-      ul.append(li);
+      populateCard(div, page);
     });
   }
 }

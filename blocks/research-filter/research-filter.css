@@ -1,0 +1,11 @@
+.research-filter .cards-wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.research-filter .card{
+  width: 33.3333%;
+  margin-bottom: 20px;
+  padding: 0 10px;
+}

@@ -17,7 +17,7 @@ export function populateCard(container, cardInfo) {
             <p>${cardInfo.description}</p>
         </div>
     `;
-  container.replaceChildren(card);
+  container.append(card);
 }
 
 export default async function decorate(block) {
@@ -26,6 +26,7 @@ export default async function decorate(block) {
   const relPath = getRelativePath(path);
   const indexData = await getIndexData();
   const cardInfo = indexData.find((item) => item.path === relPath);
+  block.innerHTML = '';
   if (cardInfo) {
     populateCard(block, cardInfo);
   }
