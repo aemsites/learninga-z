@@ -1,0 +1,19 @@
+.related-posts {
+    .posts-list {
+        padding-top: 15px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #cbcbcb;
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        h3 {
+            font-size: 18px;
+            font-weight: bold;
+            line-height: 1.45;
+            margin-bottom: 1em;
+            font-family: var(--body-font-family);
+        }
+    }
+}

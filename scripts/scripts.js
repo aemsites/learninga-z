@@ -240,6 +240,31 @@ async function loadTemplate() {
   return undefined;
 }
 
+/* Card related stuff */
+
+/**
+ * Gets details about blog pages that are indexed
+ * @param {Array} pathNames list of pathNames
+ */
+
+export async function lookupBlogs(pathNames) {
+  if (!window.blogIndex) {
+    const resp = await fetch(`${window.hlx.codeBasePath}/site/resources/breakroom-blog/query-index.json`);
+    const json = await resp.json();
+    const lookup = {};
+    json.data.forEach((row) => {
+      lookup[row.path] = row;
+      if (row.image || row.image.startsWith('/default-meta-image.png')) row.image = `/${window.hlx.codeBasePath}${row.image}`;
+    });
+    window.blogIndex = {
+      data: json.data,
+      lookup,
+    };
+  }
+  const result = pathNames.map((path) => window.blogIndex.lookup[path]).filter((e) => e);
+  return (result);
+}
+
 /* BREADCRUMBS START */
 
 const getPageTitle = async (url) => {

@@ -400,7 +400,6 @@ a:hover {
     line-height: 1.2;
   }
 
-
   h2 {
     font-size: var(--body-font-size-m);
     margin-bottom: 1em;
@@ -436,6 +435,7 @@ nav li {
   text-transform: uppercase;
 }
 
+/* end default theme */
 
 .breadcrumbs-outer {
   grid-area: breadcrumb;
@@ -513,6 +513,10 @@ body.laz-blue {
 body.red {
   .breadcrumbs-outer {
     background-color: var(--red);
+  }
+
+  .related-posts :is(h3, a, a:hover) {
+    color: var(--red);
   }
 }
 
