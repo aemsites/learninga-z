@@ -52,7 +52,7 @@
         .section-outer:last-of-type {
             grid-area: sidebar;
             grid-column-start: 2;
-            grid-row: 2 / -1;
+            grid-row: 2 / 20;
             margin-top: 50px;
             display: flex;
             justify-self: start;
