@@ -3,7 +3,7 @@ import { loadFragment } from '../fragment/fragment.js';
 import { decorateButtons, extractColor } from '../../scripts/scripts.js';
 
 // media query match that indicates mobile/tablet width
-const isDesktop = window.matchMedia('(min-width: 900px)');
+const isDesktop = window.matchMedia('(min-width: 1024px)');
 
 function closeOnEscape(e) {
   if (e.code === 'Escape') {
@@ -158,55 +158,54 @@ export default async function decorate(block) {
       navWrapper.append(announcementWrapper);
       navAnnouncement.remove();
     }
-  }
 
-  const navBrand = nav.querySelector('.nav-brand');
-  const brandLink = navBrand.querySelector('.button');
-  if (brandLink) {
-    brandLink.className = '';
-    brandLink.closest('.button-container').className = '';
-  }
+    const navBrand = nav.querySelector('.nav-brand');
+    const brandLink = navBrand.querySelector('.button');
+    if (brandLink) {
+      brandLink.className = '';
+      brandLink.closest('.button-container').className = '';
+    }
 
-  const navSections = nav.querySelector('.nav-sections');
-  if (navSections) {
-    navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
-      const secondaryNav = document.createElement('div');
-      secondaryNav.className = 'megamenu-container';
-      const navChildFragmentLink = navSection.querySelector('a[href*="/fragment"]');
-      if (navChildFragmentLink) {
-        loadSecondaryNavFragment(navChildFragmentLink, secondaryNav);
-        navChildFragmentLink.closest('ul').remove();
-      }
-      navSection.append(secondaryNav);
-      if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
-      navSection.addEventListener('mouseenter', () => {
-        if (isDesktop.matches) {
-          toggleAllNavSections(navSections);
-          navSection.setAttribute('aria-expanded', 'true');
+    const navSections = nav.querySelector('.nav-sections');
+    if (navSections) {
+      navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
+        const secondaryNav = document.createElement('div');
+        secondaryNav.className = 'megamenu-container';
+        const navChildFragmentLink = navSection.querySelector('a[href*="/fragment"]');
+        if (navChildFragmentLink) {
+          loadSecondaryNavFragment(navChildFragmentLink, secondaryNav);
+          navChildFragmentLink.closest('ul').remove();
         }
-      });
+        navSection.append(secondaryNav);
+        if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
+        navSection.addEventListener('mouseenter', () => {
+          if (isDesktop.matches) {
+            toggleAllNavSections(navSections);
+            navSection.setAttribute('aria-expanded', 'true');
+          }
+        });
 
-      navSection.addEventListener('mouseleave', () => {
-        if (isDesktop.matches) {
-          toggleAllNavSections(navSections);
-          navSection.setAttribute('aria-expanded', 'false');
-        }
+        navSection.addEventListener('mouseleave', () => {
+          if (isDesktop.matches) {
+            toggleAllNavSections(navSections);
+            navSection.setAttribute('aria-expanded', 'false');
+          }
+        });
       });
-    });
+    }
+
+    // hamburger for mobile
+    const hamburger = document.createElement('div');
+    hamburger.classList.add('nav-hamburger');
+    hamburger.innerHTML = '<div class="navicon-line"></div><div class="navicon-line"></div><div class="navicon-line"></div>';
+    hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
+    nav.append(hamburger);
+    nav.setAttribute('aria-expanded', 'false');
+    // prevent mobile nav behavior on window resize
+    // toggleMenu(nav, navSections, isDesktop.matches);
+    isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
+    navWrapper.append(nav);
+    decorateButtons(nav);
+    block.append(navWrapper);
   }
-
-  // hamburger for mobile
-  const hamburger = document.createElement('div');
-  hamburger.classList.add('nav-hamburger');
-  hamburger.innerHTML = '<div class="navicon-line"></div><div class="navicon-line"></div><div class="navicon-line"></div>';
-  hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
-  nav.append(hamburger);
-  nav.setAttribute('aria-expanded', 'false');
-  // prevent mobile nav behavior on window resize
-  // toggleMenu(nav, navSections, isDesktop.matches);
-  isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
-
-  navWrapper.append(nav);
-  decorateButtons(nav);
-  block.append(navWrapper);
 }
