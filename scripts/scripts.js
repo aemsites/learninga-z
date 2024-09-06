@@ -255,7 +255,6 @@ export async function lookupBlogs(pathNames) {
   return (result);
 }
 
-
 /**
  * Loads everything needed to get to LCP.
  * @param {Element} doc The container element
