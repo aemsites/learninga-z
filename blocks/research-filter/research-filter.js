@@ -72,6 +72,7 @@ export default async function decorate(block) {
     const h2 = document.createElement('h2');
     h2.textContent = 'ESSA — Proven Results';
     block.append(h2);
+    block.append(document.createElement('hr'));
     const div = document.createElement('div');
     block.append(div);
     div.className = 'cards-wrapper';
@@ -84,6 +85,7 @@ export default async function decorate(block) {
     const h2 = document.createElement('h2');
     h2.textContent = 'Case Studies';
     block.append(h2);
+    block.append(document.createElement('hr'));
     const div = document.createElement('div');
     block.append(div);
     div.className = 'cards-wrapper';
@@ -96,6 +98,7 @@ export default async function decorate(block) {
     const h2 = document.createElement('h2');
     h2.textContent = 'Research Base';
     block.append(h2);
+    block.append(document.createElement('hr'));
     const div = document.createElement('div');
     block.append(div);
     div.className = 'cards-wrapper';
@@ -108,6 +111,7 @@ export default async function decorate(block) {
     const h2 = document.createElement('h2');
     h2.textContent = 'More Studies and Publications';
     block.append(h2);
+    block.append(document.createElement('hr'));
     const div = document.createElement('div');
     block.append(div);
     div.className = 'cards-wrapper';

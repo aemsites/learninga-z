@@ -1,3 +1,18 @@
+.research-filter h2{
+    font-size: 18px;
+    font-family: var(--body-font-family);
+    font-weight: 500;
+    color: inherit;
+    margin-bottom: 10px;
+    text-transform: none;
+}
+
+.research-filter hr{
+    border-color: #cbcbcb;
+    margin: 20px 0;
+    border-top: 1px solid #eee;
+}
+
 .research-filter .cards-wrapper{
   display: flex;
   flex-wrap: wrap;
@@ -5,7 +20,20 @@
 }
 
 .research-filter .card{
-  width: 33.3333%;
   margin-bottom: 20px;
   padding: 0 10px;
+}
+
+
+@media screen and (width >= 568px){
+    .research-filter .card{
+        width: 50%;
+    }
+}
+
+
+@media screen and (width >= 992px){
+    .research-filter .card{
+        width: 33.3333%;
+    }
 }

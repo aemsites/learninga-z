@@ -1,19 +1,18 @@
 .card {
-    height: 411.05px;
     overflow: hidden;
+    height: auto;
 }
 
 .card a {
     text-decoration: none;
     display: inline-block;
-  max-width: 100%;
-  color: #e21d46;
-  overflow: hidden;
+    max-width: 100%;
+    overflow: hidden;
 }
 
 .card img {
-  width: 100%;
-  transition: all .65s ease;
+    width: 100%;
+    transition: all .65s ease;
 }
 
 .card:hover img {
@@ -24,4 +23,15 @@
 .card h3 {
     font-size: 16px;
     color: #e21d46;
+    font-family: var(--body-font-family);
+    font-weight: 500;
+}
+
+.card .card-body p {
+    font-weight: 400;
+    color: #263238;
+}
+
+.card .card-body p:hover {
+    color: #77001a;
 }
