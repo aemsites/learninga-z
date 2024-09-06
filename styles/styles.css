@@ -9,7 +9,7 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-
+/* stylelint-disable no-descending-specificity */
 :root {
   /* colors */
   --background-color: white;
@@ -76,8 +76,8 @@
     --product-orange: #f05b32;
 
   /* fonts */
-  --body-font-family: 'Montserrat', sans-serif, montserrat-normal-fallback;
-  --heading-font-family: 'Solway', sans-serif, solway-normal-fallback;
+  --body-font-family: 'Montserrat', montserrat-normal-fallback;
+  --heading-font-family: 'Solway', solway-normal-fallback;
 
   /* font weight */
   --font-weight-light: 300;
@@ -91,6 +91,7 @@
   --body-font-size-m: 18px;
   --body-font-size-s: 16px;
   --body-font-size-xs: 14px;
+  --body-font-size-xxs: 13px;
 
   /* heading sizes */
   --heading-font-size-3xl: 60px;
@@ -102,25 +103,16 @@
   --heading-font-size-xs: 22px;
 
   /* nav height */
-  --nav-height: 93px;
+  --nav-height: 90px;
 }
 
 /* fallback fonts */
 @font-face {
-  font-family: roboto-condensed-fallback;
-  size-adjust: 88.82%;
-  src: local('Arial');
-}
-
-@font-face {
-  font-family: roboto-fallback;
-  size-adjust: 99.529%;
-  src: local('Arial');
-}
-
-@font-face {
   font-family: montserrat-normal-fallback;
-  size-adjust: 111.311%;
+  size-adjust: 113%;
+  ascent-override: 93%;
+  descent-override: 12%;
+  line-gap-override: normal;
   src: local("Arial");
 }
 
@@ -132,6 +124,11 @@
 
 *, ::before, ::after {
   box-sizing: border-box;
+}
+
+picture {
+  line-height: 0;
+  display: block;
 }
 
 img {
@@ -156,7 +153,7 @@ body.appear {
 }
 
 header {
-  height: var(--nav-height);
+  height: calc(var(--nav-height) + 40px); /* 40px is the announcement bar */
 }
 
 header .header,
@@ -404,7 +401,6 @@ a:hover {
     line-height: 1.2;
   }
 
-
   h2 {
     font-size: var(--body-font-size-m);
     margin-bottom: 1em;
@@ -440,7 +436,43 @@ nav li {
   text-transform: uppercase;
 }
 
-/* themes - TBD if we use product names for these or not */
+/* end default theme */
+
+.breadcrumbs-outer {
+  grid-area: breadcrumb;
+  background-color: var(--navy-blue);
+
+  .breadcrumbs-container {
+    margin: 0 auto;
+  }
+
+  nav.breadcrumbs {
+    color: white;
+    font-size: var(--body-font-size-xxs);
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 6px;
+    justify-content: left;
+    height: 50px;
+    align-items: center;
+
+    a {
+      color: white;
+      font-weight: 700;
+    }
+  }
+}
+
+/*********
+THEMES
+*********/
+
+body.purple {
+  .breadcrumbs-outer {
+    background-color: var(--purple);
+  }
+}
+
 [data-theme="purple"] {
   background-color: var(--purple);
   color: var(--white);
@@ -454,6 +486,12 @@ nav li {
   }
 }
 
+body.laz-blue {
+  .breadcrumbs-outer {
+    background-color: var(--laz-blue);
+  }
+}
+
 [data-theme="laz-blue"] {
   background-color: var(--laz-blue);
   color: var(--white);
@@ -464,7 +502,7 @@ nav li {
     font-size: var(--body-font-size-m);
     }
 
-  a { /* stylelint-disable-line */
+  a {
     text-decoration: underline;
   }
 
@@ -472,6 +510,16 @@ nav li {
       color: var(--white);
     }
   }
+
+body.red {
+  .breadcrumbs-outer {
+    background-color: var(--red);
+  }
+
+  .related-posts :is(h3, a, a:hover) {
+    color: var(--red);
+  }
+}
 
 [data-theme="red"] {
   .button.primary {
@@ -486,8 +534,18 @@ nav li {
   }
 }
 
+body.yellow {
+  .breadcrumbs-outer {
+    background-color: var(--yellow);
+  }
+}
+
   [data-theme="yellow"] {
     background-color: var(--yellow);
+
+    .breadcrumbs-outer {
+      background-color: var(--yellow);
+    }
 
     a:any-link {
       color: var(--text-color);
