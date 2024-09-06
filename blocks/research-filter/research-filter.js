@@ -22,7 +22,7 @@ async function getResearchPagesByProduct(productName = '') {
   if (productName) {
     return researchPages.filter((page) => {
       const { products } = page;
-      const productsArray = products.split(',').map((product) => product.trim().toLowerCase());
+      const productsArray = products.split(',').map((product) => product.replace(' ', '').toLowerCase());
       return productsArray.includes(productName);
     });
   }
@@ -57,6 +57,7 @@ export default async function decorate(block) {
   let productName = urlArray[urlArray.length - 1];
   // remove the trailing slash from the product name
   productName = productName.replace('/', '');
+  productName = productName.trim();
   let researchDetailPages;
   if (productName && VALID_PRODUCTS.includes(productName)) {
     // get the product name from the url
