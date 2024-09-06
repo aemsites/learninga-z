@@ -1,0 +1,21 @@
+.card a {
+    text-decoration: none;
+    display: inline-block;
+  max-width: 100%;
+  color: #e21d46;
+}
+
+.card img {
+  width: 100%;
+  transition: all .65s ease;
+}
+
+.card:hover img {
+    transform: scale(1.05);
+    transform-style: preserve-3d;
+}
+
+.card h3 {
+    font-size: 16px;
+    color: #e21d46;
+}
