@@ -1,14 +1,12 @@
 import { getRelativePath, getIndexData } from '../../scripts/utils.js';
+import { createOptimizedPicture } from '../../scripts/aem.js';
 
 export function populateCard(container, cardInfo) {
   const card = document.createElement('div');
   card.className = 'card';
   card.innerHTML = `
         <a href="${cardInfo.path}">
-        <picture>
-            <source srcset="${cardInfo.image}" media="(min-width: 750px)">
-            <img src="${cardInfo.image}" alt="${cardInfo.title}">
-        </picture>
+        ${createOptimizedPicture(cardInfo.image, cardInfo.title, false, [{ width: '750' }]).outerHTML}
         </a>
         <div class="card-body">
         <a href="${cardInfo.path}">
