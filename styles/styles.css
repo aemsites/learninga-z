@@ -64,6 +64,7 @@
   --charcoal-gray: #45423f;
   --charcoal-blue: #263238;
   --royal-blue: #31409A;
+  --maroon: #77001a;
 
     /* product colors */
     --product-navy-blue: #12457e;
@@ -519,6 +520,14 @@ body.red {
 
   .related-posts :is(h3, a, a:hover) {
     color: var(--red);
+  }
+
+  .card h3 {
+    color: var(--red);
+  }
+
+  .card .card-body p:hover {
+    color: var(--maroon);
   }
 }
 
