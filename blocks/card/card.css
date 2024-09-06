@@ -1,0 +1,31 @@
+.card {
+    overflow: hidden;
+    height: auto;
+}
+
+.card a {
+    text-decoration: none;
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.card img {
+    transition: all .65s ease;
+}
+
+.card:hover img {
+    transform: scale(1.05);
+    transform-style: preserve-3d;
+}
+
+.card h3 {
+    font-size: var(--body-font-size-s);
+    font-family: var(--body-font-family);
+    font-weight: var(--font-weight-medium);
+}
+
+.card .card-body p {
+    font-weight: var(--font-weight-normal);
+    color: var(--charcoal-blue);
+}
