@@ -1,16 +1,15 @@
 .research-filter h2{
-    font-size: 18px;
+    font-size: var(--body-font-size-m);
     font-family: var(--body-font-family);
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
     color: inherit;
     margin-bottom: 10px;
     text-transform: none;
 }
 
 .research-filter hr{
-    border-color: #cbcbcb;
     margin: 20px 0;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--light-grey);;
 }
 
 .research-filter .cards-wrapper{

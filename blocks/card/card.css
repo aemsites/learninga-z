@@ -11,7 +11,6 @@
 }
 
 .card img {
-    width: 100%;
     transition: all .65s ease;
 }
 
@@ -21,17 +20,17 @@
 }
 
 .card h3 {
-    font-size: 16px;
-    color: #e21d46;
+    font-size: var(--body-font-size-s);
+    color: var(--red);
     font-family: var(--body-font-family);
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
 }
 
 .card .card-body p {
-    font-weight: 400;
-    color: #263238;
+    font-weight: var(--font-weight-normal);
+    color: var(--charcoal-blue);
 }
 
 .card .card-body p:hover {
-    color: #77001a;
+    color: var(--maroon);
 }
