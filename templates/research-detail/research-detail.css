@@ -18,15 +18,10 @@
             font-family: var(--body-font-family);
         }
     }
-
-    .breadcrumbs-container {
-    padding-right: 15px;
-    padding-left: 15px;
-    }
 }
 
 @media (width >= 768px) {
-    .research-detail main .section-outer .section, .breadcrumbs-container {
+    .research-detail main .section-outer .section {
         max-width: 750px;
         margin-left: auto;
         margin-right: auto;
@@ -38,7 +33,8 @@
         display: grid;
         grid-template-areas:
         "breadcrumb breadcrumb"
-        "content sidebar";
+        "content sidebar"
+    "content sidebar";
         column-gap: 40px;
         position: relative;
         max-width: unset;
@@ -47,33 +43,23 @@
             grid-area: auto / content;
             max-width: 610px;
             justify-self: end;
+            grid-template-rows: max-content;
         }
 
         .section-outer:last-of-type {
             grid-area: sidebar;
-            grid-column-start: 2;
-            grid-row: 2 / 20;
-            margin-top: 50px;
-            display: flex;
             justify-self: start;
+            grid-row-end: last-line;
 
             .section {
                 width: 320px;
             }
-        }
-
-        .breadcrumbs-container {
-            max-width: 970px;
         }
     }
 }
 
 @media (width >= 1200px) {
     .research-detail main {
-        .breadcrumbs-container {
-            max-width: 1170px;
-        }
-
         .section-outer:not(last-of-type) {
             max-width: 760px;
         }
@@ -82,5 +68,4 @@
             width: 400px;
         }
     }
-
 }
