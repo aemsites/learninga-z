@@ -1,8 +1,14 @@
+.card {
+    height: 411.05px;
+    overflow: hidden;
+}
+
 .card a {
     text-decoration: none;
     display: inline-block;
   max-width: 100%;
   color: #e21d46;
+  overflow: hidden;
 }
 
 .card img {

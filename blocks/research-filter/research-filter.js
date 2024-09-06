@@ -1,4 +1,5 @@
 import { populateCard } from '../card/card.js';
+import { loadCSS } from '../../scripts/aem.js';
 
 const VALID_PRODUCTS = ['writinga-z', 'readinga-z', 'vocabularya-z', 'sciencea-z', 'raz-kids', 'raz-plus', 'raz-plus-ell', 'foundationsa-z'];
 const RESEARCH_QUERY_PATH = '/site/resources/research-and-efficacy/query-index.json';
@@ -48,6 +49,8 @@ async function groupResearchPagesByType(researchDetailPages) {
 }
 
 export default async function decorate(block) {
+  await loadCSS(`${window.hlx.codeBasePath}/blocks/card/card.css`);
+
   // get the last part of the url as the product name
   const url = window.location.href;
   const urlArray = url.split('/research-and-efficacy');
