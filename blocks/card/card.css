@@ -21,7 +21,6 @@
 
 .card h3 {
     font-size: var(--body-font-size-s);
-    color: var(--red);
     font-family: var(--body-font-family);
     font-weight: var(--font-weight-medium);
 }
@@ -29,8 +28,4 @@
 .card .card-body p {
     font-weight: var(--font-weight-normal);
     color: var(--charcoal-blue);
-}
-
-.card .card-body p:hover {
-    color: var(--maroon);
 }

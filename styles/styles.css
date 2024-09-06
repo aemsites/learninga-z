@@ -519,6 +519,14 @@ body.red {
   .related-posts :is(h3, a, a:hover) {
     color: var(--red);
   }
+
+  .card h3 {
+    color: var(--red);
+  }
+
+  .card .card-body p:hover {
+    color: var(--maroon);
+  }
 }
 
 [data-theme="red"] {
