@@ -619,6 +619,12 @@ body.yellow {
     }
   }
 
+@media (width >= 1660px) {
+  .breadcrumbs-container {
+    max-width: 1527px;
+  }
+}
+
   /* section metadata */
   main .section.light,
   main .section.highlight {

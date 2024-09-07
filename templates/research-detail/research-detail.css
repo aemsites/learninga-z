@@ -6,8 +6,12 @@
             padding: 0 15px;
         }
 
-        &:last-of-type .default-content-wrapper {
-            text-align: center;
+        &:last-of-type {
+            margin-top: 50px;
+
+            .default-content-wrapper {
+                text-align: center;
+            }
         }
 
         h2 {
