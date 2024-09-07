@@ -1,16 +1,22 @@
-let selectedOrder = [];
+import { getTaxonomy } from '../../scripts/taxonomy.js';
 
-function renderItems(items, catId) {
-  let html = '';
-  items.forEach((tag) => {
-    const { title, path } = tag;
-    html += `
-      <span class="path">${path}
-        <span data-title="${title}" class="tag cat-${catId % 8}">${title}</span>
-      </span>
-    `;
-    html += renderItems(tag.children, catId);
+function renderItem(item, catId) {
+  const pathStr = item.path.split('/').slice(0, -1).join('<span class="psep"> / </span>');
+  return `
+  <span class="path">${pathStr}
+    <span data-title="${item.title}" class="tag cat-${catId % 10}">${item.title}</span>
+  </span>
+`;
+}
+
+function renderItems(item, catId) {
+  let html = item.hide ? '' : renderItem(item, catId);
+  Object.keys(item).forEach((key) => {
+    if (!['title', 'name', 'path', 'hide'].includes(key)) {
+      html += renderItems(item[key], catId);
+    }
   });
+
   return html;
 }
 
@@ -19,34 +25,15 @@ function initTaxonomy(taxonomy) {
   Object.values(taxonomy).forEach((cat, idx) => {
     html += '<div class="category">';
     html += `<h2>${cat.title}</h2>`;
-    const items = cat.children;
-    html += renderItems(items, idx);
+    Object.keys(cat).forEach((key) => {
+      if (!['title', 'name', 'path', 'hide'].includes(key)) {
+        html += renderItems(cat[key], idx);
+      }
+    });
     html += '</div>';
   });
   const results = document.getElementById('results');
   results.innerHTML = html;
-}
-
-async function getTaxonomy() {
-  const resp = await fetch('/tags.plain.html');
-  const markup = await resp.text();
-  const div = document.createElement('div');
-  div.innerHTML = markup;
-  const level1 = div.querySelector('ul').querySelectorAll(':scope > li');
-
-  const mapChildren = (li, parentPath) => {
-    const title = li.childNodes[0].textContent.trim();
-    const childrenLis = li.querySelectorAll(':scope > ul > li');
-    const path = `${parentPath}${title}`;
-    return {
-      title,
-      path: parentPath,
-      children: [...childrenLis].map((childLi) => mapChildren(childLi, `${path}<span class="psep"> / </span>`)),
-    };
-  };
-
-  const data = [...level1].map((li) => mapChildren(li, ''));
-  return data;
 }
 
 function filter() {
@@ -66,7 +53,7 @@ function filter() {
   });
 }
 
-function toggleTag(target) {
+/* function toggleTag(target) {
   target.classList.toggle('selected');
   const { title } = target.querySelector('.tag').dataset;
   const category = target.closest('.category').querySelector('h2').textContent; // Assuming category title is in h2
@@ -81,6 +68,12 @@ function toggleTag(target) {
   }
   // eslint-disable-next-line no-use-before-define
   displaySelected();
+} */
+
+function toggleTag(target) {
+  target.classList.toggle('selected');
+  // eslint-disable-next-line no-use-before-define
+  displaySelected();
 }
 
 function displaySelected() {
@@ -89,20 +82,9 @@ function displaySelected() {
   const toCopyBuffer = [];
 
   selTagsEl.innerHTML = '';
-  selectedOrder.forEach(({ title, category }) => {
-    // Find the category element
-    const categories = document.querySelectorAll('#results .category');
-    let path;
-    categories.forEach((cat) => {
-      if (cat.querySelector('h2').textContent === category) {
-        const tag = Array.from(cat.querySelectorAll('.tag')).find((t) => t.dataset.title === title);
-        if (tag) {
-          path = tag.closest('.path');
-        }
-      }
-    });
-
-    if (path) {
+  const selectedTags = document.querySelectorAll('#results .path.selected');
+  if (selectedTags.length > 0) {
+    selectedTags.forEach((path) => {
       const clone = path.cloneNode(true);
       clone.classList.remove('filtered', 'selected');
       const tag = clone.querySelector('.tag');
@@ -110,12 +92,10 @@ function displaySelected() {
       clone.addEventListener('click', () => {
         toggleTag(path);
       });
-      toCopyBuffer.push(`${tag.dataset.title}`);
+      toCopyBuffer.push(tag.dataset.title);
       selTagsEl.append(clone);
-    }
-  });
+    });
 
-  if (selectedOrder.length > 0) {
     selEl.classList.remove('hidden');
   } else {
     selEl.classList.add('hidden');
@@ -150,8 +130,6 @@ async function init() {
     document.querySelectorAll('.selected').forEach((selectedTag) => {
       selectedTag.classList.remove('selected');
     });
-
-    selectedOrder = [];
     displaySelected();
     copyButton.disabled = false;
   });
