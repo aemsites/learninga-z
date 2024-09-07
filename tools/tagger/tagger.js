@@ -53,23 +53,6 @@ function filter() {
   });
 }
 
-/* function toggleTag(target) {
-  target.classList.toggle('selected');
-  const { title } = target.querySelector('.tag').dataset;
-  const category = target.closest('.category').querySelector('h2').textContent; // Assuming category title is in h2
-  const tagIdentifier = { title, category };
-
-  if (target.classList.contains('selected')) {
-    selectedOrder.push(tagIdentifier); // Add to the selection order
-  } else {
-    selectedOrder = selectedOrder.filter(
-      (item) => item.title !== title || item.category !== category,
-    );
-  }
-  // eslint-disable-next-line no-use-before-define
-  displaySelected();
-} */
-
 function toggleTag(target) {
   target.classList.toggle('selected');
   // eslint-disable-next-line no-use-before-define
@@ -101,8 +84,8 @@ function displaySelected() {
     selEl.classList.add('hidden');
   }
 
-  const copybuffer = document.getElementById('copybuffer');
-  copybuffer.value = toCopyBuffer.join(', ');
+  const copyBuffer = document.getElementById('copyBuffer');
+  copyBuffer.value = toCopyBuffer.join(', ');
 }
 
 async function init() {
@@ -113,7 +96,7 @@ async function init() {
   const selEl = document.getElementById('selected');
   const copyButton = selEl.querySelector('button.copy');
   copyButton.addEventListener('click', () => {
-    const copyText = document.getElementById('copybuffer');
+    const copyText = document.getElementById('copyBuffer');
     navigator.clipboard.writeText(copyText.value);
 
     copyButton.disabled = true;
