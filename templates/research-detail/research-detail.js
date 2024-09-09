@@ -17,11 +17,11 @@ export default async function decorate(main) {
   const products = getMetadata('products');
   if (products) {
     const productLinks = products.split(',').map((product) => {
-      const prodKey = product.trim().toLowerCase();
+      const prodKey = product.trim().toLowerCase().replace(' ', '');
       if (PRODUCT_LINKS[prodKey]) {
         const a = document.createElement('a');
         a.href = PRODUCT_LINKS[prodKey];
-        a.textContent = product;
+        a.textContent = (prodKey === 'raz-plus-ell') ? 'Raz-Plus ELL' : product;
         return a;
       }
       return document.createTextNode(product);
