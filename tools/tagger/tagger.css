@@ -1,11 +1,11 @@
 body {
-    background-color: #FAF8F6;
+    background-color: #F6F6F6;
   }
-  
+
   main .intro {
     font-size: 1.2rem;
   }
-  
+
   main input {
     width: 100%;
     font-size: 2rem;
@@ -14,11 +14,11 @@ body {
     padding-top: 5px;
     font-family: inherit;
   }
-  
+
   main .filter {
     padding: 20px 10px;
   }
-  
+
   #selected {
     position: fixed;
     bottom: 0;
@@ -30,102 +30,102 @@ body {
     display: grid;
     gap: 1rem
   }
-  
+
   main #selected {
     padding: 30px;
   }
-  
+
   #selected button {
     background-color: #F25749;
     color: white;
     border: 1px solid white;
     font-size: 13px;
   }
-  
+
   main #selected button {
     border-radius: 1em;
     padding: 5px 20px;
   }
-  
+
   #results {
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
     padding-bottom: 350px;
   }
-  
+
   #results > .category {
     user-select: none;
     display: flex;
     flex-flow: column wrap;
   }
-  
+
   main > div > span,
   main > div > div > span {
     white-space: nowrap;
     margin: 6px 4px;
   }
-  
+
   main {
     font-family: system-ui, Arial;
     padding: 20px;
     font-size: 1.3rem;
     line-height: 1.2em;
   }
-  
+
   span.tag {
     color: white;
     padding: 2px 20px;
     border-radius: 10px;
     font-size: 16px;
   }
-  
+
   .tag {
     padding-top: 5px;
   }
-  
+
   .selected span.tag {
     background-color: #888;
     color: lightgrey;
   }
-  
-  .tag.cat-0 {
-    background-color: #1385E2;
+
+  .tag.cat-0, .tag.cat-8 {
+    background-color: #C83192;
   }
-  
-  .tag.cat-1 {
-    background-color: #FA1E32;
+
+  .tag.cat-1, .tag.cat-9 {
+    background-color: #5E2967;
   }
-  
-  .tag.cat-2 {
-    background-color: #05BC71
+
+  .tag.cat-2, .tag.cat-10 {
+    background-color: #419e66;
   }
-  
+
   .tag.cat-3 {
-    background-color: #90F;
+    background-color: #f05b32;
   }
-  
+
   .tag.cat-4 {
-    background-color: black;
+    background-color: #31409A;
   }
-  
+
   .tag.cat-5 {
-    background-color: #059641;
+    background-color: #77001a;
   }
-  
+
   .tag.cat-6 {
-    background-color: #D21313;
+    background-color: #E21D46;
   }
-  
+
   .tag.cat-7 {
-    background-color: deepskyblue;
+    background-color: #1E7DDD;
   }
-  
+
   span.tag .highlight {
     font-weight: 700;
     color: white;
   }
-  
+
   span.path {
     cursor: pointer;
     border-radius: 10px;
@@ -133,37 +133,37 @@ body {
     padding: 4px 10px 2px;
     font-size: 12px;
   }
-  
+
   span.path.filtered {
     display: none;
   }
-  
+
   span.psep {
     font-size: 20px;
     font-weight: bold;
   }
-  
+
   @media (min-width: 600px) {
     #selected {
       grid-template-columns: 1fr 100px;
     }
   }
-  
+
   #selected button:disabled {
     background-color: #ccc;
     color: grey;
   }
-  
+
   .selected-tags {
     display: flex;
     flex-wrap: wrap;
     height: min-content;
   }
-  
+
   .hidden {
     display: none !important;
   }
-  
+
   .offscreen {
     position: absolute;
     top: -1000px;
