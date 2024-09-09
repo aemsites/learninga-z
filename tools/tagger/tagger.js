@@ -1,4 +1,4 @@
-import { getTaxonomy } from '../../scripts/taxonomy.js';
+import { getTaxonomy } from '../../scripts/utils.js';
 
 function renderItem(item, catId) {
   const pathStr = item.path.split('/').slice(0, -1).join('<span class="psep"> / </span>');
