@@ -9,6 +9,7 @@ const PRODUCT_LINKS = {
   'sciencea-z': 'https://main--learninga-z--aemsites.hlx.page/site/products/sciencea-z/overview',
   'vocabularya-z': 'https://main--learninga-z--aemsites.hlx.page/site/products/vocabularya-z/overview',
   'writinga-z': 'https://main--learninga-z--aemsites.hlx.page/site/products/writinga-z/overview',
+  'raz-plus-ell': 'https://main--learninga-z--aemsites.hlx.page/site/products/ell/overview',
 };
 
 export default async function decorate(main) {

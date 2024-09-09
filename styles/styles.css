@@ -444,6 +444,8 @@ nav li {
 
   .breadcrumbs-container {
     margin: 0 auto;
+      padding-right: 15px;
+      padding-left: 15px;
   }
 
   nav.breadcrumbs {
@@ -605,17 +607,23 @@ body.yellow {
     }
   }
 
-  @media (width >= 992px) {
-    main > .section-outer > .section {
+  @media (width >= 1024px) {
+    main > .section-outer > .section, .breadcrumbs-container {
       max-width: 970px;
     }
   }
 
   @media (width >= 1200px) {
-    main > .section-outer > .section {
+    main > .section-outer > .section, .breadcrumbs-container {
       max-width: 1170px;
     }
   }
+
+@media (width >= 1660px) {
+  .breadcrumbs-container {
+    max-width: 1527px;
+  }
+}
 
   /* section metadata */
   main .section.light,
