@@ -50,6 +50,11 @@
     width: fit-content;
 }
 
+.card:hover .efficacy-badge {
+    left: calc(100% - 36px);
+}
+
+
 .card .efficacy-badge.strong {
     background-color: var(--red);
 }
@@ -62,40 +67,35 @@
     background-color: var(--bright-yellow);
 }
 
-.card:hover .efficacy-badge {
-    left: calc(100% - 36px);
-    right: 10px;
-}
-
-.card .flag {
+.card .efficacy-badge .flag {
     width: 16px;
     height: 16px;
     display: inline-block;
     content: url("/icons/flag.svg");
-  }
+}
 
 .card .efficacy-badge:not(.strong) .flag {
     filter: invert(1);
 }
 
-.card .sr-only{
+.card .efficacy-badge .sr-only {
     position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  border: 0;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    border: 0;
 }
 
-.card .efficacy-badge p{
+.card .efficacy-badge p {
     margin: 0;
     padding: 0;
     margin-left: 8px;
     font-weight: 400;
 }
 
-.card .efficacy-badge:not(.strong) p{
+.card .efficacy-badge:not(.strong) p {
     filter: invert(1);
 }
