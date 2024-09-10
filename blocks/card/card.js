@@ -3,10 +3,15 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 
 export function populateCard(container, cardInfo) {
   const card = document.createElement('div');
+  let efficacyBadge = '';
+  if (cardInfo.efficacy) {
+    efficacyBadge = `<span class="efficacy-badge ${cardInfo.efficacy}"><i class="flag"><span class="sr-only">Flag</span></i><p>${cardInfo.efficacy.charAt(0).toUpperCase() + cardInfo.efficacy.slice(1)}</p></span>`;
+  }
   card.className = 'card';
   card.innerHTML = `
         <a href="${cardInfo.path}">
         ${createOptimizedPicture(cardInfo.image, cardInfo.title, false, [{ width: '750' }]).outerHTML}
+        ${efficacyBadge}
         </a>
         <div class="card-body">
         <a href="${cardInfo.path}">
