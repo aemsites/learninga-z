@@ -76,9 +76,11 @@ const transformButtons = (main) => {
   buttons.forEach((button) => {
     //const color = Array.from(button.classList).find((className) => className.includes('btn-'))?.split('btn-')[1] || 'red';
    // button.textContent = `${button.textContent} {${color}}`;
+    const p = document.createElement('p');
     const strong = document.createElement('strong');
     strong.appendChild(button.cloneNode(true));
-    button.replaceWith(strong);
+    p.appendChild(strong);
+    button.replaceWith(p);
   });
 };
 
