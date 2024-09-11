@@ -3,6 +3,10 @@
     flex-direction: column-reverse;
 }
 
+.errorpage .breadcrumbs-container {
+    display: none;
+}
+
 @media (width >= 992px) {
     .errorpage .columns > div {
         flex-direction: row;
