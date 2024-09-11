@@ -378,8 +378,13 @@ a:hover {
   }
 
   .button.secondary.textcolor-berry {
-    color: var(--berry);
-    border-color: var(--berry);
+    color: var(--product-berry);
+    border-color: var(--product-berry);
+  }
+
+  .button.secondary.textcolor-royal-blue {
+    color: var(--royal-blue);
+    border-color: var(--product-royal-blue);
   }
 
   .button.secondary.textcolor-black {
@@ -390,6 +395,31 @@ a:hover {
   .button.secondary.textcolor-gold {
     color: var(--gold);
     border-color: var(--gold);
+  }
+
+  .button.secondary.textcolor-dark-blue {
+    color: var(--product-dark-blue);
+    border-color: var(--product-dark-blue);
+  }
+
+  .button.secondary.textcolor-navy-blue {
+    color: var(--product-navy-blue);
+    border-color: var(--product-navy-blue);
+  }
+
+  .button.secondary.textcolor-orange {
+    color: var(--product-orange);
+    border-color: var(--product-orange);
+  }
+
+  .button.secondary.textcolor-purple {
+    color: var(--product-purple);
+    border-color: var(--product-purple);
+  }
+
+  .button.secondary.textcolor-green {
+    color: var(--product-green);
+    border-color: var(--product-green);
   }
 
   /* themes - TBD if we use product names for these or not */
@@ -608,13 +638,13 @@ body.yellow {
   }
 
   @media (width >= 1024px) {
-    main > .section-outer > .section, .breadcrumbs-container {
+    main > .section-outer > .section, .breadcrumbs-container, .hero-content {
       max-width: 970px;
     }
   }
 
   @media (width >= 1200px) {
-    main > .section-outer > .section, .breadcrumbs-container {
+    main > .section-outer > .section, .breadcrumbs-container, .hero-content {
       max-width: 1170px;
     }
   }
