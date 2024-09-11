@@ -1,4 +1,4 @@
-.subnavigation .subnav-links>div {
+.subnavigation .subnav-links {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -10,18 +10,18 @@
   padding-bottom: 48px;
 }
 
-.subnavigation.research .subnav-links>div>p {
+.subnavigation.research .subnav-links p {
     padding: 0;
     margin: 0;
 }
 
-.subnavigation.research .subnav-links>div a {
+.subnavigation.research .subnav-links a {
     font-size: 0.575em;
     padding: 5px 14px;
     margin-bottom: 3px;
 }
 
-.subnavigation.research .subnav-links>div a.active {
+.subnavigation.research .subnav-links a.active {
     padding: 12px 18px;
     border-radius: 6px;
 }
@@ -142,14 +142,14 @@
  }
 
 @media screen and (width >=1190px) {
-    .subnavigation.research .subnav-links>div a {
+    .subnavigation.research .subnav-links a {
         font-size: 0.75em;
     }
 
 }
 
 @media screen and (width >=990px) {
-    .subnavigation.research .subnav-links>div a.active {
+    .subnavigation.research .subnav-links a.active {
         border-radius: 6px 6px 0 0;
     }
 

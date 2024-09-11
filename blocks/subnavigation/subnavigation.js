@@ -1,9 +1,10 @@
 import { PRODUCT_COLORS } from '../../scripts/constants.js';
 
 export default async function decorate(block) {
-  const firstColumn = block.querySelector('div');
+  const wrapper = block.querySelector('div');
+  const firstColumn = wrapper.querySelector('div');
   firstColumn.classList.add('subnav-links');
-  const secondColumn = block.querySelector('div:nth-child(2)');
+  const secondColumn = wrapper.querySelector('div:nth-child(2)');
   if (secondColumn) {
     secondColumn.classList.add('subnav-content');
   }
