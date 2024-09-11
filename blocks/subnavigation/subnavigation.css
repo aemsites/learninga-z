@@ -1,0 +1,25 @@
+.subnavigation .subnav-links > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.subnavigation.research .subnav-links > div > p {
+    padding: 0;
+    margin: 0;
+}
+
+.subnavigation.research .subnav-links > div a{
+    font-size: 0.575em;
+    padding: 5px 14px;
+    margin-bottom: 3px;
+}
+
+@media screen and (width >= 1190px) {
+    .subnavigation.research .subnav-links > div a{
+        font-size: 0.75em;
+  }
+    
+}
