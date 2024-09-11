@@ -222,7 +222,6 @@ export function decorateMain(main, templateModule) {
   decorateBlocks(main);
   decorateLinkedImages(main);
   decorateExternalLinks(main);
-
 }
 
 /**
