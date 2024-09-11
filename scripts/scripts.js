@@ -198,10 +198,11 @@ export function decorateExternalLinks(main) {
     const href = a.getAttribute('href');
     if (href) {
       const extension = href.split('.').pop().trim();
-      if (!href.startsWith('/') && !href.startsWith('#')) {
-        if (!href.includes('learninga-z.com') || (extension === 'pdf')) {
-          a.setAttribute('target', '_blank');
-        }
+      const isExternal = !href.startsWith('/') && !href.startsWith('#');
+      const isPDF = extension === 'pdf';
+      const isLearningAZ = href.includes('learninga-z.com');
+      if ((isExternal && (!isLearningAZ || isPDF)) || isPDF) {
+        a.setAttribute('target', '_blank');
       }
     }
   });
