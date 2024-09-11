@@ -22,10 +22,22 @@ import {
 function buildHeroBlock(main) {
   const h1 = main.querySelector('h1');
   const picture = main.querySelector('picture');
+  const heroSubText = main.querySelector('p>em');
+  const heroContent = document.createElement('div');
+  heroContent.className = 'hero-content';
   // eslint-disable-next-line no-bitwise
   if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
     const section = document.createElement('div');
-    section.append(buildBlock('hero', { elems: [picture, h1] }));
+    heroContent.append(h1);
+    if (h1.compareDocumentPosition(heroSubText) && Node.DOCUMENT_POSITION_FOLLOWING) {
+      const h2 = document.createElement('h2');
+      h2.append(heroSubText.textContent);
+      heroSubText.remove();
+      heroContent.append(h2);
+      section.append(buildBlock('hero', { elems: [picture, heroContent] }));
+    } else {
+      section.append(buildBlock('hero', { elems: [picture, heroContent] }));
+    }
     main.prepend(section);
   }
 }

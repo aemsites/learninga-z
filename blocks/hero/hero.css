@@ -1,3 +1,12 @@
+main > .section-outer > .section.hero-container{
+  max-width: 100%;
+  padding: 0;
+}
+
+.hero-container .hero-content{
+  margin: 0 auto;
+}
+
 .hero-container .hero-wrapper {
   max-width: unset;
   padding: 0;
@@ -14,6 +23,14 @@
   margin-left: auto;
   margin-right: auto;
   color: var(--background-color);
+  font-size: 60px;
+}
+
+.hero .hero-content h2 {
+  color: white;
+  font-weight: 700;
+  text-wrap: wrap;
+  font-size: 24px;
 }
 
 .hero picture {
@@ -30,8 +47,13 @@
   height: 100%;
 }
 
-@media (width >= 900px) {
+@media (width >= 1200px) {  
   .hero {
     padding: 40px 32px;
+  }
+
+  .hero .hero-content h2 {
+    width: 40%;
+    font-size: 32px;
   }
 }

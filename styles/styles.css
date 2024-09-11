@@ -608,13 +608,13 @@ body.yellow {
   }
 
   @media (width >= 1024px) {
-    main > .section-outer > .section, .breadcrumbs-container {
+    main > .section-outer > .section, .breadcrumbs-container, .hero-content {
       max-width: 970px;
     }
   }
 
   @media (width >= 1200px) {
-    main > .section-outer > .section, .breadcrumbs-container {
+    main > .section-outer > .section, .breadcrumbs-container, .hero-content {
       max-width: 1170px;
     }
   }
