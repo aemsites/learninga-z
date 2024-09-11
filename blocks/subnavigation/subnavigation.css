@@ -1,25 +1,80 @@
-.subnavigation .subnav-links > div {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
+.subnavigation .subnav-links>div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 
-.subnavigation.research .subnav-links > div > p {
+.subnavigation.research .subnav-links>div>p {
     padding: 0;
     margin: 0;
 }
 
-.subnavigation.research .subnav-links > div a{
+.subnavigation.research .subnav-links>div a {
     font-size: 0.575em;
     padding: 5px 14px;
     margin-bottom: 3px;
 }
 
-@media screen and (width >= 1190px) {
-    .subnavigation.research .subnav-links > div a{
+.subnavigation.research .subnav-links>div a.active {
+    padding: 12px 18px;
+    border-radius: 6px;
+}
+
+.subnavigation.research .button:hover,
+.subnavigation.research .button.active {
+    color: white;
+}
+
+.subnavigation.research .button.textcolor-berry:hover,
+.subnavigation.research .button.active.secondary.textcolor-berry {
+    background-color: var(--product-berry);
+}
+
+.subnavigation.research .button.textcolor-royal-blue:hover,
+.subnavigation.research .button.active.secondary.textcolor-royal-blue {
+    background-color: var(--royal-blue);
+}
+
+.subnavigation.research .button.textcolor-dark-blue:hover,
+.subnavigation.research .button.active.secondary.textcolor-dark-blue {
+    background-color: var(--product-dark-blue);
+
+}
+
+.subnavigation.research .button.textcolor-navy-blue:hover,
+.subnavigation.research .button.active.secondary.textcolor-navy-blue {
+    background-color: var(--product-navy-blue);
+
+}
+
+.subnavigation.research .button.textcolor-orange:hover,
+.subnavigation.research .button.active.secondary.textcolor-orange {
+    background-color: var(--product-orange);
+
+}
+
+.subnavigation.research .button.textcolor-purple:hover,
+.subnavigation.research .button.active.secondary.textcolor-purple {
+    background-color: var(--product-purple);
+}
+
+.subnavigation.research .button.textcolor-green:hover,
+.subnavigation.research .button.active.secondary.textcolor-green {
+    background-color: var(--product-green);
+
+}
+
+@media screen and (width >=1190px) {
+    .subnavigation.research .subnav-links>div a {
         font-size: 0.75em;
-  }
-    
+    }
+
+}
+
+@media screen and (width >=990px) {
+    .subnavigation.research .subnav-links>div a.active {
+        border-radius: 6px 6px 0 0;
+    }
 }

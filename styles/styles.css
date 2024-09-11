@@ -382,6 +382,11 @@ a:hover {
     border-color: var(--product-berry);
   }
 
+  .button.secondary.textcolor-royal-blue {
+    color: var(--royal-blue);
+    border-color: var(--product-royal-blue);
+  }
+
   .button.secondary.textcolor-black {
     color: var(--laz-black);
     border-color: var(--laz-black);

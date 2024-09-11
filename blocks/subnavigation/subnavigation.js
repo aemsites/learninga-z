@@ -9,6 +9,9 @@ export default async function decorate(block) {
     links.forEach((link) => {
       link.className = 'button secondary';
       const href = link.getAttribute('href');
+      if (window.location.pathname === href) {
+        link.classList.add('active');
+      }
       const lastPart = href.split('/').pop();
       if (PRODUCT_COLORS[lastPart]) {
         link.classList.add(`textcolor-${PRODUCT_COLORS[lastPart]}`);
