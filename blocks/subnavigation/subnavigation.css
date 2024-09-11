@@ -72,7 +72,7 @@
 
 .subnavigation.research .subnav-content {
     border: 2px solid;
-    padding: 15px 30px 10px;
+    padding: 15px 30px;
     border-radius: 10px;
     position: relative;
     display: flex;
@@ -154,6 +154,6 @@
     }
 
     .subnavigation.research .subnav-content {
-        margin-top: -13px;
+        margin-top: -10px;
     }
 }
