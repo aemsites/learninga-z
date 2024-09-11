@@ -157,7 +157,7 @@ export function decorateButtons(element) {
 }
 
 /**
- * When there are 2 buttons in a row, display them next to each other.
+ * When there are multiple buttons in a row, display them next to each other.
  */
 
 export function groupMultipleButtons(main) {
@@ -192,6 +192,21 @@ function decorateLinkedImages(main) {
   });
 }
 
+// All .pdf and external links to open in a new tab
+export function decorateExternalLinks(main) {
+  main.querySelectorAll('a').forEach((a) => {
+    const href = a.getAttribute('href');
+    if (href) {
+      const extension = href.split('.').pop().trim();
+      if (!href.startsWith('/') && !href.startsWith('#')) {
+        if (!href.includes('learninga-z.com') || (extension === 'pdf')) {
+          a.setAttribute('target', '_blank');
+        }
+      }
+    }
+  });
+}
+
 /**
  * Decorates the main element.
  * @param {Element} main The main element
@@ -206,6 +221,8 @@ export function decorateMain(main, templateModule) {
   decorateSections(main);
   decorateBlocks(main);
   decorateLinkedImages(main);
+  decorateExternalLinks(main);
+
 }
 
 /**
