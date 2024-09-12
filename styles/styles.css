@@ -9,7 +9,7 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-
+/* stylelint-disable no-descending-specificity */
 :root {
   /* colors */
   --background-color: white;
@@ -62,6 +62,9 @@
   --dark-gray: #56524e;
   --dark-olive-green: #3E3F30;
   --charcoal-gray: #45423f;
+  --charcoal-blue: #263238;
+  --royal-blue: #31409A;
+  --maroon: #77001a;
 
     /* product colors */
     --product-navy-blue: #12457e;
@@ -73,8 +76,8 @@
     --product-orange: #f05b32;
 
   /* fonts */
-  --body-font-family: 'Montserrat', sans-serif, montserrat-normal-fallback;
-  --heading-font-family: 'Solway', sans-serif, solway-normal-fallback;
+  --body-font-family: 'Montserrat', montserrat-normal-fallback;
+  --heading-font-family: 'Solway', solway-normal-fallback;
 
   /* font weight */
   --font-weight-light: 300;
@@ -88,36 +91,28 @@
   --body-font-size-m: 18px;
   --body-font-size-s: 16px;
   --body-font-size-xs: 14px;
+  --body-font-size-xxs: 13px;
 
   /* heading sizes */
   --heading-font-size-3xl: 60px;
   --heading-font-size-xxl: 44px;
   --heading-font-size-xl: 38px;
-  --heading-font-size-l: 36px;
-  --heading-font-size-m: 30px;
+  --heading-font-size-l: 32px;
+  --heading-font-size-m: 28px;
   --heading-font-size-s: 24px;
   --heading-font-size-xs: 22px;
 
   /* nav height */
-  --nav-height: 93px;
+  --nav-height: 90px;
 }
 
 /* fallback fonts */
 @font-face {
-  font-family: roboto-condensed-fallback;
-  size-adjust: 88.82%;
-  src: local('Arial');
-}
-
-@font-face {
-  font-family: roboto-fallback;
-  size-adjust: 99.529%;
-  src: local('Arial');
-}
-
-@font-face {
   font-family: montserrat-normal-fallback;
-  size-adjust: 111.311%;
+  size-adjust: 113%;
+  ascent-override: 93%;
+  descent-override: 12%;
+  line-gap-override: normal;
   src: local("Arial");
 }
 
@@ -129,6 +124,11 @@
 
 *, ::before, ::after {
   box-sizing: border-box;
+}
+
+picture {
+  line-height: 0;
+  display: block;
 }
 
 img {
@@ -153,7 +153,7 @@ body.appear {
 }
 
 header {
-  height: var(--nav-height);
+  height: calc(var(--nav-height) + 40px); /* 40px is the announcement bar */
 }
 
 header .header,
@@ -220,7 +220,7 @@ pre {
 }
 
 main {
-  margin-bottom: 80px;
+  margin-bottom: 50px;
 }
 
 main > div > div {
@@ -266,6 +266,18 @@ a:hover {
   text-overflow: ellipsis;
   white-space: nowrap;
   transition: color 0.4s, background-color 0.4s;
+}
+
+
+/* Buttons Container */
+.buttons-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.buttons-container a.button {
+  margin: 8px;
 }
 
 /* primary button colors */
@@ -366,8 +378,13 @@ a:hover {
   }
 
   .button.secondary.textcolor-berry {
-    color: var(--berry);
-    border-color: var(--berry);
+    color: var(--product-berry);
+    border-color: var(--product-berry);
+  }
+
+  .button.secondary.textcolor-royal-blue {
+    color: var(--royal-blue);
+    border-color: var(--product-royal-blue);
   }
 
   .button.secondary.textcolor-black {
@@ -375,18 +392,49 @@ a:hover {
     border-color: var(--laz-black);
   }
 
-  /* themes - TBD if we use product names for these or not */
-
-  /* default theme */
-
-  h1 {
-    font-size: var(--heading-font-size-l);
-    margin-top: 50px;
+  .button.secondary.textcolor-gold {
+    color: var(--gold);
+    border-color: var(--gold);
   }
 
+  .button.secondary.textcolor-dark-blue {
+    color: var(--product-dark-blue);
+    border-color: var(--product-dark-blue);
+  }
+
+  .button.secondary.textcolor-navy-blue {
+    color: var(--product-navy-blue);
+    border-color: var(--product-navy-blue);
+  }
+
+  .button.secondary.textcolor-orange {
+    color: var(--product-orange);
+    border-color: var(--product-orange);
+  }
+
+  .button.secondary.textcolor-purple {
+    color: var(--product-purple);
+    border-color: var(--product-purple);
+  }
+
+  .button.secondary.textcolor-green {
+    color: var(--product-green);
+    border-color: var(--product-green);
+  }
+
+  /* themes - TBD if we use product names for these or not */
+
+  /* default theme works for blogs, research, and default templates */
+
+  h1 {
+    margin: 50px 0 1em;
+    line-height: 1.2;
+  }
 
   h2 {
-    font-size: var(--heading-font-size-s);
+    font-size: var(--body-font-size-m);
+    margin-bottom: 1em;
+    line-height: 1.35;
   }
 
   h3 {
@@ -395,6 +443,9 @@ a:hover {
   }
 
 /* List */
+main ul {
+  margin-bottom: 30px;
+}
 
 nav ul {
   list-style: none;
@@ -406,12 +457,54 @@ nav ul, ol, ul ul, ol ol {
   margin-bottom: 30px;
 }
 
+main li {
+  margin-bottom: 10px;
+}
+
 nav li {
   cursor: default;
   text-transform: uppercase;
 }
 
-/* themes - TBD if we use product names for these or not */
+/* end default theme */
+
+.breadcrumbs-outer {
+  grid-area: breadcrumb;
+  background-color: var(--navy-blue);
+
+  .breadcrumbs-container {
+    margin: 0 auto;
+      padding-right: 15px;
+      padding-left: 15px;
+  }
+
+  nav.breadcrumbs {
+    color: white;
+    font-size: var(--body-font-size-xxs);
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 6px;
+    justify-content: left;
+    height: 50px;
+    align-items: center;
+
+    a {
+      color: white;
+      font-weight: 700;
+    }
+  }
+}
+
+/*********
+THEMES
+*********/
+
+body.purple {
+  .breadcrumbs-outer {
+    background-color: var(--purple);
+  }
+}
+
 [data-theme="purple"] {
   background-color: var(--purple);
   color: var(--white);
@@ -425,6 +518,12 @@ nav li {
   }
 }
 
+body.laz-blue {
+  .breadcrumbs-outer {
+    background-color: var(--laz-blue);
+  }
+}
+
 [data-theme="laz-blue"] {
   background-color: var(--laz-blue);
   color: var(--white);
@@ -435,7 +534,7 @@ nav li {
     font-size: var(--body-font-size-m);
     }
 
-  a { /* stylelint-disable-line */
+  a {
     text-decoration: underline;
   }
 
@@ -444,8 +543,49 @@ nav li {
     }
   }
 
+body.red {
+  .breadcrumbs-outer {
+    background-color: var(--red);
+  }
+
+  .related-posts :is(h3, a, a:hover) {
+    color: var(--red);
+  }
+
+  .card h3 {
+    color: var(--red);
+  }
+
+  .card .card-body p:hover {
+    color: var(--maroon);
+  }
+}
+
+[data-theme="red"] {
+  .button.primary {
+    background-color: var(--red);
+    border-color: var(--red);
+    color: var(--white);
+
+    &:hover {
+      color: var(--red);
+      border-color: var(--red);
+    }
+  }
+}
+
+body.yellow {
+  .breadcrumbs-outer {
+    background-color: var(--yellow);
+  }
+}
+
   [data-theme="yellow"] {
     background-color: var(--yellow);
+
+    .breadcrumbs-outer {
+      background-color: var(--yellow);
+    }
 
     a:any-link {
       color: var(--text-color);
@@ -478,7 +618,7 @@ nav li {
   }
 
   main > .section-outer > .section {
-    margin: 0 10px;
+    margin: 0 auto;
     padding: 48px 15px;
     max-width: 750px;
   }
@@ -493,27 +633,27 @@ nav li {
     }
 
     h1 {
-      font-size: var(--heading-font-size-3xl);
-      margin-top: 50px;
-    }
-
-    h2 {
-      font-size: var(--heading-font-size-xxl);
-      line-height: 1.1;
+      font-size: var(--heading-font-size-xl);
     }
   }
 
-  @media (width >= 992px) {
-    main > .section-outer > .section {
+  @media (width >= 1024px) {
+    main > .section-outer > .section, .breadcrumbs-container, .hero-content {
       max-width: 970px;
     }
   }
 
   @media (width >= 1200px) {
-    main > .section-outer > .section {
+    main > .section-outer > .section, .breadcrumbs-container, .hero-content {
       max-width: 1170px;
     }
   }
+
+@media (width >= 1660px) {
+  .breadcrumbs-container {
+    max-width: 1527px;
+  }
+}
 
   /* section metadata */
   main .section.light,

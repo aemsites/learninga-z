@@ -1,0 +1,75 @@
+.research-detail main {
+    .section-outer {
+        margin: unset;
+
+        > .section {
+            padding: 0 15px;
+        }
+
+        &:last-of-type {
+            margin-top: 50px;
+
+            .default-content-wrapper {
+                text-align: center;
+            }
+        }
+
+        h2 {
+            color: inherit;
+            font-size: var(--body-font-size-m);
+            font-weight: var(--font-weight-medium);
+            text-transform: none;
+            font-family: var(--body-font-family);
+        }
+    }
+}
+
+@media (width >= 768px) {
+    .research-detail main .section-outer .section {
+        max-width: 750px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (width >= 1024px) {
+    .research-detail main {
+        display: grid;
+        grid-template-areas:
+        "breadcrumb breadcrumb"
+        "content sidebar"
+    "content sidebar";
+        column-gap: 40px;
+        position: relative;
+        max-width: unset;
+
+        .section-outer:not(last-of-type) {
+            grid-area: auto / content;
+            max-width: 610px;
+            justify-self: end;
+            grid-template-rows: max-content;
+        }
+
+        .section-outer:last-of-type {
+            grid-area: sidebar;
+            justify-self: start;
+            grid-row-end: last-line;
+
+            .section {
+                width: 320px;
+            }
+        }
+    }
+}
+
+@media (width >= 1200px) {
+    .research-detail main {
+        .section-outer:not(last-of-type) {
+            max-width: 760px;
+        }
+
+        .section-outer:last-of-type .section {
+            width: 400px;
+        }
+    }
+}

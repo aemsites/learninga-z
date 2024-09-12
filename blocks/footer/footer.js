@@ -16,5 +16,27 @@ export default async function decorate(block) {
   const footer = document.createElement('div');
   while (fragment.firstElementChild) footer.append(fragment.firstElementChild);
 
+  const footerWrapper = footer.querySelector('.columns-container');
+  if (footerWrapper) {
+    const navLinksWrapper = footerWrapper.querySelector('ul');
+    navLinksWrapper.classList.add('footer-links');
+    if (navLinksWrapper) {
+      const navLinks = navLinksWrapper.querySelectorAll('li');
+      navLinks.forEach((navLink, index) => {
+        if (index !== navLinks.length - 1) {
+          const li = document.createElement('li');
+          li.textContent = '/';
+          navLink.after(li);
+        }
+      });
+    }
+
+    const socialLinks = footerWrapper.querySelectorAll('ul')[1];
+    if (socialLinks) {
+      socialLinks.parentElement.classList.add('social-links-container');
+      socialLinks.classList.add('social-links');
+    }
+  }
+
   block.append(footer);
 }

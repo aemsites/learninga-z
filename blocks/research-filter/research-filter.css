@@ -1,0 +1,39 @@
+.research-filter h2{
+    font-size: var(--body-font-size-m);
+    font-family: var(--body-font-family);
+    font-weight: var(--font-weight-medium);
+    color: inherit;
+    margin-bottom: 10px;
+    text-transform: none;
+    padding: 0 10px;
+}
+
+.research-filter hr{
+    margin: 20px 10px;
+    border-top: 1px solid var(--light-grey);
+}
+
+.research-filter .cards-wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.research-filter .card{
+  margin-bottom: 20px;
+  padding: 0 10px;
+}
+
+
+@media screen and (width >= 568px){
+    .research-filter .card{
+        width: 50%;
+    }
+}
+
+
+@media screen and (width >= 992px){
+    .research-filter .card{
+        width: 33.3333%;
+    }
+}
