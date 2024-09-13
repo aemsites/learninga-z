@@ -111,17 +111,7 @@ export default async function decorate(block) {
     block.textContent = '';
     block.append(docDiv);
 
-    // Get document asset type
-    const assetType = getMetadata('assettype');
-    const isWhitepaper = assetType.toLowerCase() === 'whitepaper';
-    const isSolutionBrief = assetType.toLowerCase() === 'solution brief';
-
-    // If the assetType is 'Whitepaper' or 'Solution Brief'
-    if (isWhitepaper || isSolutionBrief) {
-      block.classList.add('pdf-viewer-orientation--portrait');
-    } else {
-      block.classList.add('pdf-viewer-orientation--landscape');
-    }
+    block.classList.add('pdf-viewer-orientation--portrait');
 
     window.setTimeout(() => embedPDFViewer(
       divId,
