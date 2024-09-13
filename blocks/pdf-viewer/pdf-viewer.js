@@ -136,6 +136,6 @@ export default async function decorate(block) {
       showThumbnails,
       showZoomControl,
       showLeftHandPanel,
-    ), 3100);
+    ), 3500);
   }
 }
