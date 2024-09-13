@@ -1,5 +1,5 @@
 import { createTag } from '../../scripts/scripts.js';
-import { fetchPlaceholders, readBlockConfig, getMetadata } from '../../scripts/aem.js';
+import { fetchPlaceholders, readBlockConfig } from '../../scripts/aem.js';
 
 const placeholders = await fetchPlaceholders();
 
