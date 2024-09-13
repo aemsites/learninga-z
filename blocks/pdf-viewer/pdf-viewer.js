@@ -44,7 +44,7 @@ const embedPDFViewer = (
       pdfAPIKey = placeholders.pdfapikeypage;
     } else if (window.location.host.endsWith('.live')) {
       pdfAPIKey = placeholders.pdfapikeylive;
-    } else if (window.location.host.endsWith('merative.com')) {
+    } else if (window.location.host.endsWith('learninga-z.com')) {
       pdfAPIKey = placeholders.pdfapikey;
     }
 
