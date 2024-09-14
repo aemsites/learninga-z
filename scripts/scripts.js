@@ -298,7 +298,7 @@ export async function lookupBlogs(pathNames) {
 /* BREADCRUMBS START */
 
 const getPageTitle = async (url) => {
-  const resp = await fetch(url);
+  const resp = await fetch(url); // invalid URL will return 404 in console
   if (resp.ok) {
     const html = document.createElement('div');
     html.innerHTML = await resp.text();
@@ -314,13 +314,11 @@ const getAllPathsExceptCurrent = async (paths) => {
   for (let i = 0; i < pathsList.length - 1; i += 1) {
     const pathPart = pathsList[i];
     const prevPath = result[i - 1] ? result[i - 1].path : '';
-    if (pathPart !== 'authors') { // exclude authors b/c there's no page there
-      const path = `${prevPath}/${pathPart}`;
-      const url = `${window.location.origin}${path}`;
-      /* eslint-disable-next-line no-await-in-loop */
-      const name = await getPageTitle(url);
-      result.push({ path, name, url });
-    }
+    const path = `${prevPath}/${pathPart}`;
+    const url = `${window.location.origin}${path}`;
+    /* eslint-disable-next-line no-await-in-loop */
+    const name = await getPageTitle(url);
+    result.push({ path, name, url });
   }
   return result.filter(Boolean).slice(1); // remove first element ('site') from the array
 };
