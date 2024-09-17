@@ -9,8 +9,9 @@ export default async function decorate(block) {
 
   // decorate tabs and tabpanels
   const tabs = [...block.children].map((child) => child.firstElementChild);
+  console.log(tabs);
   tabs.forEach((tab, i) => {
-    const id = toClassName(tab.textContent);
+    const id = tab.textContent ? toClassName(tab.textContent) : (i + 1);
 
     // decorate tabpanel
     const tabpanel = block.children[i];
@@ -19,6 +20,42 @@ export default async function decorate(block) {
     tabpanel.setAttribute('aria-hidden', !!i);
     tabpanel.setAttribute('aria-labelledby', `tab-${id}`);
     tabpanel.setAttribute('role', 'tabpanel');
+    const tags = tabpanel.querySelector('code');
+    if (tags) {
+      const div = document.createElement('div');
+      div.className = 'left-content';
+      const tagsParent = tags.parentElement;
+      let nextSibling = tagsParent.nextElementSibling;
+      while (nextSibling) {
+        const sibling = nextSibling;
+        nextSibling = sibling.nextElementSibling;
+        div.append(sibling);
+      }
+      tagsParent.after(div);
+      const tagList = document.createElement('ul');
+      tagList.className = 'tags-list';
+      tags.textContent.split(',').forEach((tag) => {
+        const tagItem = document.createElement('li');
+        const p = document.createElement('p');
+        p.textContent = tag;
+        tagItem.append(p);
+        tagList.append(tagItem);
+      });
+      tags.replaceWith(tagList);
+    } else {
+      const leftDiv = tabpanel.querySelector('div');
+      leftDiv.className = 'left-content';
+    }
+
+    const headingSection = tabpanel.querySelector('h2');
+    if (headingSection && headingSection.children.length > 0) {
+      const div = document.createElement('div');
+      div.className = 'top-content';
+      Array.from(headingSection.children).forEach((child) => {
+        div.append(child);
+      });
+      headingSection.replaceWith(div);
+    }
 
     // build tab button
     const button = document.createElement('button');
@@ -29,7 +66,7 @@ export default async function decorate(block) {
     button.setAttribute('aria-selected', !i);
     button.setAttribute('role', 'tab');
     button.setAttribute('type', 'button');
-    button.addEventListener('click', () => {
+    button.addEventListener('mouseover', () => {
       block.querySelectorAll('[role=tabpanel]').forEach((panel) => {
         panel.setAttribute('aria-hidden', true);
       });
@@ -39,6 +76,9 @@ export default async function decorate(block) {
       tabpanel.setAttribute('aria-hidden', false);
       button.setAttribute('aria-selected', true);
     });
+    const buttonIcon = document.createElement('span');
+    buttonIcon.className = 'btn-icon';
+    button.append(buttonIcon);
     tablist.append(button);
     tab.remove();
   });
