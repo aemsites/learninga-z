@@ -522,6 +522,14 @@ body.laz-blue {
   .breadcrumbs-outer {
     background-color: var(--laz-blue);
   }
+
+  h3, a {
+    color: var(--laz-blue);
+  }
+
+  h2 {
+    color: var(--royal-blue);
+  }
 }
 
 [data-theme="laz-blue"] {
