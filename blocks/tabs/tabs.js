@@ -47,6 +47,14 @@ export default async function decorate(block) {
       leftDiv.className = 'left-content';
     }
 
+    // if second div under tabpanel has children, add class right-content
+    const rightDiv = tabpanel.querySelector('div + div + div');
+    if (rightDiv && rightDiv.children.length > 0) {
+      rightDiv.className = 'right-content';
+      const leftContent = tabpanel.querySelector('.left-content');
+      leftContent.classList.add('has-border');
+    }
+
     const headingSection = tabpanel.querySelector('h2');
     if (headingSection && headingSection.children.length > 0) {
       const div = document.createElement('div');
