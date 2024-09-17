@@ -178,19 +178,19 @@ export default async function decorate(block) {
         }
         navSection.append(secondaryNav);
         if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
-        // navSection.addEventListener('mouseenter', () => {
-        //   if (isDesktop.matches) {
-        //     toggleAllNavSections(navSections);
-        //     navSection.setAttribute('aria-expanded', 'true');
-        //   }
-        // });
+        navSection.addEventListener('mouseenter', () => {
+          if (isDesktop.matches) {
+            toggleAllNavSections(navSections);
+            navSection.setAttribute('aria-expanded', 'true');
+          }
+        });
 
-        // navSection.addEventListener('mouseleave', () => {
-        //   if (isDesktop.matches) {
-        //     toggleAllNavSections(navSections);
-        //     navSection.setAttribute('aria-expanded', 'false');
-        //   }
-        // });
+        navSection.addEventListener('mouseleave', () => {
+          if (isDesktop.matches) {
+            toggleAllNavSections(navSections);
+            navSection.setAttribute('aria-expanded', 'false');
+          }
+        });
       });
     }
 
@@ -207,7 +207,5 @@ export default async function decorate(block) {
     navWrapper.append(nav);
     decorateButtons(nav);
     block.append(navWrapper);
-    const firstLi = nav.querySelector('.nav-sections .default-content-wrapper > ul > li');
-    firstLi.setAttribute('aria-expanded', 'true');
   }
 }
