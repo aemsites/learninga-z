@@ -298,16 +298,15 @@ export async function lookupBlogs(pathNames) {
 /* BREADCRUMBS START */
 
 const getPageTitle = async (url) => {
-  const resp = await fetch(url);
+  const resp = await fetch(url); // invalid URL will return 404 in console
   if (resp.ok) {
     const html = document.createElement('div');
     html.innerHTML = await resp.text();
     return html.querySelector('title').innerText;
   }
-  return '';
+  return null;
 };
 
-// Get all paths except the current one
 const getAllPathsExceptCurrent = async (paths) => {
   const result = [];
   // remove first and last slash characters
@@ -319,15 +318,13 @@ const getAllPathsExceptCurrent = async (paths) => {
     const url = `${window.location.origin}${path}`;
     /* eslint-disable-next-line no-await-in-loop */
     const name = await getPageTitle(url);
-    if (name) {
-      result.push({ path, name, url });
-    }
+    result.push({ path, name, url });
   }
-  result.shift();
-  return result;
+  return result.filter(Boolean).slice(1); // remove first element ('site') from the array
 };
 
 const createLink = (path) => {
+  if (!path.name) return { outerHTML: '' };
   const pathLink = document.createElement('a');
   pathLink.href = path.url;
   pathLink.innerText = path.name;
@@ -350,7 +347,12 @@ async function buildBreadcrumbs() {
     const breadcrumbLinks = [HomeLink.outerHTML];
     const path = window.location.pathname;
     const paths = await getAllPathsExceptCurrent(path);
-    paths.forEach((pathPart) => breadcrumbLinks.push(createLink(pathPart).outerHTML));
+    paths.forEach((pathPart) => {
+      const link = createLink(pathPart);
+      if (link.outerHTML !== '') {
+        breadcrumbLinks.push(link.outerHTML);
+      }
+    });
     breadcrumb.innerHTML = breadcrumbLinks.join('<span class="breadcrumb-separator"> / </span>');
     outerSection.appendChild(container);
     container.appendChild(breadcrumb);
