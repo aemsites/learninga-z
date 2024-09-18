@@ -410,23 +410,27 @@ header .megamenu > .section-outer{
   }
 }
 
-.header .megamenu .columns-container .columns.block > div >div:first-child ul{
+.header .megamenu .columns-container .columns.block:not(.columns-1-cols) > div >div:first-child ul{
   border-right: 1px solid #ebecf5;
   max-width: 232px;
 }
 
-.header .megamenu > .columns-container > div:last-child.default-content-wrapper{
+.header .megamenu > .section-outer > .columns-container:not(.content-cards) > div:last-child.default-content-wrapper{
   width: 25%;
 }
 
-.header .megamenu .columns-container .columns.content-cards > div{
+.header .megamenu .columns-container.content-cards .columns {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  max-height: 90%;
+}
+
+.header .megamenu .columns-container.content-cards .columns> div{
   background-color: #314091;
   color: #fff;
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
   border-radius: 10px;
-  justify-content: flex-start;
 
   > div > * {
     display: flex;
@@ -448,8 +452,8 @@ header .megamenu > .section-outer{
 }
 
 @media (width >= 991px) {
-  .header .megamenu .columns.content-cards > div{
-    padding: 36px 50px 25px 30px;
+  .header .megamenu .content-cards .columns > div{
+    padding: 25px 50px 25px 30px;
       gap: 5px;
       min-width: 240px;
         min-height: 180px;
