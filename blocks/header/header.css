@@ -62,12 +62,12 @@ header .nav-sections {
   height: 100%;
 }
 
-header .nav-sections > .section, header .nav-sections > .section > div, header .nav-sections ul.primary-nav-items >  li strong {
+header .nav-sections > .section, header .nav-sections > .section > div, header .nav-sections ul.primary-nav-items >  li strong, header .nav-tools ul > li strong {
   display: block;
   height: 100%;
 }
 
-header .nav-sections ul.primary-nav-items {
+header .nav-sections ul.primary-nav-items, header .nav-tools ul {
   display: flex;
   align-items: center;
   height: 100%;
@@ -75,7 +75,7 @@ header .nav-sections ul.primary-nav-items {
   margin: 0 -10px;
 }
 
-header .nav-sections ul.primary-nav-items >  li {
+header .nav-sections ul.primary-nav-items >  li, header .nav-tools ul > li {
   display: inline-block;
   padding: 0;
   margin-left: 6px;
@@ -84,7 +84,9 @@ header .nav-sections ul.primary-nav-items >  li {
   text-transform: uppercase;
 }
 
-header .nav-sections ul.primary-nav-items >  li > a {
+header .nav-sections ul.primary-nav-items >  li > a, header .nav-tools ul > li > a {
+  gap: 5px;
+  display: flex;
   position: relative;
   color: var(--dark-gray);
   font-weight: bold;
@@ -108,13 +110,13 @@ header .nav-sections ul.primary-nav-items >  li:not(.button-container) a:not(.bu
 }
 
 
-header .nav-sections ul.primary-nav-items >  li a.button {
+header .nav-sections ul.primary-nav-items >  li a.button, header .nav-tools ul > li a.button {
   padding: 8px 15px 6px;
   font-size: var(--body-font-size-xs);
 }
 
 
-header .nav-sections ul.primary-nav-items >  li .icon-search {
+header .nav-tools ul >  li .icon-search {
   height: 22px;
   width: 20px;
 
@@ -200,7 +202,7 @@ header .megamenu > .section-outer{
     padding-right: 15px;
   }
 
-  header .nav-sections ul.primary-nav-items >  li {
+  header .nav-sections ul.primary-nav-items >  li, header .nav-tools ul > li {
     font-family: var(--body-font-family);
     text-transform: none;
   }
@@ -479,26 +481,26 @@ header .megamenu > .section-outer{
     }
   }
 
-  header .nav-sections ul.primary-nav-items  {
+  header .nav-sections ul.primary-nav-items, header .nav-tools ul  {
     margin: 0 -25px;
     padding-left: 15px;
     padding-right: 15px;
   }
 
-  header .nav-sections ul.primary-nav-items >  li {
+  header .nav-sections ul.primary-nav-items >  li,header .nav-tools ul > li {
     margin-left: 10px;
     margin-right: 10px;
   }
 
-  header .nav-sections ul.primary-nav-items >  li a {
+  header .nav-sections ul.primary-nav-items >  li a, header .nav-tools ul > li a {
     font-size: var(--body-font-size-s);
   }
 
-  header .nav-sections ul.primary-nav-items >  li a.button {
+  header .nav-sections ul.primary-nav-items >  li a.button, header .nav-tools ul > li a.button {
     font-size: var(--body-font-size-s);
   }
 
-  header .nav-sections ul.primary-nav-items >  li .icon img {
+  header .nav-sections ul.primary-nav-items >  li .icon img, header .nav-tools ul > li .icon img {
     height: 100%;
     width: 100%;
   }
