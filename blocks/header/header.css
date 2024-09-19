@@ -31,10 +31,8 @@ header .nav-wrapper .nav-announcement a {
 
 header nav {
   height: var(--nav-height);
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
+  padding: 0 15px;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -60,6 +58,10 @@ header .nav-sections {
   float: right;
   padding-left: 15px;
   height: 100%;
+}
+
+header .nav-tools {
+  display: none;
 }
 
 header .nav-sections > .section, header .nav-sections > .section > div, header .nav-sections ul.primary-nav-items >  li strong, header .nav-tools ul > li strong {
@@ -193,32 +195,6 @@ header .megamenu > .section-outer{
   width: 100%;
 }
 
-
-@media (width >= 1024px) {
-  header .nav-brand {
-    width: 220px;
-  }
-
-  header nav {
-    max-width: 970px;
-    top: 0;
-  }
-
-  header .nav-hamburger {
-    display: none;
-  }
-
-  header .nav-sections {
-    display: flex;
-    margin: 0 -15px;
-    padding-right: 15px;
-  }
-
-  header .nav-sections ul.primary-nav-items >  li, header .nav-tools ul > li {
-    font-family: var(--body-font-family);
-    text-transform: none;
-  }
-}
 
 /* Tabs Columns */
 .header .tabs.columns {
@@ -488,17 +464,40 @@ header .megamenu > .section-outer{
 }
 
 @media (width >= 991px) {
-  .header .megamenu .content-cards .columns > div{
-    padding: 25px 50px 25px 30px;
-      gap: 5px;
-      min-width: 240px;
-        min-height: 180px;
+  header .nav-sections, header .nav-tools {
+    display: flex;
+  }
+
+  header .nav-brand {
+    width: 220px;
+  }
+
+  header nav {
+    max-width: 970px;
+    top: 0;
+    padding: 0;
+  }
+
+  header .nav-hamburger {
+    display: none;
+  }
+
+  header .nav-sections {
+    display: flex;
+    margin: 0 auto;
+    padding-right: 15px;
+  }
+
+  header .nav-sections ul.primary-nav-items >  li, header .nav-tools ul > li {
+    font-family: var(--body-font-family);
+    text-transform: none;
   }
 }
 
 @media (width >= 1200px) {
   header nav {
     max-width: 1170px;
+    padding: 0 15px;
   }
 
   header .nav-sections {
