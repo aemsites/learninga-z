@@ -101,7 +101,7 @@ header .nav-sections ul.primary-nav-items >  li > a, header .nav-tools ul > li >
   top: 50%;
 }
 
-header .nav-sections ul.primary-nav-items >  li:not(.button-container) a:not(.button)::after {
+header .nav-sections ul.primary-nav-items >  li:not(.button-container) > a:not(.button)::after {
   content: url("/icons/solutions-right.svg");
   position: absolute;
   top: 0;
@@ -450,6 +450,23 @@ header .megamenu > .section-outer{
   p {
     font-weight: 700;
     font-size: 18px;
+  }
+
+  a {
+    display: flex;
+    text-decoration: underline;
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+  }
+
+  a::after {
+    padding-left: 10px;
+    filter: invert(1);
+    content: url("/icons/icon-arrow-right.svg");
+    height: 20px;
+    position: relative;
+    display: block;
   }
 }
 
