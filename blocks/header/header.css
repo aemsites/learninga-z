@@ -477,7 +477,6 @@ header .megamenu>.section-outer {
 }
 
 @media (width >=991px) {
-
   header .nav-sections,
   header .nav-tools {
     display: flex;
