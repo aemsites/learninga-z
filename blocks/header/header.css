@@ -99,6 +99,8 @@ header .nav-sections ul.primary-nav-items >  li > a, header .nav-tools ul > li >
   text-wrap: nowrap;
   word-break: normal;
   top: 50%;
+  border-bottom: 2px solid transparent;
+  height: 25px;
 }
 
 header .nav-sections ul.primary-nav-items >  li:not(.button-container) > a:not(.button)::after {
@@ -108,7 +110,6 @@ header .nav-sections ul.primary-nav-items >  li:not(.button-container) > a:not(.
   top: 0;
   right: -2px;
   transform: rotate(90deg) translate(-7px,0) scale(0.45);
-  transition: all .2s;
 }
 
 
