@@ -492,6 +492,14 @@ header .megamenu > .section-outer{
     font-family: var(--body-font-family);
     text-transform: none;
   }
+
+  .header .megamenu .content-cards .columns > div{
+    padding: 25px 50px 25px 30px;
+      gap: 5px;
+      min-width: 240px;
+        min-height: 180px;
+  }
+  
 }
 
 @media (width >= 1200px) {
