@@ -337,6 +337,11 @@ header .megamenu>.section-outer {
   font-weight: 400;
 }
 
+.header .tabs.columns .tabs-panel>div>p .button.secondary:hover {
+    text-decoration: underline;
+    background-color: #f0f0f0;
+}
+
 .header .tabs.columns .tabs-panel>div>p .button.secondary .icon {
   width: 20px;
   height: 20px;
