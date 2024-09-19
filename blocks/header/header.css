@@ -295,7 +295,7 @@ header .megamenu > .section-outer{
 }
 
 .header .tabs.columns .tabs-panel .left-content.has-border{
-  border-right: 3px solid #C83192;
+  border-right: 3px solid var(--berry);
   border-top-right-radius: 2px;
   border-bottom-right-radius: 2px;
 }
@@ -337,8 +337,8 @@ header .megamenu > .section-outer{
 
 .header .tabs.columns .tabs-panel > div > p .button.secondary {
   width: 100%;
-  background-color: #ffffff;
-  color: #000;
+  background-color: white;
+  color: black;
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 18px 20px;
@@ -400,7 +400,7 @@ header .megamenu > .section-outer{
 
   h3 > a, a > h3 {
     font-size: 24px;
-    color: #45423f;
+    color: var(--charcoal-gray);
     font-family: var(--body-font-family);
   }
 
@@ -447,7 +447,7 @@ header .megamenu > .section-outer{
 
 .header .megamenu .columns-container.content-cards .columns> div{
   background-color: #314091;
-  color: #fff;
+  color: white;
   border-radius: 10px;
 
   > div > * {
@@ -471,7 +471,7 @@ header .megamenu > .section-outer{
   a {
     display: flex;
     text-decoration: underline;
-    color: #fff;
+    color: white;
     align-items: center;
     justify-content: center;
   }
