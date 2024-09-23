@@ -12,7 +12,7 @@ import {
   loadCSS,
   sampleRUM,
   getMetadata,
-  toClassName,
+  toClassName, decorateBlock,
 } from './aem.js';
 
 /**
@@ -222,6 +222,31 @@ export function decorateExternalLinks(main) {
 }
 
 /**
+ * check if link text is same as the href
+ * @param {Element} link the link element
+ * @returns {boolean} true or false
+ */
+export function linkTextIncludesHref(link) {
+  const href = link.getAttribute('href');
+  const textcontent = link.textContent;
+  return textcontent.includes(href);
+}
+
+/**
+ * Builds video blocks when encounter video links.
+ * @param {Element} main The container element
+ */
+export function buildVideoBlocks(main) {
+  main.querySelectorAll('a[href]').forEach((a) => {
+    if ((a.href.includes('youtube') || a.href.includes('vimeo')) && linkTextIncludesHref(a)) {
+      const videoBlock = buildBlock('video', a.cloneNode(true));
+      a.replaceWith(videoBlock);
+      decorateBlock(videoBlock);
+    }
+  });
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  * @param {Function} templateModule The template module
@@ -236,6 +261,7 @@ export function decorateMain(main, templateModule) {
   decorateBlocks(main);
   decorateLinkedImages(main);
   decorateExternalLinks(main);
+  buildVideoBlocks(main);
 }
 
 /**
