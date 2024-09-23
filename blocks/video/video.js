@@ -4,8 +4,6 @@
  * https://www.hlx.live/developer/block-collection/video
  */
 
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-
 function embedYoutube(url, autoplay, background) {
   const usp = new URLSearchParams(url.search);
   let suffix = '';
@@ -54,18 +52,22 @@ function embedVimeo(url, autoplay, background) {
   return temp.children.item(0);
 }
 
-function getVideoElement(source, autoplay, background) {
+function getVideoElement(source, replacePlaceholder, autoplay) {
   const video = document.createElement('video');
   video.setAttribute('controls', '');
-  if (autoplay) video.setAttribute('autoplay', '');
-  if (background) {
-    video.setAttribute('loop', '');
-    video.setAttribute('playsinline', '');
-    video.removeAttribute('controls');
-    video.addEventListener('canplay', () => {
-      video.muted = true;
-      if (autoplay) video.play();
-    });
+  video.dataset.loading = 'true';
+  video.addEventListener('loadedmetadata', () => delete video.dataset.loading);
+  if (autoplay || replacePlaceholder) {
+    video.setAttribute('autoplay', '');
+    if (autoplay) {
+      video.setAttribute('loop', '');
+      video.setAttribute('playsinline', '');
+      video.removeAttribute('controls');
+      video.addEventListener('canplay', () => {
+        video.muted = true;
+        video.play();
+      });
+    }
   }
 
   const sourceEl = document.createElement('source');
@@ -110,34 +112,23 @@ export default async function decorate(block) {
   const placeholder = block.querySelector('picture');
   const link = block.querySelector('a').href;
   block.textContent = '';
-  block.dataset.embedLoaded = false;
 
-  const autoplay = block.classList.contains('autoplay');
   if (placeholder) {
-    block.classList.add('placeholder');
     const wrapper = document.createElement('div');
     wrapper.className = 'video-placeholder';
-    wrapper.append(placeholder);
-
-    if (!autoplay) {
-      wrapper.insertAdjacentHTML(
-        'beforeend',
-        '<div class="video-placeholder-play"><button type="button" title="Play"></button></div>',
-      );
-      wrapper.addEventListener('click', () => {
-        wrapper.remove();
-        loadVideoEmbed(block, link, true, false);
-      });
-    }
+    wrapper.innerHTML = '<div class="video-placeholder-play"><button type="button" title="Play"></button></div>';
+    wrapper.prepend(placeholder);
+    wrapper.addEventListener('click', () => {
+      loadVideoEmbed(block, link, true, false);
+    });
     block.append(wrapper);
-  }
-
-  if (!placeholder || autoplay) {
+  } else {
+    block.classList.add('lazy-loading');
     const observer = new IntersectionObserver((entries) => {
       if (entries.some((e) => e.isIntersecting)) {
         observer.disconnect();
-        const playOnLoad = autoplay && !prefersReducedMotion.matches;
-        loadVideoEmbed(block, link, playOnLoad, autoplay);
+        loadVideoEmbed(block, link, false, block.classList.contains('autoplay'));
+        block.classList.remove('lazy-loading');
       }
     });
     observer.observe(block);
