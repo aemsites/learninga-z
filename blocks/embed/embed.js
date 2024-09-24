@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { loadCSS } from '../../scripts/aem.js';
 
 const loadScript = (url, callback, type) => {
@@ -17,23 +18,6 @@ const getDefaultEmbed = (url) => `<div style="left: 0; width: 100%; height: 0; p
         scrolling="no" allow="encrypted-media" title="Content from ${url.hostname}" loading="lazy">
       </iframe>
     </div>`;
-/*
-// original youtube embed
-const embedYoutube = (url, autoplay) => {
-  const usp = new URLSearchParams(url.search);
-  const suffix = autoplay ? '&muted=1&autoplay=1' : '';
-  let vid = usp.get('v') ? encodeURIComponent(usp.get('v')) : '';
-  const embed = url.pathname;
-  if (url.origin.includes('youtu.be')) {
-    [, vid] = url.pathname.split('/');
-  }
-  const embedHTML = `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
-        <iframe src="https://www.youtube.com${vid ? `/embed/${vid}?rel=0&v=${vid}${suffix}` : embed}" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;"
-        allow="autoplay; fullscreen; picture-in-picture; encrypted-media; accelerometer; gyroscope; picture-in-picture" allowfullscreen="" scrolling="no" title="Content from Youtube" loading="lazy"></iframe>
-      </div>`;
-  return embedHTML;
-};
- */
 
 // new youtube embed with lite-youtube
 const embedYoutube = (url, isLite) => {
@@ -124,27 +108,25 @@ export default function decorate(block) {
   const link = block.querySelector('a').href;
   block.textContent = '';
 
-  /*
-  if (placeholder) {
-    const wrapper = document.createElement('div');
-    wrapper.className = 'embed-placeholder';
-    wrapper.innerHTML = '<div class="embed-placeholder-play"><button type="button" title="Play"></button></div>';
-    wrapper.prepend(placeholder);
-    wrapper.addEventListener('click', () => {
-      loadEmbed(block, link, true);
-    });
-    block.append(wrapper);
-  } else {
-    const observer = new IntersectionObserver((entries) => {
-      if (entries.some((e) => e.isIntersecting)) {
-        observer.disconnect();
-        loadEmbed(block, link);
-      }
-    });
-    observer.observe(block);
-  }
-
-   */
+  /* if (placeholder) {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'embed-placeholder';
+  wrapper.innerHTML = '<div class="embed-placeholder-play"><button type="button" title="Play"></button></div>';
+  wrapper.prepend(placeholder);
+  wrapper.addEventListener('click', () => {
+    loadEmbed(block, link, true);
+  });
+  block.append(wrapper);
+} else {
+  const observer = new IntersectionObserver((entries) => {
+    if (entries.some((e) => e.isIntersecting)) {
+      observer.disconnect();
+      loadEmbed(block, link);
+    }
+  });
+  observer.observe(block);
+}
+ */
 
   if (block.closest('body')) {
     const observer = new IntersectionObserver((entries) => {

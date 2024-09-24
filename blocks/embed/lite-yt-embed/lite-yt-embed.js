@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars, no-undef, quote-props  */
+
 /**
  * lightweight youtube embed. should feel the same to the user, MUCH faster to initialize and paint.
  *
@@ -138,7 +140,7 @@ class LiteYTEmbed extends HTMLElement {
     });
   }
 
-  async addIframe(){
+  async addIframe() {
     if (this.classList.contains('lyt-activated')) return;
     this.classList.add('lyt-activated');
 
