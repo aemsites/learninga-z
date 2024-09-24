@@ -254,7 +254,7 @@ export function linkTextIncludesHref(link) {
  */
 export function buildEmbedBlocks(main) {
   main.querySelectorAll('a[href]').forEach((a) => {
-    if ((a.href.includes('youtube') || a.href.includes('vimeo')) && linkTextIncludesHref(a)) {
+    if ((a.href.includes('youtu') || a.href.includes('vimeo')) && linkTextIncludesHref(a)) {
       const embedBlock = buildBlock('embed', a.cloneNode(true));
       a.replaceWith(embedBlock);
       decorateBlock(embedBlock);

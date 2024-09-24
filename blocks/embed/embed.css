@@ -2,8 +2,12 @@
     width: unset;
     text-align: center;
     max-width: 800px;
-    height: 450px;
+    min-height: 450px;
     margin: 32px auto;
+
+  &.youtube, &.vimeo {
+    min-height: 280px;
+  }
   }
 
   .embed .embed-placeholder {
@@ -51,3 +55,11 @@
     top: 4px;
     left: 7px;
   }
+
+@media (width >= 1024px) {
+    .embed {
+      &.youtube, &.vimeo {
+        min-height: 400px;
+      }
+    }
+}
