@@ -115,8 +115,8 @@ function displaySelected() {
     selEl.classList.add('hidden');
   }
 
-  const copybuffer = document.getElementById('copybuffer');
-  copybuffer.value = toCopyBuffer.join(', ');
+  const copyBuffer = document.getElementById('copybuffer');
+  copyBuffer.value = toCopyBuffer.join(', ');
 }
 
 async function init() {
