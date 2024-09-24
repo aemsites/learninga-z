@@ -1,4 +1,9 @@
-/* eslint-disable max-len */
+/*
+ * Embed Block
+ * Show videos and social posts directly on your page
+ * https://www.hlx.live/developer/block-collection/embed
+ */
+
 import { loadCSS, loadScript } from '../../scripts/aem.js';
 
 const getDefaultEmbed = (url) => `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
@@ -37,7 +42,6 @@ const embedYoutubeFacade = async (url) => {
       ${wrapper.innerHTML}
     `;
   } catch (err) {
-    console.log('no metadata for youtube video');
     // Nothing to do, metadata just won't be added to the video
   }
   return wrapper.outerHTML;
@@ -101,7 +105,7 @@ export default async function decorate(block) {
   block.textContent = '';
   const service = getPlatform(url);
   // Both Youtube and TikTok use an optimized lib that already leverages the intersection observer
-  if (service !== 'tiktok' && service !== 'youtube') {
+  if (service !== 'youtube') {
     const observer = new IntersectionObserver((entries) => {
       if (!entries.some((e) => e.isIntersecting)) {
         return;
