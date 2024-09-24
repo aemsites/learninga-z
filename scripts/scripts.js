@@ -15,6 +15,21 @@ import {
   toClassName, decorateBlock,
 } from './aem.js';
 
+function buildPageDivider(main) {
+  const allPageDivider = main.querySelectorAll('code');
+
+  allPageDivider.forEach((el) => {
+    const alt = el.innerText.trim();
+    const lower = alt.toLowerCase();
+    if (lower.startsWith('divider')) {
+      if (lower === 'divider' || lower.includes('element')) {
+        el.innerText = '';
+        el.classList.add('divider');
+      }
+    }
+  });
+}
+
 /**
  * Builds hero block and prepends to main in a new section.
  * @param {Element} main The container element
@@ -72,6 +87,7 @@ async function loadFonts() {
 function buildAutoBlocks(main, templateModule = undefined) {
   try {
     buildHeroBlock(main);
+    buildPageDivider(main);
     if (templateModule && templateModule.default) {
       templateModule.default(main);
     }

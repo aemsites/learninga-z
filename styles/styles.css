@@ -37,6 +37,7 @@
   --white: #FFF;
   --off-white: #F6F6F6;
   --light-grey: #CBCBCB;
+  --divider-gray: #eee;
   --black: #000;
   --light-red: #ed7790;
   --b-green: #419e66;
@@ -493,6 +494,13 @@ nav li {
       font-weight: 700;
     }
   }
+}
+
+.divider {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: var(--divider-gray);
 }
 
 /*********
