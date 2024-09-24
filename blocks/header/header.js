@@ -169,20 +169,23 @@ export default async function decorate(block) {
   if (navSections) {
     const navItemsWrapper = navSections.querySelector(':scope .default-content-wrapper > ul');
     navItemsWrapper.className = 'primary-nav-items';
-    navItemsWrapper.querySelectorAll('li').forEach((navSection) => {
+    navItemsWrapper.querySelectorAll(':scope > li').forEach((navSection, index) => {
+      //add class nav-item-{index} where index is the position of the current navsection
+      navSection.classList.add(`nav-item-${index}`);
       const secondaryNav = document.createElement('div');
-      secondaryNav.className = 'megamenu-container';
+      secondaryNav.className = `megamenu-container-${index}`;
       const navChildFragmentLink = navSection.querySelector('a[href*="/fragment"]');
       if (navChildFragmentLink) {
         loadSecondaryNavFragment(navChildFragmentLink, secondaryNav);
         navChildFragmentLink.closest('ul').remove();
       }
-      navSection.append(secondaryNav);
+      navItemsWrapper.append(secondaryNav);
       if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
       navSection.addEventListener('mouseenter', () => {
         if (isDesktop.matches) {
           toggleAllNavSections(navSections);
           navSection.setAttribute('aria-expanded', 'true');
+          secondaryNav.classList.add('active');
         }
       });
 
@@ -190,6 +193,7 @@ export default async function decorate(block) {
         if (isDesktop.matches) {
           toggleAllNavSections(navSections);
           navSection.setAttribute('aria-expanded', 'false');
+          secondaryNav.classList.remove('active');
         }
       });
 

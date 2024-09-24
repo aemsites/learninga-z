@@ -487,7 +487,6 @@ header .megamenu>.section-outer {
   z-index: 100;
   height: 100%;
   background-color: white;
-  overflow: hidden;
 }
 
 .header-mobile[aria-expanded="true"] nav {
@@ -504,6 +503,7 @@ header .megamenu>.section-outer {
   .nav-sections {
     display: block;
     width: 100%;
+    position: relative;
   }
 
   .nav-sections .megamenu-container {
@@ -546,6 +546,27 @@ header .megamenu>.section-outer {
   .nav-sections ul.primary-nav-items>li:not(.button-container)>a:not(.button)::after {
     transform: translate(0, 0) scale(0.45);
     right: 10px;
+  }
+
+  .nav-sections ul.primary-nav-items>li[aria-expanded="true"]>.megamenu-container {
+    display: flex;
+    padding: 0;
+    position: absolute;
+    min-height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 102;
+    background-color: white;
+
+    .tabs-list {
+      width: 100%;
+      display: flex;
+    }
+
+    .tabs-panel {
+      display: none;
+    }
   }
 
 }
