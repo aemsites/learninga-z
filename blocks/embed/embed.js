@@ -1,17 +1,5 @@
 /* eslint-disable max-len */
-import { loadCSS } from '../../scripts/aem.js';
-
-const loadScript = (url, callback, type) => {
-  const head = document.querySelector('head');
-  const script = document.createElement('script');
-  script.src = url;
-  if (type) {
-    script.setAttribute('type', type);
-  }
-  script.onload = callback;
-  head.append(script);
-  return script;
-};
+import { loadCSS, loadScript } from '../../scripts/aem.js';
 
 const getDefaultEmbed = (url) => `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
       <iframe src="${url.href}" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute; border-radius: 15px;" allowfullscreen=""
@@ -20,45 +8,39 @@ const getDefaultEmbed = (url) => `<div style="left: 0; width: 100%; height: 0; p
     </div>`;
 
 // new youtube embed with lite-youtube
-const embedYoutube = (url, isLite) => {
+const embedYoutubeFacade = async (url) => {
+  await loadCSS('/blocks/embed/lite-yt-embed/lite-yt-embed.css');
+  await loadScript('/blocks/embed/lite-yt-embed/lite-yt-embed.js');
+
   const usp = new URLSearchParams(url.search);
-  let suffix = '';
-  let vid = usp.get('v');
-  const autoplayParam = usp.get('autoplay');
-  const mutedParam = usp.get('muted');
-
-  if (autoplayParam && mutedParam) {
-    suffix += `&autoplay=${autoplayParam}&muted=${mutedParam}`;
-  } else if (autoplayParam) {
-    suffix += `&autoplay=${autoplayParam}&muted=1`;
-  } else if (mutedParam) {
-    suffix += `&muted=${mutedParam}`;
-  }
-
-  const embed = url.pathname;
+  let videoId = usp.get('v');
   if (url.origin.includes('youtu.be')) {
-    [, vid] = url.pathname.split('/');
-  }
-
-  let embedHTML;
-
-  if (isLite) {
-    const embedSplit = embed.split('/');
-    embedHTML = `
-      <lite-youtube videoid=${vid || embedSplit[embedSplit.length - 1]}>
-        <a href="https://www.youtube.com${vid ? `/embed/${vid}?rel=0&v=${vid}${suffix}` : embed}" class="lty-playbtn" title="Play Video">
-      </a>
-      </lite-youtube>`;
-    loadCSS(`${window.hlx.codeBasePath}/blocks/embed/lite-yt-embed.css`, { defer: true });
-    loadScript(`${window.hlx.codeBasePath}/blocks/embed/lite-yt-embed.js`, { defer: true });
+    videoId = url.pathname.substring(1);
   } else {
-    embedHTML = `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
-        <iframe src="https://www.youtube.com${vid ? `/embed/${vid}?rel=0&v=${vid}${suffix}` : embed}" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute; border-radius: 15px;" 
-        allow="autoplay; fullscreen; picture-in-picture; encrypted-media; accelerometer; gyroscope; picture-in-picture" scrolling="no" title="Content from Youtube" loading="lazy"></iframe>
-      </div>`;
+    videoId = url.pathname.split('/').pop();
   }
+  const wrapper = document.createElement('div');
+  wrapper.setAttribute('itemscope', '');
+  wrapper.setAttribute('itemtype', 'https://schema.org/VideoObject');
+  const litePlayer = document.createElement('lite-youtube');
+  litePlayer.setAttribute('videoid', videoId);
+  wrapper.append(litePlayer);
 
-  return embedHTML;
+  try {
+    const response = await fetch(`https://www.youtube.com/oembed?url=http://www.youtube.com/watch?v=${videoId}`);
+    const json = await response.json();
+    wrapper.innerHTML = `
+      <meta itemprop="name" content="${json.title}"/>
+      <link itemprop="embedUrl" href="https://www.youtube.com/embed/${videoId}"/>
+      <link itemprop="thumbnailUrl" href="${json.thumbnail_url}"/>
+      
+      ${wrapper.innerHTML}
+    `;
+  } catch (err) {
+    console.log('no metadata for youtube video');
+    // Nothing to do, metadata just won't be added to the video
+  }
+  return wrapper.outerHTML;
 };
 
 const embedVimeo = (url, autoplay) => {
@@ -73,70 +55,63 @@ const embedVimeo = (url, autoplay) => {
   return embedHTML;
 };
 
-const loadEmbed = (block, link) => {
-  if (block.classList.contains('embed-is-loaded')) {
+const EMBEDS_CONFIG = {
+  vimeo: embedVimeo,
+  youtube: embedYoutubeFacade,
+};
+
+function getPlatform(url) {
+  const [service] = url.hostname.split('.').slice(-2, -1);
+  if (service === 'youtu') {
+    return 'youtube';
+  }
+  return service;
+}
+
+const loadEmbed = async (block, service, url) => {
+  block.classList.toggle('skeleton', true);
+
+  const embed = EMBEDS_CONFIG[service];
+  if (!embed) {
+    block.classList.toggle('generic', true);
+    block.innerHTML = getDefaultEmbed(url);
     return;
   }
 
-  const EMBEDS_CONFIG = [
-    {
-      match: ['youtube', 'youtu.be'],
-      embed: embedYoutube,
-    },
-    {
-      match: ['vimeo'],
-      embed: embedVimeo,
-    },
-  ];
-
-  const config = EMBEDS_CONFIG.find((e) => e.match.some((match) => link.includes(match)));
-  const url = new URL(link);
-  const isLite = block.classList.contains('lite');
-
-  if (config) {
-    block.innerHTML = config.embed(url, isLite);
-    block.classList = `block embed embed-${config.match[0]}`;
-  } else {
-    block.innerHTML = getDefaultEmbed(url);
-    block.classList = 'block embed';
+  try {
+    block.classList.toggle(service, true);
+    try {
+      block.innerHTML = await embed(url);
+    } catch (err) {
+      block.style.display = 'none';
+    } finally {
+      block.classList.toggle('skeleton', false);
+    }
+  } catch (err) {
+    block.style.maxHeight = '0px';
   }
-  block.classList.add('embed-is-loaded');
 };
 
-export default function decorate(block) {
-//  const placeholder = block.querySelector('picture');
-  const link = block.querySelector('a').href;
-  block.textContent = '';
-
-  /* if (placeholder) {
-  const wrapper = document.createElement('div');
-  wrapper.className = 'embed-placeholder';
-  wrapper.innerHTML = '<div class="embed-placeholder-play"><button type="button" title="Play"></button></div>';
-  wrapper.prepend(placeholder);
-  wrapper.addEventListener('click', () => {
-    loadEmbed(block, link, true);
-  });
-  block.append(wrapper);
-} else {
-  const observer = new IntersectionObserver((entries) => {
-    if (entries.some((e) => e.isIntersecting)) {
-      observer.disconnect();
-      loadEmbed(block, link);
-    }
-  });
-  observer.observe(block);
-}
+/**
+ * @param {HTMLDivElement} block
  */
+export default async function decorate(block) {
+  const url = new URL(block.querySelector('a').href.replace(/%5C%5C_/, '_'));
 
-  if (block.closest('body')) {
+  block.textContent = '';
+  const service = getPlatform(url);
+  // Both Youtube and TikTok use an optimized lib that already leverages the intersection observer
+  if (service !== 'tiktok' && service !== 'youtube') {
     const observer = new IntersectionObserver((entries) => {
-      if (entries.some((e) => e.isIntersecting)) {
-        observer.disconnect();
-        loadEmbed(block, link);
+      if (!entries.some((e) => e.isIntersecting)) {
+        return;
       }
+
+      loadEmbed(block, service, url);
+      observer.unobserve(block);
     });
     observer.observe(block);
-  } else {
-    loadEmbed(block, link);
+    return Promise.resolve();
   }
+  return loadEmbed(block, service, url);
 }

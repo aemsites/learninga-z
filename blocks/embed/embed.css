@@ -6,11 +6,6 @@
     margin: 32px auto;
   }
 
-  .embed > div {
-    display: flex;
-    justify-content: center;
-  }
-
   .embed .embed-placeholder {
     width: 100%;
     aspect-ratio: 16 / 9;
