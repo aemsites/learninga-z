@@ -236,12 +236,12 @@ export function linkTextIncludesHref(link) {
  * Builds video blocks when encounter video links.
  * @param {Element} main The container element
  */
-export function buildVideoBlocks(main) {
+export function buildEmbedBlocks(main) {
   main.querySelectorAll('a[href]').forEach((a) => {
     if ((a.href.includes('youtube') || a.href.includes('vimeo')) && linkTextIncludesHref(a)) {
-      const videoBlock = buildBlock('video', a.cloneNode(true));
-      a.replaceWith(videoBlock);
-      decorateBlock(videoBlock);
+      const embedBlock = buildBlock('embed', a.cloneNode(true));
+      a.replaceWith(embedBlock);
+      decorateBlock(embedBlock);
     }
   });
 }
@@ -261,7 +261,7 @@ export function decorateMain(main, templateModule) {
   decorateBlocks(main);
   decorateLinkedImages(main);
   decorateExternalLinks(main);
-  buildVideoBlocks(main);
+  buildEmbedBlocks(main);
 }
 
 /**

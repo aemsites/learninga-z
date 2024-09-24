@@ -5,23 +5,18 @@
     height: 450px;
     margin: 32px auto;
   }
-  
+
   .embed > div {
     display: flex;
     justify-content: center;
   }
-  
-  .embed.embed-twitter .twitter-tweet-rendered {
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
+
   .embed .embed-placeholder {
     width: 100%;
     aspect-ratio: 16 / 9;
     position: relative;
   }
-  
+
   .embed .embed-placeholder > * {
     display: flex;
     align-items: center;
@@ -29,13 +24,13 @@
     position: absolute;
     inset: 0;
   }
-  
+
   .embed .embed-placeholder picture img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
-  
+
   .embed .embed-placeholder-play button {
     box-sizing: border-box;
     position: relative;
@@ -47,7 +42,7 @@
     border-radius: 20px;
     padding: 0;
   }
-  
+
   .embed .embed-placeholder-play button::before {
     content: "";
     display: block;
