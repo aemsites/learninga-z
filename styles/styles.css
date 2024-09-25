@@ -37,6 +37,7 @@
   --white: #FFF;
   --off-white: #F6F6F6;
   --light-grey: #CBCBCB;
+  --divider-gray: #eee;
   --black: #000;
   --light-red: #ed7790;
   --b-green: #419e66;
@@ -384,7 +385,7 @@ a:hover {
 
   .button.secondary.textcolor-royal-blue {
     color: var(--royal-blue);
-    border-color: var(--product-royal-blue);
+    border-color: var(--royal-blue);
   }
 
   .button.secondary.textcolor-black {
@@ -421,10 +422,6 @@ a:hover {
     color: var(--product-green);
     border-color: var(--product-green);
   }
-
-  /* themes - TBD if we use product names for these or not */
-
-  /* default theme works for blogs, research, and default templates */
 
   h1 {
     margin: 50px 0 1em;
@@ -495,6 +492,13 @@ nav li {
   }
 }
 
+.divider {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: var(--divider-gray);
+}
+
 /*********
 THEMES
 *********/
@@ -521,6 +525,14 @@ body.purple {
 body.laz-blue {
   .breadcrumbs-outer {
     background-color: var(--laz-blue);
+  }
+
+  h3, a {
+    color: var(--laz-blue);
+  }
+
+  h2 {
+    color: var(--royal-blue);
   }
 }
 
@@ -552,7 +564,7 @@ body.red {
     color: var(--red);
   }
 
-  .card h3 {
+  h3, .card h3 {
     color: var(--red);
   }
 

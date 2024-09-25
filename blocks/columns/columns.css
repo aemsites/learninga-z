@@ -19,6 +19,21 @@
   display: block;
 }
 
+.columns.top > div, .columns.top .buttons-container {
+    align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.columns.lines > div {
+    border-bottom: 1px solid var(--divider-gray);
+
+  .embed {
+    &.youtube, &.vimeo {
+      min-height: 314px;
+    }
+  }
+}
+
 @media (width >= 1024px) {
   .columns > div {
     align-items: center;

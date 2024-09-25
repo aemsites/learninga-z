@@ -1,0 +1,64 @@
+.accordion details {
+  border-bottom: 2px solid #ccc;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.accordion details + details {
+  margin-top: 14px;
+}
+
+.accordion details p {
+  margin-bottom: .8em;
+  margin-top: .8em;
+  width: 85%;
+}
+
+.accordion details summary {
+  position: relative;
+  left: 10px;
+  padding: 0 16px;
+  cursor: pointer;
+  list-style: none;
+  overflow: auto;
+  font-family: Solway, serif;
+  font-size: 20px;
+  color: #093567;
+}
+
+.accordion details[open] summary {
+  background-color: var(--transparent);
+  transition: all .4s ease-in;
+}
+
+.accordion details summary::-webkit-details-marker {
+  display: none;
+}
+
+.accordion details summary::after {
+  content: '+';
+  position: absolute;
+  font-size: 25px;
+  top: 10%;
+  right: 22px;
+  transition: transform 0.4s;
+}
+
+.accordion details[open] summary::after {
+  transform: rotate(-180deg);
+  content: '-';
+}
+
+.accordion details .accordion-item-body {
+  padding: 0 20px;
+  overflow: hidden;
+}
+
+.accordion details[open] {
+  border-bottom: none;
+}
+
+.accordion details[open] .accordion-item-body {
+  border-top: 2px solid #ccc;
+  transition: all .4s ease-in;
+
+}

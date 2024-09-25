@@ -168,7 +168,9 @@ export default async function decorate(block) {
 
     const navSections = nav.querySelector('.nav-sections');
     if (navSections) {
-      navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
+      const navItemsWrapper = navSections.querySelector(':scope .default-content-wrapper > ul');
+      navItemsWrapper.className = 'primary-nav-items';
+      navItemsWrapper.querySelectorAll('li').forEach((navSection) => {
         const secondaryNav = document.createElement('div');
         secondaryNav.className = 'megamenu-container';
         const navChildFragmentLink = navSection.querySelector('a[href*="/fragment"]');

@@ -1,10 +1,12 @@
 import { getTaxonomy } from '../../scripts/utils.js';
 
+let selectedOrder = [];
+
 function renderItem(item, catId) {
-  const pathStr = item.path.split('/').slice(0, -1).join('<span class="psep"> / </span>');
+  const pathStr = item.name.split('/').slice(0, -1).join('<span class="psep"> / </span>');
   return `
   <span class="path">${pathStr}
-    <span data-title="${item.title}" class="tag cat-${catId % 10}">${item.title}</span>
+    <span data-title="${item.title}" class="tag cat-${catId % 4}">${item.title}</span>
   </span>
 `;
 }
@@ -55,6 +57,21 @@ function filter() {
 
 function toggleTag(target) {
   target.classList.toggle('selected');
+  const { title } = target.querySelector('.tag').dataset;
+  const category = target.closest('.category')
+    .querySelector('h2').textContent; // Assuming category title is in h2
+  const tagIdentifier = {
+    title,
+    category,
+  };
+
+  if (target.classList.contains('selected')) {
+    selectedOrder.push(tagIdentifier); // Add to the selection order
+  } else {
+    selectedOrder = selectedOrder.filter(
+      (item) => item.title !== title || item.category !== category,
+    );
+  }
   // eslint-disable-next-line no-use-before-define
   displaySelected();
 }
@@ -65,9 +82,21 @@ function displaySelected() {
   const toCopyBuffer = [];
 
   selTagsEl.innerHTML = '';
-  const selectedTags = document.querySelectorAll('#results .path.selected');
-  if (selectedTags.length > 0) {
-    selectedTags.forEach((path) => {
+  selectedOrder.forEach(({ title, category }) => {
+    // Find the category element
+    const categories = document.querySelectorAll('#results .category');
+    let path;
+    categories.forEach((cat) => {
+      if (cat.querySelector('h2').textContent === category) {
+        const tag = Array.from(cat.querySelectorAll('.tag'))
+          .find((t) => t.dataset.title === title);
+        if (tag) {
+          path = tag.closest('.path');
+        }
+      }
+    });
+
+    if (path) {
       const clone = path.cloneNode(true);
       clone.classList.remove('filtered', 'selected');
       const tag = clone.querySelector('.tag');
@@ -77,14 +106,16 @@ function displaySelected() {
       });
       toCopyBuffer.push(tag.dataset.title);
       selTagsEl.append(clone);
-    });
+    }
+  });
 
+  if (selectedOrder.length > 0) {
     selEl.classList.remove('hidden');
   } else {
     selEl.classList.add('hidden');
   }
 
-  const copyBuffer = document.getElementById('copyBuffer');
+  const copyBuffer = document.getElementById('copybuffer');
   copyBuffer.value = toCopyBuffer.join(', ');
 }
 
@@ -96,7 +127,7 @@ async function init() {
   const selEl = document.getElementById('selected');
   const copyButton = selEl.querySelector('button.copy');
   copyButton.addEventListener('click', () => {
-    const copyText = document.getElementById('copyBuffer');
+    const copyText = document.getElementById('copybuffer');
     navigator.clipboard.writeText(copyText.value);
 
     copyButton.disabled = true;
@@ -105,14 +136,20 @@ async function init() {
   const clearButton = selEl.querySelector('button.clear');
   clearButton.addEventListener('click', () => {
     // Remove the 'filtered' class from all tags
-    document.querySelectorAll('#results .tag').forEach((tag) => {
-      tag.closest('.path').classList.remove('filtered');
-    });
+    document.querySelectorAll('#results .tag')
+      .forEach((tag) => {
+        tag.closest('.path')
+          .classList
+          .remove('filtered');
+      });
 
     // Remove the 'selected' class from all selected tags
-    document.querySelectorAll('.selected').forEach((selectedTag) => {
-      selectedTag.classList.remove('selected');
-    });
+    document.querySelectorAll('.selected')
+      .forEach((selectedTag) => {
+        selectedTag.classList.remove('selected');
+      });
+
+    selectedOrder = [];
     displaySelected();
     copyButton.disabled = false;
   });

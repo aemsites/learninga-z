@@ -418,24 +418,11 @@ function decorateIcon(span, prefix = '', alt = '') {
     .find((c) => c.startsWith('icon-'))
     .substring(5);
   const svgSrc = `${window.hlx.codeBasePath}${prefix}/icons/${iconName}.svg`;
-  const pngSrc = `${window.hlx.codeBasePath}${prefix}/icons/${iconName}.png`;
   const img = document.createElement('img');
   img.dataset.iconName = iconName;
   img.alt = alt;
   img.loading = 'lazy';
-
-  fetch(svgSrc)
-    .then((response) => {
-      if (response.ok) {
-        img.src = svgSrc;
-      } else {
-        img.src = pngSrc;
-      }
-    })
-    .catch(() => {
-      img.src = pngSrc;
-    });
-
+  img.src = svgSrc;
   span.append(img);
   img.alt = alt;
   img.loading = 'lazy';
