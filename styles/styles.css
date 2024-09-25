@@ -567,10 +567,6 @@ body.red {
   h3, .card h3 {
     color: var(--red);
   }
-
-  .card .card-body p:hover {
-    color: var(--maroon);
-  }
 }
 
 [data-theme="red"] {

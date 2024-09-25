@@ -28,7 +28,6 @@
 }
 
 .research-filter .card a {
-    text-decoration: none;
     display: inline-block;
     max-width: 100%;
     overflow: hidden;
@@ -49,6 +48,12 @@
     font-family: var(--body-font-family);
     font-weight: var(--font-weight-medium);
 }
+
+.research-filter .card .card-body p {
+    font-weight: var(--font-weight-normal);
+    color: var(--charcoal-blue);
+}
+
 
 .research-filter .card .efficacy-badge {
     display: flex;
