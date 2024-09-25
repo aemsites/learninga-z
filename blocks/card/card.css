@@ -13,3 +13,8 @@
         text-decoration: underline;
     }
 }
+
+.card .card-body p {
+    font-weight: var(--font-weight-normal);
+    color: var(--charcoal-blue);
+}
