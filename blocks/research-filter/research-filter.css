@@ -44,7 +44,7 @@
     transform-style: preserve-3d;
 }
 
-.research-filter .card h4 {
+.research-filter .card h3 {
     font-size: var(--body-font-size-s);
     font-family: var(--body-font-family);
     font-weight: var(--font-weight-medium);
