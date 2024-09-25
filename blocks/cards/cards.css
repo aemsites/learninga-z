@@ -7,7 +7,7 @@
   font-size: var(--body-font-size-m);
   font-weight: var(--font-weight-medium);
   color: inherit;
-  margin-bottom: 1em;
+  margin: 0 0 -2em;
 }
 
 .cards.suggested-videos .card-wrapper{
