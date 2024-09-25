@@ -10,14 +10,6 @@
             padding: 0 15px;
         }
 
-        &:last-of-type {
-            margin-top: 50px;
-
-            .default-content-wrapper {
-                text-align: center;
-            }
-        }
-
         h2 {
             font-size: var(--body-font-size-m);
             font-weight: var(--font-weight-bold);
@@ -25,6 +17,21 @@
             font-family: var(--body-font-family);
             color: var(--text-color);
         }
+
+        &:last-of-type {
+            margin-top: 50px;
+
+            .default-content-wrapper {
+                text-align: center;
+            }
+
+            h2 {
+                font-weight: var(--font-weight-medium);
+                color: inherit;
+                margin-bottom: 1em;
+            }
+        }
+
 
         .related-title {
             font-family: var(--body-font-family);
@@ -39,6 +46,7 @@
             border-top: 1px solid var(--light-grey);
             padding: 24px 0;
         }
+
         .tabs-list {
         gap: 0;
         width: unset;
