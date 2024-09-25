@@ -1,9 +1,19 @@
-.cards.suggested-videos .card {
+.cards.suggested-videos .card-wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cards.suggested-videos .card.block {
   width: 100%;
   border-top: 1px solid #cbcbcb;
-  margin-bottom: 10px;
+  padding: 25px 0;
+}
+
+.cards.suggested-videos .card.block>div {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
 }
 
@@ -30,7 +40,6 @@
   height: 80px;
   width: 80px;
   position: relative;
-  top: 25px;
     left: 0;
     border-radius: 50%;
 }
@@ -40,6 +49,10 @@
   position: relative;
   top: 50%;
   transform: translate(5%, 50%);
+}
+
+.cards.suggested-videos .card .card-body h3 {
+ font-family: var(--body-font-family);
 }
 
 .cards.suggested-videos .card .card-body a{

@@ -5,7 +5,6 @@ export default function decorate(block) {
   const title = block.querySelector('h4');
   const cardLinks = block.querySelectorAll('a');
   const cardsWrapper = document.createElement('div');
-  cardsWrapper.className = 'cards-wrapper';
   cardLinks.forEach((cardLink) => {
     const card = buildBlock('card', [[cardLink]]);
     cardsWrapper.append(card);
