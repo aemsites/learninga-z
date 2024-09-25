@@ -293,6 +293,7 @@ const validTemplates = [
   'research-detail',
   'product',
   'errorpage',
+  'landing',
 ];
 async function loadTemplate() {
   const templateName = toClassName(getMetadata('template'));
