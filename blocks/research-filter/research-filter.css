@@ -54,6 +54,10 @@
     color: var(--charcoal-blue);
 }
 
+.research-filter .card .card-body p:hover {
+    color: var(--maroon);
+}
+
 
 .research-filter .card .efficacy-badge {
     display: flex;
