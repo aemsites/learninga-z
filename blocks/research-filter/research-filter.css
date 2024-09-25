@@ -22,6 +22,108 @@
 .research-filter .card{
   margin-bottom: 20px;
   padding: 0 10px;
+    overflow: hidden;
+    height: auto;
+    position: relative;
+}
+
+.research-filter .card a {
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.research-filter .card img {
+    transition: all .65s ease;
+}
+
+.research-filter .card:hover img {
+    transform: scale(1.05);
+    transform-style: preserve-3d;
+}
+
+.research-filter .card h3 {
+    font-size: var(--body-font-size-s);
+    font-family: var(--body-font-family);
+    font-weight: var(--font-weight-medium);
+}
+
+.research-filter .card .card-body p {
+    font-weight: var(--font-weight-normal);
+    color: var(--charcoal-blue);
+}
+
+.research-filter .card .card-body p:hover {
+    color: var(--maroon);
+}
+
+
+.research-filter .card .efficacy-badge {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    color: white;
+    top: 10px;
+    right: 0;
+    z-index: 100;
+    padding: 8px 30px 8px 12px;
+    border-radius: 6px 0 0 6px;
+    white-space: nowrap;
+    left: calc(100% - 120px);
+    transition: left .65s ease;
+    width: fit-content;
+}
+
+.research-filter .card:hover .efficacy-badge {
+    left: calc(100% - 36px);
+}
+
+
+.research-filter .card .efficacy-badge.strong {
+    background-color: var(--red);
+}
+
+.research-filter .card .efficacy-badge.moderate {
+    background-color: var(--orange-red);
+}
+
+.research-filter .card .efficacy-badge.effective {
+    background-color: var(--bright-yellow);
+}
+
+.research-filter .card .efficacy-badge .flag {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    content: url("/icons/flag.svg");
+}
+
+.research-filter .card .efficacy-badge:not(.strong) .flag {
+    filter: invert(1);
+}
+
+.research-filter .card .efficacy-badge .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    border: 0;
+}
+
+.research-filter .card .efficacy-badge p {
+    margin: 0;
+    padding: 0;
+    margin-left: 8px;
+    font-weight: 400;
+}
+
+.research-filter .card .efficacy-badge:not(.strong) p {
+    filter: invert(1);
 }
 
 
