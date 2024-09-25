@@ -15,7 +15,7 @@ export function populateCard(container, cardInfo) {
         </a>
         <div class="card-body">
         <a href="${cardInfo.path}">
-            <h3>${cardInfo.title}</h3>
+            <h4>${cardInfo.title}</h4>
          </a>
             <a href="${cardInfo.path}"><p>${cardInfo.description}</p></a>
        
