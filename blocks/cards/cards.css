@@ -7,7 +7,6 @@
   font-size: var(--body-font-size-m);
   font-weight: var(--font-weight-medium);
   color: inherit;
-  margin: 0 0 -2em;
 }
 
 .cards.suggested-videos .card-wrapper{
@@ -29,8 +28,8 @@
 
 .cards.suggested-videos .card.block>div {
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
 }
 
 .cards.suggested-videos .card img::before {
@@ -72,8 +71,6 @@
 .cards.suggested-videos .card .card-body {
   display: flex;
   position: relative;
-  top: 50%;
-  transform: translate(5%, 50%);
 }
 
 .cards.suggested-videos .card .card-body h3 {
