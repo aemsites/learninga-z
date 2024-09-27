@@ -1,4 +1,4 @@
-import { getRelativePath, getIndexData } from '../../scripts/utils.js';
+import { getRelativePath, getGenericIndexData } from '../../scripts/utils.js';
 import { createOptimizedPicture } from '../../scripts/aem.js';
 
 export function populateCard(container, cardInfo) {
@@ -28,7 +28,7 @@ export default async function decorate(block) {
   const link = block.querySelector('a');
   const path = link ? link.getAttribute('href') : block.textContent.trim();
   const relPath = getRelativePath(path);
-  const indexData = await getIndexData();
+  const indexData = await getGenericIndexData();
   const cardInfo = indexData.find((item) => item.path === relPath);
   block.innerHTML = '';
   if (cardInfo) {
