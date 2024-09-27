@@ -4,6 +4,9 @@ import { populateCard } from '../card/card.js';
 import { loadCSS } from '../../scripts/aem.js';
 
 export default async function decorate(block) {
+  await loadCSS(`${window.hlx.codeBasePath}/blocks/card/card.css`);
+  await loadCSS(`${window.hlx.codeBasePath}/blocks/cards/cards.css`);
+
   const videos = await getVideosIndexData();
   // extracting unique category as an array from videos
   const categories = new Map();
@@ -42,7 +45,7 @@ export default async function decorate(block) {
   }
   const div = document.createElement('div');
   block.append(div);
-  div.className = 'cards-wrapper';
+  div.className = 'cards';
   filteredVideos.forEach((video) => {
     populateCard(div, video);
   });

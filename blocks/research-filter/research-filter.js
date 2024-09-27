@@ -50,6 +50,7 @@ async function groupResearchPagesByType(researchDetailPages) {
 
 export default async function decorate(block) {
   await loadCSS(`${window.hlx.codeBasePath}/blocks/card/card.css`);
+  await loadCSS(`${window.hlx.codeBasePath}/blocks/cards/cards.css`);
 
   // get the last part of the url as the product name
   const url = window.location.href;
@@ -76,7 +77,7 @@ export default async function decorate(block) {
     block.append(document.createElement('hr'));
     const div = document.createElement('div');
     block.append(div);
-    div.className = 'cards-wrapper';
+    div.className = 'cards';
     essa.forEach((page) => {
       populateCard(div, page);
     });
@@ -89,7 +90,7 @@ export default async function decorate(block) {
     block.append(document.createElement('hr'));
     const div = document.createElement('div');
     block.append(div);
-    div.className = 'cards-wrapper';
+    div.className = 'cards';
     caseStudies.forEach((page) => {
       populateCard(div, page);
     });
@@ -102,7 +103,7 @@ export default async function decorate(block) {
     block.append(document.createElement('hr'));
     const div = document.createElement('div');
     block.append(div);
-    div.className = 'cards-wrapper';
+    div.className = 'cards';
     researchBase.forEach((page) => {
       populateCard(div, page);
     });
@@ -115,7 +116,7 @@ export default async function decorate(block) {
     block.append(document.createElement('hr'));
     const div = document.createElement('div');
     block.append(div);
-    div.className = 'cards-wrapper';
+    div.className = 'cards';
     moreStudies.forEach((page) => {
       populateCard(div, page);
     });
