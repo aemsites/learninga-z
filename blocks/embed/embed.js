@@ -57,8 +57,8 @@ const embedVimeo = async (url) => {
   await loadScript('/blocks/embed/lite-vimeo-embed/lite-vimeo-embed.js');
   const videoId = getVideoId(url);
   const embedHTML = `
-    <lite-vimeo videoid="${videoId}" style="background-image: url('https://i.vimeocdn.com/video/810965406.webp?mw=1600&mh=900&q=70');">
-      <div class="ltv-playbtn" aria-label="Play video"></div>
+    <lite-vimeo videoid="${videoId}">
+      <div class="ltv-playbtn"></div>
     </lite-vimeo>`;
   return embedHTML;
 };
