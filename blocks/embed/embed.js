@@ -47,7 +47,7 @@ const embedYoutube = async (url) => {
       ${wrapper.innerHTML}
     `;
   } catch (err) {
-    console.error('Failed to fetch YouTube metadata:', err);
+    // Nothing to do, metadata just won't be added to the video
   }
   return wrapper.outerHTML;
 };
