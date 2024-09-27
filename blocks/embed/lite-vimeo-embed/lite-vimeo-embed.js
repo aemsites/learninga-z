@@ -1,7 +1,7 @@
 /* eslint-disable  */
 
 /**
- * Ported from https://github.com/paulirish/lite-youtube-embed
+ * from https://github.com/luwes/lite-vimeo-embed
  */
 class LiteVimeo extends (globalThis.HTMLElement ?? class {}) {
   /**

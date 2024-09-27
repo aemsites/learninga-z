@@ -4,7 +4,7 @@
  * https://www.hlx.live/developer/block-collection/embed
  */
 
-import { loadCSS, loadScript } from '../../scripts/aem.js';
+import { loadScript } from '../../scripts/aem.js';
 
 const getDefaultEmbed = (url) => `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
       <iframe src="${url.href}" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allowfullscreen=""
@@ -12,18 +12,24 @@ const getDefaultEmbed = (url) => `<div style="left: 0; width: 100%; height: 0; p
       </iframe>
     </div>`;
 
-// new youtube embed with lite-youtube
-const embedYoutubeFacade = async (url) => {
-  await loadCSS('/blocks/embed/lite-yt-embed/lite-yt-embed.css');
-  await loadScript('/blocks/embed/lite-yt-embed/lite-yt-embed.js');
-
-  const usp = new URLSearchParams(url.search);
-  let videoId = usp.get('v');
+// Function to extract videoId from YouTube and Vimeo URLs
+const getVideoId = (url) => {
   if (url.origin.includes('youtu.be')) {
-    videoId = url.pathname.substring(1);
-  } else {
-    videoId = url.pathname.split('/').pop();
+    return url.pathname.substring(1);
   }
+  if (url.hostname.includes('youtube.com')) {
+    return new URLSearchParams(url.search).get('v') || url.pathname.split('/').pop();
+  }
+  if (url.hostname.includes('vimeo.com')) {
+    return url.pathname.split('/').pop();
+  }
+  return null;
+};
+
+// YouTube embed with lite-youtube
+const embedYoutube = async (url) => {
+  await loadScript('/blocks/embed/lite-yt-embed/lite-yt-embed.js');
+  const videoId = getVideoId(url);
   const wrapper = document.createElement('div');
   wrapper.setAttribute('itemscope', '');
   wrapper.setAttribute('itemtype', 'https://schema.org/VideoObject');
@@ -38,38 +44,28 @@ const embedYoutubeFacade = async (url) => {
       <meta itemprop="name" content="${json.title}"/>
       <link itemprop="embedUrl" href="https://www.youtube.com/embed/${videoId}"/>
       <link itemprop="thumbnailUrl" href="${json.thumbnail_url}"/>
-      
       ${wrapper.innerHTML}
     `;
   } catch (err) {
-    // Nothing to do, metadata just won't be added to the video
+    console.error('Failed to fetch YouTube metadata:', err);
   }
   return wrapper.outerHTML;
 };
 
+// Vimeo embed with lite-vimeo-embed
 const embedVimeo = async (url) => {
-  await loadCSS('/blocks/embed/lite-vimeo-embed/lite-vimeo-embed.css');
   await loadScript('/blocks/embed/lite-vimeo-embed/lite-vimeo-embed.js');
-  let videoSrc;
-  if (url.href.startsWith('https://player.vimeo.com')) {
-    videoSrc = url.href;
-  } else {
-    const [, video] = url.pathname.split('/'); // Extract video id from URL
-    videoSrc = `https://player.vimeo.com/video/${video}`;
-  }
-
-  const embedHTML = `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
-        <iframe src="${videoSrc}" 
-        style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute; border-radius: 15px;" 
-        frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen  
-        title="Content from Vimeo" loading="lazy"></iframe>
-      </div>`;
+  const videoId = getVideoId(url);
+  const embedHTML = `
+    <lite-vimeo videoid="${videoId}" style="background-image: url('https://i.vimeocdn.com/video/810965406.webp?mw=1600&mh=900&q=70');">
+      <div class="ltv-playbtn" aria-label="Play video"></div>
+    </lite-vimeo>`;
   return embedHTML;
 };
 
 const EMBEDS_CONFIG = {
   vimeo: embedVimeo,
-  youtube: embedYoutubeFacade,
+  youtube: embedYoutube,
 };
 
 function getPlatform(url) {
@@ -112,7 +108,7 @@ export default async function decorate(block) {
 
   block.textContent = '';
   const service = getPlatform(url);
-  // Both Youtube and TikTok use an optimized lib that already leverages the intersection observer
+  // Both YouTube and TikTok use an optimized lib that already leverages the intersection observer
   if (service !== 'youtube') {
     const observer = new IntersectionObserver((entries) => {
       if (!entries.some((e) => e.isIntersecting)) {
