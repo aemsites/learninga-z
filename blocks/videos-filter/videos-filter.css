@@ -1,0 +1,30 @@
+.videos-filter .card .card-thumbnail a::before {
+  content: url("/icons/circle-play.svg");
+  display: block;
+  padding-top: 56.25%;
+  position: absolute;
+  font-size: 60px;
+  color: #fff;
+  font-weight: normal;
+  left: 50%;
+  margin-left: -25px;
+  width: 60px;
+  z-index: 1;
+  transform: translateY(-42%);
+  transition: all .4s; /* Add transition property here */
+}
+
+.videos-filter .card:hover .card-thumbnail a::before {
+  animation: changeContent 0.4s linear forwards;
+  animation-fill-mode: forwards;
+}
+
+@keyframes changeContent {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    content: url("/icons/circle-play-red.svg");
+  }
+}

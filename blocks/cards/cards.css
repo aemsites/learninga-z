@@ -19,15 +19,6 @@
     position: relative;
   }
 
-  .card img {
-    transition: all .65s ease;
-  }
-
-  .card:hover img {
-    transform: scale(1.05);
-    transform-style: preserve-3d;
-  }
-
   .card h3 {
     font-size: var(--body-font-size-s);
     font-family: var(--body-font-family);

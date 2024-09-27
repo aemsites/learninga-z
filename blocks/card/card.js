@@ -9,10 +9,12 @@ export function populateCard(container, cardInfo) {
   }
   card.className = 'card';
   card.innerHTML = `
+        <div class="card-thumbnail">
         <a href="${cardInfo.path}">
         ${createOptimizedPicture(cardInfo.image, cardInfo.title, false, [{ width: '750' }]).outerHTML}
         ${efficacyBadge}
         </a>
+        </div>
         <div class="card-body">
         <a href="${cardInfo.path}">
             <h3>${cardInfo.title}</h3>
