@@ -47,7 +47,9 @@ const embedYoutubeFacade = async (url) => {
   return wrapper.outerHTML;
 };
 
-const embedVimeo = (url) => {
+const embedVimeo = async (url) => {
+  await loadCSS('/blocks/embed/lite-vimeo-embed/lite-vimeo-embed.css');
+  await loadScript('/blocks/embed/lite-vimeo-embed/lite-vimeo-embed.js');
   let videoSrc;
   if (url.href.startsWith('https://player.vimeo.com')) {
     videoSrc = url.href;
