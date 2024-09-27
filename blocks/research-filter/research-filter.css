@@ -54,11 +54,6 @@
     color: var(--charcoal-blue);
 }
 
-.research-filter .card .card-body p:hover {
-    color: var(--maroon);
-}
-
-
 .research-filter .card .efficacy-badge {
     display: flex;
     justify-content: space-between;
@@ -79,7 +74,6 @@
 .research-filter .card:hover .efficacy-badge {
     left: calc(100% - 36px);
 }
-
 
 .research-filter .card .efficacy-badge.strong {
     background-color: var(--red);
@@ -120,6 +114,10 @@
     padding: 0;
     margin-left: 8px;
     font-weight: 400;
+}
+
+.research-filter .card .card-body p:hover {
+    color: var(--maroon);
 }
 
 .research-filter .card .efficacy-badge:not(.strong) p {
