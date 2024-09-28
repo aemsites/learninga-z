@@ -23,7 +23,6 @@ class LiteVimeo extends (globalThis.HTMLElement ?? class {}) {
     this.videoId = this.getAttribute('videoid');
     const fullUrl = // Oembed requires Learninga-z's private account key appended to the URL
         new URL( `https://player.vimeo.com/video/${this.videoId}?h=4dd8d22e5b`);
-    console. log('fullURL= ',fullUrl);
     /**
      * Lo, the vimeo placeholder image!  (aka the thumbnail, poster image, etc)
      * We have to use the Vimeo API.
@@ -38,9 +37,7 @@ class LiteVimeo extends (globalThis.HTMLElement ?? class {}) {
     fetch(`https://vimeo.com/api/oembed.json?url=${fullUrl}`)
       .then(response => response.json())
       .then(data => {
-        console.log('here is the data',data);
         let thumbnailUrl = data.thumbnail_url;
-        console.log('here is the thumbnail',thumbnailUrl);
         thumbnailUrl = thumbnailUrl.replace(/-d_[\dx]+$/i, `-d_${width}x${height}`);
         this.style.backgroundImage = `url("${thumbnailUrl}")`;
       });
