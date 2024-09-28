@@ -1,18 +1,9 @@
 /* eslint-disable  */
 
 /**
- * from https://github.com/luwes/lite-vimeo-embed
+ * adapted from https://github.com/luwes/lite-vimeo-embed
  */
 class LiteVimeo extends (globalThis.HTMLElement ?? class {}) {
-  /**
-   * Begin pre-connecting to warm up the iframe load
-   * Since the embed's network requests load within its iframe,
-   *   preload/prefetch'ing them outside the iframe will only cause double-downloads.
-   * So, the best we can do is warm up a few connections to origins that are in the critical path.
-   *
-   * Maybe `<link rel=preload as=document>` would work, but it's unsupported: http://crbug.com/593267
-   * won't happen soon with Site Isolation and split caches adding serious complexity.
-   */
   static _warmConnections() {
     if (LiteVimeo.preconnected) return;
     LiteVimeo.preconnected = true;
@@ -22,14 +13,17 @@ class LiteVimeo extends (globalThis.HTMLElement ?? class {}) {
     // Images
     addPrefetch('preconnect', 'https://i.vimeocdn.com');
     // Files .js, .css
-    addPrefetch('preconnect', 'https://f.vimeocdn.com');
+  //  addPrefetch('preconnect', 'https://f.vimeocdn.com');
     // Metrics
     addPrefetch('preconnect', 'https://fresnel.vimeocdn.com');
   }
 
   connectedCallback() {
-    this.videoId = this.getAttribute('videoid');
 
+    this.videoId = this.getAttribute('videoid');
+    const fullUrl = // Oembed requires Learninga-z's private account key appended to the URL
+        new URL( `https://player.vimeo.com/video/${this.videoId}?h=4dd8d22e5b`);
+    console. log('fullURL= ',fullUrl);
     /**
      * Lo, the vimeo placeholder image!  (aka the thumbnail, poster image, etc)
      * We have to use the Vimeo API.
@@ -40,10 +34,13 @@ class LiteVimeo extends (globalThis.HTMLElement ?? class {}) {
     width = Math.round(width * devicePixelRatio);
     height = Math.round(height * devicePixelRatio);
 
-    fetch(`https://vimeo.com/api/v2/video/${this.videoId}.json`)
+     // fetch(`https://vimeo.com/api/v2/video/${this.videoId}.json`) // doesn't work with private videos
+    fetch(`https://vimeo.com/api/oembed.json?url=${fullUrl}`)
       .then(response => response.json())
       .then(data => {
-        let thumbnailUrl = data[0].thumbnail_large;
+        console.log('here is the data',data);
+        let thumbnailUrl = data.thumbnail_url;
+        console.log('here is the thumbnail',thumbnailUrl);
         thumbnailUrl = thumbnailUrl.replace(/-d_[\dx]+$/i, `-d_${width}x${height}`);
         this.style.backgroundImage = `url("${thumbnailUrl}")`;
       });

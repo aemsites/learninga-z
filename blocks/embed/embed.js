@@ -21,6 +21,8 @@ const getVideoId = (url) => {
     return new URLSearchParams(url.search).get('v') || url.pathname.split('/').pop();
   }
   if (url.hostname.includes('vimeo.com')) {
+    // lite-vimeo script expects a player.vimeo.com/video URL, so if we have a short URL
+    // we need to extract the video ID separately here
     return url.pathname.split('/').pop();
   }
   return null;
@@ -33,9 +35,6 @@ const embedYoutube = async (url) => {
   const wrapper = document.createElement('div');
   wrapper.setAttribute('itemscope', '');
   wrapper.setAttribute('itemtype', 'https://schema.org/VideoObject');
-  const litePlayer = document.createElement('lite-youtube');
-  litePlayer.setAttribute('videoid', videoId);
-  wrapper.append(litePlayer);
 
   try {
     const response = await fetch(`https://www.youtube.com/oembed?url=http://www.youtube.com/watch?v=${videoId}`);
@@ -49,6 +48,9 @@ const embedYoutube = async (url) => {
   } catch (err) {
     // Nothing to do, metadata just won't be added to the video
   }
+  const litePlayer = document.createElement('lite-youtube');
+  litePlayer.setAttribute('videoid', videoId);
+  wrapper.append(litePlayer);
   return wrapper.outerHTML;
 };
 
@@ -56,11 +58,28 @@ const embedYoutube = async (url) => {
 const embedVimeo = async (url) => {
   await loadScript('/blocks/embed/lite-vimeo-embed/lite-vimeo-embed.js');
   const videoId = getVideoId(url);
-  const embedHTML = `
-    <lite-vimeo videoid="${videoId}">
-      <div class="ltv-playbtn"></div>
-    </lite-vimeo>`;
-  return embedHTML;
+  const wrapper = document.createElement('div');
+  wrapper.setAttribute('itemscope', '');
+  wrapper.setAttribute('itemtype', 'https://schema.org/VideoObject');
+
+  try {
+    const response = await fetch(`https://vimeo.com/api/oembed.json?url=https://player.vimeo.com/video/${videoId}h=4dd8d22e5b`);
+    const json = await response.json();
+    wrapper.innerHTML = `
+      <meta itemprop="name" content="${json.title}"/>
+      <link itemprop="embedUrl" href="https://player.vimeo.com/video/${videoId}h=4dd8d22e5b"/>
+      <link itemprop="thumbnailUrl" href="${json.thumbnail_url}"/>
+      ${wrapper.innerHTML}
+    `;
+  } catch (err) {
+    // Nothing to do, metadata just won't be added to the video
+  }
+  const litePlayer = document.createElement('lite-vimeo');
+  litePlayer.setAttribute('videoid', videoId);
+  const playBtnEl = document.createElement('button');
+  playBtnEl.setAttribute(('class', 'ltv-playbtn'), ('aria-label', 'Video play button'));
+  wrapper.append(litePlayer);
+  return wrapper.outerHTML;
 };
 
 const EMBEDS_CONFIG = {
