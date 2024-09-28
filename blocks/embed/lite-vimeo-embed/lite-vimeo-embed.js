@@ -13,9 +13,9 @@ class LiteVimeo extends (globalThis.HTMLElement ?? class {}) {
     // Images
     addPrefetch('preconnect', 'https://i.vimeocdn.com');
     // Files .js, .css
-  //  addPrefetch('preconnect', 'https://f.vimeocdn.com');
+    addPrefetch('preconnect', 'https://f.vimeocdn.com');
     // Metrics
-    addPrefetch('preconnect', 'https://fresnel.vimeocdn.com');
+    // addPrefetch('preconnect', 'https://fresnel.vimeocdn.com');
   }
 
   connectedCallback() {
