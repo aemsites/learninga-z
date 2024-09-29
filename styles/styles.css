@@ -76,6 +76,9 @@
     --product-purple: #92479a;
     --product-orange: #f05b32;
 
+  /* don't override user accessibility settings */
+  forced-color-adjust: none;
+
   /* fonts */
   --body-font-family: 'Montserrat', montserrat-normal-fallback;
   --heading-font-family: 'Solway', solway-normal-fallback;
@@ -181,11 +184,11 @@ h6 {
   color: var(--laz-logo-blue);
 }
 
-h1, h2, h3 {
+h1, h2 {
   font-family: var(--heading-font-family);
 }
 
-h4, h5, h6 {
+h3, h4, h5, h6 {
   font-family: var(--body-font-family);
 }
 

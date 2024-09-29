@@ -50,6 +50,10 @@ const embedYoutube = async (url) => {
   }
   const litePlayer = document.createElement('lite-youtube');
   litePlayer.setAttribute('videoid', videoId);
+  litePlayer.setAttribute(
+    'style',
+    'background-image: url(./media_1ded06180650a1d8084f19126fcb1b7eaf33ae28c.png?width=500&format=pjpg&optimize=medium)',
+  );
   wrapper.append(litePlayer);
   return wrapper.outerHTML;
 };
@@ -76,7 +80,10 @@ const embedVimeo = async (url) => {
   }
   const litePlayer = document.createElement('lite-vimeo');
   litePlayer.setAttribute('videoid', videoId);
-  litePlayer.setAttribute('style', 'background-image: url(./media_1b213424d6fd768003afee9ee0abb3ccb0fc39820.png?width=500&format=pjpg&optimize=medium)');
+  litePlayer.setAttribute(
+    'style',
+    'background-image: url(./media_1ded06180650a1d8084f19126fcb1b7eaf33ae28c.png?width=600&format=pjpg&optimize=medium)',
+  );
   const playBtnEl = document.createElement('button');
   playBtnEl.setAttribute(('class', 'ltv-playbtn'), ('aria-label', 'Video play button'));
   wrapper.append(litePlayer);
