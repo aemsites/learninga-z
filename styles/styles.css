@@ -650,9 +650,15 @@ body.yellow {
 
   @media (width >= 1024px) {
     main > .section-outer > .section, .breadcrumbs-container, .hero-content {
-      max-width: 970px;
+      max-width: 990px;
     }
+
+    .breadcrumbs-outer {
+      .breadcrumbs-container {
+    /*    padding: 0; */
+      }
   }
+    }
 
   @media (width >= 1200px) {
     main > .section-outer > .section, .breadcrumbs-container, .hero-content {
