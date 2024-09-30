@@ -29,9 +29,9 @@ class LiteYTEmbed extends HTMLElement {
      *       - When doing this, apply referrerpolicy (https://github.com/ampproject/amphtml/pull/3940)
      * TODO: Consider using webp if supported, falling back to jpg
      */
-    if (!this.style.backgroundImage) {
-      this.style.backgroundImage = `url("https://i.ytimg.com/vi/${this.videoId}/hqdefault.jpg")`;
-    }
+    // if (!this.style.backgroundImage) {
+    this.style.backgroundImage = `url("https://i.ytimg.com/vi/${this.videoId}/hqdefault.jpg")`;
+    //  }
 
     // Set up play button, and its visually hidden label
     if (!playBtnEl) {
@@ -94,11 +94,8 @@ class LiteYTEmbed extends HTMLElement {
     LiteYTEmbed.addPrefetch('preconnect', 'https://www.youtube-nocookie.com');
     // The botguard script is fetched off from google.com
     LiteYTEmbed.addPrefetch('preconnect', 'https://www.google.com');
-
-    // Not certain if these ad related domains are in the critical path.
-    // Could verify with domain-specific throttling.
-    LiteYTEmbed.addPrefetch('preconnect', 'https://googleads.g.doubleclick.net');
-    LiteYTEmbed.addPrefetch('preconnect', 'https://static.doubleclick.net');
+    LiteYTEmbed.addPrefetch('preconnect', 'https://www.youtube.com');
+    LiteYTEmbed.addPrefetch('preconnect', 'https://i.ytimg.com');
 
     LiteYTEmbed.preconnected = true;
   }
