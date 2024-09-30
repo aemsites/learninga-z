@@ -34,6 +34,9 @@
     color: var(--maroon);
   }
 
+  .card .card-thumbnail .video-playbtn{
+    display: none;
+  }
 
   .card .efficacy-badge {
     display: flex;

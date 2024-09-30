@@ -12,6 +12,7 @@ export function populateCard(container, cardInfo) {
         <div class="card-thumbnail">
         <a href="${cardInfo.path}">
         ${createOptimizedPicture(cardInfo.image, cardInfo.title, false, [{ width: '750' }]).outerHTML}
+        <button type="button" aria-label="Play video" class="video-playbtn"></button>
         ${efficacyBadge}
         </a>
         </div>

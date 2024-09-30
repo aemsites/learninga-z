@@ -36,34 +36,24 @@
   }
 }
 
-.videos-filter .card .card-thumbnail a::before,
-.videos-filter .card .card-thumbnail a::after {
-  content: url("/icons/circle-play.svg");
-  display: block;
-  padding-top: 56.25%;
+.videos-filter .card .card-thumbnail .video-playbtn{
+  --size: clamp(20px, 12cqw, 60px);
+
+  display: block !important;
+  width: var(--size);
+  height: var(--size);
   position: absolute;
-  font-size: 60px;
-  color: #fff;
-  font-weight: normal;
+  cursor: pointer;
+  transform: translate3d(-50%, -50%, 0);
+  top: 50%;
   left: 50%;
-  margin-left: -25px;
-  width: 60px;
   z-index: 1;
-  top: -50%;
+  background-color: transparent;
+  background-image: url('/icons/circle-play.svg');
   transition: all .4s;
-  /* Add transition property here */
+  border: none;
 }
 
-.videos-filter .card .card-thumbnail a::after {
-  content: url("/icons/circle-play-red.svg");
-  top: -50%;
-  opacity: 0;
-}
-
-.videos-filter .card:hover .card-thumbnail a::before {
-  opacity: 0;
-}
-
-.videos-filter .card:hover .card-thumbnail a::after {
-  opacity: 1;
+.videos-filter .card.card:hover .card-thumbnail .video-playbtn{
+  background-image: url('/icons/circle-play-red.svg');
 }
