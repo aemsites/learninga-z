@@ -4,7 +4,7 @@
  * https://www.hlx.live/developer/block-collection/embed
  */
 
-import { loadCSS, loadScript } from '../../scripts/aem.js';
+import { loadScript } from '../../scripts/aem.js';
 
 const getDefaultEmbed = (url) => `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
       <iframe src="${url.href}" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allowfullscreen=""
@@ -12,24 +12,29 @@ const getDefaultEmbed = (url) => `<div style="left: 0; width: 100%; height: 0; p
       </iframe>
     </div>`;
 
-// new youtube embed with lite-youtube
-const embedYoutubeFacade = async (url) => {
-  await loadCSS('/blocks/embed/lite-yt-embed/lite-yt-embed.css');
-  await loadScript('/blocks/embed/lite-yt-embed/lite-yt-embed.js');
-
-  const usp = new URLSearchParams(url.search);
-  let videoId = usp.get('v');
+// Function to extract videoId from YouTube and Vimeo URLs
+const getVideoId = (url) => {
   if (url.origin.includes('youtu.be')) {
-    videoId = url.pathname.substring(1);
-  } else {
-    videoId = url.pathname.split('/').pop();
+    return url.pathname.substring(1);
   }
+  if (url.hostname.includes('youtube.com')) {
+    return new URLSearchParams(url.search).get('v') || url.pathname.split('/').pop();
+  }
+  if (url.hostname.includes('vimeo.com')) {
+    // lite-vimeo script expects a player.vimeo.com/video URL, so if we have a short URL
+    // we need to extract the video ID separately here
+    return url.pathname.split('/').pop();
+  }
+  return null;
+};
+
+// YouTube embed with lite-youtube
+const embedYoutube = async (url) => {
+  await loadScript('/blocks/embed/lite-yt-embed/lite-yt-embed.js');
+  const videoId = getVideoId(url);
   const wrapper = document.createElement('div');
   wrapper.setAttribute('itemscope', '');
   wrapper.setAttribute('itemtype', 'https://schema.org/VideoObject');
-  const litePlayer = document.createElement('lite-youtube');
-  litePlayer.setAttribute('videoid', videoId);
-  wrapper.append(litePlayer);
 
   try {
     const response = await fetch(`https://www.youtube.com/oembed?url=http://www.youtube.com/watch?v=${videoId}`);
@@ -38,30 +43,56 @@ const embedYoutubeFacade = async (url) => {
       <meta itemprop="name" content="${json.title}"/>
       <link itemprop="embedUrl" href="https://www.youtube.com/embed/${videoId}"/>
       <link itemprop="thumbnailUrl" href="${json.thumbnail_url}"/>
-      
       ${wrapper.innerHTML}
     `;
   } catch (err) {
     // Nothing to do, metadata just won't be added to the video
   }
+  const litePlayer = document.createElement('lite-youtube');
+  litePlayer.setAttribute('videoid', videoId);
+  litePlayer.setAttribute(
+    'style',
+    'background-image: url(./media_1ded06180650a1d8084f19126fcb1b7eaf33ae28c.png?width=500&format=pjpg&optimize=medium)',
+  );
+  wrapper.append(litePlayer);
   return wrapper.outerHTML;
 };
 
-const embedVimeo = (url, autoplay) => {
-  const [, video] = url.pathname.split('/');
-  const suffix = autoplay ? '?muted=1&autoplay=1' : '';
-  const embedHTML = `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
-        <iframe src="https://player.vimeo.com/video/${video}${suffix}" 
-        style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute; border-radius: 15px;" 
-        frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen  
-        title="Content from Vimeo" loading="lazy"></iframe>
-      </div>`;
-  return embedHTML;
+// Vimeo embed with lite-vimeo-embed
+const embedVimeo = async (url) => {
+  await loadScript('/blocks/embed/lite-vimeo-embed/lite-vimeo-embed.js');
+  const videoId = getVideoId(url);
+  const wrapper = document.createElement('div');
+  wrapper.setAttribute('itemscope', '');
+  wrapper.setAttribute('itemtype', 'https://schema.org/VideoObject');
+
+  try {
+    const response = await fetch(`https://vimeo.com/api/oembed.json?url=https://player.vimeo.com/video/${videoId}h=4dd8d22e5b`);
+    const json = await response.json();
+    wrapper.innerHTML = `
+      <meta itemprop="name" content="${json.title}"/>
+      <link itemprop="embedUrl" href="https://player.vimeo.com/video/${videoId}h=4dd8d22e5b"/>
+      <link itemprop="thumbnailUrl" href="${json.thumbnail_url}"/>
+      ${wrapper.innerHTML}
+    `;
+  } catch (err) {
+    // Nothing to do, metadata just won't be added to the video
+  }
+  const litePlayer = document.createElement('lite-vimeo');
+  litePlayer.setAttribute('videoid', videoId);
+  litePlayer.setAttribute(
+    'style',
+    'background-image: url(./media_1ded06180650a1d8084f19126fcb1b7eaf33ae28c.png?width=600&format=pjpg&optimize=medium)',
+  );
+  const playBtnEl = document.createElement('button');
+  playBtnEl.setAttribute(('class', 'ltv-playbtn'), ('aria-label', 'Video play button'));
+  wrapper.append(litePlayer);
+  return wrapper.outerHTML;
 };
 
 const EMBEDS_CONFIG = {
   vimeo: embedVimeo,
-  youtube: embedYoutubeFacade,
+  youtube: embedYoutube,
 };
 
 function getPlatform(url) {
@@ -104,7 +135,7 @@ export default async function decorate(block) {
 
   block.textContent = '';
   const service = getPlatform(url);
-  // Both Youtube and TikTok use an optimized lib that already leverages the intersection observer
+  // Both YouTube and TikTok use an optimized lib that already leverages the intersection observer
   if (service !== 'youtube') {
     const observer = new IntersectionObserver((entries) => {
       if (!entries.some((e) => e.isIntersecting)) {
