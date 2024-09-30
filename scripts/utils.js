@@ -83,18 +83,18 @@ export async function getVideosIndexData() {
   return structuredClone(videosIndexData);
 }
 
-const indexData = [];
+let indexData = null;
 /**
  * Retrieves index data from the query-index file.
  * @returns {Promise<Array>} A promise that resolves to an array of index data.
  */
-export async function getGenericIndexData() {
-  if (!indexData.length) {
-    indexData.push(...await getIndexData());
+export const getGenericIndexData = (() => async () => {
+  if (!indexData) {
+    indexData = await getIndexData();
   }
   // Protected against callers modifying the objects
   return structuredClone(indexData);
-}
+})();
 
 /**
  * Returns the index data for a specific path.
