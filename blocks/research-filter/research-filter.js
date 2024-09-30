@@ -1,4 +1,4 @@
-import { populateCard } from '../card/card.js';
+import { populateCard } from '../cards/cards.js';
 import { loadCSS } from '../../scripts/aem.js';
 
 const VALID_PRODUCTS = ['writinga-z', 'readinga-z', 'vocabularya-z', 'sciencea-z', 'raz-kids', 'raz-plus', 'raz-plus-ell', 'foundationsa-z'];
@@ -49,7 +49,6 @@ async function groupResearchPagesByType(researchDetailPages) {
 }
 
 export default async function decorate(block) {
-  await loadCSS(`${window.hlx.codeBasePath}/blocks/card/card.css`);
   await loadCSS(`${window.hlx.codeBasePath}/blocks/cards/cards.css`);
 
   // get the last part of the url as the product name

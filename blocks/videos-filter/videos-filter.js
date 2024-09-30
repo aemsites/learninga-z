@@ -1,10 +1,9 @@
 /* eslint-disable max-len */
 import { getVideosIndexData } from '../../scripts/utils.js';
-import { populateCard } from '../card/card.js';
+import { populateCard } from '../cards/cards.js';
 import { loadCSS } from '../../scripts/aem.js';
 
 export default async function decorate(block) {
-  await loadCSS(`${window.hlx.codeBasePath}/blocks/card/card.css`);
   await loadCSS(`${window.hlx.codeBasePath}/blocks/cards/cards.css`);
 
   const videos = await getVideosIndexData();
