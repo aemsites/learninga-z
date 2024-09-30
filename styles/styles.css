@@ -570,6 +570,10 @@ body.red {
   h3, .card h3 {
     color: var(--red);
   }
+
+  a {
+    color: var(--red);
+  }
 }
 
 [data-theme="red"] {
