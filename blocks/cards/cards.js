@@ -4,7 +4,7 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 
 const indexData = await getGenericIndexData();
 
-export function populateCard(container, cardInfo) {
+export function populateCard(container, cardInfo, imgWidth = '750') {
   const card = document.createElement('div');
   let efficacyBadge = '';
   if (cardInfo.efficacy) {
@@ -14,7 +14,7 @@ export function populateCard(container, cardInfo) {
   card.innerHTML = `
         <div class="card-thumbnail">
         <a href="${cardInfo.path}">
-        ${createOptimizedPicture(cardInfo.image, cardInfo.title, false, [{ width: '750' }]).outerHTML}
+        ${createOptimizedPicture(cardInfo.image, cardInfo.title, false, [{ width: imgWidth }]).outerHTML}
         <button type="button" aria-label="Play video" class="video-playbtn"></button>
         ${efficacyBadge}
         </a>
@@ -30,24 +30,28 @@ export function populateCard(container, cardInfo) {
   container.append(card);
 }
 
-function renderCard(wrapper, link) {
+function renderCard(wrapper, link, imgWidth) {
   const path = link ? link.getAttribute('href') : wrapper.textContent.trim();
   const relPath = getRelativePath(path);
   const cardInfo = indexData.find((item) => item.path === relPath);
   if (cardInfo) {
     const card = document.createElement('div');
-    populateCard(card, cardInfo);
+    populateCard(card, cardInfo, imgWidth);
     wrapper.append(card);
   }
 }
 
 export default function decorate(block) {
+  let imgWidth = '750';
+  if (block.classList.contains('suggested-videos')) {
+    imgWidth = '200';
+  }
   const title = block.querySelector('h3');
   const cardLinks = block.querySelectorAll('a');
   const cardsWrapper = document.createElement('div');
   cardsWrapper.className = 'card-wrapper';
   block.innerHTML = '';
-  Array.from(cardLinks).map(async (cardLink) => renderCard(cardsWrapper, cardLink));
+  Array.from(cardLinks).map(async (cardLink) => renderCard(cardsWrapper, cardLink, imgWidth));
   if (title) {
     block.append(title);
   }
