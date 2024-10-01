@@ -32,6 +32,54 @@
   display: none;
 }
 
+/* pagination */
+.cards .pagination-container {
+  width: 100%;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  display: inline-block;
+  padding-left: 0;
+  margin: 20px 0;
+  border-radius: 4px;
+}
+
+.cards .pagination-container .next{
+  float: right;
+}
+
+.cards .pagination-container .prev{
+  float: left;
+}
+
+.cards .pagination {
+  display: inline-block;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cards .pagination li {
+  display: inline;
+  padding: 0 10px;
+  margin: 0;
+}
+
+.cards .pagination-container a {
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all .4s;
+}
+
+.cards .pagination-container a:not([href]) {
+  color: #666;
+  pointer-events: none;
+  cursor: default;
+}
+
+/* pagination ends */
+
 .cards:not(.suggested-videos) {
   display: flex;
   flex-wrap: wrap;

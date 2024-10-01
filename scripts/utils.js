@@ -199,3 +199,97 @@ export const getTaxonomyCategory = async (category) => {
   const taxonomy = await getTaxonomy();
   return getDeepNestedObject(taxonomy, category)[0];
 };
+
+// Function to create ellipsis
+function createEllipsis() {
+  const listItem = document.createElement('li');
+  const a = document.createElement('a');
+  const span = document.createElement('span');
+  a.className = 'gap';
+  span.textContent = '...';
+  a.appendChild(span);
+  listItem.appendChild(a);
+  return listItem;
+}
+
+export function scrollTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Function to create a page link
+function createPageLink(pageNumber, text, className) {
+  const link = document.createElement('a');
+  const currentPagePath = window.location.pathname;
+  const currentPageQuery = window.location.search;
+  if (className !== 'active') {
+    link.href = `${currentPagePath}${currentPageQuery}#page=${pageNumber}`;
+  }
+  link.onclick = scrollTop;
+  link.textContent = text;
+
+  if (className) {
+    link.classList.add(className);
+  }
+
+  return link;
+}
+
+export function generatePagination(paginationContainer, currentPage, totalPages) {
+  const displayPages = 5;
+  const paginationList = document.createElement('ul');
+  paginationList.className = 'pagination';
+
+  // Previous page link
+  const prevDiv = document.createElement('div');
+  prevDiv.className = 'prev';
+  if (currentPage === 1) {
+    prevDiv.appendChild(createPageLink(currentPage - 1, '< PREVIOUS', 'active'));
+  } else {
+    prevDiv.appendChild(createPageLink(currentPage - 1, '< PREVIOUS'));
+  }
+  paginationContainer.appendChild(prevDiv);
+
+  // Page links
+  const startPage = Math.max(1, currentPage - Math.floor(displayPages / 2));
+  const endPage = Math.min(totalPages, startPage + displayPages - 1);
+
+  if (startPage > 1) {
+    const li = document.createElement('li');
+    li.appendChild(createPageLink(1, '1'));
+    paginationList.appendChild(li);
+    if (startPage > 2) {
+      paginationList.appendChild(createEllipsis());
+    }
+  }
+
+  for (let i = startPage; i <= endPage; i += 1) {
+    const li = document.createElement('li');
+    if (i === currentPage) {
+      li.appendChild(createPageLink(i, i, 'active'));
+    } else {
+      li.appendChild(createPageLink(i, i));
+    }
+    paginationList.appendChild(li);
+  }
+
+  if (endPage < totalPages) {
+    if (endPage < totalPages - 1) {
+      paginationList.appendChild(createEllipsis());
+    }
+    const li = document.createElement('li');
+    li.appendChild(createPageLink(totalPages, totalPages));
+    paginationList.appendChild(li);
+  }
+
+  paginationContainer.appendChild(paginationList);
+
+  // Next page link
+  const nextDiv = document.createElement('div');
+  nextDiv.className = 'next';
+  if (currentPage < totalPages) {
+    nextDiv.appendChild(createPageLink(currentPage + 1, 'NEXT >'));
+  } else {
+    nextDiv.appendChild(createPageLink(currentPage + 1, 'NEXT >', 'active'));
+  }
+  paginationContainer.appendChild(nextDiv);
+}

@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import { getVideosIndexData } from '../../scripts/utils.js';
-import { populateCard } from '../cards/cards.js';
 import { loadCSS } from '../../scripts/aem.js';
+import { renderCardList } from '../cards/cards.js';
 
 export default async function decorate(block) {
   await loadCSS(`${window.hlx.codeBasePath}/blocks/cards/cards.css`);
@@ -45,7 +45,9 @@ export default async function decorate(block) {
   const div = document.createElement('div');
   block.append(div);
   div.className = 'cards';
-  filteredVideos.forEach((video) => {
-    populateCard(div, video);
+  renderCardList(div, filteredVideos);
+
+  window.addEventListener('hashchange', async () => {
+    renderCardList(div, filteredVideos);
   });
 }
