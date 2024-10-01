@@ -100,7 +100,7 @@ const createMetadataBlock = (main, document, url) => {
 
   meta.category = getCategory(url);
 
-  const image = getVideoThumbnail(url) ? getVideoThumbnail(url) : document.querySelector('meta[property="og:image"]').content;
+  const image = getVideoThumbnail(url) ? getVideoThumbnail(url) : document.querySelector('meta[property="og:image"]').content.split('https://www.learninga-z.com').pop();
 
   const el = document.createElement('img');
   el.src = image;
