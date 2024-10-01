@@ -218,11 +218,12 @@ export function scrollTop() {
 
 // Function to create a page link
 function createPageLink(pageNumber, text, className) {
-  const listItem = document.createElement('li');
   const link = document.createElement('a');
   const currentPagePath = window.location.pathname;
   const currentPageQuery = window.location.search;
-  link.href = `${currentPagePath}${currentPageQuery}#page=${pageNumber}`;
+  if (className !== 'active') {
+    link.href = `${currentPagePath}${currentPageQuery}#page=${pageNumber}`;
+  }
   link.onclick = scrollTop;
   link.textContent = text;
 
@@ -230,49 +231,65 @@ function createPageLink(pageNumber, text, className) {
     link.classList.add(className);
   }
 
-  listItem.appendChild(link);
-  return listItem;
+  return link;
 }
 
-export function generatePagination(currentPage, totalPages) {
+export function generatePagination(paginationContainer, currentPage, totalPages) {
   const displayPages = 5;
-  const paginationList = document.createElement('ol');
+  const paginationList = document.createElement('ul');
   paginationList.className = 'pagination';
 
   // Previous page link
-  if (currentPage > 1) {
-    paginationList.appendChild(createPageLink(currentPage - 1, '«', 'prev'));
+  const prevDiv = document.createElement('div');
+  prevDiv.className = 'prev';
+  if (currentPage === 1) {
+    prevDiv.appendChild(createPageLink(currentPage - 1, '< PREVIOUS', 'active'));
+  } else {
+    prevDiv.appendChild(createPageLink(currentPage - 1, '< PREVIOUS'));
   }
+  paginationContainer.appendChild(prevDiv);
 
   // Page links
   const startPage = Math.max(1, currentPage - Math.floor(displayPages / 2));
   const endPage = Math.min(totalPages, startPage + displayPages - 1);
 
   if (startPage > 1) {
-    paginationList.appendChild(createPageLink(1, '1'));
+    const li = document.createElement('li');
+    li.appendChild(createPageLink(1, '1'));
+    paginationList.appendChild(li);
     if (startPage > 2) {
       paginationList.appendChild(createEllipsis());
     }
   }
 
   for (let i = startPage; i <= endPage; i += 1) {
+    const li = document.createElement('li');
     if (i === currentPage) {
-      paginationList.appendChild(createPageLink(i, i, 'active'));
+      li.appendChild(createPageLink(i, i, 'active'));
     } else {
-      paginationList.appendChild(createPageLink(i, i));
+      li.appendChild(createPageLink(i, i));
     }
+    paginationList.appendChild(li);
   }
 
   if (endPage < totalPages) {
     if (endPage < totalPages - 1) {
       paginationList.appendChild(createEllipsis());
     }
-    paginationList.appendChild(createPageLink(totalPages, totalPages));
+    const li = document.createElement('li');
+    li.appendChild(createPageLink(totalPages, totalPages));
+    paginationList.appendChild(li);
   }
 
+  paginationContainer.appendChild(paginationList);
+
   // Next page link
+  const nextDiv = document.createElement('div');
+  nextDiv.className = 'next';
   if (currentPage < totalPages) {
-    paginationList.appendChild(createPageLink(currentPage + 1, '»', 'next'));
+    nextDiv.appendChild(createPageLink(currentPage + 1, 'NEXT >'));
+  } else {
+    nextDiv.appendChild(createPageLink(currentPage + 1, 'NEXT >', 'active'));
   }
-  return paginationList;
+  paginationContainer.appendChild(nextDiv);
 }

@@ -68,7 +68,7 @@ export async function renderCardList(wrapper, cards, limit = 9) {
   if (totalPages > 1) {
     const paginationContainer = document.createElement('div');
     paginationContainer.classList.add('pagination-container');
-    paginationContainer.appendChild(generatePagination(currentPage, totalPages));
+    generatePagination(paginationContainer, currentPage, totalPages);
     wrapper.append(paginationContainer);
   }
 }
