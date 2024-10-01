@@ -1,44 +1,7 @@
 /* eslint-disable max-len */
-import { getVideosIndexData, generatePagination } from '../../scripts/utils.js';
-import { populateCard } from '../cards/cards.js';
+import { getVideosIndexData } from '../../scripts/utils.js';
 import { loadCSS } from '../../scripts/aem.js';
-
-export async function renderPage(wrapper, cards, limit = 9) {
-  wrapper.innerHTML = '';
-  let pageSize = 10;
-  if (!cards || cards.length === 0) {
-    return;
-  }
-  const limitPerPage = Number.isNaN(parseInt(limit, 10)) ? 10 : parseInt(limit, 10);
-  if (limitPerPage) {
-    pageSize = Math.round(limitPerPage - (limitPerPage % 3));
-  }
-  const list = document.createElement('div');
-  list.classList.add('article-teaser-list');
-  let currentPage = 1;
-  const match = window.location.hash.match(/page=(\d+)/);
-  if (match) {
-    currentPage = Number.isNaN(parseInt(match[1], 10)) ? currentPage : parseInt(match[1], 10);
-  }
-  let totalPages;
-  let cardsList;
-  /* articlesCount is passed when full list of articles are not passed.
-     * This is needed for pagination.
-     */
-  totalPages = Math.ceil(cards.length / pageSize);
-  cardsList = cards.slice((currentPage - 1) * pageSize, currentPage * pageSize);
-
-  cardsList.forEach((video) => {
-    populateCard(wrapper, video);
-  });
-
-  if (totalPages > 1) {
-    const paginationContainer = document.createElement('div');
-    paginationContainer.classList.add('pagination-container');
-    paginationContainer.appendChild(generatePagination(currentPage, totalPages));
-    wrapper.append(paginationContainer);
-  }
-}
+import { renderCardList } from '../cards/cards.js';
 
 export default async function decorate(block) {
   await loadCSS(`${window.hlx.codeBasePath}/blocks/cards/cards.css`);
@@ -82,9 +45,9 @@ export default async function decorate(block) {
   const div = document.createElement('div');
   block.append(div);
   div.className = 'cards';
-  renderPage(div, filteredVideos);
+  renderCardList(div, filteredVideos);
 
   window.addEventListener('hashchange', async () => {
-    renderPage(div, filteredVideos);
+    renderCardList(div, filteredVideos);
   });
 }
