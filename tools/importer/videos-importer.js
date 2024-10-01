@@ -202,7 +202,7 @@ export default {
       const cardLink = generalCallout.querySelector('a');
       cardLink.textContent = cardLink.href;
       const calloutCells = [
-        ['Card'],
+        ['Cards'],
         [cardLink],
       ];
       const calloutTable = WebImporter.DOMUtils.createTable(calloutCells, document);
