@@ -1,4 +1,4 @@
-.research-filter h2{
+.research-filter h2 {
     font-size: var(--body-font-size-m);
     font-family: var(--body-font-family);
     font-weight: var(--font-weight-medium);
@@ -8,7 +8,7 @@
     padding: 0 10px;
 }
 
-.research-filter hr{
+.research-filter hr {
     margin: 20px 10px;
     border-top: 1px solid var(--light-grey);
 }
@@ -20,4 +20,17 @@
 .research-filter .card:hover img {
     transform: scale(1.05);
     transform-style: preserve-3d;
+}
+
+@media screen and (width >=568px) {
+    .research-filter .card {
+        width: 50%;
+    }
+}
+
+
+@media screen and (width >=992px) {
+    .research-filter .card {
+        width: 33.3333%;
+    }
 }

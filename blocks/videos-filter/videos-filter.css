@@ -57,3 +57,9 @@
 .videos-filter .card.card:hover .card-thumbnail .video-playbtn{
   background-image: url('/icons/circle-play-red.svg');
 }
+
+@media screen and (width >=992px) {
+  .videos-filter .card {
+      width: 33.3333%;
+  }
+}

@@ -183,23 +183,6 @@
   }
 }
 
-@media screen and (width >=568px) {
-  .cards:not(.suggested-videos) {
-    .card {
-      width: 50%;
-    }
-  }
-}
-
-
-@media screen and (width >=992px) {
-  .cards:not(.suggested-videos) {
-    .card {
-      width: 33.3333%;
-    }
-  }
-}
-
 .cards.suggested-videos {
   margin: 20px 0;
 
