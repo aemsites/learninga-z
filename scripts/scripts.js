@@ -12,8 +12,23 @@ import {
   loadCSS,
   sampleRUM,
   getMetadata,
-  toClassName,
+  toClassName, decorateBlock,
 } from './aem.js';
+
+function buildPageDivider(main) {
+  const allPageDivider = main.querySelectorAll('code');
+
+  allPageDivider.forEach((el) => {
+    const alt = el.innerText.trim();
+    const lower = alt.toLowerCase();
+    if (lower.startsWith('divider')) {
+      if (lower === 'divider' || lower.includes('element')) {
+        el.innerText = '';
+        el.classList.add('divider');
+      }
+    }
+  });
+}
 
 /**
  * Builds hero block and prepends to main in a new section.
@@ -72,6 +87,7 @@ async function loadFonts() {
 function buildAutoBlocks(main, templateModule = undefined) {
   try {
     buildHeroBlock(main);
+    buildPageDivider(main);
     if (templateModule && templateModule.default) {
       templateModule.default(main);
     }
@@ -222,6 +238,31 @@ export function decorateExternalLinks(main) {
 }
 
 /**
+ * check if link text is same as the href
+ * @param {Element} link the link element
+ * @returns {boolean} true or false
+ */
+export function linkTextIncludesHref(link) {
+  const href = link.getAttribute('href');
+  const textcontent = link.textContent;
+  return textcontent.includes(href);
+}
+
+/**
+ * Builds video blocks when encounter video links.
+ * @param {Element} main The container element
+ */
+export function buildEmbedBlocks(main) {
+  main.querySelectorAll('a[href]').forEach((a) => {
+    if ((a.href.includes('youtu') || a.href.includes('vimeo')) && linkTextIncludesHref(a)) {
+      const embedBlock = buildBlock('embed', a.cloneNode(true));
+      a.replaceWith(embedBlock);
+      decorateBlock(embedBlock);
+    }
+  });
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  * @param {Function} templateModule The template module
@@ -236,6 +277,7 @@ export function decorateMain(main, templateModule) {
   decorateBlocks(main);
   decorateLinkedImages(main);
   decorateExternalLinks(main);
+  buildEmbedBlocks(main);
 }
 
 /**
@@ -251,6 +293,7 @@ const validTemplates = [
   'research-detail',
   'product',
   'errorpage',
+  'landing',
 ];
 async function loadTemplate() {
   const templateName = toClassName(getMetadata('template'));

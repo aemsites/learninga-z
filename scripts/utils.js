@@ -1,6 +1,7 @@
 import ffetch from './ffetch.js';
 
 const INDEX = '/query-index.json';
+const VIDEO_INDEX = '/site/resources/videos/query-index.json';
 
 /**
  * Returns the relative path from a given path.
@@ -19,58 +20,81 @@ export function getRelativePath(path) {
   return relPath;
 }
 
-const indexData = [];
+/**
+ * Retrieves data from an index.
+ * @param {string} [index=INDEX] - The index to retrieve data from.
+ * @returns {Promise<Array>} - A promise that resolves to an array of retrieved data.
+ */
+async function getIndexData(index = INDEX) {
+  const retrievedData = [];
+  const limit = 500;
+  const first = await fetch(`${index}?limit=${limit}`)
+    .then((resp) => {
+      if (resp.ok) {
+        return resp.json();
+      }
+      return {};
+    });
+
+  const { total } = first;
+  if (total) {
+    retrievedData.push(...first.data);
+    const promises = [];
+    const buckets = Math.ceil(total / limit);
+    for (let i = 1; i < buckets; i += 1) {
+      promises.push(new Promise((resolve) => {
+        const offset = i * limit;
+        fetch(`${INDEX}?offset=${offset}&limit=${limit}`)
+          .then((resp) => {
+            if (resp.ok) {
+              return resp.json();
+            }
+            return {};
+          })
+          .then((json) => {
+            const { data } = json;
+            if (data) {
+              resolve(data);
+            }
+            resolve([]);
+          });
+      }));
+    }
+
+    await Promise.all(promises).then((values) => {
+      values.forEach((list) => {
+        retrievedData.push(...list);
+      });
+    });
+  }
+  return retrievedData;
+}
+
+const videosIndexData = [];
+/**
+ * Retrieves the videos index data.
+ * @returns {Promise<Array>} A promise that resolves to an array of videos index data.
+ */
+export async function getVideosIndexData() {
+  if (!videosIndexData.length) {
+    videosIndexData.push(...await getIndexData(VIDEO_INDEX));
+  }
+  // Protected against callers modifying the objects
+  return structuredClone(videosIndexData);
+}
+
+let indexData = null;
 /**
  * Retrieves index data from the query-index file.
  * @returns {Promise<Array>} A promise that resolves to an array of index data.
  */
-export async function getIndexData() {
-  if (!indexData.length) {
-    const limit = 500;
-    const first = await fetch(`${INDEX}?limit=${limit}`)
-      .then((resp) => {
-        if (resp.ok) {
-          return resp.json();
-        }
-        return {};
-      });
-
-    const { total } = first;
-    if (total) {
-      indexData.push(...first.data);
-      const promises = [];
-      const buckets = Math.ceil(total / limit);
-      for (let i = 1; i < buckets; i += 1) {
-        promises.push(new Promise((resolve) => {
-          const offset = i * limit;
-          fetch(`${INDEX}?offset=${offset}&limit=${limit}`)
-            .then((resp) => {
-              if (resp.ok) {
-                return resp.json();
-              }
-              return {};
-            })
-            .then((json) => {
-              const { data } = json;
-              if (data) {
-                resolve(data);
-              }
-              resolve([]);
-            });
-        }));
-      }
-
-      await Promise.all(promises).then((values) => {
-        values.forEach((list) => {
-          indexData.push(...list);
-        });
-      });
-    }
+export const getGenericIndexData = (() => async () => {
+  if (!indexData) {
+    indexData = await getIndexData();
   }
-
   // Protected against callers modifying the objects
   return structuredClone(indexData);
-}
+})();
 
 /**
  * Returns the index data for a specific path.
@@ -175,3 +199,97 @@ export const getTaxonomyCategory = async (category) => {
   const taxonomy = await getTaxonomy();
   return getDeepNestedObject(taxonomy, category)[0];
 };
+
+// Function to create ellipsis
+function createEllipsis() {
+  const listItem = document.createElement('li');
+  const a = document.createElement('a');
+  const span = document.createElement('span');
+  a.className = 'gap';
+  span.textContent = '...';
+  a.appendChild(span);
+  listItem.appendChild(a);
+  return listItem;
+}
+
+export function scrollTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Function to create a page link
+function createPageLink(pageNumber, text, className) {
+  const link = document.createElement('a');
+  const currentPagePath = window.location.pathname;
+  const currentPageQuery = window.location.search;
+  if (className !== 'active') {
+    link.href = `${currentPagePath}${currentPageQuery}#page=${pageNumber}`;
+  }
+  link.onclick = scrollTop;
+  link.textContent = text;
+
+  if (className) {
+    link.classList.add(className);
+  }
+
+  return link;
+}
+
+export function generatePagination(paginationContainer, currentPage, totalPages) {
+  const displayPages = 5;
+  const paginationList = document.createElement('ul');
+  paginationList.className = 'pagination';
+
+  // Previous page link
+  const prevDiv = document.createElement('div');
+  prevDiv.className = 'prev';
+  if (currentPage === 1) {
+    prevDiv.appendChild(createPageLink(currentPage - 1, '< PREVIOUS', 'active'));
+  } else {
+    prevDiv.appendChild(createPageLink(currentPage - 1, '< PREVIOUS'));
+  }
+  paginationContainer.appendChild(prevDiv);
+
+  // Page links
+  const startPage = Math.max(1, currentPage - Math.floor(displayPages / 2));
+  const endPage = Math.min(totalPages, startPage + displayPages - 1);
+
+  if (startPage > 1) {
+    const li = document.createElement('li');
+    li.appendChild(createPageLink(1, '1'));
+    paginationList.appendChild(li);
+    if (startPage > 2) {
+      paginationList.appendChild(createEllipsis());
+    }
+  }
+
+  for (let i = startPage; i <= endPage; i += 1) {
+    const li = document.createElement('li');
+    if (i === currentPage) {
+      li.appendChild(createPageLink(i, i, 'active'));
+    } else {
+      li.appendChild(createPageLink(i, i));
+    }
+    paginationList.appendChild(li);
+  }
+
+  if (endPage < totalPages) {
+    if (endPage < totalPages - 1) {
+      paginationList.appendChild(createEllipsis());
+    }
+    const li = document.createElement('li');
+    li.appendChild(createPageLink(totalPages, totalPages));
+    paginationList.appendChild(li);
+  }
+
+  paginationContainer.appendChild(paginationList);
+
+  // Next page link
+  const nextDiv = document.createElement('div');
+  nextDiv.className = 'next';
+  if (currentPage < totalPages) {
+    nextDiv.appendChild(createPageLink(currentPage + 1, 'NEXT >'));
+  } else {
+    nextDiv.appendChild(createPageLink(currentPage + 1, 'NEXT >', 'active'));
+  }
+  paginationContainer.appendChild(nextDiv);
+}
