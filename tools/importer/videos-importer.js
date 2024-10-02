@@ -48,7 +48,7 @@ const getPubDate = (document) => {
 };
 
 const transformButtons = (main) => {
-  const primaryButtons = main.querySelectorAll('.rect-btn');
+  const primaryButtons = main.querySelectorAll('.btn.rect-btn');
   primaryButtons.forEach((button) => {
     const p = document.createElement('p');
     const strong = document.createElement('strong');
@@ -57,7 +57,7 @@ const transformButtons = (main) => {
     button.replaceWith(p);
   });
 
-  const secondaryButtons = main.querySelectorAll('.btn');
+  const secondaryButtons = main.querySelectorAll('.btn:not(.rect-btn)');
   secondaryButtons.forEach((button) => {
     const p = document.createElement('p');
     const em = document.createElement('em');
