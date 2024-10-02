@@ -1,6 +1,6 @@
 .video-detail main {
     h1 {
-        font-size: var(--heading-font-size-l);
+        font-size: var(--heading-font-size-xl);
     }
 
     .section-outer {
@@ -76,6 +76,10 @@
 
 @media (width >= 768px) {
     .video-detail main {
+        h1 {
+            font-size: var(--heading-font-size-xxl);
+        }
+
         .section-outer .section {
             max-width: 800px;
             margin-left: auto;
@@ -120,7 +124,6 @@
         grid-template-columns: 1fr minmax(0, 800px) 300px 1fr;
 
         .section-outer:not(last-of-type) {
-            /* max-width: 800px; */
             margin-left: auto;
         }
     }
