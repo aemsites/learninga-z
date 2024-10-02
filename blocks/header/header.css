@@ -474,8 +474,57 @@ header .megamenu>.section-outer {
 }
 
 /* Mobile Nav */
+nav[aria-expanded="true"] {
+ .nav-mobile-header .header-top-left{
+    a{
+      display: none;
+    }
+    
+    .back-button{
+      display: block;
+    }
+ } 
+}
+
+nav[aria-expanded="false"] {
+  .nav-mobile-header .header-top-left{
+     a{
+       display: flex;
+     }
+     
+     .back-button{
+       display: none;
+     }
+  } 
+ }
+
 .nav-mobile-header {
   display: none;
+
+  .close-button {
+    display: block;
+    position: relative;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding: 10px;
+    float: right;
+  }
+
+  .header-top-left {
+    display: inline-block;
+    padding: 10px;
+    position: relative;
+    color: var(--dark-gray);
+
+    a {
+      color: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+  }
 }
 
 .header-mobile[aria-expanded="true"] {
@@ -487,6 +536,7 @@ header .megamenu>.section-outer {
 }
 
 .header-mobile[aria-expanded="true"] nav {
+  display: flex;
   flex-direction: column;
   padding: 0;
   position: absolute;
@@ -536,7 +586,7 @@ header .megamenu>.section-outer {
 
   .nav-sections ul.primary-nav-items>li:not(.button-container)>a:not(.button) {
     width: 90%;
-    padding-bottom: 20%;
+    padding-bottom: 15%;
     border-bottom: 2px solid rgb(239, 239, 239);
   }
 
@@ -569,10 +619,6 @@ header .megamenu>.section-outer {
 }
 
 @media (width >=991px) {
-  .nav-announcement {
-    display: block;
-  }
-
   header .nav-sections,
   header .nav-tools {
     display: flex;
