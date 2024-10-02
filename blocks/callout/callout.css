@@ -1,0 +1,41 @@
+.callout {
+  background-color: #eee;
+  color: #555;
+  position: relative;
+  transition: background-color .2s;
+  padding: 15px;
+  margin:20px;
+}
+
+.callout.blue {
+  background-color: #dbf2f9;
+  border-radius: 10px;
+}
+
+.callout-inner {
+  display: flex;
+  flex-direction: column;
+}
+
+.callout-author-picture {
+  height: 117px;
+  width: 70%;
+}
+
+.callout-quote {
+  color: #555;
+  font-family: halyard-display, sans-serif;
+  font-weight: 300;
+  font-size: 1.2em;
+  padding-top: 45px;
+}
+
+@media (width >= 1296px) {
+  .callout-inner {
+    flex-direction: row;
+  }
+
+  .callout-quote {
+    padding-top: 0;
+  }
+}
