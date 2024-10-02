@@ -171,8 +171,6 @@ header .megamenu-container {
   border: 1px solid #E6EEF3;
   width: 100%;
   background-color: var(--white);
-  opacity: 0;
-  visibility: hidden;
   transition: opacity 0.3s, visibility 0.3s;
   z-index: 200;
   position: absolute;
@@ -181,14 +179,13 @@ header .megamenu-container {
   padding: 50px 0 58px;
   height: auto;
   box-shadow: 0 5px 10px 0 rgb(0 0 0 / 15%);
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
 }
 
-header .nav-sections ul.primary-nav-items>li[aria-expanded="true"] .megamenu-container {
-  opacity: 1;
-  visibility: visible;
+header .nav-sections ul.primary-nav-items > .megamenu-container.active {
+  display: flex;
 }
 
 header .megamenu {
@@ -548,7 +545,7 @@ header .megamenu>.section-outer {
     right: 10px;
   }
 
-  .nav-sections ul.primary-nav-items>li[aria-expanded="true"]>.megamenu-container {
+  .nav-sections ul.primary-nav-items > .megamenu-container.active {
     display: flex;
     padding: 0;
     position: absolute;

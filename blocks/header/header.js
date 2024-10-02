@@ -169,11 +169,10 @@ export default async function decorate(block) {
   if (navSections) {
     const navItemsWrapper = navSections.querySelector(':scope .default-content-wrapper > ul');
     navItemsWrapper.className = 'primary-nav-items';
-    navItemsWrapper.querySelectorAll(':scope > li').forEach((navSection, index) => {
-      //add class nav-item-{index} where index is the position of the current navsection
-      navSection.classList.add(`nav-item-${index}`);
+    navItemsWrapper.querySelectorAll(':scope > li').forEach((navSection) => {
+      navSection.classList.add('nav-item');
       const secondaryNav = document.createElement('div');
-      secondaryNav.className = `megamenu-container-${index}`;
+      secondaryNav.className = 'megamenu-container';
       const navChildFragmentLink = navSection.querySelector('a[href*="/fragment"]');
       if (navChildFragmentLink) {
         loadSecondaryNavFragment(navChildFragmentLink, secondaryNav);
@@ -202,6 +201,7 @@ export default async function decorate(block) {
           e.preventDefault();
           const expanded = navSection.getAttribute('aria-expanded') === 'true';
           navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+          secondaryNav.classList.remove('active');
           navSections.querySelectorAll('.nav-sections .default-content-wrapper > ul > li').forEach((section) => {
             if (section !== navSection) {
               section.setAttribute('aria-expanded', 'false');
