@@ -533,6 +533,7 @@ nav[aria-expanded="false"] {
   z-index: 100;
   height: 100%;
   background-color: white;
+  overflow: auto;
 }
 
 .header-mobile[aria-expanded="true"] nav {
@@ -552,6 +553,59 @@ nav[aria-expanded="false"] {
     width: 100%;
     position: relative;
   }
+
+  .megamenu {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+
+  .section-outer {
+    display: flex;
+    flex-direction: column;
+
+    .section{
+      display: flex;
+      flex-direction: column;
+
+      > :first-child {
+        border-bottom: 1px solid #EBECF5;
+      }
+    }
+
+    .section > * {
+      width: 95% !important;
+    }
+  }
+
+  .columns-container .columns-wrapper{
+    width: 100%;
+    
+    .columns.block, .columns-2-cols {
+      max-width: 100% !important;
+    }
+  }
+
+  .columns-container .columns.block>div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 15px;
+    width: 100%;
+
+    > div {
+      width: 100%;
+      padding: 15px;
+    }
+
+    ul {
+      border: none !important;
+    }
+}
+}
+
 
   .nav-sections .megamenu-container {
     display: none;
