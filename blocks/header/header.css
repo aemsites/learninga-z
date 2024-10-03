@@ -89,6 +89,7 @@ header .nav-tools ul>li {
   margin-right: 6px;
   font-family: var(--heading-font-family);
   text-transform: uppercase;
+  height: 100%;
 }
 
 header .nav-sections ul.primary-nav-items>li>a,
@@ -109,6 +110,11 @@ header .nav-tools ul>li>a {
   top: 50%;
   border-bottom: 2px solid transparent;
   height: 25px;
+  
+}
+
+header:not(.header-mobile) .nav-sections ul.primary-nav-items>li>a{
+  transform: translateY(-50%);
 }
 
 header .nav-sections ul.primary-nav-items>li:not(.button-container)>a:not(.button)::after {
@@ -790,7 +796,6 @@ nav[aria-expanded="false"] {
 }
 
 @media (width >=991px) {
-
   header .nav-sections,
   header .nav-tools {
     display: flex;
@@ -840,7 +845,6 @@ nav[aria-expanded="false"] {
   header .nav-sections {
     margin: 0 -25px;
     padding-right: 15px;
-    height: auto;
   }
 
   header .nav-brand {
