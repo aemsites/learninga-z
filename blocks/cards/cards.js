@@ -81,10 +81,6 @@ function getCardObject(link) {
 }
 
 export default function decorate(block) {
-  if (block.classList.contains('suggested-videos')) {
-    imgWidth = '200';
-  }
-  const title = block.querySelector('h3');
   const cardLinks = block.querySelectorAll('a');
   const cardsWrapper = document.createElement('div');
   cardsWrapper.className = 'card-wrapper';
@@ -97,9 +93,14 @@ export default function decorate(block) {
     }
     return card;
   });
-  renderCardList(cardsWrapper, cardsArray, undefined);
-  if (title) {
+  if (block.classList.contains('suggested-videos')) {
+    imgWidth = '200';
+    const title = document.createElement('h3');
+    title.innerHTML = 'Suggested Videos';
     block.append(title);
+  } else {
+    imgWidth = '750';
   }
+  renderCardList(cardsWrapper, cardsArray, undefined);
   block.append(cardsWrapper);
 }
