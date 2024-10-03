@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 import { decorateButtons } from '../../scripts/scripts.js';
@@ -217,7 +218,7 @@ export default async function decorate(block) {
     mobileNavHeader.append(closeButton);
     mobileNavHeader.append(mainMenuSection);
     nav.prepend(mobileNavHeader);
-    closeButton.addEventListener('click', () =>{
+    closeButton.addEventListener('click', () => {
       toggleHeader();
       toggleMenu(nav, nav.querySelector('.nav-sections'));
       toggleSecondaryNav(nav);
@@ -234,10 +235,18 @@ export default async function decorate(block) {
       navSection.classList.add('nav-item');
       const secondaryNav = document.createElement('div');
       secondaryNav.className = 'megamenu-container';
-      const navChildFragmentLink = navSection.querySelector('a[href*="/fragment"]');
-      if (navChildFragmentLink) {
-        loadSecondaryNavFragment(navChildFragmentLink, secondaryNav);
-        navChildFragmentLink.closest('ul').remove();
+      const navChildFragmentLink = navSection.querySelectorAll('a[href*="/fragment"]');
+      // load secondary nav fragment. if 2 links, load the first one for desktop and the second one for mobile
+      if (navChildFragmentLink.length > 1) {
+        if (isDesktop.matches) {
+          loadSecondaryNavFragment(navChildFragmentLink[0], secondaryNav);
+        } else {
+          loadSecondaryNavFragment(navChildFragmentLink[1], secondaryNav);
+        }
+        navChildFragmentLink[0].closest('ul').remove();
+      } else if (navChildFragmentLink.length) {
+        loadSecondaryNavFragment(navChildFragmentLink[0], secondaryNav);
+        navChildFragmentLink[0].closest('ul').remove();
       }
       navItemsWrapper.append(secondaryNav);
       if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
