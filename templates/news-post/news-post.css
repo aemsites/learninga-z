@@ -1,6 +1,12 @@
-.video-detail main {
+.news-post main {
     h1 {
         font-size: var(--heading-font-size-l);
+    }
+
+    .default-content-wrapper:first-child picture:first-child {
+        width: 220px;
+        float: right;
+        margin: 0 0 5% 5%;
     }
 
     .section-outer {
@@ -75,7 +81,7 @@
 }
 
 @media (width >= 768px) {
-    .video-detail main {
+    .news-post main {
         h1 {
             font-size: var(--heading-font-size-xxl);
         }
@@ -89,7 +95,7 @@
 }
 
 @media (width >= 1024px) {
-    .video-detail main {
+    .news-post main {
         display: grid;
         grid-template-areas:
         "breadcrumb breadcrumb breadcrumb breadcrumb"
@@ -120,7 +126,7 @@
 }
 
 @media (width >= 1200px) {
-    .video-detail main {
+    .news-post main {
         grid-template-columns: 1fr minmax(0, 800px) 300px 1fr;
 
         .section-outer:not(last-of-type) {
@@ -131,7 +137,7 @@
 }
 
 @media (width >= 1660px) {
-    .video-detail main {
+    .news-post main {
         column-gap: 60px;
     }
 }
