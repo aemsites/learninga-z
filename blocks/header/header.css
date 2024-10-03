@@ -184,7 +184,7 @@ header .megamenu-container {
   justify-content: center;
 }
 
-header .nav-sections ul.primary-nav-items>.megamenu-container.active {
+header .nav-sections ul.primary-nav-items .megamenu-container.active {
   display: flex;
 }
 
@@ -766,7 +766,7 @@ nav[aria-expanded="false"] {
     right: 10px;
   }
 
-  .nav-sections ul.primary-nav-items>.megamenu-container.active {
+  .nav-sections ul.primary-nav-items .megamenu-container.active {
     display: flex;
     padding: 0;
     position: absolute;

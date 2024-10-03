@@ -251,7 +251,11 @@ export default async function decorate(block) {
         loadSecondaryNavFragment(navChildFragmentLink[0], secondaryNav);
         navChildFragmentLink[0].closest('ul').remove();
       }
-      navItemsWrapper.append(secondaryNav);
+      if (isDesktop.matches) {
+        navSection.append(secondaryNav);
+      } else {
+        navItemsWrapper.append(secondaryNav);
+      }
       if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
       navSection.addEventListener('mouseenter', () => {
         if (isDesktop.matches) {
