@@ -867,6 +867,12 @@ nav[aria-expanded="false"] {
     display: flex;
     margin: 0 auto;
     padding-right: 15px;
+
+    > .section > .default-content-wrapper > *:not(ul){
+      display: none;
+    }
+
+    
   }
 
   header .nav-sections ul.primary-nav-items>li,
