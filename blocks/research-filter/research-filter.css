@@ -13,21 +13,11 @@
     border-top: 1px solid var(--light-grey);
 }
 
-.research-filter .card img {
-    transition: all .65s ease;
-}
-
-.research-filter .card:hover img {
-    transform: scale(1.05);
-    transform-style: preserve-3d;
-}
-
 @media screen and (width >=568px) {
     .research-filter .card {
         width: 50%;
     }
 }
-
 
 @media screen and (width >=992px) {
     .research-filter .card {

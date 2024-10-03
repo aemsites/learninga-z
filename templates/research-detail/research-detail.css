@@ -25,10 +25,16 @@
 }
 
 @media (width >= 768px) {
-    .research-detail main .section-outer .section {
-        max-width: 750px;
-        margin-left: auto;
-        margin-right: auto;
+    .research-detail main {
+        h1 {
+            font-size: var(--heading-font-size-xxl);
+        }
+
+        .section-outer .section {
+            max-width: 750px;
+            margin-left: auto;
+            margin-right: auto;
+        }
     }
 }
 
