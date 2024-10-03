@@ -764,7 +764,7 @@ nav[aria-expanded="false"] {
   .nav-sections ul.primary-nav-items>li:not(.button-container)>a:not(.button) {
     width: 90%;
     padding-bottom: 15%;
-    border-bottom: 2px solid var(--light-gray);
+    border-bottom: 2px solid var(--divider-gray);
   }
 
   .nav-sections ul.primary-nav-items>li:not(.button-container)>a:not(.button)::after {
