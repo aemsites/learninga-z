@@ -483,8 +483,13 @@ nav[aria-expanded="true"] {
     }
 
     .back-button {
-      display: block;
+      display: flex;
+      margin: 0;
     }
+  }
+
+  .main-menu-section {
+    display: block !important;
   }
 }
 
@@ -509,15 +514,23 @@ nav[aria-expanded="false"] {
     background-color: transparent;
     border: none;
     outline: none;
-    padding: 10px;
-    float: right;
+    padding: 0;
+    padding-right: 10px;
+    transform: translate(0, 10%);
+  }
+
+  .top-menu-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
   }
 
   .header-top-left {
     display: inline-block;
-    padding: 10px;
     position: relative;
     color: var(--dark-gray);
+    padding-left: 10px;
 
     a {
       color: inherit;
@@ -550,10 +563,24 @@ nav[aria-expanded="false"] {
   z-index: 101;
   background-color: white;
 
+  h2 {
+    font-family: var(--body-font-family);
+    color: inherit;
+  }
+
   .nav-sections {
     display: block;
     width: 100%;
     position: relative;
+
+    a {
+      font-family: var(--body-font-family);
+    }
+  }
+
+  .megamenu> :first-child:not(:only-child) {
+    border-bottom: 1px solid #EBECF5;
+    margin-bottom: 1.5em;
   }
 
   .megamenu {
@@ -567,13 +594,21 @@ nav[aria-expanded="false"] {
       display: flex;
       flex-direction: column;
 
+      .section:not(.content-cards)> :first-child:not(:only-child) {
+        border-bottom: 1px solid #EBECF5;
+        margin-bottom: 1.5em;
+      }
+
       .section {
         display: flex;
         flex-direction: column;
 
-        > :first-child {
-          border-bottom: 1px solid #EBECF5;
-          margin-bottom: 1.5em;
+        .accordion details {
+          border: none;
+
+          & p {
+            width: 100%;
+          }
         }
 
         .accordion details summary::after {
@@ -585,6 +620,10 @@ nav[aria-expanded="false"] {
 
         .accordion details[open] summary::after {
           transform: translate(0, -50%) scale(0.45) rotate(-90deg);
+        }
+
+        .accordion details[open] .accordion-item-body {
+          transition: none;
         }
 
         .accordion .accordion-item-body {
@@ -608,6 +647,21 @@ nav[aria-expanded="false"] {
             .icon {
               height: 30px;
               padding-right: 10px;
+            }
+
+            a {
+              display: flex;
+              color: inherit;
+              text-decoration: underline;
+              padding-left: 20%;
+
+              &::before {
+                content: url("/icons/icon-arrow-right.svg");
+                position: relative;
+                display: block;
+                height: 20px;
+                padding-right: 10px;
+              }
             }
           }
         }
@@ -657,6 +711,27 @@ nav[aria-expanded="false"] {
     display: block;
     width: 100%;
     background-color: rgb(239, 239, 239);
+
+    & .main-menu-section {
+      display: none;
+
+      & h2 {
+        margin-left: 20px;
+        font-weight: var(--font-weight-bold);
+      }
+    }
+
+    & .back-button {
+      position: relative;
+      font-weight: var(--font-weight-normal);
+
+      &::before {
+        content: url("/icons/chevron-left-solid.svg");
+        padding-right: 5px;
+        height: 7px;
+        width: 12px;
+      }
+    }
   }
 
   .nav-brand,
@@ -715,6 +790,7 @@ nav[aria-expanded="false"] {
 }
 
 @media (width >=991px) {
+
   header .nav-sections,
   header .nav-tools {
     display: flex;

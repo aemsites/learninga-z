@@ -191,6 +191,8 @@ export default async function decorate(block) {
     header.classList.add('header-mobile');
     const mobileNavHeader = document.createElement('div');
     mobileNavHeader.className = 'nav-mobile-header';
+    const topMenuSection = document.createElement('div');
+    topMenuSection.className = 'top-menu-section';
     const closeButton = document.createElement('button');
     closeButton.className = 'close-button';
     closeButton.innerHTML = '<span class="icon icon-close"><img src ="/icons/close.svg"/></span>';
@@ -214,8 +216,9 @@ export default async function decorate(block) {
       headerTopLeft.append(loginLinkClone);
     }
     headerTopLeft.append(backButton);
-    mobileNavHeader.append(headerTopLeft);
-    mobileNavHeader.append(closeButton);
+    topMenuSection.append(headerTopLeft);
+    topMenuSection.append(closeButton);
+    mobileNavHeader.append(topMenuSection);
     mobileNavHeader.append(mainMenuSection);
     nav.prepend(mobileNavHeader);
     closeButton.addEventListener('click', () => {
