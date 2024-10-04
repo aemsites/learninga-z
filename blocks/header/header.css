@@ -483,7 +483,7 @@ header .megamenu>.section-outer {
 }
 
 header.header-mobile .nav-sections .default-content-wrapper > p:last-child  {
-  width: 90%;
+  width: 100%;
 
   a::after {
     content: none !important;
@@ -811,7 +811,7 @@ nav[aria-expanded="false"] {
   }
 
   .nav-sections ul.primary-nav-items>li:not(.button-container)>a:not(.button) {
-    width: 90%;
+    width: 100%;
     padding-bottom: 15%;
     border-bottom: 2px solid var(--divider-gray);
   }
