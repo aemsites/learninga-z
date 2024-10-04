@@ -14,6 +14,20 @@ export default function decorate(block) {
     // decorate accordion item body
     const body = row.children[1];
     body.className = 'accordion-item-body';
+    // if body has a hr, wrap all the content after the hr in a div with class sub-content
+    const hr = body.querySelector('hr');
+    if (hr) {
+      const subContent = document.createElement('div');
+      subContent.className = 'sub-content';
+      let nextSibling = hr.nextElementSibling;
+      while (nextSibling) {
+        const sibling = nextSibling;
+        nextSibling = sibling.nextElementSibling;
+        subContent.append(sibling);
+      }
+      hr.after(subContent);
+      hr.remove();
+    }
     // decorate accordion item
     const details = document.createElement('details');
     details.className = 'accordion-item';
