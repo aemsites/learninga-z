@@ -1,6 +1,6 @@
 /* stylelint-disable no-descending-specificity */
 .card-wrapper {
-  margin-bottom: 1em;
+  margin-bottom: 36px;
 }
 
 .card h3 {
@@ -13,6 +13,15 @@
   &:hover {
       text-decoration: underline;
   }
+}
+
+.card img {
+  transition: all .65s ease;
+}
+
+.card:hover img {
+  transform: scale(1.05);
+  transform-style: preserve-3d;
 }
 
 .card a {
@@ -111,10 +120,6 @@
     color: var(--charcoal-blue);
   }
 
-  .card .card-body p:hover {
-    color: var(--maroon);
-  }
-
   .card .efficacy-badge {
     display: flex;
     justify-content: space-between;
@@ -183,21 +188,8 @@
   }
 }
 
-@media screen and (width >=568px) {
-  .cards:not(.suggested-videos) {
-    .card {
-      width: 50%;
-    }
-  }
-}
-
-
-@media screen and (width >=992px) {
-  .cards:not(.suggested-videos) {
-    .card {
-      width: 33.3333%;
-    }
-  }
+.red main .card .card-body p:hover {
+  color: var(--maroon);
 }
 
 .cards.suggested-videos {
@@ -223,6 +215,10 @@
     padding: 25px 0;
     display: flex;
     gap:10px;
+  }
+
+  .card:hover img {
+    transform: none;
   }
 
   .card:last-of-type {

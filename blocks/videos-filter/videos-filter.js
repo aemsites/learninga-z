@@ -22,12 +22,12 @@ export default async function decorate(block) {
   form.setAttribute('class', 'video-filter-form');
   form.setAttribute('method', 'get');
   form.innerHTML = `
-      <div class="select-position">
-      <select id="category" name="category" onchange="this.form.submit()">
-        <option value="show-all" selected="selected">Show All</option>
-        ${[...categories].map(([key, value]) => `<option value="${key}">${value}</option>`).join('')}
-      </select>
-      </div>
+        <div class="select-position">
+        <select id="category" name="category" onchange="window.location.hash = 'page=1';this.form.submit();">
+            <option value="show-all" selected="selected">Show All</option>
+            ${[...categories].map(([key, value]) => `<option value="${key}">${value}</option>`).join('')}
+        </select>
+        </div>
     `;
 
   const urlParams = new URLSearchParams(window.location.search);
@@ -45,9 +45,9 @@ export default async function decorate(block) {
   const div = document.createElement('div');
   block.append(div);
   div.className = 'cards';
-  renderCardList(div, filteredVideos);
+  renderCardList(div, filteredVideos, 9, 'video');
 
   window.addEventListener('hashchange', async () => {
-    renderCardList(div, filteredVideos);
+    renderCardList(div, filteredVideos, 9, 'video');
   });
 }

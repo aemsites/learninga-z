@@ -510,6 +510,10 @@ body.purple {
   .breadcrumbs-outer {
     background-color: var(--purple);
   }
+
+  a {
+    color: var(--royal-blue);
+  }
 }
 
 [data-theme="purple"] {
@@ -531,7 +535,7 @@ body.laz-blue {
   }
 
   h3, a {
-    color: var(--laz-blue);
+    color: var(--royal-blue);
   }
 
   h2 {
