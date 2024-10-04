@@ -108,7 +108,13 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
 function toggleHeader() {
   const header = document.querySelector('header');
   const expanded = header.getAttribute('aria-expanded') === 'true';
-  header.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+  if (expanded) {
+    document.body.style.overflowY = '';
+    header.setAttribute('aria-expanded', 'false');
+  } else {
+    document.body.style.overflowY = 'hidden';
+    header.setAttribute('aria-expanded', 'true');
+  }
 }
 
 function toggleSecondaryNav(nav) {
