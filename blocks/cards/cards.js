@@ -6,24 +6,28 @@ const indexData = await getGenericIndexData();
 let imgWidth = '750';
 
 /** function to populate card */
-export function populateCard(container, cardInfo) {
+export function populateCard(container, cardInfo, type = 'card') {
   const card = document.createElement('div');
   let efficacyBadge = '';
+  let videoPlayBtn = '';
   if (cardInfo.efficacy) {
     efficacyBadge = `<span class="efficacy-badge ${cardInfo.efficacy}"><i class="flag"><span class="sr-only">Flag</span></i><p>${cardInfo.efficacy.charAt(0).toUpperCase() + cardInfo.efficacy.slice(1)}</p></span>`;
+  }
+  if (type === 'video') {
+    videoPlayBtn = '<button type="button" aria-label="Play video" class="video-playbtn"></button>';
   }
   card.className = 'card';
   card.innerHTML = `
         <div class="card-thumbnail">
         <a href="${cardInfo.path}">
         ${createOptimizedPicture(cardInfo.image, cardInfo.title, false, [{ width: imgWidth }]).outerHTML}
-        <button type="button" aria-label="Play video" class="video-playbtn"></button>
+        ${videoPlayBtn}
         ${efficacyBadge}
         </a>
         </div>
         <div class="card-body">
         <a href="${cardInfo.path}">
-            <h3>${cardInfo.title}</h3>
+            <h3>${cardInfo.title.replace(/ \| Learning A-Z$|- Learning A-Z$/, '')}</h3>
          </a>
             <a href="${cardInfo.path}"><p>${cardInfo.description}</p></a>
        
@@ -35,7 +39,7 @@ export function populateCard(container, cardInfo) {
 /** function to render card list when an array of card objects are passed.
  * this also supports pagination
 */
-export async function renderCardList(wrapper, cards, limit = 9) {
+export async function renderCardList(wrapper, cards, limit = 9, type = 'card') {
   let limitPerPage = limit;
   if (limit === undefined) {
     limitPerPage = cards.length;
@@ -62,7 +66,7 @@ export async function renderCardList(wrapper, cards, limit = 9) {
   const cardsList = cards.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
   cardsList.forEach((card) => {
-    populateCard(wrapper, card);
+    populateCard(wrapper, card, type);
   });
 
   if (totalPages > 1) {
