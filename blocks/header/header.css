@@ -440,7 +440,7 @@ header .megamenu>.section-outer {
   max-height: 90%;
 }
 
-.header .megamenu .columns-container.content-cards .columns>div, header.header-mobile .nav-sections .default-content-wrapper > p:last-child {
+.header .megamenu .columns-container.content-cards .columns>div, header.header-mobile .nav-sections > .section > .default-content-wrapper > p:last-child {
   background-color: #314091;
   color: white;
   border-radius: 10px;
@@ -487,6 +487,10 @@ header.header-mobile .nav-sections .default-content-wrapper > p:last-child  {
 
   a::after {
     content: none !important;
+  }
+
+  picture {
+    text-align: center;
   }
 }
 
