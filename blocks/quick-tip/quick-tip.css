@@ -1,9 +1,3 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 20px;
-}
-
 .quick-tip ul {
   color: #555;
   list-style-type: disc;
@@ -25,6 +19,5 @@ body {
   border-radius: 15px; /* Curved corners */
   padding: 20px; /* Space inside the border */
   margin: 20px 0; /* Space around the container */
-  /*background-color: #f4f4f4;*/
   box-shadow: 0 2px 5px rgba(0 0 0 / 10%); /* Optional shadow for depth */
 }
