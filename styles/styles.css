@@ -511,6 +511,10 @@ body.purple {
   a {
     color: var(--laz-logo-blue);
   }
+
+  .table table th {
+    background-color: var(--purple);
+    }
 }
 
 [data-theme="purple"] {
@@ -538,6 +542,10 @@ body.laz-blue {
   h2 {
     color: var(--laz-logo-blue);
   }
+
+  .table table th {
+    background-color: var(--laz-blue);
+    }
 }
 
 [data-theme="laz-blue"] {
@@ -575,6 +583,10 @@ body.red {
   a {
     color: var(--red);
   }
+
+  .table table th {
+    background-color: var(--red);
+    }
 }
 
 [data-theme="red"] {
@@ -594,6 +606,10 @@ body.yellow {
   .breadcrumbs-outer {
     background-color: var(--yellow);
   }
+
+  .table table th {
+    background-color: var(--yellow);
+    }
 }
 
   [data-theme="yellow"] {
