@@ -61,7 +61,7 @@ footer .footer .columns ul {
 
 footer .footer .columns ul li {
   padding: 0 5px;
-  font-weight: 600;
+  font-weight: var(--font-weight-bold);
   font-size: 16px;
   color: var(--dark-gray);
   text-transform: uppercase;
@@ -69,7 +69,7 @@ footer .footer .columns ul li {
 }
 
 footer .footer .columns ul li a {
-  font-size: 14px;
+  font-size: var(--body-font-size-xs);
   color: var(--charcoal-blue);
 }
 
@@ -78,7 +78,7 @@ footer .columns-container .default-content-wrapper p {
 }
 
 footer .footer .columns-container .default-content-wrapper p a{
-  color: var(--royal-blue);
+  color: var(--laz-logo-blue);
   text-decoration: underline;
 }
 
@@ -186,7 +186,7 @@ footer .cambium-banner img {
   }
 
   footer .social-links-container {
-    justify-content: flex-end;  
+    justify-content: flex-end;
   }
 }
 

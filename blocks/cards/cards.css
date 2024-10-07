@@ -75,8 +75,8 @@
 }
 
 .cards .pagination-container a {
-  font-size: 18px;
-  font-weight: 600;
+  font-size: var(--body-font-size-m);
+  font-weight: var(--font-weight-bold);
   text-transform: uppercase;
   transition: all .4s;
 }
@@ -180,7 +180,7 @@
     margin: 0;
     padding: 0;
     margin-left: 8px;
-    font-weight: 400;
+    font-weight: var(--font-weight-normal);
   }
 
   .card .efficacy-badge:not(.strong) p {

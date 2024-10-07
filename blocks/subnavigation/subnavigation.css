@@ -38,7 +38,7 @@
 
 .subnavigation.research .button.textcolor-royal-blue:hover,
 .subnavigation.research .button.active.secondary.textcolor-royal-blue {
-    background-color: var(--royal-blue);
+    background-color: var(--laz-logo-blue);
 }
 
 .subnavigation.research .button.textcolor-dark-blue:hover,
@@ -86,16 +86,16 @@
 }
 
 .subnavigation.research .subnav-content.royal-blue {
-   border-color: var(--royal-blue);
+   border-color: var(--laz-logo-blue);
 
    h2 {
-       color: var(--royal-blue);
+       color: var(--laz-logo-blue);
    }
 }
 
 .subnavigation.research .subnav-content.berry {
     border-color: var(--product-berry);
- 
+
     h2 {
         color: var(--product-berry);
     }
@@ -103,7 +103,7 @@
 
  .subnavigation.research .subnav-content.dark-blue {
     border-color: var(--product-dark-blue);
- 
+
     h2 {
         color: var(--product-dark-blue);
     }
@@ -111,7 +111,7 @@
 
  .subnavigation.research .subnav-content.purple {
     border-color: var(--product-purple);
- 
+
     h2 {
         color: var(--product-purple);
     }
@@ -119,7 +119,7 @@
 
  .subnavigation.research .subnav-content.navy-blue {
     border-color: var(--product-navy-blue);
- 
+
     h2 {
         color: var(--product-navy-blue);
     }
@@ -127,7 +127,7 @@
 
  .subnavigation.research .subnav-content.green {
     border-color: var(--product-green);
- 
+
     h2 {
         color: var(--product-green);
     }
@@ -135,7 +135,7 @@
 
  .subnavigation.research .subnav-content.orange {
     border-color: var(--product-orange);
- 
+
     h2 {
         color: var(--product-orange);
     }
