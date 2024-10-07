@@ -1,4 +1,8 @@
 .research-detail main {
+    h1 {
+        font-size: var(--heading-font-size-xl);
+    }
+
     .section-outer {
         margin: unset;
 
@@ -25,10 +29,16 @@
 }
 
 @media (width >= 768px) {
-    .research-detail main .section-outer .section {
-        max-width: 750px;
-        margin-left: auto;
-        margin-right: auto;
+    .research-detail main {
+        h1 {
+            font-size: var(--heading-font-size-xxl);
+        }
+
+        .section-outer .section {
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
     }
 }
 
@@ -36,40 +46,46 @@
     .research-detail main {
         display: grid;
         grid-template-areas:
-        "breadcrumb breadcrumb"
-        "content sidebar"
-    "content sidebar";
+        "breadcrumb breadcrumb breadcrumb breadcrumb"
+        ". content sidebar ."
+         ". content sidebar .";
+        grid-template-columns: 1fr 660px minmax(0, 280px) 1fr;
         column-gap: 40px;
         position: relative;
         max-width: unset;
 
-        .section-outer:not(last-of-type) {
-            grid-area: auto / content;
-            max-width: 610px;
-            justify-self: end;
-            grid-template-rows: max-content;
-        }
+        .section-outer {
+            > .section {
+                padding: 0;
+            }
 
-        .section-outer:last-of-type {
-            grid-area: sidebar;
-            justify-self: start;
-            grid-row-end: last-line;
+            &:not(last-of-type) {
+                grid-area: auto / content;
+                display: grid;
+                grid-template-rows: max-content;
+            }
 
-            .section {
-                width: 320px;
+            &:last-of-type {
+                grid-area: sidebar;
+                grid-row-end: last-line;
             }
         }
+
     }
 }
 
 @media (width >= 1200px) {
     .research-detail main {
-        .section-outer:not(last-of-type) {
-            max-width: 760px;
-        }
+        grid-template-columns: 1fr minmax(0, 800px) 300px 1fr;
 
-        .section-outer:last-of-type .section {
-            width: 400px;
+        .section-outer:not(last-of-type) {
+            margin-left: auto;
         }
+    }
+}
+
+@media (width >= 1660px) {
+    .research-detail main {
+        column-gap: 60px;
     }
 }

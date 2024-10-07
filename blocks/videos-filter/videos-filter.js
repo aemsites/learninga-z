@@ -45,9 +45,9 @@ export default async function decorate(block) {
   const div = document.createElement('div');
   block.append(div);
   div.className = 'cards';
-  renderCardList(div, filteredVideos);
+  renderCardList(div, filteredVideos, 9, 'video');
 
   window.addEventListener('hashchange', async () => {
-    renderCardList(div, filteredVideos);
+    renderCardList(div, filteredVideos, 9, 'video');
   });
 }

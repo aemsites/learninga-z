@@ -291,6 +291,7 @@ const validTemplates = [
   'blog-author',
   'video-detail',
   'research-detail',
+  'news-post',
   'product',
   'errorpage',
   'landing',

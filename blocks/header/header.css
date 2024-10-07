@@ -56,7 +56,7 @@ header .nav-sections {
   display: none;
   align-items: center;
   float: right;
-  padding-left: 15px;
+  padding: 0 15px;
   height: 100%;
 }
 
@@ -89,6 +89,7 @@ header .nav-tools ul>li {
   margin-right: 6px;
   font-family: var(--heading-font-family);
   text-transform: uppercase;
+  height: 100%;
 }
 
 header .nav-sections ul.primary-nav-items>li>a,
@@ -109,6 +110,11 @@ header .nav-tools ul>li>a {
   top: 50%;
   border-bottom: 2px solid transparent;
   height: 25px;
+  
+}
+
+header:not(.header-mobile) .nav-sections ul.primary-nav-items>li>a{
+  transform: translateY(-50%);
 }
 
 header .nav-sections ul.primary-nav-items>li:not(.button-container)>a:not(.button)::after {
@@ -171,8 +177,6 @@ header .megamenu-container {
   border: 1px solid #E6EEF3;
   width: 100%;
   background-color: var(--white);
-  opacity: 0;
-  visibility: hidden;
   transition: opacity 0.3s, visibility 0.3s;
   z-index: 200;
   position: absolute;
@@ -181,14 +185,13 @@ header .megamenu-container {
   padding: 50px 0 58px;
   height: auto;
   box-shadow: 0 5px 10px 0 rgb(0 0 0 / 15%);
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
 }
 
-header .nav-sections ul.primary-nav-items>li[aria-expanded="true"] .megamenu-container {
-  opacity: 1;
-  visibility: visible;
+header .nav-sections ul.primary-nav-items .megamenu-container.active {
+  display: flex;
 }
 
 header .megamenu {
@@ -221,7 +224,8 @@ header .megamenu>.section-outer {
   justify-content: space-between;
 }
 
-.header .tabs.columns .tabs-list .icon {
+.header .tabs.columns .tabs-list .icon,
+.header .accordion .accordion-item-label .icon {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -271,7 +275,8 @@ header .megamenu>.section-outer {
   font-size: 11px;
 }
 
-.header .tabs.columns .tabs-panel .icon {
+.header .tabs.columns .tabs-panel .icon,
+.header .accordion .accordion-item-body .icon {
   height: 48px;
   margin-bottom: 20px;
   max-width: 100%;
@@ -338,8 +343,8 @@ header .megamenu>.section-outer {
 }
 
 .header .tabs.columns .tabs-panel>div>p .button.secondary:hover {
-    text-decoration: underline;
-    background-color: #f0f0f0;
+  text-decoration: underline;
+  background-color: #f0f0f0;
 }
 
 .header .tabs.columns .tabs-panel>div>p .button.secondary .icon {
@@ -435,7 +440,7 @@ header .megamenu>.section-outer {
   max-height: 90%;
 }
 
-.header .megamenu .columns-container.content-cards .columns>div {
+.header .megamenu .columns-container.content-cards .columns>div, header.header-mobile .nav-sections > .section > .default-content-wrapper > p:last-child {
   background-color: #314091;
   color: white;
   border-radius: 10px;
@@ -464,6 +469,7 @@ header .megamenu>.section-outer {
     color: white;
     align-items: center;
     justify-content: center;
+    background-color: inherit;
   }
 
   a::after {
@@ -474,6 +480,374 @@ header .megamenu>.section-outer {
     position: relative;
     display: block;
   }
+}
+
+header.header-mobile .nav-sections .default-content-wrapper > p:last-child  {
+  width: 100%;
+
+  a::after {
+    content: none !important;
+  }
+
+  picture {
+    text-align: center;
+  }
+}
+
+/* Mobile Nav */
+nav[aria-expanded="true"] {
+  .nav-mobile-header .header-top-left {
+    a {
+      display: none;
+    }
+
+    .back-button {
+      display: flex;
+      margin: 0;
+      cursor: pointer;
+    }
+  }
+
+  .main-menu-section {
+    display: block !important;
+  }
+}
+
+nav[aria-expanded="false"] {
+  .nav-mobile-header .header-top-left {
+    a {
+      display: flex;
+    }
+
+    .back-button {
+      display: none;
+    }
+  }
+}
+
+.nav-mobile-header {
+  display: none;
+
+  .close-button {
+    display: block;
+    position: relative;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding: 0;
+    padding-right: 10px;
+    transform: translate(0, 10%);
+  }
+
+  .top-menu-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+  }
+
+  .header-top-left {
+    display: inline-block;
+    position: relative;
+    color: var(--dark-gray);
+    padding-left: 10px;
+
+    a {
+      color: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+  }
+}
+
+.header-mobile[aria-expanded="true"] {
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+  height: 100%;
+  background-color: white;
+  overflow: auto;
+}
+
+.header-mobile[aria-expanded="true"] nav {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  position: absolute;
+  min-height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 101;
+  background-color: white;
+
+  h2 {
+    font-family: var(--body-font-family);
+    color: inherit;
+  }
+
+  .nav-sections {
+    display: block;
+    width: 100%;
+    position: relative;
+    height: auto;
+
+    a {
+      font-family: var(--body-font-family);
+    }
+
+    > .section > .default-content-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+
+      /* add 25px padding to the top of the second element */
+      > :nth-child(2) {
+        padding-top: 10%;
+      }
+
+      >p, >p a {
+        display: flex;
+        gap: 10px;
+        color: inherit;
+      }
+
+      /* make flex direction column for the last p */
+      >p:last-child {
+        flex-direction: column;
+        gap:0;
+        border: 2px solid transparent;
+
+        br {
+          display: none;
+        }
+
+        >a {
+          text-decoration: none;
+          color: white;
+        }
+
+        /* first child bolder */
+        >a:first-child {
+          font-weight: 600;
+        }
+      }
+    }
+  }
+
+  .megamenu> :first-child:not(:only-child) {
+    border-bottom: 1px solid #EBECF5;
+    margin-bottom: 1.5em;
+  }
+
+  .megamenu {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+
+    .section-outer {
+      display: flex;
+      flex-direction: column;
+
+      .section:not(.content-cards)> :first-child:not(:only-child) {
+        border-bottom: 1px solid #EBECF5;
+        margin-bottom: 1.5em;
+      }
+
+      .section {
+        display: flex;
+        flex-direction: column;
+
+        .accordion details {
+          border: none;
+
+          & p {
+            width: 100%;
+          }
+        }
+
+        .accordion details summary::after {
+          content: url("/icons/solutions-right.svg");
+          top: 50%;
+          transform: translate(0, -50%) scale(0.45) rotate(90deg);
+          right: 10px;
+        }
+
+        .accordion details[open] summary::after {
+          transform: translate(0, -50%) scale(0.45) rotate(-90deg);
+        }
+
+        .accordion details[open] .accordion-item-body {
+          transition: none;
+        }
+
+        .accordion .accordion-item-body {
+          .button-container {
+            margin: 0;
+
+            &>* {
+              width: 100%;
+              display: block;
+
+              .button {
+                width: 100%;
+              }
+            }
+          }
+
+          .sub-content {
+            padding: 20px;
+            border-left: 3px solid var(--berry);
+
+            .icon {
+              height: 30px;
+              padding-right: 10px;
+            }
+
+            a {
+              display: flex;
+              color: inherit;
+              text-decoration: underline;
+              padding-left: 20%;
+
+              &::before {
+                content: url("/icons/icon-arrow-right.svg");
+                position: relative;
+                display: block;
+                height: 20px;
+                padding-right: 10px;
+              }
+            }
+          }
+        }
+
+      }
+
+      .columns-container:not(.content-cards)>div:last-child.default-content-wrapper {
+        width: 100%;
+      }
+    }
+
+    .columns-container .columns-wrapper {
+      width: 100%;
+
+      .columns.block,
+      .columns-2-cols {
+        max-width: 100% !important;
+      }
+    }
+
+    .columns-container .columns.block>div {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 15px;
+      width: 100%;
+
+      >div {
+        width: 100%;
+        padding: 15px;
+      }
+
+      ul {
+        border: none !important;
+      }
+    }
+  }
+
+
+  .nav-sections .megamenu-container {
+    display: none;
+  }
+
+  .nav-mobile-header {
+    position: relative;
+    display: block;
+    width: 100%;
+    background-color: var(--light-gray);
+
+    & .main-menu-section {
+      display: none;
+
+      & h2 {
+        margin-left: 20px;
+        font-weight: var(--font-weight-bold);
+      }
+    }
+
+    & .back-button {
+      position: relative;
+      font-weight: var(--font-weight-normal);
+
+      &::before {
+        content: url("/icons/chevron-left-solid.svg");
+        padding-right: 5px;
+        height: 7px;
+        width: 12px;
+      }
+    }
+  }
+
+  .nav-brand,
+  .nav-hamburger {
+    display: none;
+  }
+
+  ul.primary-nav-items {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 30px;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+
+    li {
+      gap: 20px;
+      width: 100%;
+    }
+  }
+
+  .nav-sections ul.primary-nav-items>li:not(.button-container)>a:not(.button) {
+    width: 100%;
+    border-bottom: 2px solid var(--divider-gray);
+    margin: auto 0;
+    padding-bottom: 50px;
+  }
+
+  .nav-sections ul.primary-nav-items>li:not(.button-container)>a:not(.button)::after {
+    transform: translate(0, -75%) scale(0.45);
+    right: 10px;
+    top: 50%;
+  }
+
+  .nav-sections ul.primary-nav-items .megamenu-container.active {
+    display: flex;
+    padding: 0;
+    position: absolute;
+    min-height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 102;
+    background-color: white;
+
+    .tabs-list {
+      width: 100%;
+      display: flex;
+    }
+
+    .tabs-panel {
+      display: none;
+    }
+  }
+
 }
 
 @media (width >=991px) {
@@ -500,6 +874,12 @@ header .megamenu>.section-outer {
     display: flex;
     margin: 0 auto;
     padding-right: 15px;
+
+    > .section > .default-content-wrapper > *:not(ul){
+      display: none;
+    }
+
+    
   }
 
   header .nav-sections ul.primary-nav-items>li,
@@ -526,7 +906,6 @@ header .megamenu>.section-outer {
   header .nav-sections {
     margin: 0 -25px;
     padding-right: 15px;
-    height: auto;
   }
 
   header .nav-brand {
