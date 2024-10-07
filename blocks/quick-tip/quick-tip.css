@@ -1,0 +1,30 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #f4f4f4;
+}
+
+.quick-tip ul, p{
+  color: #555;
+  list-style-type: disc;
+  background-color: #f4f4f4;
+
+}
+
+.quick-tip li {
+
+  margin: 5px 0; /* Space between list items */
+  font-size: 1em;
+  color: #555;
+  background-color: #f4f4f4;
+}
+
+.quick-tip-wrapper {
+  border: 2px solid #555; /* Border color and thickness */
+  border-radius: 15px; /* Curved corners */
+  padding: 20px; /* Space inside the border */
+  margin: 20px 0; /* Space around the container */
+  background-color: #f4f4f4;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+}
