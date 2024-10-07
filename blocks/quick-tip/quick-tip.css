@@ -9,11 +9,9 @@ body {
   color: #555;
   list-style-type: disc;
   background-color: #f4f4f4;
-
 }
 
 .quick-tip li {
-
   margin: 5px 0; /* Space between list items */
   font-size: 1em;
   color: #555;
