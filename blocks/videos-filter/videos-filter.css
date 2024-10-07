@@ -21,13 +21,13 @@
     cursor: pointer;
     text-decoration: none;
     transition: color 0.4s, background-color 0.4s;
-    font-size: 14px;
+    font-size: var(--body-font-size-xs);
     width: 173.85px;
     appearance: none;
   }
 
   select::after {
-    content: url("/icons/arrow-down.svg");
+    content: url('/icons/arrow-down.svg');
     position: absolute;
     right: 10px;
     top: 50%;
@@ -36,7 +36,7 @@
   }
 }
 
-.videos-filter .card .card-thumbnail .video-playbtn{
+.videos-filter .card .card-thumbnail .video-playbtn {
   --size: clamp(20px, 12cqw, 60px);
 
   display: block !important;
@@ -54,7 +54,7 @@
   border: none;
 }
 
-.videos-filter .card.card:hover .card-thumbnail .video-playbtn{
+.videos-filter .card.card:hover .card-thumbnail .video-playbtn {
   background-image: url('/icons/circle-play-red.svg');
 }
 
