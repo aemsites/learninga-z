@@ -1,8 +1,7 @@
 .videos-filter form {
-  margin-top: 20px;
+  margin: 32px 0;
 
   .select-position {
-    padding-left: 10px;
     position: relative;
   }
 
@@ -12,27 +11,16 @@
     background: #56514d;
     color: #fff;
     font-weight: bold;
-    margin-bottom: 5px;
     line-height: 39px;
     text-align: left;
-    padding: 0;
+    padding: 10px;
     display: inline-block;
     text-transform: uppercase;
     cursor: pointer;
     text-decoration: none;
     transition: color 0.4s, background-color 0.4s;
     font-size: var(--body-font-size-xs);
-    width: 173.85px;
-    appearance: none;
-  }
-
-  select::after {
-    content: url('/icons/arrow-down.svg');
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
+    width: auto;
   }
 }
 
@@ -58,8 +46,15 @@
   background-image: url('/icons/circle-play-red.svg');
 }
 
+
+@media screen and (width >=568px) {
+  .videos-filter .card {
+    width: calc(50% - 20px);
+  }
+}
+
 @media screen and (width >=992px) {
   .videos-filter .card {
-      width: 33.3333%;
+      width: calc(33.33% - 20px);
   }
 }
