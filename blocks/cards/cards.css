@@ -18,7 +18,8 @@
 
 
   img {
-    transition: all .65s ease;
+    transition: transform .65s ease, opacity .75s ease-in-out;
+
   }
 
   i.arrow {
@@ -40,34 +41,23 @@
   }
 }
 
-  .videos-filter, .research-filter {
-    .card img {
-      width: 100%;
-      object-fit: cover;
-      aspect-ratio: 36/24;
-    }
-  }
-
   .card:hover img {
     transform: scale(1.05);
-    transform-style: preserve-3d;
-    filter: brightness(75%);
+    opacity: 0.9;
+
   }
 
   .card a {
     text-decoration: none;
   }
 
-  .card .card-thumbnail {
-    position: relative;
-  }
 
   .card .card-body p {
     font-weight: var(--font-weight-normal);
     color: var(--charcoal-blue);
   }
 
-  .card .card-thumbnail .video-playbtn{
+  .card .card-thumbnail .video-playbtn {
     display: none;
   }
 
@@ -125,10 +115,24 @@
     justify-content: flex-start;
     gap: 20px;
 
+    .card-wrapper > .card {
+      margin-bottom: 20px;
+    }
+
     .card {
       background: var(--divider-gray);
       height: auto;
       position: relative;
+
+      picture {
+        background-color: var(--black);
+
+      img {
+        width: 100%;
+        object-fit: cover;
+        aspect-ratio: 36/24;
+      }
+      }
     }
 
     .card a {
