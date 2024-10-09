@@ -18,7 +18,7 @@ header .nav-wrapper .nav-announcement {
 }
 
 header .nav-wrapper .nav-announcement a {
-  color: var(--white);
+  color: var(--laz-black);
   background-color: var(--orange);
   font-weight: var(--font-weight-bold);
   text-align: center;
