@@ -95,7 +95,7 @@ indices:
     include:
       - /site/resources/research-and-efficacy/**
     exclude: *excludes
-    target: /site/resources/research/query-index.json
+    target: /site/resources/research-and-efficacy/query-index.json
     properties:
       title:
         select: head > meta[property="og:title"]
