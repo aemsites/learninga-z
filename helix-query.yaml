@@ -93,7 +93,7 @@ indices:
         value: attribute(el, "content")
   research:
     include:
-      - /site/resources/research/**
+      - /site/resources/research-and-efficacy/**
     exclude: *excludes
     target: /site/resources/research/query-index.json
     properties:
