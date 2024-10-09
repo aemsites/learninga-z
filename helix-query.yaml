@@ -19,7 +19,7 @@ indices:
       - '**/user_area/**'
       - /nav
       - /footer
-    target: /cigaradvisor/index/query-index.json
+    target: /query-index.json
     properties:
       title:
         select: head > meta[property="og:title"]
