@@ -1,23 +1,23 @@
 .quick-tip ul {
-  color: #555;
+  color: var(--dark-gray);
   list-style-type: disc;
 }
 
 .quick-tip p {
-  color: #555;
+  color: var(--dark-gray);
   list-style-type: disc;
 }
 
 .quick-tip li {
   margin: 5px 0;
   font-size: 1em;
-  color: #555;
+  color: var(--dark-gray);
 }
 
 .quick-tip-wrapper {
-  border: 2px solid #555;
+  border: 2px solid var(--dark-gray);
   border-radius: 15px;
   padding: 20px;
   margin: 20px 0;
-  box-shadow: 0 2px 5px rgba(0 0 0 / 10%);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 10%);
 }
