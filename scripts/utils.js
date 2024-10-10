@@ -2,6 +2,7 @@ import ffetch from './ffetch.js';
 
 const INDEX = '/query-index.json';
 const VIDEO_INDEX = '/site/resources/videos/query-index.json';
+const NEWS_INDEX = '/site/company/news/query-index.json';
 
 /**
  * Returns the relative path from a given path.
@@ -68,6 +69,19 @@ async function getIndexData(index = INDEX) {
     });
   }
   return retrievedData;
+}
+
+const newsIndexData = [];
+/**
+ * Retrieves the videos index data.
+ * @returns {Promise<Array>} A promise that resolves to an array of videos index data.
+ */
+export async function getNewsIndexData() {
+  if (!newsIndexData.length) {
+    newsIndexData.push(...await getIndexData(NEWS_INDEX));
+  }
+  // Protected against callers modifying the objects
+  return structuredClone(newsIndexData);
 }
 
 const videosIndexData = [];

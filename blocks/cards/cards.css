@@ -41,7 +41,7 @@
   }
 }
 
-  .card:hover img {
+  .cards .card:hover img {
     transform: scale(1.05);
     opacity: 0.9;
 
@@ -62,7 +62,7 @@
   }
 
   /* pagination */
-  .cards .pagination-container {
+  .pagination-container {
     width: 100%;
     text-align: center;
     padding-top: 20px;
@@ -73,35 +73,35 @@
     border-radius: 4px;
   }
 
-  .cards .pagination-container .next{
+  .pagination-container .next{
     float: right;
   }
 
-  .cards .pagination-container .prev{
+  .pagination-container .prev{
     float: left;
   }
 
-  .cards .pagination {
+  .pagination {
     display: inline-block;
     list-style: none;
     margin: 0;
     padding: 0;
   }
 
-  .cards .pagination li {
+  .pagination li {
     display: inline;
     padding: 0 10px;
     margin: 0;
   }
 
-  .cards .pagination-container a {
+  .pagination-container a {
     font-size: var(--body-font-size-m);
     font-weight: var(--font-weight-bold);
     text-transform: uppercase;
     transition: all .4s;
   }
 
-  .cards .pagination-container a:not([href]) {
+  .pagination-container a:not([href]) {
     color: #666;
     pointer-events: none;
     cursor: default;
