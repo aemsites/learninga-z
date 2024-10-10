@@ -516,7 +516,7 @@ body.purple {
     background-color: var(--purple);
     }
 
-  .news-filter h3, .news-filter a {
+  .news-filter-container h3, .news-filter-container a, .news-filter-container p>strong, .news-filter-container strong>p {
     color: var(--purple);
   }
 }
