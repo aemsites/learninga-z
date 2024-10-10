@@ -1,8 +1,4 @@
 .news-post main {
-    h1 {
-        font-size: var(--heading-font-size-l);
-    }
-
     .default-content-wrapper:first-child picture:first-child {
         width: 220px;
         float: right;
@@ -82,10 +78,6 @@
 
 @media (width >= 768px) {
     .news-post main {
-        h1 {
-            font-size: var(--heading-font-size-xxl);
-        }
-
         .section-outer .section {
             max-width: 800px;
             margin-left: auto;

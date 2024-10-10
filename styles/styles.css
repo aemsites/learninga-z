@@ -45,7 +45,7 @@
   --b-green: #419e66;
   --laz-black: #35302C;
   --laz-blue: #00B3E2;
-  --laz-logo-blue: #31409A;
+  --laz-logo-blue: #31409A; /* royal blue */
   --faz-purple: #5D2C8A;
   --faz-pink: #C83493;
   --faz-light-blue: #00C0F3;
@@ -66,7 +66,6 @@
   --dark-olive-green: #3E3F30;
   --charcoal-gray: #45423f;
   --charcoal-blue: #263238;
-  --royal-blue: #31409A;
   --maroon: #77001a;
 
     /* product colors */
@@ -94,19 +93,18 @@
 
 
   /* body sizes */
-  --body-font-size-m: 18px;
-  --body-font-size-s: 16px;
-  --body-font-size-xs: 14px;
-  --body-font-size-xxs: 13px;
+  --body-font-size-m: 1.125rem; /* 18px */
+  --body-font-size-s: 16px; /* default body font size */
+  --body-font-size-xs: .875rem; /* 14px */
+  --body-font-size-xxs: .813rem; /* 13px */
 
   /* heading sizes */
-  --heading-font-size-3xl: 60px;
-  --heading-font-size-xxl: 44px;
-  --heading-font-size-xl: 38px;
-  --heading-font-size-l: 32px;
-  --heading-font-size-m: 28px;
-  --heading-font-size-s: 24px;
-  --heading-font-size-xs: 22px;
+  --heading-font-size-3xl: 3.75rem; /* 60px */
+  --heading-font-size-xxl: 3rem; /* 48px */
+  --heading-font-size-xl: 2.25rem; /* 36px */
+  --heading-font-size-l: 2rem; /* 32px */
+  --heading-font-size-m: 1.75rem; /* 28px; UNUSED */
+  --heading-font-size-s: 1.5rem; /* 24px */
 
   /* nav height */
   --nav-height: 90px;
@@ -180,7 +178,7 @@ h5,
 h6 {
   margin-top: 0;
   margin-bottom: .5em;
-  font-weight: 700;
+  font-weight: var(--font-weight-extra-bold);
   line-height: 1.1;
   scroll-margin: 40px;
   color: var(--laz-logo-blue);
@@ -192,6 +190,23 @@ h1, h2 {
 
 h3, h4, h5, h6 {
   font-family: var(--body-font-family);
+}
+
+h1 {
+  font-size: var(--heading-font-size-xl);
+  margin: 50px 0 1em;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: var(--heading-font-size-s);
+  margin-bottom: 1em;
+  line-height: 1.35;
+}
+
+h3 {
+  font-size: var(--body-font-size-m);
+  color: var(--dark-purple);
 }
 
 p,
@@ -389,8 +404,8 @@ a:hover {
   }
 
   .button.secondary.textcolor-royal-blue {
-    color: var(--royal-blue);
-    border-color: var(--royal-blue);
+    color: var(--laz-logo-blue);
+    border-color: var(--laz-logo-blue);
   }
 
   .button.secondary.textcolor-black {
@@ -428,22 +443,6 @@ a:hover {
     border-color: var(--product-green);
   }
 
-  h1 {
-    margin: 50px 0 1em;
-    line-height: 1.2;
-  }
-
-  h2 {
-    font-size: var(--body-font-size-m);
-    margin-bottom: 1em;
-    line-height: 1.35;
-  }
-
-  h3 {
-    font-size: var(--body-font-size-m);
-    color: var(--dark-purple);
-  }
-
 /* List */
 main ul {
   margin-bottom: 30px;
@@ -468,8 +467,6 @@ nav li {
   text-transform: uppercase;
 }
 
-/* end default theme */
-
 .breadcrumbs-outer {
   grid-area: breadcrumb;
   background-color: var(--navy-blue);
@@ -492,7 +489,7 @@ nav li {
 
     a {
       color: white;
-      font-weight: 700;
+      font-weight: var(--font-weight-extra-bold);
     }
   }
 }
@@ -514,8 +511,12 @@ body.purple {
   }
 
   a {
-    color: var(--royal-blue);
+    color: var(--laz-logo-blue);
   }
+
+  .table table th {
+    background-color: var(--purple);
+    }
 }
 
 [data-theme="purple"] {
@@ -537,12 +538,16 @@ body.laz-blue {
   }
 
   h3, a {
-    color: var(--royal-blue);
+    color: var(--laz-logo-blue);
   }
 
   h2 {
-    color: var(--royal-blue);
+    color: var(--laz-logo-blue);
   }
+
+  .table table th {
+    background-color: var(--laz-blue);
+    }
 }
 
 [data-theme="laz-blue"] {
@@ -580,6 +585,10 @@ body.red {
   a {
     color: var(--red);
   }
+
+  .table table th {
+    background-color: var(--red);
+    }
 }
 
 [data-theme="red"] {
@@ -599,6 +608,10 @@ body.yellow {
   .breadcrumbs-outer {
     background-color: var(--yellow);
   }
+
+  .table table th {
+    background-color: var(--yellow);
+    }
 }
 
   [data-theme="yellow"] {
@@ -654,7 +667,7 @@ body.yellow {
     }
 
     h1 {
-      font-size: var(--heading-font-size-xl);
+      font-size: var(--heading-font-size-xxl);
     }
   }
 

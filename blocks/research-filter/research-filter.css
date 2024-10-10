@@ -3,24 +3,23 @@
     font-family: var(--body-font-family);
     font-weight: var(--font-weight-medium);
     color: inherit;
-    margin-bottom: 10px;
+    margin: 10px 0;
     text-transform: none;
-    padding: 0 10px;
 }
 
 .research-filter hr {
-    margin: 20px 10px;
+    margin: 20px 0;
     border-top: 1px solid var(--light-grey);
 }
 
 @media screen and (width >=568px) {
     .research-filter .card {
-        width: 50%;
+        width: calc(50% - 20px);
     }
 }
 
-@media screen and (width >=992px) {
+@media screen and (width >=1024px) {
     .research-filter .card {
-        width: 33.3333%;
+        width: calc(33.33% - 20px);
     }
 }

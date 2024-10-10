@@ -10,6 +10,7 @@ export function populateCard(container, cardInfo, type = 'card') {
   const card = document.createElement('div');
   let efficacyBadge = '';
   let videoPlayBtn = '';
+
   if (cardInfo.efficacy) {
     efficacyBadge = `<span class="efficacy-badge ${cardInfo.efficacy}"><i class="flag"><span class="sr-only">Flag</span></i><p>${cardInfo.efficacy.charAt(0).toUpperCase() + cardInfo.efficacy.slice(1)}</p></span>`;
   }
@@ -30,7 +31,7 @@ export function populateCard(container, cardInfo, type = 'card') {
             <h3>${cardInfo.title.replace(/ \| Learning A-Z$|- Learning A-Z$/, '')}</h3>
          </a>
             <a href="${cardInfo.path}"><p>${cardInfo.description}</p></a>
-       
+               <i class="arrow"><img alt="arrow" src="/icons/solutions-right.svg"></i>
         </div>
     `;
   container.append(card);

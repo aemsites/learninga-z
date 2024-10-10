@@ -25,7 +25,7 @@
 .callout-quote {
   color: #555;
   font-family: halyard-display, sans-serif;
-  font-weight: 300;
+  font-weight: var(--font-weight-light);
   font-size: 1.2em;
   padding-top: 45px;
 }

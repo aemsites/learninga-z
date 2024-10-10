@@ -37,8 +37,8 @@
 }
 
 .carousel .carousel-slide .carousel-slide-content p {
-  font-size: 18px;
-  font-weight: 500;
+  font-size: var(--body-font-size-m);
+  font-weight: var(--font-weight-medium);
 }
 
 .carousel .carousel-slide .carousel-slide-image picture {
@@ -144,15 +144,15 @@
       font-size: 30px;
       font-weight: 700 !important;
     }
-    
+
     .carousel .carousel-slide .carousel-slide-content p {
-      font-weight: 500;
+      font-weight: var(--font-weight-medium);
     }
 
     .carousel .carousel-slide .carousel-slide-content {
       align-items: start;
     }
-  
+
     .carousel .carousel-navigation-buttons {
       transform: translateY(-500%);
     }
