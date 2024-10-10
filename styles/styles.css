@@ -13,6 +13,8 @@
 :root {
   /* colors */
   --background-color: white;
+  --medium-gray: #555;
+  --medium-light-gray: #777777;
   --light-color: #f8f8f8;
   --dark-color: #505050;
   --text-color: #131313;
