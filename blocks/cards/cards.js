@@ -5,7 +5,7 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 const indexData = await getGenericIndexData();
 let imgWidth = '750';
 
-/** function to populate card */
+/** function to populate general card */
 export function populateCard(container, cardInfo, type = 'card') {
   const card = document.createElement('div');
   let efficacyBadge = '';
@@ -32,6 +32,30 @@ export function populateCard(container, cardInfo, type = 'card') {
          </a>
             <a href="${cardInfo.path}"><p>${cardInfo.description}</p></a>
                <i class="arrow"><img alt="arrow" src="/icons/solutions-right.svg"></i>
+        </div>
+    `;
+  container.append(card);
+}
+
+function populateNewsCard(container, cardInfo) {
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.innerHTML = `
+        <div class="card-left">
+          <div class="card-thumbnail">
+            ${createOptimizedPicture(cardInfo.image, cardInfo.title, false, [{ width: imgWidth }]).outerHTML}
+          </div>
+          <div class="card-body">
+            <a href="${cardInfo.path}">
+                <h3>${cardInfo.title}</h3>
+            </a>
+            <p><span>${cardInfo.date}</span>${cardInfo.description}</p>
+          </div>
+        </div>
+        <div class="card-right">
+          <div class="news-date">
+              <span>${cardInfo.date}</span>
+          </div>
         </div>
     `;
   container.append(card);
@@ -67,7 +91,11 @@ export async function renderCardList(wrapper, cards, limit = 9, type = 'card') {
   const cardsList = cards.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
   cardsList.forEach((card) => {
-    populateCard(wrapper, card, type);
+    if (type === 'news') {
+      populateNewsCard(wrapper, card);
+    } else {
+      populateCard(wrapper, card, type);
+    }
   });
 
   if (totalPages > 1) {
