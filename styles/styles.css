@@ -515,6 +515,10 @@ body.purple {
   .table table th {
     background-color: var(--purple);
     }
+
+  .news-filter h3, .news-filter a {
+    color: var(--purple);
+  }
 }
 
 [data-theme="purple"] {

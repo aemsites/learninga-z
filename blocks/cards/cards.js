@@ -40,6 +40,13 @@ export function populateCard(container, cardInfo, type = 'card') {
 function populateNewsCard(container, cardInfo) {
   const card = document.createElement('div');
   card.className = 'card';
+  const date = new Date(cardInfo.date);
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  const bodyDate = date.toLocaleDateString('en-US', options);
+
+  const options2 = { year: 'numeric', month: '2-digit', day: '2-digit' };
+  const newsDate = date.toLocaleDateString('en-US', options2).replace(/\//g, '.');
+
   card.innerHTML = `
         <div class="card-left">
           <div class="card-thumbnail">
@@ -49,12 +56,12 @@ function populateNewsCard(container, cardInfo) {
             <a href="${cardInfo.path}">
                 <h3>${cardInfo.title}</h3>
             </a>
-            <p><span>${cardInfo.date}</span>${cardInfo.description}</p>
+            <p><span>${bodyDate}</span>${cardInfo.description}</p>
           </div>
         </div>
         <div class="card-right">
           <div class="news-date">
-              <span>${cardInfo.date}</span>
+              <span>${newsDate}</span>
           </div>
         </div>
     `;
