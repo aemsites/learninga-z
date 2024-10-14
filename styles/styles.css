@@ -517,6 +517,10 @@ body.purple {
   .table table th {
     background-color: var(--purple);
     }
+
+  .news-filter-container h3, .news-filter-container a, .news-filter-container p>strong, .news-filter-container strong>p {
+    color: var(--purple);
+  }
 }
 
 [data-theme="purple"] {
