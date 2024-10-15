@@ -100,6 +100,7 @@ export async function renderCardList(wrapper, cards, limit = 9, type = 'card') {
   cardsList.forEach((card) => {
     if (type === 'news') {
       populateNewsCard(wrapper, card);
+      imgWidth = '200';
     } else {
       populateCard(wrapper, card, type);
     }
