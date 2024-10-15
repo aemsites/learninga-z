@@ -1,0 +1,23 @@
+.quick-tip ul {
+    color: var(--medium-gray);
+    list-style-type: disc;
+  }
+  
+.quick-tip p {
+    color: var(--medium-gray);
+    list-style-type: disc;
+  }
+  
+.quick-tip li {
+    margin: 5px 0;
+    font-size: 1em;
+    color: var(--medium-gray);
+  }
+  
+.quick-tip-wrapper {
+    border: 2px solid var(--medium-light-gray);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 2px 5px rgba(0 0 0 / 10%);
+  }

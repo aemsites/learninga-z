@@ -5,11 +5,12 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 const indexData = await getGenericIndexData();
 let imgWidth = '750';
 
-/** function to populate card */
+/** function to populate general card */
 export function populateCard(container, cardInfo, type = 'card') {
   const card = document.createElement('div');
   let efficacyBadge = '';
   let videoPlayBtn = '';
+
   if (cardInfo.efficacy) {
     efficacyBadge = `<span class="efficacy-badge ${cardInfo.efficacy}"><i class="flag"><span class="sr-only">Flag</span></i><p>${cardInfo.efficacy.charAt(0).toUpperCase() + cardInfo.efficacy.slice(1)}</p></span>`;
   }
@@ -30,7 +31,38 @@ export function populateCard(container, cardInfo, type = 'card') {
             <h3>${cardInfo.title.replace(/ \| Learning A-Z$|- Learning A-Z$/, '')}</h3>
          </a>
             <a href="${cardInfo.path}"><p>${cardInfo.description}</p></a>
-       
+               <i class="arrow"><img alt="arrow" src="/icons/solutions-right.svg"></i>
+        </div>
+    `;
+  container.append(card);
+}
+
+function populateNewsCard(container, cardInfo) {
+  const card = document.createElement('div');
+  card.className = 'card';
+  const date = new Date(cardInfo.date);
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  const bodyDate = date.toLocaleDateString('en-US', options);
+
+  const options2 = { year: 'numeric', month: '2-digit', day: '2-digit' };
+  const newsDate = date.toLocaleDateString('en-US', options2).replace(/\//g, '.');
+
+  card.innerHTML = `
+        <div class="card-left">
+          <div class="card-thumbnail">
+            ${createOptimizedPicture(cardInfo.image, cardInfo.title, false, [{ width: imgWidth }]).outerHTML}
+          </div>
+          <div class="card-body">
+            <a href="${cardInfo.path}">
+                <h3>${cardInfo.title}</h3>
+            </a>
+            <p><span>${bodyDate}</span>${cardInfo.description}</p>
+          </div>
+        </div>
+        <div class="card-right">
+          <div class="news-date">
+              <span>${newsDate}</span>
+          </div>
         </div>
     `;
   container.append(card);
@@ -66,7 +98,11 @@ export async function renderCardList(wrapper, cards, limit = 9, type = 'card') {
   const cardsList = cards.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
   cardsList.forEach((card) => {
-    populateCard(wrapper, card, type);
+    if (type === 'news') {
+      populateNewsCard(wrapper, card);
+    } else {
+      populateCard(wrapper, card, type);
+    }
   });
 
   if (totalPages > 1) {

@@ -18,7 +18,7 @@ header .nav-wrapper .nav-announcement {
 }
 
 header .nav-wrapper .nav-announcement a {
-  color: var(--white);
+  color: var(--laz-black);
   background-color: var(--orange);
   font-weight: var(--font-weight-bold);
   text-align: center;
@@ -110,7 +110,7 @@ header .nav-tools ul>li>a {
   top: 50%;
   border-bottom: 2px solid transparent;
   height: 25px;
-  
+
 }
 
 header:not(.header-mobile) .nav-sections ul.primary-nav-items>li>a{
@@ -270,8 +270,8 @@ header .megamenu>.section-outer {
 }
 
 .header .tabs.columns .tabs-panel ul.tags-list li p {
-  color: #31409A;
-  font-weight: 600;
+  color: var(--laz-logo-blue);
+  font-weight: var(--font-weight-bold);
   font-size: 11px;
 }
 
@@ -297,7 +297,7 @@ header .megamenu>.section-outer {
   max-width: 235px;
   margin: 5px 0;
   width: 100%;
-  font-size: 14px;
+  font-size: var(--body-font-size-xs);
 }
 
 .header .tabs.columns .tabs-panel .top-content {
@@ -339,7 +339,7 @@ header .megamenu>.section-outer {
   max-width: 260px;
   justify-content: flex-start;
   align-items: center;
-  font-weight: 400;
+  font-weight: var(--font-weight-normal);
 }
 
 .header .tabs.columns .tabs-panel>div>p .button.secondary:hover {
@@ -394,13 +394,13 @@ header .megamenu>.section-outer {
 
   h3>a,
   a>h3 {
-    font-size: 24px;
+    font-size: var(--heading-font-size-s);
     color: var(--charcoal-gray);
     font-family: var(--body-font-family);
   }
 
   ul>li>a {
-    font-weight: 400;
+    font-weight: var(--font-weight-normal);
     color: #48433F;
     text-transform: none;
   }
@@ -412,8 +412,8 @@ header .megamenu>.section-outer {
   }
 
   strong {
-    font-weight: 600;
-    font-size: 18px;
+    font-weight: var(--font-weight-bold);
+    font-size: var(--body-font-size-m);
     padding: 20px 0 0;
   }
 
@@ -459,8 +459,8 @@ header .megamenu>.section-outer {
   }
 
   p {
-    font-weight: 700;
-    font-size: 18px;
+    font-weight: var(--font-weight-extra-bold);
+    font-size: var(--body-font-size-m);
   }
 
   a {
@@ -631,7 +631,7 @@ nav[aria-expanded="false"] {
 
         /* first child bolder */
         >a:first-child {
-          font-weight: 600;
+          font-weight: var(--font-weight-bold);
         }
       }
     }
@@ -879,7 +879,7 @@ nav[aria-expanded="false"] {
       display: none;
     }
 
-    
+
   }
 
   header .nav-sections ul.primary-nav-items>li,
