@@ -14,7 +14,7 @@ export default async function decorate(block) {
         <div class="select-position">
         <select id="sortorder" name="sortorder" onchange="window.location.hash = 'page=1';this.form.submit();">
             <option value="NewestFirst" selected="selected">Sort By: Newest First</option>
-            <option value="OldestFirst">Sort By: Olest First</option>
+            <option value="OldestFirst">Sort By: Oldest First</option>
             <option value="AlphaAZ">Sort By: A - Z</option>
             <option value="AlphaZA">Sort By: Z - A</option>
         </select>
