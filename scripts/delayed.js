@@ -23,4 +23,4 @@ async function enableGoogleTagManager() {
   document.head.appendChild(gtmScript);
   document.body.insertAdjacentElement('afterbegin', noscriptElement);
 }
- enableGoogleTagManager();
+enableGoogleTagManager();
