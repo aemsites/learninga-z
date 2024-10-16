@@ -32,7 +32,6 @@
 }
 
 .news-cards .card .card-left {
-    width: 90%;
     flex-direction: column;
 }
 
@@ -62,7 +61,15 @@
     text-align: center;
 
     picture {
-        width: 100%;
+        width: 140px; 
+        height: 140px;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            aspect-ratio: 4/3;
+        }
     }
 }
 
@@ -91,6 +98,14 @@
 @media screen and (width >=768px) {
     .news-cards .card {
         flex-direction: row;
+    }
+
+    .news-cards .card .card-left {
+        width: 90%;
+    }
+
+    .news-cards .card .card-body {
+        width: 80%;
     }
 
     .news-cards .card .card-left,
