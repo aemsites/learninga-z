@@ -1,5 +1,5 @@
 .news-post main {
-    .default-content-wrapper:first-child picture:first-child {
+    .default-content-wrapper:first-of-type p:first-of-type picture {
         width: 220px;
         float: right;
         margin: 0 0 5% 5%;

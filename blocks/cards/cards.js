@@ -40,7 +40,11 @@ export function populateCard(container, cardInfo, type = 'card') {
 function populateNewsCard(container, cardInfo) {
   const card = document.createElement('div');
   card.className = 'card';
-  const date = new Date(cardInfo.date);
+  const dateParts = cardInfo.date.split('-');
+  const year = parseInt(dateParts[0], 10);
+  const month = parseInt(dateParts[1], 10) - 1;
+  const day = parseInt(dateParts[2], 10);
+  const date = new Date(year, month, day);
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
   const bodyDate = date.toLocaleDateString('en-US', options);
 
@@ -50,7 +54,7 @@ function populateNewsCard(container, cardInfo) {
   card.innerHTML = `
         <div class="card-left">
           <div class="card-thumbnail">
-            ${createOptimizedPicture(cardInfo.image, cardInfo.title, false, [{ width: imgWidth }]).outerHTML}
+            ${createOptimizedPicture(cardInfo.image, cardInfo.title, false, [{ width: 200 }]).outerHTML}
           </div>
           <div class="card-body">
             <a href="${cardInfo.path}">
@@ -85,10 +89,10 @@ export async function renderCardList(wrapper, cards, limit = 9, type = 'card') {
     return;
   }
   if (limitPerPage) {
-    pageSize = Math.round(limitPerPage - (limitPerPage % 3));
+    pageSize = (type === 'news') ? limitPerPage : Math.round(limitPerPage - (limitPerPage % 3));
   }
   const list = document.createElement('div');
-  list.classList.add('article-teaser-list');
+  list.classList.add('cards-list');
   let currentPage = 1;
   const match = window.location.hash.match(/page=(\d+)/);
   if (match) {
