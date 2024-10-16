@@ -513,7 +513,6 @@ async function loadLazy(doc) {
     await runLazy(document, { audiences: AUDIENCES }, pluginContext);
   }
 }
-}
 
 /**
  * Loads everything that happens a lot later,
