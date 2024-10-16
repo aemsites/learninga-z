@@ -57,9 +57,6 @@
 }
 
 .news-cards .card .card-thumbnail {
-    width: 25%;
-    text-align: center;
-
     picture {
         width: 140px; 
         height: 140px;
@@ -82,15 +79,7 @@
 @media screen and (width >=576px) {
     .news-cards .card .card-left {
         flex-direction: row;
-    }
-
-    .news-cards .card .card-thumbnail {
-        width: 20%;
-        text-align: center;
-
-        picture {
-            max-width: 90%;
-        }
+        gap: 20px;
     }
 }
 
