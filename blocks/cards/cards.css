@@ -102,7 +102,7 @@
   }
 
   .pagination-container a:not([href]) {
-    color: #666 !important;
+    color: var(--dark-gray) !important;
     pointer-events: none;
     cursor: default;
   }
