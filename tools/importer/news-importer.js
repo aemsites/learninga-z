@@ -9,6 +9,7 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
+import { newsDates } from './news-date.mjs';
 
 const fixUrl = (a) => {
   let href = a.getAttribute('href');
@@ -59,12 +60,14 @@ const transformButtons = (main) => {
   });
 };
 
-const createMetadataBlock = (main, document) => {
+const createMetadataBlock = (main, document, url) => {
   const meta = {};
 
   // find the <title> element
-  const title = document.querySelector('title');
-  if (title) {
+  if (main.querySelector('h1')) {
+    meta.title = main.querySelector('h1').innerText;
+  } else {
+    const title = document.querySelector('title');
     meta.title = title.innerHTML.replace(/[\n\t]/gm, '');
   }
 
@@ -74,7 +77,27 @@ const createMetadataBlock = (main, document) => {
     meta.description = desc.content;
   }
 
-  meta.date = getPubDate(document);
+  const date = newsDates.find((news) => url.includes(news.path))?.date;
+  if (date) {
+    const dateParts = date.split('.');
+    meta.date = `${dateParts[2]}-${dateParts[0].padStart(2, '0')}-${dateParts[1].padStart(2, '0')}`;
+  } else {
+    meta.date = getPubDate(document);
+  }
+
+  const content = document.querySelector('.post-content');
+  const firstParagraph = content?.querySelector('p');
+  if (firstParagraph && firstParagraph.querySelector('img')) {
+    const img = firstParagraph.querySelector('img');
+    const imgEl = document.createElement('img');
+    imgEl.src = img.src;
+    imgEl.alt = img.alt;
+    meta.image = imgEl;
+  } else if (document.querySelector('[property="og:image"]')) {
+    const imgEl = document.createElement('img');
+    imgEl.src = document.querySelector('[property="og:image"]').content.replace('https://www.learninga-z.com', '');
+    meta.image = imgEl;
+  }
 
   meta.tags = [];
 
@@ -104,13 +127,19 @@ export default {
   }) => {
     const main = document.body.querySelector('.main-content');
     const title = main.querySelector('h1');
-    const image = main.querySelector('.post-content img');
-    if (image) {
+    const images = main.querySelectorAll('.post-content img');
+    images.forEach((image) => {
+      console.log('image :: ', image, 'msrc :: ', image.getAttribute('data-msrc'));
       const img = document.createElement('img');
-      img.src = `https://www.learninga-z.com/${image.getAttribute('data-msrc')}`;
+      if (image.getAttribute('data-msrc')) {
+        img.src = `${image.getAttribute('data-msrc')}`;
+      } else {
+        img.src = `${image.src}`;
+      }
       img.alt = image.alt ? image.alt : title.textContent;
+      console.log('img :: ', img);
       image.replaceWith(img);
-    }
+    });
     const subHeading = main.querySelector('.sub-heading');
     if (subHeading) {
       const h2 = document.createElement('h2');
@@ -120,6 +149,29 @@ export default {
 
     const hr = document.createElement('hr');
     main.append(hr);
+
+    const imageOnlyBlocks = main.querySelectorAll('.image-only-widget-section');
+    if (imageOnlyBlocks.length > 0) {
+      // iterate through each image only block and add that as a cell in the table
+      const imageOnlyTableArray = [];
+      imageOnlyTableArray.push(['Columns']);
+      imageOnlyBlocks.forEach((imageOnlyBlock) => {
+        const p1 = document.createElement('p');
+        const img = document.createElement('img');
+        img.src = `${imageOnlyBlock.querySelector('img').getAttribute('data-msrc')}`;
+        img.alt = imageOnlyBlock.querySelector('img').alt;
+        p1.appendChild(img);
+        const a = document.createElement('a');
+        let link = imageOnlyBlock.querySelector('a').href;
+        link = `https://main--learninga-z--aemsites.hlx.page${new URL(link).pathname}`;
+        a.href = link;
+        a.textContent = link;
+        p1.appendChild(a);
+        imageOnlyTableArray.push([p1]);
+      });
+      const imageOnlyTable = WebImporter.DOMUtils.createTable(imageOnlyTableArray, document);
+      main.append(imageOnlyTable);
+    }
 
     const relatedBlogWrapper = main.querySelector('.breakroom-posts-section');
     if (relatedBlogWrapper) {
@@ -172,7 +224,7 @@ export default {
     main.querySelectorAll('a').forEach(fixUrl);
     // main.querySelectorAll('h4').forEach(convertHeading);
     transformButtons(main);
-    createMetadataBlock(main, document);
+    createMetadataBlock(main, document, params.originalURL);
     WebImporter.DOMUtils.remove(main, [
       'noscript',
     ]);
