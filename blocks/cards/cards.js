@@ -54,7 +54,7 @@ function populateNewsCard(container, cardInfo) {
   card.innerHTML = `
         <div class="card-left">
           <div class="card-thumbnail">
-            ${createOptimizedPicture(cardInfo.image, cardInfo.title, false, [{ width: imgWidth }]).outerHTML}
+            ${createOptimizedPicture(cardInfo.image, cardInfo.title, false, [{ width: 200 }]).outerHTML}
           </div>
           <div class="card-body">
             <a href="${cardInfo.path}">
