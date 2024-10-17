@@ -72,10 +72,36 @@ function populateNewsCard(container, cardInfo) {
   container.append(card);
 }
 
+function populateEventsCard(container, cardInfo) {
+  const card = document.createElement('div');
+  card.className = 'card';
+
+  card.innerHTML = `
+        <div class="card-left">
+          <div class="card-thumbnail">
+            ${createOptimizedPicture(cardInfo.image, cardInfo.title, false, [{ width: 200 }]).outerHTML}
+          </div>
+          <div class="card-body">
+            <a href="${cardInfo.path}">
+                <h3>${cardInfo.title}</h3>
+            </a>
+            <p>${cardInfo.description}</p>
+          </div>
+        </div>
+        <div class="card-right">
+          <div class="events-date">
+              <span>${cardInfo.dateRange}</span>
+          </div>
+        </div>
+    `;
+  container.append(card);
+}
+
 /** function to render card list when an array of card objects are passed.
  * this also supports pagination
 */
 export async function renderCardList(wrapper, cards, limit = 9, type = 'card') {
+  const isNewsEvents = type === 'news' || type === 'events';
   let limitPerPage = limit;
   if (limit === undefined) {
     limitPerPage = cards.length;
@@ -89,7 +115,7 @@ export async function renderCardList(wrapper, cards, limit = 9, type = 'card') {
     return;
   }
   if (limitPerPage) {
-    pageSize = (type === 'news') ? limitPerPage : Math.round(limitPerPage - (limitPerPage % 3));
+    pageSize = isNewsEvents ? limitPerPage : Math.round(limitPerPage - (limitPerPage % 3));
   }
   const list = document.createElement('div');
   list.classList.add('cards-list');
@@ -102,7 +128,9 @@ export async function renderCardList(wrapper, cards, limit = 9, type = 'card') {
   const cardsList = cards.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
   cardsList.forEach((card) => {
-    if (type === 'news') {
+    if (type === 'events') {
+      populateEventsCard(wrapper, card);
+    } else if (type === 'news') {
       populateNewsCard(wrapper, card);
     } else {
       populateCard(wrapper, card, type);

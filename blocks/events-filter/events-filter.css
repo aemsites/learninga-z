@@ -1,0 +1,103 @@
+.events-filter form select {
+    font-size: var(--body-font-size-xs);
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 0 50px 0 20px;
+    margin: 3% 0;
+    color: var(--dark-gray);
+    background-color: white;
+    height: 40px;
+    cursor: pointer;
+    border: 1px solid var(--dark-gray);
+    background-image: url("/icons/down.svg");
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    appearance: none;
+}
+
+.events-cards .card {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    border-top: 1px solid var(--light-grey);
+    flex-direction: column-reverse;
+}
+
+.events-cards .card .card-left,
+.events-cards .card .card-right {
+    display: flex;
+    padding: 10px 0;
+    align-items: flex-start;
+}
+
+.events-cards .card .card-left {
+    flex-direction: column;
+}
+
+.events-cards .card .card-right {
+    margin-left: 10px;
+}
+
+.events-cards .card .card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    height: auto;
+
+    p>span::after {
+        content: "-";
+        padding: 0 5px;
+    }
+
+    h3 {
+        margin: 0;
+    }
+}
+
+.events-cards .card .card-thumbnail {
+    picture {
+        width: 140px; 
+        height: 140px;
+
+        img {
+            width: 100%;
+            object-fit: cover;
+            aspect-ratio: 4/3;
+        }
+    }
+}
+
+.events-cards .card .events-date {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--dark-gray);
+    text-transform: uppercase;
+}
+
+@media screen and (width >=576px) {
+    .events-cards .card .card-left {
+        flex-direction: row;
+        gap: 20px;
+    }
+}
+
+@media screen and (width >=768px) {
+    .events-cards .card {
+        flex-direction: row;
+    }
+
+    .events-cards .card .card-left {
+        width: 90%;
+    }
+
+    .events-cards .card .card-body {
+        width: 80%;
+    }
+
+    .events-cards .card .card-left,
+    .events-cards .card .card-right {
+        padding: 25px 10px;
+    }
+}

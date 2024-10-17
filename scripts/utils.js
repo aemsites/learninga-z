@@ -3,6 +3,7 @@ import ffetch from './ffetch.js';
 const INDEX = '/query-index.json';
 const VIDEO_INDEX = '/site/resources/videos/query-index.json';
 const NEWS_INDEX = '/site/company/news/query-index.json';
+const EVENTS_LIST = '/site/company/events/events-list.json';
 
 /**
  * Returns the relative path from a given path.
@@ -69,6 +70,19 @@ async function getIndexData(index = INDEX) {
     });
   }
   return retrievedData;
+}
+
+const eventsListData = [];
+/**
+ * Retrieves the events list data.
+ * @returns {Promise<Array>} A promise that resolves to an array of events list data.
+ */
+export async function getEventsListData() {
+  if (!eventsListData.length) {
+    eventsListData.push(...await getIndexData(EVENTS_LIST));
+  }
+  // Protected against callers modifying the objects
+  return structuredClone(eventsListData);
 }
 
 const newsIndexData = [];
