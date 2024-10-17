@@ -6,7 +6,6 @@ import { renderCardList } from '../cards/cards.js';
 export default async function decorate(block) {
   await loadCSS(`${window.hlx.codeBasePath}/blocks/cards/cards.css`);
   const events = await getEventsListData();
-  console.log(events);
 
   const form = document.createElement('form');
   form.setAttribute('class', 'events-filter-form');
@@ -21,9 +20,26 @@ export default async function decorate(block) {
     `;
 
   const urlParams = new URLSearchParams(window.location.search);
-  const evetsType = urlParams.get('EventSort');
+  const eventsType = urlParams.get('EventSort');
   block.append(form);
-  if (evetsType === 'Past') {
+
+  // events has date range like "Nov 19 - 21, 2027" take the enddate and compare with today's date and put it in upcoming or past arrays
+  events.forEach((event) => {
+    const date = event.dateRange.split(' - ')[1];
+    const month = event.dateRange.split(' ')[0];
+    //concatenate the month and date
+    const endDate = `${month} ${date}`;
+    console.log(endDate);
+    const eventDate = new Date(date);
+    const today = new Date();
+    if (eventDate < today) {
+      event.type = 'Past';
+    } else {
+      event.type = 'Upcoming';
+    }
+  });
+
+  if (eventsType === 'Past') {
     events.reverse();
     form.querySelector('option[value="past"]').selected = true;
   } else {
