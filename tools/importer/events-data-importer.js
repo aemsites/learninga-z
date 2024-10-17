@@ -60,28 +60,34 @@ export default {
       if (desc) {
         desc1 = desc.textContent.replace(/\\n/g, '').replace(/<br>/g, '').trim();
       }
+      let startDateFormattedDate = '';
+      let endDateFormattedDate = '';
       if (dateRange) {
         dateRange1 = dateRange.textContent.replace(/\\n/g, '').replace(/<br>/g, '').trim();
+        const month = dateRange1.split(' - ')[0].split(' ')[0];
+        const endDate = dateRange1.split(' - ')[1].split(',')[0];
+        const startDate = dateRange1.split(' - ')[0].split(' ')[1];
+        const year = dateRange1.split(' - ')[1].split(',')[1];
+        // form startDate and endDate in US date format
+        startDateFormattedDate = `${month} ${startDate}, ${year}`;
+        endDateFormattedDate = `${month} ${endDate}, ${year}`;
       }
       listOfEvents.push({
-        path: path1,
-        image: img1,
-        title: title1,
-        description: desc1,
-        dateRange: dateRange1,
+        startDate: startDateFormattedDate,
+        endDate: endDateFormattedDate,
       });
     });
 
     // from eventsJson, remove objects with path === null or path contains '/site/company/events'
-    const filteredEvents = eventsJson.filter((event) => event.path !== null && !event.path.includes('/site/company/events'));
-    //console.log(filteredEvents);
+    const filteredEvents = eventsJson.filter((event) => event.startDate !== '' && event.endDate !== '');
+    console.log(filteredEvents);
 
-    // in imageLinks, make it lowercase, replace () with  - and replace _ with -
-    const formattedImageLinks = imageLinks.map((image) => {
-      const formattedImage = image.toLowerCase().replace('(', '-').replace(')', '').replace(/_/g, '-');
-      return formattedImage;
-    });
-    console.log('formattedImageLinks : ', formattedImageLinks);
+    // // in imageLinks, make it lowercase, replace () with  - and replace _ with -
+    // const formattedImageLinks = imageLinks.map((image) => {
+    //   const formattedImage = image.toLowerCase().replace('(', '-').replace(')', '').replace(/_/g, '-');
+    //   return formattedImage;
+    // });
+    // console.log('formattedImageLinks : ', formattedImageLinks);
 
     return [{
       // do not return an element

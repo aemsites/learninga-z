@@ -1,2833 +1,1733 @@
 /* eslint-disable import/prefer-default-export */
 export const eventsJson = [
   {
-    path: 'http://nyscate.org/annual-conference',
-    image: '/user_area/content_media/raw/nyscate.jpg',
-    title: 'NYS Association for Computers and Technologies in Education (NYSCATE) Annual Conference',
-    description: 'Rochester Riverside Convention Center, Rochester, NY. Look for us at our company booth.',
-    dateRange: 'Nov 19 - 21, 2027',
+    "startDate": "Nov 19,  2027",
+    "endDate": "Nov 21,  2027"
   },
   {
-    path: 'https://www.masscue.org',
-    image: '/user_area/content_media/raw/MCUE.jpg',
-    title: 'MassCUE Conference',
-    description: 'Foxboro, MA',
-    dateRange: 'Oct 16 - 17, 2024',
+    "startDate": "Oct 16,  2024",
+    "endDate": "Oct 17,  2024"
   },
   {
-    path: 'https://tabe.org/tabe2024',
-    image: '/user_area/content_media/raw/TABE(3).jpg',
-    title: 'TABE',
-    description: 'Round Rock, TX',
-    dateRange: 'Oct 17 - 20, 2024',
+    "startDate": "Oct 17,  2024",
+    "endDate": "Oct 20,  2024"
   },
   {
-    path: 'https://www.litechedsummit.org/domain/23',
-    image: '/user_area/content_media/raw/LITES.jpg',
-    title: 'LITES',
-    description: 'Long Island, NY',
-    dateRange: 'Oct 18 - 18, 2024',
+    "startDate": "Oct 18,  2024",
+    "endDate": "Oct 18,  2024"
   },
   {
-    path: 'https://home.edweb.net/webinar/teach2read20241022/ ',
-    image: '/user_area/content_media/raw/612907-waz-edwebinar-collins-ciullo-2-thumbnail-400x300.jpg',
-    title: 'Elevating Writing Instruction: Evidence-Based Strategies',
-    description: 'Join us for a free, live webinar with Dr. Alyson A. Collins and Dr. Stephen Ciullo, who will share new results from a comprehensive meta-analysis that reveals key findings on best practices for foundational writing instruction. Save your spot today!',
-    dateRange: 'Oct 22 - 22, 2024',
+    "startDate": "Oct 22,  2024",
+    "endDate": "Oct 22,  2024"
   },
   {
-    path: 'https://usakansasks.sites.thrillshare.com/o/kpa',
-    image: '/user_area/content_media/raw/KPA.jpg',
-    title: 'Kansas Principals Conference',
-    description: 'Wichita, KS',
-    dateRange: 'Nov 6 - 7, 2024',
+    "startDate": "Nov 6,  2024",
+    "endDate": "Nov 7,  2024"
   },
   {
-    path: 'https://conference.gaetc.org',
-    image: '/user_area/content_media/raw/GaETC(2).jpg',
-    title: 'GAETC',
-    description: 'Atlanta, GA',
-    dateRange: 'Nov 6 - 8, 2024',
+    "startDate": "Nov 6,  2024",
+    "endDate": "Nov 8,  2024"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/FABES.jpg',
-    title: 'FABES',
-    description: 'Orlando, FL',
-    dateRange: 'Nov 7 - 8, 2024',
+    "startDate": "Nov 7,  2024",
+    "endDate": "Nov 8,  2024"
   },
   {
-    path: 'https://www.lacosechaconference.org',
-    image: '/user_area/content_media/raw/DLeNM.jpg',
-    title: 'La Cosecha',
-    description: 'Santa Fe, NM',
-    dateRange: 'Nov 13 - 16, 2024',
+    "startDate": "Nov 13,  2024",
+    "endDate": "Nov 16,  2024"
   },
   {
-    path: 'https://home.edweb.net/webinar/teach2read20241119',
-    image: '/user_area/content_media/raw/614050-waz-edwebinar-barbara-friedlander-2-thumbnail-400x300.jpg',
-    title: '6 Steps to Writing for All Students: Self-Regulated Strategy Development',
-    description: 'Barbara Friedlander, co-author of Powerful Writing Strategies for All Students, will walk through the six steps of Self-Regulated Strategy Development (SRSD) and provide valuable strategies and resources to support your K-5 writing instruction.',
-    dateRange: 'Nov 19 - 19, 2024',
+    "startDate": "Nov 19,  2024",
+    "endDate": "Nov 19,  2024"
   },
   {
-    path: null,
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: 'https://www.nyscate.org/Default.aspx',
-    image: '/user_area/content_media/raw/NYSCATE(1).jpg',
-    title: 'NYSCATE',
-    description: 'Verona, NY',
-    dateRange: 'Nov 24 - 26, 2024',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: 'https://ksla.wildapricot.org/Conference',
-    image: '/user_area/content_media/raw/KEYSTONE(1).jpg',
-    title: 'Keystone Literacy Conference',
-    description: 'Hershey, PA',
-    dateRange: 'Dec 1 - 3, 2024',
+    "startDate": "Nov 24,  2024",
+    "endDate": "Nov 26,  2024"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/NCDPI(1).jpg',
-    title: 'NCDPI AIM',
-    description: 'Raleigh, NC',
-    dateRange: 'Oct 7 - 9, 2024',
+    "startDate": "Dec 1,  2024",
+    "endDate": "Dec 3,  2024"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/AZASTESOL.jpg',
-    title: 'AZTESOL',
-    description: 'Flagstaff, AZ',
-    dateRange: 'Oct 4 - 5, 2024',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/VATESOL.jpg',
-    title: 'VA TESOL',
-    description: 'Richmond, VA',
-    dateRange: 'Sep 27 - 27, 2024',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/GACIS(1).jpg',
-    title: 'GACIS',
-    description: 'Athens, GA',
-    dateRange: 'Sep 26 - 27, 2024',
+    "startDate": "Oct 7,  2024",
+    "endDate": "Oct 9,  2024"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/602949-evnt-pd-edwebinar-dr-julia-lindsey-2-thumbnail-400x300.jpg',
-    title: 'Small Groups and the Science of Reading: Helping Students Get Unstuck',
-    description: 'In this free, live webinar, Dr. Julia Lindsey, an author and foundational literacy expert, will share strategies for using research-based routines to meet students’ literacy needs, especially with small groups.',
-    dateRange: 'Sep 5 - 5, 2024',
+    "startDate": "Oct 4,  2024",
+    "endDate": "Oct 5,  2024"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/592639-evnt-pd-edwebinar-daryl-michel-2-thumbnail-400x300.jpg',
-    title: 'Implementing the Science of Reading: How School Leaders Can Support Instructional Change',
-    description: 'In this free, live webinar, Daryl Michel, Ph.D., a renowned expert on student-focused coaching, will explore how to drive instructional change by building differentiated, sustained professional learning systems for every educator—from the most eager to the most reluctant.',
-    dateRange: 'Aug 7 - 7, 2024',
+    "startDate": "Sep 27,  2024",
+    "endDate": "Sep 27,  2024"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/516902-rp-edwebinar-dr-ness-2-thumbnail-400x300.jpg',
-    title: 'Read Alouds and the Science of Reading: Don’t Stop Your Storytimes!',
-    description: 'In this free, live webinar, Dr. Molly Ness, author of Read Alouds for All Learners, will share how to apply the Science of Reading to classroom Read Alouds and the dangers of dropping this beloved instructional practice from your literacy block.',
-    dateRange: 'May 20 - 20, 2024',
+    "startDate": "Sep 26,  2024",
+    "endDate": "Sep 27,  2024"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/495459-faz-edwebinar-dr-lindsey-2-thumbnail-300x300.jpg',
-    title: 'The Secret Sauce of the Science of Reading: High-Impact Practice',
-    description: 'In this free, live webinar, Dr. Julia B. Lindsey, Ph.D., a foundational literacy expert, will share what the research has to say about high-impact practice routines and how those routines look in practice.',
-    dateRange: 'May 2 - 2, 2024',
+    "startDate": "Sep 5,  2024",
+    "endDate": "Sep 5,  2024"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/WABE.png',
-    title: '2024 WABE Annual Conference',
-    description: 'Spokane, WA',
-    dateRange: 'Apr 18 - 20, 2024',
+    "startDate": "Aug 7,  2024",
+    "endDate": "Aug 7,  2024"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/PAFPC_Calendar.png',
-    title: 'Annual PAFPC Conference',
-    description: 'Pittsburgh, PA',
-    dateRange: 'Apr 14 - 17, 2024',
+    "startDate": "May 20,  2024",
+    "endDate": "May 20,  2024"
   },
   {
-    path: null,
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "May 2,  2024",
+    "endDate": "May 2,  2024"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=2',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Apr 18,  2024",
+    "endDate": "Apr 20,  2024"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=3',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Apr 14,  2024",
+    "endDate": "Apr 17,  2024"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=4',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '/site/company/events?EventSort=Past&p=5',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/SOMLA_logo-color.png',
-    title: 'SoMLA 2024 Conference',
-    description: 'Baltimore, MD',
-    dateRange: 'Apr 3 - 5, 2024',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/Spring-Cue-logo-2024.png',
-    title: '2024 Spring CUE Conference',
-    description: 'Palm Springs, CA',
-    dateRange: 'Mar 21 - 23, 2024',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/vslaLOGO2021.png',
-    title: 'Virginia State Literacy Association’s Annual Conference',
-    description: 'Norfolk, VA',
-    dateRange: 'Mar 18 - 20, 2024',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/NCRA_logo.png',
-    title: 'North Carolina Reading Conference',
-    description: 'Winston, NC',
-    dateRange: 'Mar 17 - 19, 2024',
+    "startDate": "Apr 3,  2024",
+    "endDate": "Apr 5,  2024"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/MichiganReadingAssociationlogo.png',
-    title: 'MRA Annual Conference',
-    description: 'Lansing, MI',
-    dateRange: 'Mar 15 - 17, 2024',
+    "startDate": "Mar 21,  2024",
+    "endDate": "Mar 23,  2024"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/ILReading.png',
-    title: 'IRC Annual Conference',
-    description: 'Springfield, IL',
-    dateRange: 'Mar 14 - 15, 2024',
+    "startDate": "Mar 18,  2024",
+    "endDate": "Mar 20,  2024"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/NETA_logo.png',
-    title: 'NETA Spring Conference',
-    description: 'Omaha, NE',
-    dateRange: 'Mar 14 - 15, 2024',
+    "startDate": "Mar 17,  2024",
+    "endDate": "Mar 19,  2024"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/442214-virtual-writing-summit-2-edweb-thumbnail-400x300.jpg',
-    title: 'Virtual Writing Summit 2.0: Strategies from The Writing Rope for Think, Plan, Write, Revise',
-    description: 'Get actionable strategies to help students at each stage of the writing process – think, plan, write, revise – from Joan Sedita, author of The Writing Rope.',
-    dateRange: 'Mar 12 - 12, 2024',
+    "startDate": "Mar 15,  2024",
+    "endDate": "Mar 17,  2024"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/asset-logo.png',
-    title: 'Asset 2024 Annual Conference',
-    description: 'Melville, NY',
-    dateRange: 'Mar 11 - 11, 2024',
+    "startDate": "Mar 14,  2024",
+    "endDate": "Mar 15,  2024"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/common-ground_logo.png',
-    title: 'Common Ground Conference',
-    description: 'Ocean City, MD',
-    dateRange: 'Mar 10 - 12, 2024',
+    "startDate": "Mar 14,  2024",
+    "endDate": "Mar 15,  2024"
   },
   {
-    path: '/site/company/events?EventSort=Past',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Mar 12,  2024",
+    "endDate": "Mar 12,  2024"
   },
   {
-    path: null,
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Mar 11,  2024",
+    "endDate": "Mar 11,  2024"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=3',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Mar 10,  2024",
+    "endDate": "Mar 12,  2024"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=4',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '/site/company/events?EventSort=Past&p=5',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/NYCESPAlogo.png',
-    title: "NYCESPA's 91st Convention",
-    description: 'Brooklyn, NY',
-    dateRange: 'Mar 9 - 9, 2024',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/ncties_time-to-soar-1920-560-px.png',
-    title: 'NCTIES 2024 Conference',
-    description: 'Raleigh, NC',
-    dateRange: 'Mar 6 - 8, 2024',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/METC.png',
-    title: 'Innovate 24 Expo',
-    description: 'St. Louis, MO',
-    dateRange: 'Feb 29 - 29, 2024',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/PSLAlogo.png',
-    title: 'PSLA Annual Conference',
-    description: 'Hilton Head, SC',
-    dateRange: 'Feb 22 - 24, 2024',
+    "startDate": "Mar 9,  2024",
+    "endDate": "Mar 9,  2024"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/WSRA_logo.png',
-    title: 'Wisconsin State Reading Association Conference',
-    description: 'Milwaukee, WI',
-    dateRange: 'Feb 7 - 9, 2024',
+    "startDate": "Mar 6,  2024",
+    "endDate": "Mar 8,  2024"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/CCIRA2024SMALL.png',
-    title: '2024 CCIRA Conference on Literacy',
-    description: 'Westminster, CO',
-    dateRange: 'Feb 7 - 10, 2024',
+    "startDate": "Feb 29,  2024",
+    "endDate": "Feb 29,  2024"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/PETEC_logo_header.png',
-    title: 'PETE&C',
-    description: 'Hershey, PA',
-    dateRange: 'Feb 4 - 7, 2024',
+    "startDate": "Feb 22,  2024",
+    "endDate": "Feb 24,  2024"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/PlainTalk_CLL-Logo-RGB-for-Web-FINAL.png',
-    title: 'Plain Talk About Literacy and Learning®',
-    description: 'New Orleans, LA',
-    dateRange: 'Jan 31 - Feb 2, 2024',
+    "startDate": "Feb 7,  2024",
+    "endDate": "Feb 9,  2024"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/2024-TASA-Midwinter-logo-final.png',
-    title: 'TASA 2024 Midwinter Conference',
-    description: 'Austin, TX',
-    dateRange: 'Jan 28 - 31, 2024',
+    "startDate": "Feb 7,  2024",
+    "endDate": "Feb 10,  2024"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/gael-logo.png',
-    title: 'GAEL Winter Conference',
-    description: 'Athens, GA',
-    dateRange: 'Jan 28 - 30, 2024',
+    "startDate": "Feb 4,  2024",
+    "endDate": "Feb 7,  2024"
   },
   {
-    path: '/site/company/events?EventSort=Past',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Jan 31,  2024",
+    "endDate": "Jan Feb 2,  2024"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=2',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Jan 28,  2024",
+    "endDate": "Jan 31,  2024"
   },
   {
-    path: null,
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Jan 28,  2024",
+    "endDate": "Jan 30,  2024"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=4',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '/site/company/events?EventSort=Past&p=5',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/LitConmasterlogonodates.png',
-    title: 'LitCon: National K-8 Literacy & Reading Recovery Conference',
-    description: 'Columbus, OH',
-    dateRange: 'Jan 27 - 30, 2024',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/VESAlogo.png',
-    title: 'VESA 2024 Annual Conference',
-    description: 'Williamsburg, VA',
-    dateRange: 'Jan 25 - 26, 2024',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/keystone.jpg',
-    title: 'Keystone State Literacy Association Annual Conference',
-    description: 'Hershey, PA',
-    dateRange: 'Nov 26 - 28, 2023',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/common-ground.jpg',
-    title: 'Common Ground Conference',
-    description: 'Ocean City, MD',
-    dateRange: 'Nov 16 - 18, 2023',
+    "startDate": "Jan 27,  2024",
+    "endDate": "Jan 30,  2024"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/la-cosecha.jpg',
-    title: 'La Cosecha Dual Language Conference',
-    description: 'Albuquerque, NM',
-    dateRange: 'Nov 8 - 11, 2023',
+    "startDate": "Jan 25,  2024",
+    "endDate": "Jan 26,  2024"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/tx-ascd.jpg',
-    title: 'Texas ASCD 2023 Annual Conference',
-    description: 'San Antonio, TX',
-    dateRange: 'Oct 29 - 31, 2023',
+    "startDate": "Nov 26,  2023",
+    "endDate": "Nov 28,  2023"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/tabe(2).jpg',
-    title: 'TABE Annual Conference',
-    description: 'McAllen, TX',
-    dateRange: 'Oct 18 - 21, 2023',
+    "startDate": "Nov 16,  2023",
+    "endDate": "Nov 18,  2023"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/ncdpi.jpg',
-    title: 'NCDPI AIM Conference',
-    description: 'Raleigh, NC',
-    dateRange: 'Oct 9 - 11, 2023',
+    "startDate": "Nov 8,  2023",
+    "endDate": "Nov 11,  2023"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/reading-league.jpg',
-    title: 'Annual Conference of The Reading League',
-    description: 'Syracuse, NY',
-    dateRange: 'Oct 2 - 4, 2023',
+    "startDate": "Oct 29,  2023",
+    "endDate": "Oct 31,  2023"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/gacis.jpg',
-    title: 'GACIS 2023 Fall Conference',
-    description: 'Athens, GA',
-    dateRange: 'Sep 28 - 29, 2023',
+    "startDate": "Oct 18,  2023",
+    "endDate": "Oct 21,  2023"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=2',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Oct 9,  2023",
+    "endDate": "Oct 11,  2023"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=3',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Oct 2,  2023",
+    "endDate": "Oct 4,  2023"
   },
   {
-    path: null,
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Sep 28,  2023",
+    "endDate": "Sep 29,  2023"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=5',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '/site/company/events?EventSort=Past&p=6',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/pa-summit-23.jpg',
-    title: 'Pennsylvania Educational Leadership Summit',
-    description: 'King of Prussia, PA',
-    dateRange: 'Aug 6 - 8, 2023',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/case-2023.jpg',
-    title: 'CASE Convention, Leadership Elevated',
-    description: 'Breckenridge, CO',
-    dateRange: 'Jul 26 - 28, 2023',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/SCASALogo.jpg',
-    title: '2023 SCASA Innovative Ideas Institute',
-    description: 'Regional in-person event, located at Kingston Plantation, Myrtle Beach, South Carolina.',
-    dateRange: 'Jun 18 - 21, 2023',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/TEPSAConference.jpg',
-    title: 'TEPSA Summer Conference',
-    description: 'Regional in-person event, located at Round Rock Kalahari.',
-    dateRange: 'Jun 7 - 9, 2023',
+    "startDate": "Aug 6,  2023",
+    "endDate": "Aug 8,  2023"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/FLDOELogo.jpg',
-    title: '2023 Florida Summer Literacy Institute',
-    description: 'Regional in-person event, located in Orlando, Florida.',
-    dateRange: 'Jun 5 - 8, 2023',
+    "startDate": "Jul 26,  2023",
+    "endDate": "Jul 28,  2023"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/NJTESOLNJBELogo.jpg',
-    title: 'NJETSOL/NJBE Spring Conference',
-    description: 'Regional in-person event, located at the Hyatt Regency Hotel, New Brunswick.',
-    dateRange: 'May 23 - 25, 2023',
+    "startDate": "Jun 18,  2023",
+    "endDate": "Jun 21,  2023"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/NJASALogo.jpg',
-    title: 'NJASA / NJAPSA Spring Leadership Conference',
-    description: 'Regional in-person event, located at Caesars Atlantic City.',
-    dateRange: 'May 17 - 19, 2023',
+    "startDate": "Jun 7,  2023",
+    "endDate": "Jun 9,  2023"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/FOILLogo.jpg',
-    title: 'Florida Organization of Instructional Leaders (FOIL) Conference',
-    description: 'Regional in-person event, located at the Orlando Marriott, Lake Mary.',
-    dateRange: 'May 17 - 18, 2023',
+    "startDate": "Jun 5,  2023",
+    "endDate": "Jun 8,  2023"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/MABE.jpg',
-    title: 'MABE 2023: Forging a Path to Multilingual Excellence',
-    description: 'Regional in-person event, located at the Lauren Manor in Livonia, Michigan.',
-    dateRange: 'May 11 - 12, 2023',
+    "startDate": "May 23,  2023",
+    "endDate": "May 25,  2023"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/FASS(1).jpg',
-    title: 'Florida Association of Science Supervisors Conference',
-    description: 'Regional in-person event, located at the Orlando Marriott, Lake Mary.',
-    dateRange: 'May 1 - 3, 2023',
+    "startDate": "May 17,  2023",
+    "endDate": "May 19,  2023"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=3',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "May 17,  2023",
+    "endDate": "May 18,  2023"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=4',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "May 11,  2023",
+    "endDate": "May 12,  2023"
   },
   {
-    path: null,
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "May 1,  2023",
+    "endDate": "May 3,  2023"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=6',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '/site/company/events?EventSort=Past&p=7',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/PAFPC.png',
-    title: 'PAFPC Annual Conference',
-    description: 'Regional in-person event, located at the Kalahari Resort in the Pocono Mountains.',
-    dateRange: 'Apr 16 - 19, 2023',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/Innovate2023.png',
-    title: 'Innovate 2023 Conference',
-    description: 'Regional in-person event, located at Armory STL in St. Louis, Missouri.',
-    dateRange: 'Mar 29 - 29, 2023',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/NYCESPA(2).jpg',
-    title: 'New York City Elementary School Principals Association (NYCESPA) Conference',
-    description: 'Regional in-person event, located at the Marriott at the Brooklyn Bridge in Brooklyn, New York.',
-    dateRange: 'Mar 25 - 25, 2023',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/CABE2023.jpg',
-    title: 'California Association for Bilingual Education (CABE) Conference',
-    description: 'Regional in-person event, located at the Long Beach Convention Center in Long Beach, California.',
-    dateRange: 'Mar 22 - 25, 2023',
+    "startDate": "Apr 16,  2023",
+    "endDate": "Apr 19,  2023"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/NCCE(1).jpg',
-    title: 'Northwest Council for Computer Education (NCCE) Conference',
-    description: 'National in-person event, located at the Tacoma Convention Center in Tacoma, Washington.',
-    dateRange: 'Mar 21 - 23, 2023',
+    "startDate": "Mar 29,  2023",
+    "endDate": "Mar 29,  2023"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/Michigan-Reading-Association.jpg',
-    title: 'Michigan Reading Association Conference',
-    description: 'Regional in-person event, located at DeVos Place in Grand Rapids, Michigan.',
-    dateRange: 'Mar 17 - 20, 2023',
+    "startDate": "Mar 25,  2023",
+    "endDate": "Mar 25,  2023"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/Spring-Cue.jpg',
-    title: 'Spring CUE 2023 - Computer-Using Educators',
-    description: 'National virtual or in-person event, located in Palm Springs Convention Center in Palm Springs, California.',
-    dateRange: 'Mar 16 - 18, 2023',
+    "startDate": "Mar 22,  2023",
+    "endDate": "Mar 25,  2023"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/Nebraska-Educational-Technology-Association.jpg',
-    title: 'Nebraska Educational Technology Association (NETA) Conference',
-    description: 'Regional in-person event, located at CHI Health Center Omaha, Nebraska.',
-    dateRange: 'Mar 16 - 17, 2023',
+    "startDate": "Mar 21,  2023",
+    "endDate": "Mar 23,  2023"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/VSLA(1).jpg',
-    title: 'Virginia State Literacy Association (VSLA) Conference',
-    description: 'Regional virtual or in-person event, located in Norfolk Waterside Marriott in Norfolk, Virginia.',
-    dateRange: 'Mar 16 - 18, 2023',
+    "startDate": "Mar 17,  2023",
+    "endDate": "Mar 20,  2023"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/Utah-Coalition-for-Educational-Technology.jpg',
-    title: 'Utah Coalition for Educational Technology (UCET) Conference',
-    description: 'Regional in-person event, located at the Utah Valley Convention Center in Provo, Utah.',
-    dateRange: 'Mar 14 - 15, 2023',
+    "startDate": "Mar 16,  2023",
+    "endDate": "Mar 18,  2023"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=4',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Mar 16,  2023",
+    "endDate": "Mar 17,  2023"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=5',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Mar 16,  2023",
+    "endDate": "Mar 18,  2023"
   },
   {
-    path: null,
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Mar 14,  2023",
+    "endDate": "Mar 15,  2023"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=7',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '/site/company/events?EventSort=Past&p=8',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/Illinois-Reading-Council.jpg',
-    title: 'Illinois Reading Council (IRC) Conference',
-    description: 'Regional in-person event, located at the Bank of Springfield Center, President Abraham Lincoln Hotel, and the Wyndham Hotel in Springfield, Illinois.',
-    dateRange: 'Mar 9 - 10, 2023',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/ncties-logo.jpg',
-    title: ' North Carolina Technology in Education Society (NCTIES) Conference',
-    description: 'Regional in-person event, located at the Raleigh Convention Center in Raleigh, North Carolina.',
-    dateRange: 'Mar 8 - 10, 2023',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/scasa.jpg',
-    title: 'South Carolina Association of School Administrators (SCASA) Innovative Ideas Institute',
-    description: 'Regional In-person Event, Located at the Kingston Plantation in Myrtle Beach, SC',
-    dateRange: 'Jun 19 - 22, 2022',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/ascd.jpg',
-    title: 'ASCD Annual Conference',
-    description: 'National In-person Event, Located at the Hilton Chicago in Chicago, Illinois',
-    dateRange: 'Mar 18 - 21, 2022',
+    "startDate": "Mar 9,  2023",
+    "endDate": "Mar 10,  2023"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/vsla.jpg',
-    title: 'Virginia State Literacy Association (VSLA) Conference',
-    description: 'Regional In-person Event, Located at the Hyatt Regency in Crystal City, VA',
-    dateRange: 'Mar 17 - 19, 2022',
+    "startDate": "Mar 8,  2023",
+    "endDate": "Mar 10,  2023"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/ncties(1).jpg',
-    title: 'North Carolina Technology in Education Society (NCTIES) Conference',
-    description: 'Regional In-person Event, Located at the Raleigh Convention Center in Raleigh, NC',
-    dateRange: 'Mar 2 - 4, 2022',
+    "startDate": "Jun 19,  2022",
+    "endDate": "Jun 22,  2022"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/connect-thumb.jpg',
-    title: 'Learning A-Z CONNECT Conference',
-    description: 'Join us for a complimentary, virtual event on December 1–2 to explore The Power of Engagement in the Modern Classroom.',
-    dateRange: 'Dec 1 - 2, 2021',
+    "startDate": "Mar 18,  2022",
+    "endDate": "Mar 21,  2022"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/LaCosecha(1).jpg',
-    title: 'La Cosecha 2021',
-    description: 'Albuquerque, NM. Attend our virtual session, Leveraging Language Transfer Strategies With Learning A-Z, Friday, November 12, 10:50 a.m. - 12:10 p.m. on the La Cosecha Virtual Platform.',
-    dateRange: 'Nov 10 - 13, 2021',
+    "startDate": "Mar 17,  2022",
+    "endDate": "Mar 19,  2022"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/2021-nabe.jpg',
-    title: 'NABE 2021 - National Association for Bilingual Education',
-    description: 'Virtual Conference',
-    dateRange: 'Apr 28 - 29, 2021',
+    "startDate": "Mar 2,  2022",
+    "endDate": "Mar 4,  2022"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/2021-ncties.jpg',
-    title: 'NCTIES 2021 -  North Carolina Technology in Education Society',
-    description: 'Virtual Conference',
-    dateRange: 'Mar 4 - 8, 2021',
+    "startDate": "Dec 1,  2021",
+    "endDate": "Dec 2,  2021"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=5',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Nov 10,  2021",
+    "endDate": "Nov 13,  2021"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=6',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Apr 28,  2021",
+    "endDate": "Apr 29,  2021"
   },
   {
-    path: null,
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Mar 4,  2021",
+    "endDate": "Mar 8,  2021"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=8',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '/site/company/events?EventSort=Past&p=9',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/VSTE(1).jpg',
-    title: 'Virginia Technology in Education Conference',
-    description: 'Virginia Beach, VA. Visit us at our company booth.',
-    dateRange: 'Dec 6 - 8, 2020',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/tetc(1).jpg',
-    title: 'Tennessee Educational Technology Conference',
-    description: 'Embassy Suites Murfreesboro, Murfreesboro, TN. Visit us at our company booth.',
-    dateRange: 'Dec 2 - 4, 2020',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/KSLA.jpg',
-    title: 'Keystone Literacy Association',
-    description: 'Hershey, PA. Visit us at our company booth.',
-    dateRange: 'Nov 30 - Dec 1, 2020',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/iste20.jpg',
-    title: 'International Society for Technology in Education (ISTE)',
-    description: 'Anaheim Convention Center, Anaheim, CA. Visit us at booth #1878.',
-    dateRange: 'Nov 30 - Dec 1, 2020',
+    "startDate": "Dec 6,  2020",
+    "endDate": "Dec 8,  2020"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/WVRA(1).jpg',
-    title: 'West Virginia Reading Association 2020',
-    description: 'Look for our company booth at this virtual event.',
-    dateRange: 'Nov 19 - 20, 2020',
+    "startDate": "Dec 2,  2020",
+    "endDate": "Dec 4,  2020"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/MELEd(1).jpg',
-    title: 'Minnesota English Learner Education Fall Conference',
-    description: 'Saint Paul RiverCentre, St. Paul, MN. Visit us at our company booth.',
-    dateRange: 'Nov 19 - 21, 2020',
+    "startDate": "Nov 30,  2020",
+    "endDate": "Nov Dec 1,  2020"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/vast(1).jpg',
-    title: 'Virginia Association of Science Teachers 2020 Annual PDI',
-    description: 'Look for our company booth at this virtual event.',
-    dateRange: 'Nov 12 - 14, 2020',
+    "startDate": "Nov 30,  2020",
+    "endDate": "Nov Dec 1,  2020"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/NJEA.jpg',
-    title: 'New Jersey Education Association',
-    description: 'Look for our company booth at this virtual event.',
-    dateRange: 'Nov 5 - 6, 2020',
+    "startDate": "Nov 19,  2020",
+    "endDate": "Nov 20,  2020"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/ACSA(2).jpg',
-    title: 'Association of California School Administrators Leadership Summit',
-    description: 'Hilton San Diego Bayfront Hotel, San Diego , CA. Visit us at our company booth.',
-    dateRange: 'Nov 5 - 7, 2020',
+    "startDate": "Nov 19,  2020",
+    "endDate": "Nov 21,  2020"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/masb.jpg',
-    title: 'Michigan Association of School Boards Annual Leadership Conference',
-    description: 'Look for our company booth at this virtual event.',
-    dateRange: 'Nov 5 - 8, 2020',
+    "startDate": "Nov 12,  2020",
+    "endDate": "Nov 14,  2020"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=6',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Nov 5,  2020",
+    "endDate": "Nov 6,  2020"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=7',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Nov 5,  2020",
+    "endDate": "Nov 7,  2020"
   },
   {
-    path: null,
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Nov 5,  2020",
+    "endDate": "Nov 8,  2020"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=9',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '/site/company/events?EventSort=Past&p=10',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/gaetc2020.jpg',
-    title: 'Georgia Educational Technology Conference',
-    description: 'Look for our company booth at this virtual event.',
-    dateRange: 'Nov 4 - 5, 2020',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/pennsylvania-principals.jpg',
-    title: 'PA Principals Association LEAD 2020',
-    description: 'Pocono Manor, PA. Visit us at our company booth.',
-    dateRange: 'Oct 25 - 27, 2020',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/texas-ascd.jpg',
-    title: 'Texas Association for Supervision and Curriculum Development ',
-    description: 'Houston, TX. Visit us at our company booth.',
-    dateRange: 'Oct 18 - 20, 2020',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/case-2020.jpg',
-    title: 'California Science Education',
-    description: 'Look for our company booth at this virtual event.',
-    dateRange: 'Oct 18 - 20, 2020',
+    "startDate": "Nov 4,  2020",
+    "endDate": "Nov 5,  2020"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/LongIslandTechnologyandEducationSummit(1).jpg',
-    title: 'Long Island Technology and Education Summit',
-    description: 'Melville, NY. Visit us at our company booth.',
-    dateRange: 'Oct 17 - 22, 2020',
+    "startDate": "Oct 25,  2020",
+    "endDate": "Oct 27,  2020"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/NJPSAFEA(1).jpg',
-    title: 'New Jersey Principals and Supervisors Association',
-    description: 'Atlantic City, NJ. Visit us at our company booth.',
-    dateRange: 'Oct 15 - 16, 2020',
+    "startDate": "Oct 18,  2020",
+    "endDate": "Oct 20,  2020"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/ILA-2020.jpg',
-    title: 'International Literacy Association 2020 Conference',
-    description: 'Columbus, OH. Visit us at our company booth.',
-    dateRange: 'Oct 15 - 18, 2020',
+    "startDate": "Oct 18,  2020",
+    "endDate": "Oct 20,  2020"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/frankfurt(1).png',
-    title: 'Frankfurt Book Fair',
-    description: 'Frankfurt, Germany. Visit us at our company booth.',
-    dateRange: 'Oct 14 - 18, 2020',
+    "startDate": "Oct 17,  2020",
+    "endDate": "Oct 22,  2020"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/PAFPC(1).jpg',
-    title: 'Pennsylvania Association Federal Program Coordinators 2020',
-    description: 'Champion, PA. Visit us at our company booth.',
-    dateRange: 'Oct 12 - 15, 2020',
+    "startDate": "Oct 15,  2020",
+    "endDate": "Oct 16,  2020"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/TABE(1).jpg',
-    title: 'Texas Association for Bilingual Education',
-    description: 'Corpus Christi, TX. Visit us at our company booth.',
-    dateRange: 'Oct 7 - 9, 2020',
+    "startDate": "Oct 15,  2020",
+    "endDate": "Oct 18,  2020"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=7',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Oct 14,  2020",
+    "endDate": "Oct 18,  2020"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=8',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Oct 12,  2020",
+    "endDate": "Oct 15,  2020"
   },
   {
-    path: null,
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Oct 7,  2020",
+    "endDate": "Oct 9,  2020"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=10',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '/site/company/events?EventSort=Past&p=11',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/irc-illinois.jpg',
-    title: 'Illinois Reading Council Conference',
-    description: 'Peoria, IL. Visit us at our company booth.',
-    dateRange: 'Oct 1 - 2, 2020',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/neass.jpg',
-    title: 'New England Association of School Superintendents 2020',
-    description: 'Portsmouth, NH. Visit us at our company booth.',
-    dateRange: 'Sep 28 - 30, 2020',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/SAI_2020.jpg',
-    title: 'School Administrators of Iowa',
-    description: 'Look for our company booth at this virtual event.',
-    dateRange: 'Aug 5 - 6, 2020',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/AAEA(1).jpg',
-    title: 'Arkansas Association of Education Administrators',
-    description: 'Kansas City, MO. Visit us at our company booth.',
-    dateRange: 'Aug 3 - 5, 2020',
+    "startDate": "Oct 1,  2020",
+    "endDate": "Oct 2,  2020"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/awsp.jpg',
-    title: 'Association of Washington School Principals Summer Conference',
-    description: 'Look for our company booth at this virtual event.',
-    dateRange: 'Jun 28 - 30, 2020',
+    "startDate": "Sep 28,  2020",
+    "endDate": "Sep 30,  2020"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/clarity2020.jpg',
-    title: 'Council for Leaders in Alabama Schools Annual Convention',
-    description: 'Look for our company booth at this virtual event.',
-    dateRange: 'Jun 14 - 17, 2020',
+    "startDate": "Aug 5,  2020",
+    "endDate": "Aug 6,  2020"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/ccosa.png',
-    title: 'CCOSA Summer Leadership Conference',
-    description: 'Look for our company booth at this virtual event.',
-    dateRange: 'Jun 5 - 8, 2020',
+    "startDate": "Aug 3,  2020",
+    "endDate": "Aug 5,  2020"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/PAFPC.jpg',
-    title: 'Pennsylvania Association Federal Program Coordinators (PAFPC)',
-    description: 'Champion, PA. Look for us at our company booth.',
-    dateRange: 'May 5 - 8, 2020',
+    "startDate": "Jun 28,  2020",
+    "endDate": "Jun 30,  2020"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/FASFEPA.jpg',
-    title: 'FASFEPA Spring Forum',
-    description: 'Hyatt Regency Jacksonville Riverfront, Jacksonville, FL. Look for us at our company booth.',
-    dateRange: 'Apr 28 - 30, 2020',
+    "startDate": "Jun 14,  2020",
+    "endDate": "Jun 17,  2020"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/oregonprincipals.jpg',
-    title: 'Oregon Elementary Principals Conference',
-    description: 'Graduate Eugene, Eugene, OR. Look for us at our company booth.',
-    dateRange: 'Apr 22 - 24, 2020',
+    "startDate": "Jun 5,  2020",
+    "endDate": "Jun 8,  2020"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=8',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "May 5,  2020",
+    "endDate": "May 8,  2020"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=9',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Apr 28,  2020",
+    "endDate": "Apr 30,  2020"
   },
   {
-    path: null,
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Apr 22,  2020",
+    "endDate": "Apr 24,  2020"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=11',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '/site/company/events?EventSort=Past&p=12',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/lead3symposium.jpg',
-    title: 'Lead 3 Symposium',
-    description: 'Hyatt Regency Sacramento, Sacramento, CA. Look for us at our company booth.',
-    dateRange: 'Apr 2 - 4, 2020',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/NSTA.jpg',
-    title: 'National Science Teachers Association (NSTA)',
-    description: "America's Center Convention Complex, Boston, MA. Visit us at booth #2515.",
-    dateRange: 'Apr 2 - 5, 2020',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/somla.jpg',
-    title: 'State of Maryland Literacy Association (SoMLA) Conference',
-    description: 'Hunt Valley, MD. Look for us at our company booth.',
-    dateRange: 'Apr 2 - 4, 2020',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/WTIAC.jpg',
-    title: 'Spring 2020 Wisconsin Title I Association Conference',
-    description: 'Glacier Canyon Conference Center, Wisconsin Dells, WI. Look for us at our company booth.',
-    dateRange: 'Apr 2 - 3, 2020',
+    "startDate": "Apr 2,  2020",
+    "endDate": "Apr 4,  2020"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/VSRA.jpg',
-    title: 'Virginia State Reading Association (VSRA)',
-    description: 'Hotel Roanoke and Conference Center, Roanoke, VA. Look for us at our company booth.',
-    dateRange: 'Mar 26 - 28, 2020',
+    "startDate": "Apr 2,  2020",
+    "endDate": "Apr 5,  2020"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/maesp(1).jpg',
-    title: 'Missouri Association of Elementary School Principals (MAESP)',
-    description: 'Tan-Tar-A Conference Center at Margaritaville Lake Resort, Osage Beach, MO. Look for us at our company booth.',
-    dateRange: 'Mar 26 - 28, 2020',
+    "startDate": "Apr 2,  2020",
+    "endDate": "Apr 4,  2020"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/springcue2020.jpg',
-    title: 'Computer-Using Educators Annual Conference (CUE)',
-    description: 'Palm Springs Convention Center, Palm Springs, CA. Look for us at our company booth.',
-    dateRange: 'Mar 18 - Feb 21, 2020',
+    "startDate": "Apr 2,  2020",
+    "endDate": "Apr 3,  2020"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/MRA.jpg',
-    title: 'Michigan Reading Association (MRA) Annual Conference',
-    description: 'Detroit Marriott at the Renaissance Center, Detroit, MI. Look for us at our company booth.',
-    dateRange: 'Mar 14 - 16, 2020',
+    "startDate": "Mar 26,  2020",
+    "endDate": "Mar 28,  2020"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/ascd-empower.jpg',
-    title: 'ASCD Empower',
-    description: 'Los Angeles Convention Center, Los Angeles, CA. Visit us at booth #737.',
-    dateRange: 'Mar 13 - 16, 2020',
+    "startDate": "Mar 26,  2020",
+    "endDate": "Mar 28,  2020"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/pattan.jpg',
-    title: 'Pennsylvania Department of Education Conference',
-    description: 'Hershey Lodge and Convention Center, St. Hershey, PA. Look for us at our company booth.',
-    dateRange: 'Mar 9 - 11, 2020',
+    "startDate": "Mar 18,  2020",
+    "endDate": "Mar Feb 21,  2020"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=9',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Mar 14,  2020",
+    "endDate": "Mar 16,  2020"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=10',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Mar 13,  2020",
+    "endDate": "Mar 16,  2020"
   },
   {
-    path: null,
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Mar 9,  2020",
+    "endDate": "Mar 11,  2020"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=12',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '/site/company/events?EventSort=Past&p=13',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/acsa.jpg',
-    title: 'Association of California School Administrators (ACSA) Mid-State Conference',
-    description: 'Embassy Suites San Luis Obispo, San Luis Obispo, CA. Look for us at our company booth.',
-    dateRange: 'Mar 6 - 8, 2020',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/ncties.jpg',
-    title: 'North Carolina Technology in Education Society (NCTIES)',
-    description: 'Raleigh Convention Center, Raleigh, NC. Look for us at our company booth.',
-    dateRange: 'Mar 4 - 6, 2020',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/ncce.jpg',
-    title: 'Northwest Council for Computers in Education (NCCE) Annual Conference',
-    description: 'Washington State Convention Center, Seattle, WA. Visit us at Booth #713.',
-    dateRange: 'Mar 4 - 6, 2020',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/LASAFAP.jpg',
-    title: 'Louisiana Association of School Administrators of Federally Assisted Programs (LASAFAP)',
-    description: 'Shreveport Convention Center,  Shreveport, LA. Look for us at our company booth.',
-    dateRange: 'Mar 2 - 4, 2020',
+    "startDate": "Mar 6,  2020",
+    "endDate": "Mar 8,  2020"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/NABE.jpg',
-    title: 'National Association for Bilingual Education (NABE)',
-    description: 'Tropicana, Las Vegas, NV. Look for us at our company booth.',
-    dateRange: 'Feb 25 - 28, 2020',
+    "startDate": "Mar 4,  2020",
+    "endDate": "Mar 6,  2020"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/ideacon.jpg',
-    title: 'IDEAcon',
-    description: 'Renaissance Schaumburg Hotel and Convention Center, Schaumburg, IL. Visit us at booth #915.',
-    dateRange: 'Feb 24 - 27, 2020',
+    "startDate": "Mar 4,  2020",
+    "endDate": "Mar 6,  2020"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/PETEC.jpg',
-    title: 'Pennsylvania Educational Technology Expo and Conference (PETE&C)',
-    description: 'David L. Lawrence Convention Center, Pittsburgh, PA. Look for us at our company booth.',
-    dateRange: 'Feb 24 - 25, 2020',
+    "startDate": "Mar 2,  2020",
+    "endDate": "Mar 4,  2020"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/GSTA.jpg',
-    title: 'Georgia Science Teachers Association (GSTA)',
-    description: 'Columbus Georgia Convention and Trade Center, Columbus, GA. Visit us at booth #11.',
-    dateRange: 'Feb 13 - 14, 2020',
+    "startDate": "Feb 25,  2020",
+    "endDate": "Feb 28,  2020"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/metc.jpg',
-    title: 'Metropolitan Education Technology Community (METC) Conference',
-    description: 'St. Charles Convention Center, St. Charles, MO. Look for us at our company booth.',
-    dateRange: 'Feb 10 - 12, 2020',
+    "startDate": "Feb 24,  2020",
+    "endDate": "Feb 27,  2020"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/NMABE_2016.jpg',
-    title: 'New Mexico Association for Bilingual Education (NMABE)',
-    description: 'Albuquerque, NM. Look for us at our company booth.',
-    dateRange: 'Feb 10 - 12, 2020',
+    "startDate": "Feb 24,  2020",
+    "endDate": "Feb 25,  2020"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=10',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Feb 13,  2020",
+    "endDate": "Feb 14,  2020"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=11',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Feb 10,  2020",
+    "endDate": "Feb 12,  2020"
   },
   {
-    path: null,
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Feb 10,  2020",
+    "endDate": "Feb 12,  2020"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=13',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '/site/company/events?EventSort=Past&p=14',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/MESPA.jpg',
-    title: "Minnesota Elementary School Principals' Association (MESPA) Institute 2020",
-    description: 'Bloomington DoubleTree, Bloomington, MN. Look for us at our company booth.',
-    dateRange: 'Feb 5 - 7, 2020',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/essa.jpg',
-    title: 'National ESEA Conference',
-    description: 'Georgia World Congress Center, Atlanta, GA. Visit us at booth #233.',
-    dateRange: 'Feb 5 - 6, 2020',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/TCEA.jpg',
-    title: 'Texas Computer Education Association (TCEA) ',
-    description: 'Austin Convention Center, Austin, TX. Visit us at booth #1935.',
-    dateRange: 'Feb 3 - 7, 2020',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/VESA.jpg',
-    title: 'Virginia ESL Supervisors Association (VESA)',
-    description: 'Renaissance Portsmouth-Norfolk Waterfront Hotel, Portsmouth, VA. Look for us at our company booth.',
-    dateRange: 'Jan 30 - 31, 2020',
+    "startDate": "Feb 5,  2020",
+    "endDate": "Feb 7,  2020"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/fetc.jpg',
-    title: 'Future Educational Technology Conference (FETC)',
-    description: 'Miami Beach Convention Center, MIami, FL. Visit us at booth #3124.',
-    dateRange: 'Jan 14 - 17, 2020',
+    "startDate": "Feb 5,  2020",
+    "endDate": "Feb 6,  2020"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/Sourcewell-2019.jpg',
-    title: 'Impact Education Conference by Sourcewell Technology',
-    description: 'Hyatt Regency Minneapolis, Minneapolis, MN. Visit us at booth #308.',
-    dateRange: 'Dec 16 - 17, 2019',
+    "startDate": "Feb 3,  2020",
+    "endDate": "Feb 7,  2020"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/NSTA-Seattle.jpg',
-    title: 'NSTA Area Conference on Science Education',
-    description: 'Washington State Convention Center, Seattle , WA. Look for us at our company booth.',
-    dateRange: 'Dec 12 - 13, 2019',
+    "startDate": "Jan 30,  2020",
+    "endDate": "Jan 31,  2020"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/VSTE.jpg',
-    title: 'Virginia Technology in Education Conference (VSTE)',
-    description: 'Hotel Roanoke and Conference Center, Roanoke, VA. Look for us at our company booth.',
-    dateRange: 'Dec 8 - 10, 2019',
+    "startDate": "Jan 14,  2020",
+    "endDate": "Jan 17,  2020"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/TETC.jpg',
-    title: 'Tennessee Educational Technology Conference (TETC)',
-    description: 'Embassy Suites Murfreesboro, Murfreesboro, TN. Look for us at our company booth.',
-    dateRange: 'Dec 4 - 6, 2019',
+    "startDate": "Dec 16,  2019",
+    "endDate": "Dec 17,  2019"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/IRC.jpg',
-    title: 'Illinois Reading Council Bilingual Conference (IRC)',
-    description: 'Hilton Chicago/Oak Brook Hills Resort and Conference Center, Oak Brook, IL. Look for us at our company booth.',
-    dateRange: 'Dec 3 - 6, 2019',
+    "startDate": "Dec 12,  2019",
+    "endDate": "Dec 13,  2019"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=11',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Dec 8,  2019",
+    "endDate": "Dec 10,  2019"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=12',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Dec 4,  2019",
+    "endDate": "Dec 6,  2019"
   },
   {
-    path: null,
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Dec 3,  2019",
+    "endDate": "Dec 6,  2019"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=14',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '/site/company/events?EventSort=Past&p=15',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/WVRA.jpg',
-    title: 'West Virginia Reading Association - Cultivating a Love of Reading',
-    description: 'The Greenbrier, White Sulphur Springs, WV. Look for us at our company booth.',
-    dateRange: 'Nov 21 - 22, 2019',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/FADIMA.jpg',
-    title: 'Florida Association of District Instruction Materials Administrators (FADIMA) Annual Conference',
-    description: 'Mission Inn Resort & Club, Howey-in-the-Hills, FL. Look for us at our company booth.',
-    dateRange: 'Nov 19 - 22, 2019',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/NYSRA.jpg',
-    title: 'New York State Reading Association Conference (NYSRA)',
-    description: 'Albany Capital Center, Albany, NY. Look for us at our company booth.',
-    dateRange: 'Nov 14 - 16, 2019',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/LaCosecha.jpg',
-    title: 'La Cosecha Dual Language Conference',
-    description: 'Albuquerque Convention Center, Albuquerque, NM. Look for us at our company booth.',
-    dateRange: 'Nov 13 - 16, 2019',
+    "startDate": "Nov 21,  2019",
+    "endDate": "Nov 22,  2019"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/NJEA2019.jpg',
-    title: 'NJEA Convention',
-    description: 'Atlantic City Convention Center, Atlantic City, NJ. Look for us at our company booth.',
-    dateRange: 'Nov 7 - 8, 2019',
+    "startDate": "Nov 19,  2019",
+    "endDate": "Nov 22,  2019"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/ASCA.jpg',
-    title: 'ASCA Leadership Summit',
-    description: 'Hyatt Regency San Francisco, San Francisco, CA. Look for us at our company booth.',
-    dateRange: 'Nov 7 - 9, 2019',
+    "startDate": "Nov 14,  2019",
+    "endDate": "Nov 16,  2019"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/IDA.jpg',
-    title: 'International Dyslexia Association Annual 2019 Conference (IDA)',
-    description: 'Portland Convention Center, Portland, OR. Visit us at booth #117.',
-    dateRange: 'Nov 7 - 10, 2019',
+    "startDate": "Nov 13,  2019",
+    "endDate": "Nov 16,  2019"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/CRA-CT.jpg',
-    title: 'Connecticut Reading Association Annual Conference (CRA-CT)',
-    description: 'The Heritage Hotel, Southbury, CT. Look for us at our company booth.',
-    dateRange: 'Nov 6 - 7, 2019',
+    "startDate": "Nov 7,  2019",
+    "endDate": "Nov 8,  2019"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/GaETC.jpg',
-    title: 'Georgia Educational Technology Conference (GaETC)',
-    description: 'Georgia International Convention Center, Atlanta, GA. Visit us at Booth #702.',
-    dateRange: 'Nov 6 - 7, 2019',
+    "startDate": "Nov 7,  2019",
+    "endDate": "Nov 9,  2019"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/SC-EdTech.jpg',
-    title: 'South Carolina EdTech Conference',
-    description: 'Greenville Convention Center, Greenville, SC. Visit us at Booth #309.',
-    dateRange: 'Nov 6 - 8, 2019',
+    "startDate": "Nov 7,  2019",
+    "endDate": "Nov 10,  2019"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=12',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Nov 6,  2019",
+    "endDate": "Nov 7,  2019"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=13',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Nov 6,  2019",
+    "endDate": "Nov 7,  2019"
   },
   {
-    path: null,
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Nov 6,  2019",
+    "endDate": "Nov 8,  2019"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=15',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '/site/company/events?EventSort=Past&p=16',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/LEAD.jpg',
-    title: '2019 LEAD Conference',
-    description: 'Music City Center, Nashville, TN. Look for us at our company booth.',
-    dateRange: 'Nov 5 - 7, 2019',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/STANYS.jpg',
-    title: '2019 STANYS Conference',
-    description: 'Riverside Convention Center, Rochester, NY. Look for us at our company booth.',
-    dateRange: 'Nov 2 - 3, 2019',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/KSLA2019.jpg',
-    title: 'Keystone State Literacy Association Annual Conference',
-    description: 'Hershey Lodge, Hershey, PA. Look for us at our company booth.',
-    dateRange: 'Oct 30 - Nov 1, 2019',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/FCSC.jpg',
-    title: 'Florida Charter School Conference',
-    description: 'Caribe Royale Orlando, Orlando , FL. Visit us at booth #720.',
-    dateRange: 'Oct 29 - 30, 2019',
+    "startDate": "Nov 5,  2019",
+    "endDate": "Nov 7,  2019"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/TexasASCD2019.jpg',
-    title: 'Texas Association for Supervision and Curriculum Development Annual Conference (TX ASCD)',
-    description: 'Irving Convention Center, Irving, TX. Visit us at booth #110.',
-    dateRange: 'Oct 27 - 29, 2019',
+    "startDate": "Nov 2,  2019",
+    "endDate": "Nov 3,  2019"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/FAST.jpg',
-    title: 'Florida Association of Science Teachers (FAST)',
-    description: 'World Golf Village Renaissance St. Augustine Resort, St. Augustine, FL. Look for us at our company booth.',
-    dateRange: 'Oct 24 - 26, 2019',
+    "startDate": "Oct 30,  2019",
+    "endDate": "Oct Nov 1,  2019"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/MASSCUE2019.jpg',
-    title: 'MassCUE',
-    description: 'Gillette Stadium, Foxborough, MA. Visit us at booth #416.',
-    dateRange: 'Oct 23 - 24, 2019',
+    "startDate": "Oct 29,  2019",
+    "endDate": "Oct 30,  2019"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/NewJerseyScienceConvention.jpg',
-    title: 'New Jersey Science Convention',
-    description: 'Princeton Marriott at Forrestal, Princeton, NJ. Look for us at our company booth.',
-    dateRange: 'Oct 22 - 23, 2019',
+    "startDate": "Oct 27,  2019",
+    "endDate": "Oct 29,  2019"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/FASS.jpg',
-    title: 'Florida Association of Science Supervisors (FASS)',
-    description: 'World Golf Village Renaissance St. Augustine Resort, St. Augustine, FL. Look for us at our company booth.',
-    dateRange: 'Oct 22 - 24, 2019',
+    "startDate": "Oct 24,  2019",
+    "endDate": "Oct 26,  2019"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/EARCOS.jpg',
-    title: '51st Annual EARCOS Leadership Conference',
-    description: 'Sutera Harbour Resort, Kota Kinabalu, Sabah, Malaysia. Look for us at our company booth.',
-    dateRange: 'Oct 22 - Nov 2, 2019',
+    "startDate": "Oct 23,  2019",
+    "endDate": "Oct 24,  2019"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=13',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Oct 22,  2019",
+    "endDate": "Oct 23,  2019"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=14',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Oct 22,  2019",
+    "endDate": "Oct 24,  2019"
   },
   {
-    path: null,
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Oct 22,  2019",
+    "endDate": "Oct Nov 2,  2019"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=16',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '/site/company/events?EventSort=Past&p=17',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/STOM.jpg',
-    title: 'Science Teachers of Missouri (STOM)',
-    description: 'Camdenton High School in Camdenton, MO. Look for us at our company booth.',
-    dateRange: 'Oct 18 - 19, 2019',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/CSTA.jpg',
-    title: 'California Science Teachers Association Conference',
-    description: 'San Jose McEnery Convention Center, San Jose, CA. Visit us at booth #221.',
-    dateRange: 'Oct 18 - 20, 2019',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/NJPSAFEA.jpg',
-    title: 'FEA/NJPSA/NJASCD Fall Conference',
-    description: 'Ocean Place Resort, Long Branch, NJ. Look for us at our company booth.',
-    dateRange: 'Oct 17 - 18, 2019',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/TABE.jpg',
-    title: 'Texas Association for Bilingual Education Annual Conference (TABE)',
-    description: 'American Bank Convention Center, Corpus Christi, TX. Look for us at our company booth.',
-    dateRange: 'Oct 16 - 19, 2019',
+    "startDate": "Oct 18,  2019",
+    "endDate": "Oct 19,  2019"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/frankfurt.png',
-    title: 'Frankfurt Book Fair',
-    description: 'Frankfurt, Germany. Look for us at our company booth.',
-    dateRange: 'Oct 16 - 20, 2019',
+    "startDate": "Oct 18,  2019",
+    "endDate": "Oct 20,  2019"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/LEAD2019.jpg',
-    title: 'Pennsylvania Principals Association LEAD 19',
-    description: 'The Penn Stater Hotel & Conference Center, State College, PA. Look for us at our company booth.',
-    dateRange: 'Oct 13 - 14, 2019',
+    "startDate": "Oct 17,  2019",
+    "endDate": "Oct 18,  2019"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/CEC.jpg',
-    title: '72nd Annual Florida CEC Conference',
-    description: 'Hilton Daytona Beach Ocean Front Resort, Daytona Beach, FL. Look for us at our company booth.',
-    dateRange: 'Oct 13 - 15, 2019',
+    "startDate": "Oct 16,  2019",
+    "endDate": "Oct 19,  2019"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/ILA.jpg',
-    title: 'International Literacy Association (ILA)',
-    description: 'New Orleans Ernest N. Morial Convention Center, New Orleans, LA. Visit us at booth #1000.',
-    dateRange: 'Oct 10 - 13, 2019',
+    "startDate": "Oct 16,  2019",
+    "endDate": "Oct 20,  2019"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/AWSA.jpg',
-    title: 'Elementary Principals Convention',
-    description: 'Kalahari Resort, Wisconsin Dells, WI. Look for us at our company booth.',
-    dateRange: 'Oct 9 - 11, 2019',
+    "startDate": "Oct 13,  2019",
+    "endDate": "Oct 14,  2019"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/CASE.jpg',
-    title: '50th Annual CASE Convention (Colorado Association of School Executives)',
-    description: 'Beaver Run Resort, Breckenridge, CO. Look for us at our company booth.',
-    dateRange: 'Jul 24 - 25, 2019',
+    "startDate": "Oct 13,  2019",
+    "endDate": "Oct 15,  2019"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=14',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Oct 10,  2019",
+    "endDate": "Oct 13,  2019"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=15',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Oct 9,  2019",
+    "endDate": "Oct 11,  2019"
   },
   {
-    path: null,
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Jul 24,  2019",
+    "endDate": "Jul 25,  2019"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=17',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '/site/company/events?EventSort=Past&p=18',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/GAEL.jpg',
-    title: 'Georgia Association of Educational Leaders (GAEL) Summer Conference',
-    description: 'Jekyll Island Convention Center, Jekyll Island, GA. Look for us at our company booth.',
-    dateRange: 'Jul 14 - 16, 2019',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/Steopupforstudents.jpg',
-    title: 'Step Up for Students',
-    description: 'Victory Christian Academy, Lakeland, FL. Look for us at our company booth.',
-    dateRange: 'Jun 20 - 21, 2019',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/ASCDTexas.jpg',
-    title: 'Texas ASCD ignite 19',
-    description: 'Omni Houston Hotel, Houston, TX. Look for us at our company booth.',
-    dateRange: 'Jun 10 - 12, 2019',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/ASATucson-2.jpg',
-    title: 'Arizona School Administrators Summer Conference (ASA)',
-    description: 'Hilton El Conquistador Resort, Tucson, AZ. Look for us at our company booth.',
-    dateRange: 'Jun 9 - 10, 2019',
+    "startDate": "Jul 14,  2019",
+    "endDate": "Jul 16,  2019"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/PAIU.jpg',
-    title: 'Pennsylvania Association of Intermediate Units Annual Conference (PAIU)',
-    description: 'Seven Springs Mountain Resort, Seven Springs, PA. Look for us at our company booth.',
-    dateRange: 'May 29 - 31, 2019',
+    "startDate": "Jun 20,  2019",
+    "endDate": "Jun 21,  2019"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/NJTESOL.jpg',
-    title: 'NJTESOL Spring Conference',
-    description: 'Hyatt Regency Hotel, New Brunswick, NJ. Look for us at our company booth.',
-    dateRange: 'May 29 - 31, 2019',
+    "startDate": "Jun 10,  2019",
+    "endDate": "Jun 12,  2019"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/MABE-2.jpg',
-    title: 'MABE Literacy and Language in Action',
-    description: 'The Dearborn Inn, Dearborn, MI. Visit us at booth #8.',
-    dateRange: 'May 9 - 10, 2019',
+    "startDate": "Jun 9,  2019",
+    "endDate": "Jun 10,  2019"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/ACSA(1).jpg',
-    title: 'ACSA North State Spring Conference',
-    description: 'The Peppermill, Reno, NV. Look for us at our company booth.',
-    dateRange: 'May 3 - 4, 2019',
+    "startDate": "May 29,  2019",
+    "endDate": "May 31,  2019"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/WABE.jpg',
-    title: 'WA Association for Bilingual Education (WABE)',
-    description: 'Hyatt Regency Bellevue, Bellevue, WA. Look for us at our company booth.',
-    dateRange: 'Apr 25 - 27, 2019',
+    "startDate": "May 29,  2019",
+    "endDate": "May 31,  2019"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/Bootstrap-Conference.jpg',
-    title: '2019 Georgia School Superintendents Association Spring Bootstrap Conference',
-    description: 'Savannah Marriott Riverfront, Savannah, GA. Look for us at our company booth.',
-    dateRange: 'Apr 17 - 18, 2019',
+    "startDate": "May 9,  2019",
+    "endDate": "May 10,  2019"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=15',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "May 3,  2019",
+    "endDate": "May 4,  2019"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=16',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Apr 25,  2019",
+    "endDate": "Apr 27,  2019"
   },
   {
-    path: null,
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Apr 17,  2019",
+    "endDate": "Apr 18,  2019"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=18',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '/site/company/events?EventSort=Past&p=19',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/MRA(1).jpg',
-    title: 'Massachusettes  Reading Association Conference (MRA)',
-    description: 'Boston Marriott Quincy, Boston, MA. Look for us at our company booth.',
-    dateRange: 'Apr 4 - 5, 2019',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/NSPS.jpg',
-    title: 'National Summit for Principal Supervisors 2019',
-    description: 'Westin Ft. Lauderdale Beach Resort, Fort Lauderdale, FL. Look for us at our company booth.',
-    dateRange: 'Apr 3 - 5, 2019',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/NCRA.jpg',
-    title: 'North Carolina Reading Assocation (NCRA)',
-    description: 'Raleigh Convention Center, Raleigh, NC. Look for us at our company booth.',
-    dateRange: 'Mar 31 - Apr 2, 2019',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/MACUL.jpg',
-    title: 'Michigan Association of Computer Users in Learning (MACUL)',
-    description: 'Cobo Center, Detroit, MI. Visit us at booth #325.',
-    dateRange: 'Mar 20 - 22, 2019',
+    "startDate": "Apr 4,  2019",
+    "endDate": "Apr 5,  2019"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/MAESP.jpg',
-    title: 'Maryland Association of Elementary School Principals Annual Conference (MAESP)',
-    description: 'Hyatt Chesapeake, Cambridge, MD. Look for us at our company booth.',
-    dateRange: 'Mar 7 - 9, 2019',
+    "startDate": "Apr 3,  2019",
+    "endDate": "Apr 5,  2019"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/ncties-2019.png',
-    title: 'North Carolina Technology in Edcuation Society (NCTIES)',
-    description: 'Raleigh Convention Center, Raleigh, NC. Look for us at our company booth.',
-    dateRange: 'Mar 6 - 8, 2019',
+    "startDate": "Mar 31,  2019",
+    "endDate": "Mar Apr 2,  2019"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/MTSA.jpg',
-    title: 'Michigan Science Teachers Association (MSTA) Annual Conference',
-    description: 'Amway Grand Plaza Hotel, Grand Rapids, MI. Look for us at our company booth.',
-    dateRange: 'Mar 1 - 2, 2019',
+    "startDate": "Mar 20,  2019",
+    "endDate": "Mar 22,  2019"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/NCEE.jpg',
-    title: 'Northwest Council for Computer Education NCEE 2019 Conference',
-    description: 'Washington State Convention Center, Seattle, WA. Visit us at booth #729.',
-    dateRange: 'Feb 26 - 28, 2019',
+    "startDate": "Mar 7,  2019",
+    "endDate": "Mar 9,  2019"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/Louisiana-CEC-Special-Education.jpg',
-    title: 'Louisiana CEC Special Education Conference',
-    description: 'Cajundome Convention Center, Lafayette, LA. Look for us at our company booth.',
-    dateRange: 'Feb 25 - 26, 2019',
+    "startDate": "Mar 6,  2019",
+    "endDate": "Mar 8,  2019"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/HASTI.jpg',
-    title: 'Hoosier Association of Science Teachers, Inc. (HASTI) 2019 Conference',
-    description: 'Wyndham - Indianapolis West, Indianapolis, IN. Look for us at our company booth.',
-    dateRange: 'Feb 17 - 19, 2019',
+    "startDate": "Mar 1,  2019",
+    "endDate": "Mar 2,  2019"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=16',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Feb 26,  2019",
+    "endDate": "Feb 28,  2019"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=17',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Feb 25,  2019",
+    "endDate": "Feb 26,  2019"
   },
   {
-    path: null,
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Feb 17,  2019",
+    "endDate": "Feb 19,  2019"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=19',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '/site/company/events?EventSort=Past&p=20',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/SCIRA.jpg',
-    title: 'South Carolina International Reading Association (SCIRA)',
-    description: 'Hilton Head Marriott Resort, Hilton Head, SC. Look for us at our company booth.',
-    dateRange: 'Feb 14 - 16, 2019',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/illinois-essa.jpg',
-    title: 'Illinois ESSA Conference ',
-    description: 'Sheraton Grand Chicago Hotel, Chicago, IL. Look for us at our company booth.',
-    dateRange: 'Feb 11 - 13, 2019',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/WSRA.jpg',
-    title: 'Wisconsin State Reading Association (WSRA)',
-    description: 'Wisconsin Center, Milwaukee, WI. Look for us at our company booth.',
-    dateRange: 'Feb 6 - 8, 2019',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/CCIRA.jpg',
-    title: 'Colorado Council International Reading Association (CCIRA)',
-    description: 'Marriott Denver Tech Center, Denver, CO. Look for us at our company booth.',
-    dateRange: 'Feb 6 - 9, 2019',
+    "startDate": "Feb 14,  2019",
+    "endDate": "Feb 16,  2019"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/OALA.jpg',
-    title: 'Oregon Association of Latino Administrators (OALA)',
-    description: 'Western Oregon University, Monmouth, OR. Look for us at our company booth.',
-    dateRange: 'Feb 1 - 2, 2019',
+    "startDate": "Feb 11,  2019",
+    "endDate": "Feb 13,  2019"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/TASAMidwinterConference.jpg',
-    title: 'TASA Midwinter Conference',
-    description: 'Austin Convention Center, Austin, TX. Look for us at our company booth.',
-    dateRange: 'Jan 27 - Feb 1, 2019',
+    "startDate": "Feb 6,  2019",
+    "endDate": "Feb 8,  2019"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/literacyreadingrecovery.jpg',
-    title: '2019 Comprehensive Literacy & Reading Recovery Conference',
-    description: 'Marriott Chicago Hotel, Chicago, IL. Look for us at our company booth.',
-    dateRange: 'Jan 23 - 25, 2019',
+    "startDate": "Feb 6,  2019",
+    "endDate": "Feb 9,  2019"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/california-charter02018.jpg',
-    title: 'California Charter School Leadership Update Conference',
-    description: 'San Francisco Marriott Marquis, San Francisco, CA. Look for us at our company booth.',
-    dateRange: 'Dec 10 - 11, 2018',
+    "startDate": "Feb 1,  2019",
+    "endDate": "Feb 2,  2019"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/memspa-2018.jpg',
-    title: 'Michigan Elementary & Middle School Principals Association (MEMSPA) Annual Conference',
-    description: 'Grand Traverse Resort and Spa, Williamsburg, MI. Look for us at our company booth.',
-    dateRange: 'Dec 5 - 7, 2018',
+    "startDate": "Jan 27,  2019",
+    "endDate": "Jan Feb 1,  2019"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/westvirginaleaders-2018.jpg',
-    title: ' 2018 West Virginia Leaders of Education Conference',
-    description: 'Greenbrier Resort, White Sulphur Springs, WV. Look for us at our company booth.',
-    dateRange: 'Dec 2 - 4, 2018',
+    "startDate": "Jan 23,  2019",
+    "endDate": "Jan 25,  2019"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=17',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Dec 10,  2018",
+    "endDate": "Dec 11,  2018"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=18',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Dec 5,  2018",
+    "endDate": "Dec 7,  2018"
   },
   {
-    path: null,
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Dec 2,  2018",
+    "endDate": "Dec 4,  2018"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=20',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '/site/company/events?EventSort=Past&p=21',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/FOIL-2018.jpg',
-    title: '2018 FOIL Fall Conference',
-    description: 'Orlando Lake Mary Marriott, Orlando, FL. Look for us at our company booth.',
-    dateRange: 'Nov 7 - 8, 2018',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/fra-2018.jpg',
-    title: 'Florida Reading Association Fall Conference (FRA)',
-    description: 'Florida Hotel and Conference Center, Orlando, FL. Look for us at our company booth.',
-    dateRange: 'Nov 4 - 5, 2018',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/asa-2018.jpg',
-    title: 'ASA Superintendency/Higher Ed Conference',
-    description: 'Hilton Sedona Resort at Bell Rock, Sedona, AZ. Look for us at our company booth.',
-    dateRange: 'Oct 21 - 23, 2018',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/ICE-2018(1).jpg',
-    title: 'Indiana Connected Educators Conference',
-    description: 'Noblesville High School, Noblesville, IN. Visit us at Booth #15.',
-    dateRange: 'Oct 11 - 12, 2018',
+    "startDate": "Nov 7,  2018",
+    "endDate": "Nov 8,  2018"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/MAASFEP-2018.jpg',
-    title: 'The Minnesota Association of Administrators of State and Federal Education Programs (MAASFEP) Conference',
-    description: 'Crowne Plaza Minneapolis West, Plymouth, MN. Look for us at our company booth.',
-    dateRange: 'Oct 11 - 12, 2018',
+    "startDate": "Nov 4,  2018",
+    "endDate": "Nov 5,  2018"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/ALAS-2018.jpg',
-    title: 'Association of Latino Administrators and Superintendents ALAS Annual Education Summit',
-    description: 'The Westin San Diego, San Diego, CA.  Visit us during our Carousel Sessions.',
-    dateRange: 'Oct 10 - 13, 2018',
+    "startDate": "Oct 21,  2018",
+    "endDate": "Oct 23,  2018"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/IRC-2018.jpg',
-    title: 'Illinois Reading Council Conference',
-    description: 'Peoria Civic Center and Peoria Marriott Pere Marquette Hotel, Peoria, IL. Visit us at booth #148.',
-    dateRange: 'Oct 4 - 6, 2018',
+    "startDate": "Oct 11,  2018",
+    "endDate": "Oct 12,  2018"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/lead-2018.jpg',
-    title: 'Tennessee DOE LEAD Conference',
-    description: 'The Music City Center in Nashville, Nashville, TN. Visit us at booth #174.',
-    dateRange: 'Oct 3 - 5, 2018',
+    "startDate": "Oct 11,  2018",
+    "endDate": "Oct 12,  2018"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/mas-fps.jpg',
-    title: '2018 Michigan Association of State and Federal Program Specialists (MAS/FPS) Fall Institute',
-    description: 'Grand Traverse Resort and Spa, Acme, MI. Look for us at our company booth.',
-    dateRange: 'Oct 2 - 3, 2018',
+    "startDate": "Oct 10,  2018",
+    "endDate": "Oct 13,  2018"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/tasa-taba-18.jpg',
-    title: 'TASA/TASB',
-    description: 'Austin Convention Center, Austin, TX. Visit us at booth #449.',
-    dateRange: 'Sep 28 - 29, 2018',
+    "startDate": "Oct 4,  2018",
+    "endDate": "Oct 6,  2018"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=18',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Oct 3,  2018",
+    "endDate": "Oct 5,  2018"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=19',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Oct 2,  2018",
+    "endDate": "Oct 3,  2018"
   },
   {
-    path: null,
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Sep 28,  2018",
+    "endDate": "Sep 29,  2018"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=21',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '/site/company/events?EventSort=Past&p=22',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/adventist-18.jpg',
-    title: 'Adventist Education Teachers Convention',
-    description: 'McCormick Place, Chicago, IL. Visit us at booth #309.',
-    dateRange: 'Aug 6 - 8, 2018',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/CCSD-18.jpg',
-    title: 'Clark County School District New Teacher Kick-Off',
-    description: 'Las Vegas, NV. Look for us at our company booth.',
-    dateRange: 'Aug 1 - 2, 2018',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/AAEA_2018.jpg',
-    title: 'Arkansas Assoc. of Educational Admin (AAEA)',
-    description: 'Statehouse Convention Center, Little Rock, AR. Look for us at our company booth.',
-    dateRange: 'Jul 30 - Aug 1, 2018',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/KASA.jpg',
-    title: 'Kentucky Association of School Administrators Annual Leadership Institute & Expo (KASA)',
-    description: 'Galt House Hotel, Louisville, KY. Look for us at our company booth.',
-    dateRange: 'Jul 26 - 28, 2018',
+    "startDate": "Aug 6,  2018",
+    "endDate": "Aug 8,  2018"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/cleveland-18.jpg',
-    title: 'Cleveland Metropolitan School District BLUE 5 New Institute',
-    description: 'Corporate College East, Cleveland, OH. Look for us at our company booth.',
-    dateRange: 'Jul 23 - 25, 2018',
+    "startDate": "Aug 1,  2018",
+    "endDate": "Aug 2,  2018"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/SDE-2018.jpg',
-    title: 'Staff Development for Educators (SDE)',
-    description: 'Venetian Hotel, Palazzo Ballroom, Las Vegas, NV. Visit us at booth #105.',
-    dateRange: 'Jul 9 - 12, 2018',
+    "startDate": "Jul 30,  2018",
+    "endDate": "Jul Aug 1,  2018"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/NASA-2018.jpg',
-    title: 'Nevada Association of School Administrators (NASA)',
-    description: "Harrah's Lake Tahoe, Lake Tahoe, NV. Look for us at our company booth.",
-    dateRange: 'Jun 11 - 12, 2018',
+    "startDate": "Jul 26,  2018",
+    "endDate": "Jul 28,  2018"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/CABE-2018.jpg',
-    title: 'California Association for Bilingual Education (CABE)',
-    description: 'Sacramento Convention Center, Sacramento, CA. Visit us at booth #319.',
-    dateRange: 'Mar 28 - 31, 2018',
+    "startDate": "Jul 23,  2018",
+    "endDate": "Jul 25,  2018"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/CCSA-2018.jpg',
-    title: 'California Charter Schools Association (CCSA)',
-    description: 'San Diego Convention Center, San Diego, CA. Look for us at our company booth.',
-    dateRange: 'Mar 26 - 28, 2018',
+    "startDate": "Jul 9,  2018",
+    "endDate": "Jul 12,  2018"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/ASCD-2018.jpg',
-    title: 'Association for Supervision and Curriculum Development (ASCD)',
-    description: 'Boston Convention and Exhibition Center, Boston, MA. Visit us at booth #1724.',
-    dateRange: 'Mar 24 - 26, 2018',
+    "startDate": "Jun 11,  2018",
+    "endDate": "Jun 12,  2018"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=19',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Mar 28,  2018",
+    "endDate": "Mar 31,  2018"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=20',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Mar 26,  2018",
+    "endDate": "Mar 28,  2018"
   },
   {
-    path: null,
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Mar 24,  2018",
+    "endDate": "Mar 26,  2018"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=22',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '/site/company/events?EventSort=Past&p=23',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/UCET.jpg',
-    title: 'Utah Coalition for Educational Technology (UCET)',
-    description: 'University of Utah, Salt Lake City, UT. Look for us at our company booth.',
-    dateRange: 'Mar 22 - 23, 2018',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/Colorado-Charter-2018.jpg',
-    title: 'Colorado Charter Schools Conference',
-    description: 'Marriott Denver Tech Center, Denver, CO. Look for us at our company booth.',
-    dateRange: 'Mar 1 - 2, 2018',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/NRAC.jpg',
-    title: 'Nebraska Reading Association Conference',
-    description: 'Kearney, NE. Look for us at our company booth.',
-    dateRange: 'Feb 22 - 24, 2018',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/SCIRA-2018.jpg',
-    title: 'South Carolina State Council of the International Reading Association (SCIRA)',
-    description: 'Hilton Head Marriott Resort, Hilton Head, SC. Look for us at our company booth.',
-    dateRange: 'Feb 22 - 24, 2018',
+    "startDate": "Mar 22,  2018",
+    "endDate": "Mar 23,  2018"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/OETC-2018.jpg',
-    title: 'Ohio Educational Technology Conference (OETC)',
-    description: 'Greater Columbus Convention Center, Columbus, OH. Visit us at booth #926.',
-    dateRange: 'Feb 13 - 15, 2018',
+    "startDate": "Mar 1,  2018",
+    "endDate": "Mar 2,  2018"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/METC-2018.jpg',
-    title: 'Midwest Education Technology Community (METC)',
-    description: 'St. Charles Convention Center, St. Charles, MO. Look for us at our company booth.',
-    dateRange: 'Feb 12 - 14, 2018',
+    "startDate": "Feb 22,  2018",
+    "endDate": "Feb 24,  2018"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/CEC-18.jpg',
-    title: 'Council for Exceptional Children (CEC) 2018 Special Education Convention & Expo',
-    description: 'Tampa Convention Center, Tampa, FL. Look for us at our company booth.',
-    dateRange: 'Feb 7 - 10, 2018',
+    "startDate": "Feb 22,  2018",
+    "endDate": "Feb 24,  2018"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/CASE-2018.jpg',
-    title: 'The CASE Winter Leadership Conference',
-    description: 'Westminster, CO (Denver). Look for us at our company booth.',
-    dateRange: 'Jan 31 - Feb 3, 2018',
+    "startDate": "Feb 13,  2018",
+    "endDate": "Feb 15,  2018"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/californiastemsymposium.jpg',
-    title: 'California STEM Symposium',
-    description: 'Moscone West Convention Hall, San Francisco, CA. Look for us at our company booth.',
-    dateRange: 'Dec 10 - 11, 2017',
+    "startDate": "Feb 12,  2018",
+    "endDate": "Feb 14,  2018"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/SLATE-2016.jpg',
-    title: 'Slate Conference',
-    description: 'Kalahari Resort, Wisconsin Dells, WI. Look for us at our company booth.',
-    dateRange: 'Dec 4 - 6, 2017',
+    "startDate": "Feb 7,  2018",
+    "endDate": "Feb 10,  2018"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=20',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Jan 31,  2018",
+    "endDate": "Jan Feb 3,  2018"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=21',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Dec 10,  2017",
+    "endDate": "Dec 11,  2017"
   },
   {
-    path: null,
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Dec 4,  2017",
+    "endDate": "Dec 6,  2017"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=23',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '/site/company/events?EventSort=Past&p=24',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/vste-17.jpg',
-    title: 'Virginia Society for Technology in Education (VSTE) Annual Technology Conference',
-    description: 'Hotel Roanoke and Conference Center, Roanoke, VA. Look for us at our company booth.',
-    dateRange: 'Dec 3 - 5, 2017',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/vast.jpg',
-    title: 'Virginia Association of Science Teachers (VAST) Annual PDI',
-    description: 'Hotel Roanoke and Conference Center, Roanoke, VA. Look for us at our company booth.',
-    dateRange: 'Nov 16 - 18, 2017',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/CAST_2016.jpg',
-    title: 'Conference for the Advancement of Science Teaching (CAST) ',
-    description: 'George R. Brown Convention Center, San Houston, TX. Visit us at Booth #338.',
-    dateRange: 'Nov 9 - 11, 2017',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/tsta.jpg',
-    title: 'Tennessee Science Teachers Association (TSTA)',
-    description: 'Murfreesboro, TN. Look for us at our company booth.',
-    dateRange: 'Nov 9 - 11, 2017',
+    "startDate": "Dec 3,  2017",
+    "endDate": "Dec 5,  2017"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/CUE-fall.jpg',
-    title: 'Computer Using Educators Fall Conference (CUE Fall)',
-    description: 'American Canyon High School, Napa Valley, CA. Look for us at our company booth.',
-    dateRange: 'Oct 27 - 28, 2017',
+    "startDate": "Nov 16,  2017",
+    "endDate": "Nov 18,  2017"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/georgia-stem.jpg',
-    title: 'The Georgia STEM Forum',
-    description: 'The Classic Center, Athens, GA. Look for us at our company booth.',
-    dateRange: 'Oct 23 - 24, 2017',
+    "startDate": "Nov 9,  2017",
+    "endDate": "Nov 11,  2017"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/cra-2016.jpg',
-    title: 'California Reading Association Professional Development Institute (CRA)',
-    description: 'Pacific Palm Resort, Industry Hills, CA. Visit us at Booth #26 and #27.',
-    dateRange: 'Oct 20 - 21, 2017',
+    "startDate": "Nov 9,  2017",
+    "endDate": "Nov 11,  2017"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/tndoe-2016.jpg',
-    title: 'Tennessee Department of Education LEAD Conference',
-    description: 'Music City Center, Nashville, TN. Visit us at Booth #207.',
-    dateRange: 'Oct 15 - 17, 2017',
+    "startDate": "Oct 27,  2017",
+    "endDate": "Oct 28,  2017"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/stom.jpg',
-    title: 'Science Teachers of Missouri (STOM)',
-    description: 'Hickman High School, Columbia, MO. Look for us at our company booth.',
-    dateRange: 'Oct 13 - 14, 2017',
+    "startDate": "Oct 23,  2017",
+    "endDate": "Oct 24,  2017"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/caasfep-17.jpg',
-    title: 'California Association of Administrators of State and Federal Education Programs PDI (CAASFEP)',
-    description: 'San Diego Sheraton Hotel and Marina, San Diego, CA. Look for us at our company booth.',
-    dateRange: 'Oct 9 - 11, 2017',
+    "startDate": "Oct 20,  2017",
+    "endDate": "Oct 21,  2017"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=21',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Oct 15,  2017",
+    "endDate": "Oct 17,  2017"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=22',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Oct 13,  2017",
+    "endDate": "Oct 14,  2017"
   },
   {
-    path: null,
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "Oct 9,  2017",
+    "endDate": "Oct 11,  2017"
   },
   {
-    path: '/site/company/events?EventSort=Past&p=24',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '/site/company/events?EventSort=Past&p=25',
-    image: '',
-    title: '',
-    description: '',
-    dateRange: '',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/IRC.jpg',
-    title: 'Illinois Reading Council Conference (IRC)',
-    description: 'Peoria Civic Center, Peoria, IL. Visit us at Booth #339.',
-    dateRange: 'Oct 5 - 7, 2017',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/cue-nevada.jpg',
-    title: 'CUE-NV 2017 State Technology Conference',
-    description: 'Western High School, Las Vegas, NV. Look for us at our company booth.',
-    dateRange: 'Sep 29 - 30, 2017',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/bremertonschools-2016.jpg',
-    title: 'West Sound Summer Institute',
-    description: 'Bremerton, WA. Look for us at our company booth.',
-    dateRange: 'Aug 16 - 17, 2017',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/saec.jpg',
-    title: 'SEAS Arkansas Education Conference',
-    description: 'Hot Springs Convention Center, Hot Springs, AR. Look for us at our company booth.',
-    dateRange: 'Jul 26 - 28, 2017',
+    "startDate": "Oct 5,  2017",
+    "endDate": "Oct 7,  2017"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/PAEC.jpg',
-    title: 'Panhandle Area Educational Consortium Leadership Conference (PAEC)',
-    description: 'Sandestin Golf and Beach Resort, Miramar Beach, FL. Look for us at our company booth.',
-    dateRange: 'Jul 18 - 20, 2017',
+    "startDate": "Sep 29,  2017",
+    "endDate": "Sep 30,  2017"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/clevelandmetschooldistrict.jpg',
-    title: 'Cleveland Metropolitan School District BLUE 4 New Institute',
-    description: 'Corporate College East, Cleveland, OH. Look for us at our company booth.',
-    dateRange: 'Jul 17 - 19, 2017',
+    "startDate": "Aug 16,  2017",
+    "endDate": "Aug 17,  2017"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/nsta_stem_forum.jpg',
-    title: 'NSTA Annual STEM Forum & Expo',
-    description: 'Gaylord Palms Resort and Convention Center, Kissimmee, FL. Visit us at Booth #723.',
-    dateRange: 'Jul 12 - 14, 2017',
+    "startDate": "Jul 26,  2017",
+    "endDate": "Jul 28,  2017"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/georgia_immersion_institute.jpg',
-    title: 'Georgia Dual Language Immersion Institute',
-    description: 'Atlanta International Charter School & Garden Hills Elementary School, Atlanta, GA. Look for us at our company booth.',
-    dateRange: 'Jul 11 - 12, 2017',
+    "startDate": "Jul 18,  2017",
+    "endDate": "Jul 20,  2017"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/NEA.jpg',
-    title: 'National Education Association Annual Meeting (NEA)',
-    description: 'Boston Convention Center, Boston, MA. Visit us at Booth #235.',
-    dateRange: 'Jun 30 - Jul 1, 2017',
+    "startDate": "Jul 17,  2017",
+    "endDate": "Jul 19,  2017"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/ESC-logo.jpg',
-    title: 'Effective Border Schools Conference',
-    description: 'Head Start Multi-Purpose Center, El Paso, TX. Look for us at our company booth.',
-    dateRange: 'Jun 19 - 21, 2017',
+    "startDate": "Jul 12,  2017",
+    "endDate": "Jul 14,  2017"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/midwestdirections.jpg',
-    title: 'Midwest Directions Education Conference',
-    description: 'Gateway Convention Center, Collinsville, IL. Look for us at our company booth.',
-    dateRange: 'Jun 13 - 14, 2017',
+    "startDate": "Jul 11,  2017",
+    "endDate": "Jul 12,  2017"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/NETA.jpg',
-    title: 'Nebraska Educational Technology Association (NETA) Spring Conference',
-    description: 'CenturyLink Center, Omaha, NE. Look for us at our company booth.',
-    dateRange: 'Apr 20 - 21, 2017',
+    "startDate": "Jun 30,  2017",
+    "endDate": "Jun Jul 1,  2017"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/ISN.jpg',
-    title: 'Innovative Schools Network (ISN) National Conference on Educational Innovation',
-    description: 'Glacier Canyon Conference Center, Wisconsin Dells, WI. Look for us at our company booth.',
-    dateRange: 'Apr 19 - 21, 2017',
+    "startDate": "Jun 19,  2017",
+    "endDate": "Jun 21,  2017"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/NCEA.jpg',
-    title: 'National Catholic Education Association Annual Conference (NCEA)',
-    description: "America's Center, St Louis, MO. Visit us at Booth #935.",
-    dateRange: 'Apr 18 - 20, 2017',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/NCASA.jpg',
-    title: 'North Carolina Association of School Administrators (NCASA) Conference on Educational Leadership',
-    description: 'Grandover Resort & Conference Center, Greensboro, NC. Look for us at our company booth.',
-    dateRange: 'Mar 30 - 31, 2017',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/CCSA.jpg',
-    title: 'NCDPI Collaborative Conference on Student Achievement (CCSA)',
-    description: 'Sheraton Greensboro Hotel & Koury Convention Center, Greensboro, NC. Visit us at Booth #27.',
-    dateRange: 'Mar 20 - 22, 2017',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/vsra-2016.jpg',
-    title: 'Virginia State Reading Association (VSRA) Annual Conference',
-    description: 'The Hotel Roanoke & Conference Center, Roanoke, VA. Visit us at Booth #509.',
-    dateRange: 'Mar 16 - 18, 2017',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/WSST.jpg',
-    title: 'Wisconsin Society of Science Teachers (WSST) Conference',
-    description: 'Olympia Resort & Conference Center, Oconomowoc, WI. Look for us at our company booth.',
-    dateRange: 'Mar 16 - 18, 2017',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/TESOLARABIA.jpg',
-    title: 'INTERNATIONAL - TESOL Arabia',
-    description: 'The Ritz-Carlton, Dubai International Financial Center, Dubai, UAE. Look for us at our company booth.',
-    dateRange: 'Mar 9 - 11, 2017',
+    "startDate": "Jun 13,  2017",
+    "endDate": "Jun 14,  2017"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/AASA.jpg',
-    title: 'AASA National Conference on Education',
-    description: 'Ernest N. Morial Convention Center, New Orleans, LA. Visit us at Booth #233.',
-    dateRange: 'Mar 2 - 4, 2017',
+    "startDate": "Apr 20,  2017",
+    "endDate": "Apr 21,  2017"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/TASA-assessment.jpg',
-    title: 'Texas Assessment Conference (TASA)',
-    description: 'Hilton Austin Hotel, Austin, TX. Visit us at Booth #208.',
-    dateRange: 'Feb 19 - 21, 2017',
+    "startDate": "Apr 19,  2017",
+    "endDate": "Apr 21,  2017"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/metc-2016.jpg',
-    title: 'Motivate/Engage/Transform/Connect Conference (METC)',
-    description: 'St. Charles Convention Center, St. Charles, MO. Visit us at Booth #4.',
-    dateRange: 'Feb 14 - 15, 2017',
+    "startDate": "Apr 18,  2017",
+    "endDate": "Apr 20,  2017"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/TCASE.jpg',
-    title: 'Texas Association of Administrators for Special Education (TCASE) - Great Ideas 2017',
-    description: 'JW Marriott Austin, Austin, TX. Visit us at Booth #34.',
-    dateRange: 'Jan 17 - 18, 2017',
+    "startDate": "Mar 30,  2017",
+    "endDate": "Mar 31,  2017"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/nsta-areaoh-2016.jpg',
-    title: 'NSTA Area Conference in Columbus',
-    description: 'Greater Columbus Convention Center, Columbus, OH. Visit us at Booth # 931.',
-    dateRange: 'Dec 1 - 3, 2016',
+    "startDate": "Mar 20,  2017",
+    "endDate": "Mar 22,  2017"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/ECIS_2016.jpg',
-    title: 'ECIS Annual Educators Conference',
-    description: 'Venue TBD, Copenhagen, Denmark. Look for us at our company booth.',
-    dateRange: 'Nov 18 - 19, 2016',
+    "startDate": "Mar 16,  2017",
+    "endDate": "Mar 18,  2017"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/scnsta-2016.jpg',
-    title: 'South Carolina Science Council Annual Conference',
-    description: 'Columbia Metropolitan Convention Center, Columbia, SC. Look for us at our company booth.',
-    dateRange: 'Nov 2 - 4, 2016',
+    "startDate": "Mar 16,  2017",
+    "endDate": "Mar 18,  2017"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/nsta-areamn-2016.jpg',
-    title: 'NSTA Area Conference in Minneapolis',
-    description: 'Minneapolis Convention Center, Minneapolis, MN. Visit us at Booth #615.',
-    dateRange: 'Oct 27 - 29, 2016',
+    "startDate": "Mar 9,  2017",
+    "endDate": "Mar 11,  2017"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/iNACOL_2016.jpg',
-    title: 'International Association for K-12 Online Learning Blended and Online Learning Symposium (iNACOL)',
-    description: 'Henry B. Gonzalez Convention Center, San Antonio, TX. Visit us at Booth #421.',
-    dateRange: 'Oct 25 - 28, 2016',
+    "startDate": "Mar 2,  2017",
+    "endDate": "Mar 4,  2017"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/SCATA-2016.jpg',
-    title: 'South Carolina Association of Title 1 Administrators (SCATA) Annual Fall Professional Development Conference',
-    description: 'Embassy Suites at Kingston Plantation, Myrtle Beach, SC. Look for us at our company booth.',
-    dateRange: 'Oct 25 - 28, 2016',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/KSDE-2016.jpg',
-    title: 'Kansas State Department of Education Annual Conference (KSDE)',
-    description: 'Hyatt Regency/Century II, Wichita, KS. Visit us at Booth #48.',
-    dateRange: 'Oct 24 - 26, 2016',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/Mass-CUE-2016.jpg',
-    title: 'Massachusetts Computer Using Educators Fall Conference (MassCUE)',
-    description: 'Gillette Stadium, Foxborough, MA. Visit us at Booth #337.',
-    dateRange: 'Oct 19 - 20, 2016',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/TABE_2016.jpg',
-    title: 'Texas Association For Bilingual Education (TABE)',
-    description: 'Moody Gardens Hotel, Galveston, TX. Visit us at Booth #105.',
-    dateRange: 'Oct 18 - 22, 2016',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/MABE_2016.jpg',
-    title: 'Maryland Association of Boards of Education Annual Conference (MABE)',
-    description: 'Clarion Resort Fontainebleau Hotel, Ocean City, MD. Look for us at our company booth.',
-    dateRange: 'Oct 5 - 7, 2016',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/AIE-2016.jpg',
-    title: 'Advancing Improvement in Education (AIE)',
-    description: 'Henry B. Gonzalez Convention Center, San Antonio, TX. Visit us at Booth #5.',
-    dateRange: 'Oct 4 - 6, 2016',
+    "startDate": "Feb 19,  2017",
+    "endDate": "Feb 21,  2017"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/taeyc-2016.jpg',
-    title: 'Texas Association for the Education of Young Children (TAEYC)',
-    description: 'Sheraton Dallas Hotel, Dallas, TX. Visit us at Booth #213.',
-    dateRange: 'Sep 22 - 24, 2016',
+    "startDate": "Feb 14,  2017",
+    "endDate": "Feb 15,  2017"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/blue-institute-2016.jpg',
-    title: 'BLUE 3 Institute',
-    description: 'Corporate College East, Cleveland, OH. Look for us at our company booth.',
-    dateRange: 'Jul 26 - 28, 2016',
+    "startDate": "Jan 17,  2017",
+    "endDate": "Jan 18,  2017"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/slac-2016.jpg',
-    title: 'Sanibel Leadership Association Conference',
-    description: 'Hilton Clearwater Beach, Clearwater Beach, FL. Look for us at our company booth.',
-    dateRange: 'Jun 22 - 24, 2016',
+    "startDate": "Dec 1,  2016",
+    "endDate": "Dec 3,  2016"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/tcea-2016.jpg',
-    title: 'Texas Computer Education Association (TCEA): Tots and Technology Conference',
-    description: 'Galveston Island Convention Center, Galveston, TX. Look for us at our company booth.',
-    dateRange: 'Jun 12 - 14, 2016',
+    "startDate": "Nov 18,  2016",
+    "endDate": "Nov 19,  2016"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/ESC1_2016.jpg',
-    title: 'Region One Technology Conference',
-    description: 'South Padre Island Convention Centre, South Padre Island, TX. Visit us at Booth #128.',
-    dateRange: 'May 18 - 20, 2016',
+    "startDate": "Nov 2,  2016",
+    "endDate": "Nov 4,  2016"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/NJASA-2016.jpg',
-    title: 'New Jersey Association of School Administrators / New Jersey Association of Pupil Services Administrators (NJASA/NJAPSA)',
-    description: 'Caesars Atlantic City Hotel and Casino, Atlantic City, NJ. Visit us at Booth #49.',
-    dateRange: 'May 11 - 13, 2016',
+    "startDate": "Oct 27,  2016",
+    "endDate": "Oct 29,  2016"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/Adelante_2016.jpg',
-    title: 'Adelante Conference',
-    description: 'Double Tree by Hilton, Austin, TX. Look for us at our company booth.',
-    dateRange: 'Apr 22 - 23, 2016',
+    "startDate": "Oct 25,  2016",
+    "endDate": "Oct 28,  2016"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/acet-2016.jpg',
-    title: 'Association for Compensatory Educators of Texas Spring Conference (ACET)',
-    description: 'Renaissance Austin Hotel, Austin, TX. Look for us at our company booth.',
-    dateRange: 'Apr 13 - 15, 2016',
+    "startDate": "Oct 25,  2016",
+    "endDate": "Oct 28,  2016"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/wemta-2016.jpg',
-    title: 'Wisconsin Educational Media & Technology Association (WEMTA)',
-    description: 'Kalahari Conference Center, Wisconsin Dells, WI. Look for us at our company booth.',
-    dateRange: 'Apr 10 - 12, 2016',
+    "startDate": "Oct 24,  2016",
+    "endDate": "Oct 26,  2016"
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/clesnocal-2016.jpg',
-    title: 'California League of Elementary Schools: Northern CA',
-    description: 'Hyatt Regency Downtown, Sacramento, CA. Look for us at our company booth.',
-    dateRange: 'Feb 26 - 27, 2016',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/plaintalk-2016.jpg',
-    title: 'Plain Talk About Literacy and Learning',
-    description: 'Hilton Riverside Hotel, New Orleans, LA. Look for us at our company booth.',
-    dateRange: 'Feb 17 - 19, 2016',
+    "startDate": "",
+    "endDate": ""
   },
   {
-    path: '',
-    image: '/user_area/content_media/raw/cles-2016.jpg',
-    title: 'California League of Elementary Schools Technology Conference',
-    description: 'Monterey Marriott, Monterey, CA. Look for us at our company booth.',
-    dateRange: 'Jan 8 - 9, 2016',
+    "startDate": "",
+    "endDate": ""
   },
+  {
+    "startDate": "",
+    "endDate": ""
+  },
+  {
+    "startDate": "",
+    "endDate": ""
+  },
+  {
+    "startDate": "Oct 19,  2016",
+    "endDate": "Oct 20,  2016"
+  },
+  {
+    "startDate": "Oct 18,  2016",
+    "endDate": "Oct 22,  2016"
+  },
+  {
+    "startDate": "Oct 5,  2016",
+    "endDate": "Oct 7,  2016"
+  },
+  {
+    "startDate": "Oct 4,  2016",
+    "endDate": "Oct 6,  2016"
+  },
+  {
+    "startDate": "Sep 22,  2016",
+    "endDate": "Sep 24,  2016"
+  },
+  {
+    "startDate": "Jul 26,  2016",
+    "endDate": "Jul 28,  2016"
+  },
+  {
+    "startDate": "Jun 22,  2016",
+    "endDate": "Jun 24,  2016"
+  },
+  {
+    "startDate": "Jun 12,  2016",
+    "endDate": "Jun 14,  2016"
+  },
+  {
+    "startDate": "May 18,  2016",
+    "endDate": "May 20,  2016"
+  },
+  {
+    "startDate": "May 11,  2016",
+    "endDate": "May 13,  2016"
+  },
+  {
+    "startDate": "",
+    "endDate": ""
+  },
+  {
+    "startDate": "",
+    "endDate": ""
+  },
+  {
+    "startDate": "",
+    "endDate": ""
+  },
+  {
+    "startDate": "",
+    "endDate": ""
+  },
+  {
+    "startDate": "",
+    "endDate": ""
+  },
+  {
+    "startDate": "Apr 22,  2016",
+    "endDate": "Apr 23,  2016"
+  },
+  {
+    "startDate": "Apr 13,  2016",
+    "endDate": "Apr 15,  2016"
+  },
+  {
+    "startDate": "Apr 10,  2016",
+    "endDate": "Apr 12,  2016"
+  },
+  {
+    "startDate": "Feb 26,  2016",
+    "endDate": "Feb 27,  2016"
+  },
+  {
+    "startDate": "Feb 17,  2016",
+    "endDate": "Feb 19,  2016"
+  },
+  {
+    "startDate": "Jan 8,  2016",
+    "endDate": "Jan 9,  2016"
+  },
+  {
+    "startDate": "",
+    "endDate": ""
+  },
+  {
+    "startDate": "",
+    "endDate": ""
+  },
+  {
+    "startDate": "",
+    "endDate": ""
+  },
+  {
+    "startDate": "",
+    "endDate": ""
+  },
+  {
+    "startDate": "",
+    "endDate": ""
+  }
 ];
 
 export const imageLinks = ['https://main--learninga-z--aemsites.hlx.page/images/events/nyscate.jpg',
