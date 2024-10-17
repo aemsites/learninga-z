@@ -178,7 +178,6 @@ export function createTag(tag, attributes, html = undefined) {
   return element;
 }
 
-
 /**
  * Sets an optimized background image for a given section element.
  * This function takes into account the device's viewport width and device pixel ratio
