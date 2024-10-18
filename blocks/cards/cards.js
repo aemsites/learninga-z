@@ -3,6 +3,7 @@ import {
   getRelativePath, getGenericIndexData, generatePagination, getDateRange,
 } from '../../scripts/utils.js';
 import { createOptimizedPicture } from '../../scripts/aem.js';
+import { decorateExternalLinks } from '../../scripts/scripts.js';
 
 const indexData = await getGenericIndexData();
 let imgWidth = '750';
@@ -144,6 +145,7 @@ export async function renderCardList(wrapper, cards, limit = 9, type = 'card') {
       populateCard(wrapper, card, type);
     }
   });
+  decorateExternalLinks(wrapper);
 
   if (totalPages > 1) {
     const paginationContainer = document.createElement('div');
