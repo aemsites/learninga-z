@@ -49,6 +49,10 @@
     width: 100%;
     height: auto;
 
+    p{
+        margin: 0;
+    }
+
     p>span::after {
         content: "-";
         padding: 0 5px;
@@ -56,6 +60,28 @@
 
     h3 {
         margin: 0;
+        color: inherit;
+        text-decoration: none;
+    }
+
+    a {
+        text-transform: uppercase;
+        font-size: 16px;
+        letter-spacing: .5px;
+        color: var(--product-purple);
+        width: fit-content;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    a::after {
+        content: url("/icons/caret-right-purple.svg");
+        padding-left: 5px;
+        width: 10px;
+        height: 10px;
+        display: inline-block;
     }
 }
 

@@ -75,6 +75,9 @@ function populateNewsCard(container, cardInfo) {
 function populateEventsCard(container, cardInfo) {
   const card = document.createElement('div');
   card.className = 'card';
+  const link = document.createElement('a');
+  link.href = cardInfo.path;
+  link.innerText = 'Learn More';
 
   card.innerHTML = `
         <div class="card-left">
@@ -82,10 +85,9 @@ function populateEventsCard(container, cardInfo) {
             ${createOptimizedPicture(cardInfo.image, cardInfo.title, false, [{ width: 200 }]).outerHTML}
           </div>
           <div class="card-body">
-            <a href="${cardInfo.path}">
-                <h3>${cardInfo.title}</h3>
-            </a>
+            <h3>${cardInfo.title}</h3>
             <p>${cardInfo.description}</p>
+            ${(cardInfo.type === 'upcoming' && cardInfo.path) ? link.outerHTML : ''}
           </div>
         </div>
         <div class="card-right">
