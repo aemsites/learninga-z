@@ -328,7 +328,7 @@ export function getDateRange(startDate, endDate) {
       return `${startDate.toLocaleDateString('en-US', {
         month: 'short',
         day: 'numeric',
-      })} - ${endDate.getDate()} ${endDate.toLocaleDateString('en-US', {
+      })} - ${endDate.getDate()}, ${endDate.toLocaleDateString('en-US', {
         year: 'numeric',
       })}`;
     }
@@ -338,16 +338,19 @@ export function getDateRange(startDate, endDate) {
     })} - ${endDate.toLocaleDateString('en-US', {
       month: 'short',
       day: 'numeric',
+    })}, ${endDate.toLocaleDateString('en-US', {
       year: 'numeric',
     })}`;
   }
   return `${startDate.toLocaleDateString('en-US', {
     month: 'short',
     day: 'numeric',
+  })}, ${startDate.toLocaleDateString('en-US', {
     year: 'numeric',
   })} - ${endDate.toLocaleDateString('en-US', {
     month: 'short',
     day: 'numeric',
+  })}, ${endDate.toLocaleDateString('en-US', {
     year: 'numeric',
   })}`;
 }
