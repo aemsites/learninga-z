@@ -8,7 +8,7 @@ export default async function decorate(block) {
   const news = await getNewsIndexData();
 
   const form = document.createElement('form');
-  form.setAttribute('class', 'video-filter-form');
+  form.setAttribute('class', 'news-filter-form');
   form.setAttribute('method', 'get');
   form.innerHTML = `
         <div class="select-position">
