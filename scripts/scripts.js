@@ -568,7 +568,6 @@ async function loadLazy(doc) {
   await loadSections(main);
   // const breadcrumb = await breadcrumbs(doc);
   // main.prepend(breadcrumb);
-
   const templateName = getMetadata('template');
   if (templateName) {
     await loadTemplate(doc, templateName);
