@@ -3,6 +3,48 @@ import { getEventsListData } from '../../scripts/utils.js';
 import { loadCSS } from '../../scripts/aem.js';
 import { renderCardList } from '../cards/cards.js';
 
+function serialDateToFormattedDate(serial) {
+  const epoch = new Date(1900, 0, 1); // January 1, 1900
+  const days = serial - 2; // Excel's serial date system starts at 1
+  epoch.setDate(epoch.getDate() + days);
+
+  return epoch.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  });
+}
+
+function getDateRange(startDate, endDate) {
+  if (startDate.getFullYear() === endDate.getFullYear()) {
+    if (startDate.getMonth() === endDate.getMonth()) {
+      return `${startDate.toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric',
+      })} - ${endDate.getDate()} ${endDate.toLocaleDateString('en-US', {
+        year: 'numeric',
+      })}`;
+    }
+    return `${startDate.toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+    })} - ${endDate.toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+    })}`;
+  }
+  return `${startDate.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  })} - ${endDate.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  })}`;
+}
+
 export default async function decorate(block) {
   await loadCSS(`${window.hlx.codeBasePath}/blocks/cards/cards.css`);
   const events = await getEventsListData();
@@ -12,7 +54,7 @@ export default async function decorate(block) {
   form.setAttribute('method', 'get');
   form.innerHTML = `
         <div class="select-position">
-        <select id="sortorder" name="EventSort" onchange="window.location.hash = 'page=1';this.form.submit();">
+        <select id="eventssort" name="EventSort" onchange="window.location.hash = 'page=1';this.form.submit();">
             <option value="upcoming" selected="selected">Upcoming</option>
             <option value="past">Past</option>
         </select>
@@ -23,34 +65,41 @@ export default async function decorate(block) {
   const eventsType = urlParams.get('EventSort');
   block.append(form);
 
-  // events has date range like "Nov 19 - 21, 2027" take the enddate and compare with today's date and put it in upcoming or past arrays
+  const pastEvents = [];
+  const upcomingEvents = [];
+  const today = new Date();
   events.forEach((event) => {
-    const date = event.dateRange.split(' - ')[1];
-    const month = event.dateRange.split(' ')[0];
-    //concatenate the month and date
-    const endDate = `${month} ${date}`;
-    console.log(endDate);
-    const eventDate = new Date(date);
-    const today = new Date();
-    if (eventDate < today) {
-      event.type = 'Past';
+    const endDate = new Date(serialDateToFormattedDate(event.endDate));
+    const startDate = new Date(serialDateToFormattedDate(event.startDate));
+    event.dateRange = getDateRange(startDate, endDate);
+
+    // compare date with today's date ignoring time
+    if (endDate.setHours(0, 0, 0, 0) < today.setHours(0, 0, 0, 0)) {
+      event.type = 'past';
+      pastEvents.push(event);
     } else {
-      event.type = 'Upcoming';
+      event.type = 'upcoming';
+      upcomingEvents.push(event);
     }
   });
 
-  if (eventsType === 'Past') {
-    events.reverse();
-    form.querySelector('option[value="past"]').selected = true;
-  } else {
-    form.querySelector('option[value="upcoming"]').selected = true;
-  }
   const div = document.createElement('div');
   block.append(div);
   div.className = 'events-cards';
-  renderCardList(div, events, 10, 'events');
+
+  if (eventsType === 'past') {
+    form.querySelector('option[value="past"]').selected = true;
+    renderCardList(div, pastEvents, 10, 'events');
+  } else {
+    form.querySelector('option[value="upcoming"]').selected = true;
+    renderCardList(div, upcomingEvents, 10, 'events');
+  }
 
   window.addEventListener('hashchange', async () => {
-    renderCardList(div, events, 10, 'events');
+    if (eventsType === 'past') {
+      renderCardList(div, pastEvents, 10, 'events');
+    } else {
+      renderCardList(div, upcomingEvents, 10, 'events');
+    }
   });
 }
