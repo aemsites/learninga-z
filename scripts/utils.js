@@ -321,3 +321,33 @@ export function generatePagination(paginationContainer, currentPage, totalPages)
   }
   paginationContainer.appendChild(nextDiv);
 }
+
+export function getDateRange(startDate, endDate) {
+  if (startDate.getFullYear() === endDate.getFullYear()) {
+    if (startDate.getMonth() === endDate.getMonth()) {
+      return `${startDate.toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric',
+      })} - ${endDate.getDate()} ${endDate.toLocaleDateString('en-US', {
+        year: 'numeric',
+      })}`;
+    }
+    return `${startDate.toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+    })} - ${endDate.toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+    })}`;
+  }
+  return `${startDate.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  })} - ${endDate.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  })}`;
+}

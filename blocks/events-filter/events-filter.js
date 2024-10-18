@@ -15,36 +15,6 @@ function serialDateToFormattedDate(serial) {
   });
 }
 
-function getDateRange(startDate, endDate) {
-  if (startDate.getFullYear() === endDate.getFullYear()) {
-    if (startDate.getMonth() === endDate.getMonth()) {
-      return `${startDate.toLocaleDateString('en-US', {
-        month: 'short',
-        day: 'numeric',
-      })} - ${endDate.getDate()} ${endDate.toLocaleDateString('en-US', {
-        year: 'numeric',
-      })}`;
-    }
-    return `${startDate.toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric',
-    })} - ${endDate.toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric',
-    })}`;
-  }
-  return `${startDate.toLocaleDateString('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-  })} - ${endDate.toLocaleDateString('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-  })}`;
-}
-
 export default async function decorate(block) {
   await loadCSS(`${window.hlx.codeBasePath}/blocks/cards/cards.css`);
   const events = await getEventsListData();
@@ -70,9 +40,8 @@ export default async function decorate(block) {
   const today = new Date();
   events.forEach((event) => {
     const endDate = new Date(serialDateToFormattedDate(event.endDate));
-    const startDate = new Date(serialDateToFormattedDate(event.startDate));
-    event.dateRange = getDateRange(startDate, endDate);
-
+    event.startDate = new Date(serialDateToFormattedDate(event.startDate));
+    event.endDate = endDate;
     // compare date with today's date ignoring time
     if (endDate.setHours(0, 0, 0, 0) < today.setHours(0, 0, 0, 0)) {
       event.type = 'past';

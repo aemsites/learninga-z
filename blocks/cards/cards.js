@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { getRelativePath, getGenericIndexData, generatePagination } from '../../scripts/utils.js';
+import { getRelativePath, getGenericIndexData, generatePagination, getDateRange } from '../../scripts/utils.js';
 import { createOptimizedPicture } from '../../scripts/aem.js';
 
 const indexData = await getGenericIndexData();
@@ -73,6 +73,7 @@ function populateNewsCard(container, cardInfo) {
 }
 
 function populateEventsCard(container, cardInfo) {
+  cardInfo.dateRange = getDateRange(cardInfo.startDate, cardInfo.endDate);
   const card = document.createElement('div');
   card.className = 'card';
   const link = document.createElement('a');
