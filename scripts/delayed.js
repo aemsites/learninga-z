@@ -1,6 +1,8 @@
 // add delayed functionality here
 // Google Tag Manager script embed
 
+import { loadScript } from './aem.js';
+
 async function enableGoogleTagManager() {
   const gtmScript = document.createElement('script');
   gtmScript.type = 'text/javascript';
@@ -24,3 +26,27 @@ async function enableGoogleTagManager() {
   document.body.insertAdjacentElement('afterbegin', noscriptElement);
 }
 enableGoogleTagManager();
+
+/**
+ * Writes a script element with the LD JSON struct to the page
+ * @param {HTMLElement} parent
+ * @param {Object} json
+ */
+function addLdJsonScript(parent, json) {
+  const script = document.createElement('script');
+  script.type = 'application/ld+json';
+  script.innerHTML = json;
+  parent.append(script);
+}
+
+const jsonLdMeta = document.querySelector('meta[name="json-ld"]');
+if (jsonLdMeta) {
+  addLdJsonScript(document.querySelector('head'), jsonLdMeta.content);
+  document.querySelector('meta[name="json-ld"]').remove();
+}
+
+loadScript('https://widget.intercom.io/widget/x8m18b9a', {
+  type: 'text/javascript',
+  charset: 'utf-8',
+  async: true,
+});
