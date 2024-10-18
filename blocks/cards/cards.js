@@ -1,5 +1,7 @@
 /* eslint-disable max-len */
-import { getRelativePath, getGenericIndexData, generatePagination, getDateRange } from '../../scripts/utils.js';
+import {
+  getRelativePath, getGenericIndexData, generatePagination, getDateRange,
+} from '../../scripts/utils.js';
 import { createOptimizedPicture } from '../../scripts/aem.js';
 
 const indexData = await getGenericIndexData();
