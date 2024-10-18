@@ -1,19 +1,25 @@
-.events-filter form select {
-    font-size: var(--body-font-size-xs);
-    font-weight: bold;
-    text-transform: uppercase;
-    padding: 0 50px 0 20px;
-    margin: 3% 0;
-    color: var(--dark-gray);
-    background-color: white;
-    height: 40px;
-    cursor: pointer;
-    border: 1px solid var(--dark-gray);
-    background-image: url("/icons/down.svg");
-    background-size: 20px;
-    background-repeat: no-repeat;
-    background-position: right 15px center;
-    appearance: none;
+.events-filter {
+    & a {
+        color: var(--product-purple);
+    }
+
+    & form select {
+        font-size: var(--body-font-size-xs);
+        font-weight: bold;
+        text-transform: uppercase;
+        padding: 0 50px 0 20px;
+        margin: 3% 0;
+        color: var(--dark-gray);
+        background-color: white;
+        height: 40px;
+        cursor: pointer;
+        border: 1px solid var(--dark-gray);
+        background-image: url("/icons/down.svg");
+        background-size: 20px;
+        background-repeat: no-repeat;
+        background-position: right 15px center;
+        appearance: none;
+    }
 }
 
 .events-cards .card {
@@ -49,7 +55,7 @@
     width: 100%;
     height: auto;
 
-    p{
+    p {
         margin: 0;
     }
 
@@ -68,7 +74,6 @@
         text-transform: uppercase;
         font-size: 16px;
         letter-spacing: .5px;
-        color: var(--product-purple);
         width: fit-content;
     }
 
@@ -87,7 +92,7 @@
 
 .events-cards .card .card-thumbnail {
     picture {
-        width: 140px; 
+        width: 140px;
         height: 140px;
 
         img {
