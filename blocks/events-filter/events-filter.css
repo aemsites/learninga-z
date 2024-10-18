@@ -21,7 +21,7 @@
     justify-content: space-between;
     width: 100%;
     border-top: 1px solid var(--light-grey);
-    flex-direction: column-reverse;
+    flex-direction: row;
 }
 
 .events-cards .card .card-left,
@@ -37,6 +37,9 @@
 
 .events-cards .card .card-right {
     margin-left: 10px;
+    gap: 20px;
+    justify-content: flex-start;
+    width: 30%;
 }
 
 .events-cards .card .card-body {
@@ -69,10 +72,16 @@
     }
 }
 
+.events-cards .card .events-type {
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 600;
+}
+
 .events-cards .card .events-date {
     font-size: 16px;
     font-weight: 600;
-    color: var(--dark-gray);
+    color: var(--medium-gray);
     text-transform: uppercase;
 }
 
@@ -84,12 +93,8 @@
 }
 
 @media screen and (width >=768px) {
-    .events-cards .card {
-        flex-direction: row;
-    }
-
     .events-cards .card .card-left {
-        width: 90%;
+        width: 70%;
     }
 
     .events-cards .card .card-body {

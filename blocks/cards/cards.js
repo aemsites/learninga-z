@@ -89,6 +89,9 @@ function populateEventsCard(container, cardInfo) {
           </div>
         </div>
         <div class="card-right">
+        <div class="events-type">
+              <span>${cardInfo.type}</span>
+          </div>
           <div class="events-date">
               <span>${cardInfo.dateRange}</span>
           </div>
