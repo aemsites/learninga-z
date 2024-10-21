@@ -557,6 +557,11 @@ async function loadEager(doc) {
   } catch (e) {
     // do nothing
   }
+  // load convert script that they want in the head
+  await loadScript('https://cdn-4.convertexperiments.com/v1/js/10047477-10048673.js', {
+    type: 'text/javascript',
+    charset: 'utf-8',
+  });
 }
 
 /**
@@ -566,11 +571,6 @@ async function loadEager(doc) {
 async function loadLazy(doc) {
   const main = doc.querySelector('main');
   await loadSections(main);
-  // convert script that they want in the HEAD
-  loadScript('https://cdn-4.convertexperiments.com/v1/js/10047477-10048673.js', {
-    type: 'text/javascript',
-    charset: 'utf-8',
-  });
   // const breadcrumb = await breadcrumbs(doc);
   // main.prepend(breadcrumb);
   const templateName = getMetadata('template');
