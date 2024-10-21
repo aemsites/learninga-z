@@ -93,6 +93,7 @@
 
 
   /* body sizes */
+  --body-font-size-l: 1.4rem; /* 22px */
   --body-font-size-m: 1.125rem; /* 18px */
   --body-font-size-s: 16px; /* default body font size */
   --body-font-size-xs: .875rem; /* 14px */
