@@ -1,3 +1,7 @@
+.accordion-wrapper {
+  margin: 20px 0;
+}
+
 .accordion details {
   border-bottom: 2px solid #ccc;
 }
@@ -15,8 +19,6 @@
 
 .accordion details summary {
   position: relative;
-  left: 10px;
-  padding: 0 16px;
   cursor: pointer;
   list-style: none;
   overflow: auto;
@@ -26,7 +28,7 @@
 }
 
 .accordion details[open] summary {
-  background-color: var(--transparent);
+  background-color: transparent;
   transition: all .4s ease-in;
 }
 
