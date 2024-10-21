@@ -648,17 +648,17 @@ export function redirectVideoPage() {
   const videoMapping = {
     5204: 'learning-a-z',
     7867: 'foundations-a-z',
-    5454:	'raz-plus',
-    7300:	'raz-plus-connected-classroom',
-    5097:	'reading-a-z',
-    5103:	'raz-kids',
-    5104:	'science-a-z',
-    5098:	'writing-a-z',
-    5099:	'vocabulary-a-z',
-    6275:	'raz-plus-ell',
-    5384:	'funding',
-    5491:	'testimonials',
-    5592:	'professional-learning',
+    5454: 'raz-plus',
+    7300: 'raz-plus-connected-classroom',
+    5097: 'reading-a-z',
+    5103: 'raz-kids',
+    5104: 'science-a-z',
+    5098: 'writing-a-z',
+    5099: 'vocabulary-a-z',
+    6275: 'raz-plus-ell',
+    5384: 'funding',
+    5491: 'testimonials',
+    5592: 'professional-learning',
     5100: 'learning-a-z',
   };
 
@@ -666,7 +666,6 @@ export function redirectVideoPage() {
   if (videoId && videoMapping[videoId]) {
     const newPath = `${basePath}?category=${videoMapping[videoId]}`;
     params.delete('SortByProduct');
-    
     // Add additional query parameters, construct the new URL
     const newLoc = params.toString() ? `${newPath}&${params.toString()}` : newPath;
     // Set the new window location
