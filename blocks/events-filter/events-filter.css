@@ -1,5 +1,5 @@
-.events-filter {
-    & a {
+.events-filter-container {
+    & a,& p:first-of-type > strong{
         color: var(--product-purple);
     }
 
