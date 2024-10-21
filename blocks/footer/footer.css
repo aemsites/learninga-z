@@ -1,7 +1,11 @@
 /* stylelint-disable no-descending-specificity */
 footer {
   background-color: var(--light-color);
-  font-size: var(--body-font-size-xs);
+}
+
+footer .email-banner h3 {
+  font-weight: var(--font-weight-medium);
+  color: var(--text-color);
 }
 
 footer .footer > div {
@@ -22,17 +26,26 @@ footer .footer .section:not(.cambium-banner) {
   padding-right: 15px;
 }
 
+footer .footer .section.cambium-banner {
+  margin-top: 80px;
+}
+
+footer .footer .section-outer:nth-child(2) .default-content-wrapper p {
+  font-size: var(--body-font-size-xxs);
+}
+
 footer .email-banner {
  padding: 25px 0;
 }
 
 footer .email-banner a {
-  color: var(--dark-gray);
+  color: var(--charcoal-gray);
   text-decoration: underline;
 }
 
 footer .footer p {
   margin: 0;
+    font-size: var(--body-font-size-xs);
 }
 
 footer .columns-img-col {
@@ -40,14 +53,15 @@ footer .columns-img-col {
   width: 25%;
 }
 
-footer .columns img {
-  width: 150px;
+footer .columns .icon-laz-logo-grayscale {
+  width: 151px;
+  height: 26px;
 }
 
 footer .footer .columns > div {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
   align-items: flex-start;
 }
 
@@ -61,15 +75,13 @@ footer .footer .columns ul {
 
 footer .footer .columns ul li {
   padding: 0 5px;
+  font-size: var(--body-font-size-l);
   font-weight: var(--font-weight-bold);
-  font-size: 16px;
   color: var(--dark-gray);
   text-transform: uppercase;
-  word-wrap: break-word;
 }
 
 footer .footer .columns ul li a {
-  font-size: var(--body-font-size-xs);
   color: var(--charcoal-blue);
 }
 
@@ -128,7 +140,7 @@ footer .social-links .icon:hover img {
 }
 
 footer .cambium-banner {
-  background-color: var(--dark-color);
+  background-color: var(--charcoal-gray);
   color: var(--light-color);
   padding: 1.5em;
 }
@@ -140,7 +152,7 @@ footer .cambium-banner p {
 footer .cambium-banner p a {
   color: white;
   margin: 0;
-  font-size: var(--body-font-size-m);
+  font-size: var(--body-font-size-xs);
   text-align: center;
   width: 100%;
   display: block;
@@ -156,13 +168,16 @@ footer .cambium-banner img {
   height: 35px;
   margin-left: 1rem;
   position: relative;
-  top: 50%;
-  transform: translateY(20%);
+  transform: translateY(40%);
 }
 
 @media (width >= 768px) {
   footer .footer .section:not(.cambium-banner) {
     max-width: 750px;
+  }
+
+  footer .cambium-banner p a {
+    font-size: var(--body-font-size-m);
   }
 }
 
@@ -179,6 +194,10 @@ footer .cambium-banner img {
 
   footer .footer .columns>div {
     flex-direction: row;
+  }
+
+  footer .footer .columns > div > div:nth-child(2) {
+    flex: 2;
   }
 
   footer .footer .columns ul {
