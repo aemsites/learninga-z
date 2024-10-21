@@ -557,6 +557,10 @@ async function loadEager(doc) {
   } catch (e) {
     // do nothing
   }
+  loadScript('https://cdn-4.convertexperiments.com/v1/js/10047477-10048673.js', {
+    type: 'text/javascript',
+    charset: 'utf-8',
+  });
 }
 
 /**
