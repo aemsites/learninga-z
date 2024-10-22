@@ -134,7 +134,7 @@ function titleToName(name) {
   return name.toLowerCase().replace(' ', '-');
 }
 
-const taxonomyEndpoint = '/taxonomy.json';
+const taxonomyEndpoint = '/tools/taxonomy.json';
 let taxonomyPromise;
 function fetchTaxonomy() {
   if (!taxonomyPromise) {
