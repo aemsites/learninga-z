@@ -40,6 +40,9 @@ export function populateCard(container, cardInfo, type = 'card') {
   container.append(card);
 }
 
+/**
+ * Populates a news card with the provided card information and appends it to the specified container.
+ */
 function populateNewsCard(container, cardInfo) {
   const card = document.createElement('div');
   card.className = 'card';
@@ -75,6 +78,9 @@ function populateNewsCard(container, cardInfo) {
   container.append(card);
 }
 
+/**
+ * Populates an events card with the provided card information and appends it to the specified container.
+ */
 function populateEventsCard(container, cardInfo) {
   cardInfo.dateRange = getDateRange(cardInfo.startDate, cardInfo.endDate);
   const card = document.createElement('div');
@@ -106,13 +112,28 @@ function populateEventsCard(container, cardInfo) {
   container.append(card);
 }
 
+function populateDownloadCard(container, cardInfo) {
+  const card = document.createElement('div');
+  card.className = `card ${cardInfo.category}`;
+  card.innerHTML = `
+        <div class="card-thumbnail">
+                ${createOptimizedPicture(cardInfo.image, cardInfo.title, false, [{ width: imgWidth }]).outerHTML}
+        </div>
+        <div class="card-body">
+                <h3>${cardInfo.title}</h3>
+            <a href="${cardInfo.path}"><p>Read More</p></a>
+        </div>
+    `;
+  container.append(card);
+}
+
 /** function to render card list when an array of card objects are passed.
  * this also supports pagination
 */
 export async function renderCardList(wrapper, cards, limit = 9, type = 'card') {
   const isNewsEvents = type === 'news' || type === 'events';
   let limitPerPage = limit;
-  if (limit === undefined) {
+  if (limit === 0) {
     limitPerPage = cards.length;
   } else {
     limitPerPage = Number.isNaN(parseInt(limit, 10)) ? 10 : parseInt(limit, 10);
@@ -141,13 +162,15 @@ export async function renderCardList(wrapper, cards, limit = 9, type = 'card') {
       populateEventsCard(wrapper, card);
     } else if (type === 'news') {
       populateNewsCard(wrapper, card);
+    } else if (type === 'downloads') {
+      populateDownloadCard(wrapper, card);
     } else {
       populateCard(wrapper, card, type);
     }
   });
   decorateExternalLinks(wrapper);
 
-  if (totalPages > 1) {
+  if (totalPages > 1 && limit !== 0) {
     const paginationContainer = document.createElement('div');
     paginationContainer.classList.add('pagination-container');
     generatePagination(paginationContainer, currentPage, totalPages);
@@ -183,6 +206,6 @@ export default function decorate(block) {
   } else {
     imgWidth = '750';
   }
-  renderCardList(cardsWrapper, cardsArray, undefined);
+  renderCardList(cardsWrapper, cardsArray, 0);
   block.append(cardsWrapper);
 }

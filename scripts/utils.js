@@ -4,6 +4,7 @@ const INDEX = '/query-index.json';
 const VIDEO_INDEX = '/site/resources/videos/query-index.json';
 const NEWS_INDEX = '/site/company/news/query-index.json';
 const EVENTS_LIST = '/site/company/events/events-list.json';
+const DOWNLOAD_LIBRARY_INDEX = '/site/resources/download-library/query-index.json';
 
 /**
  * Returns the relative path from a given path.
@@ -96,6 +97,15 @@ export async function getNewsIndexData() {
   }
   // Protected against callers modifying the objects
   return structuredClone(newsIndexData);
+}
+
+const downloadsIndexData = [];
+export async function getDownloadsIndexData(path = DOWNLOAD_LIBRARY_INDEX) {
+  if (!downloadsIndexData.length) {
+    downloadsIndexData.push(...await getIndexData(path));
+  }
+  // Protected against callers modifying the objects
+  return structuredClone(downloadsIndexData);
 }
 
 const videosIndexData = [];
