@@ -131,7 +131,6 @@ function populateDownloadCard(container, cardInfo) {
  * this also supports pagination
 */
 export async function renderCardList(wrapper, cards, limit = 9, type = 'card') {
-  const isNewsEvents = type === 'news' || type === 'events';
   let limitPerPage = limit;
   if (limit === 0) {
     limitPerPage = cards.length;
@@ -140,12 +139,8 @@ export async function renderCardList(wrapper, cards, limit = 9, type = 'card') {
   }
 
   wrapper.innerHTML = '';
-  let pageSize = 10;
   if (!cards || cards.length === 0) {
     return;
-  }
-  if (limitPerPage && limit !== 0) {
-    pageSize = isNewsEvents ? limitPerPage : Math.round(limitPerPage - (limitPerPage % 3));
   }
   const list = document.createElement('div');
   list.classList.add('cards-list');
@@ -154,8 +149,8 @@ export async function renderCardList(wrapper, cards, limit = 9, type = 'card') {
   if (match) {
     currentPage = Number.isNaN(parseInt(match[1], 10)) ? currentPage : parseInt(match[1], 10);
   }
-  const totalPages = Math.ceil(cards.length / pageSize);
-  const cardsList = cards.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+  const totalPages = Math.ceil(cards.length / limitPerPage);
+  const cardsList = cards.slice((currentPage - 1) * limitPerPage, currentPage * limitPerPage);
 
   cardsList.forEach((card) => {
     if (type === 'events') {
