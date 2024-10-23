@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 main > .section-outer > .section.download-cards-section { 
     padding: 0;
     max-width: 100%;
@@ -54,13 +55,21 @@ main > .section-outer > .section.download-cards-section {
     z-index: 2;
 }
 
+.download-cards .card.press-releases .card-thumbnail::before {
+    content: url("/icons/newspaper-solid.svg");
+}
+
+.download-cards .card.one-sheets .card-thumbnail::before {
+    content: url("/icons/file-lines-regular.svg");
+}
+
 .download-cards .card .card-thumbnail {
     display: inline-block;
     height: fit-content;
     border-radius: 50%;
     width: 30%;
     background-color: #242120;
-    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, .2);
+    box-shadow: inset 0 0 0 1000px var(--dark-gray);
 }
 
 .download-cards .card .card-thumbnail img {

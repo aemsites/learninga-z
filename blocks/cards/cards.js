@@ -114,7 +114,7 @@ function populateEventsCard(container, cardInfo) {
 
 function populateDownloadCard(container, cardInfo) {
   const card = document.createElement('div');
-  card.className = `card ${cardInfo.category}`;
+  card.className = `card ${cardInfo.category.replace(/ /g, '-').toLowerCase()}`;
   card.innerHTML = `
         <div class="card-thumbnail">
                 ${createOptimizedPicture(cardInfo.image, cardInfo.title, false, [{ width: imgWidth }]).outerHTML}
@@ -144,7 +144,7 @@ export async function renderCardList(wrapper, cards, limit = 9, type = 'card') {
   if (!cards || cards.length === 0) {
     return;
   }
-  if (limitPerPage) {
+  if (limitPerPage && limit !== 0) {
     pageSize = isNewsEvents ? limitPerPage : Math.round(limitPerPage - (limitPerPage % 3));
   }
   const list = document.createElement('div');

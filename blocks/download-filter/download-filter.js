@@ -13,9 +13,10 @@ function groupItemsByType(block) {
       types.push(type);
     }
   });
-  const uniqueTypes = [...new Set(types)];
+  const uniqueTypes = [...new Set(types)].sort();
   uniqueTypes.forEach((type) => {
     const typePages = downloadPages.filter((page) => page.category === type);
+    console.log(type, typePages);
     const div = document.createElement('div');
     div.className = 'download-cards';
     const h2 = document.createElement('h2');
