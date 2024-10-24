@@ -2,6 +2,7 @@
 import { loadCSS } from '../../scripts/aem.js';
 import { getDownloadsIndexData } from '../../scripts/utils.js';
 import { renderCardList } from '../cards/cards.js';
+import { PRODUCT_NAMES } from '../../scripts/constants.js';
 
 const downloadPages = await getDownloadsIndexData();
 
@@ -37,18 +38,20 @@ function groupItemsByProduct(block) {
       if (products.indexOf(',') > -1) {
         const prodArray = products.split(',');
         prodArray.forEach((product) => {
-          productsArray.push(product.toLowerCase().trim());
+          productsArray.push(product.trim());
         });
       } else {
         // if products is a string, add the product to the productsArray
-        productsArray.push(products.toLowerCase());
+        productsArray.push(products.trim());
       }
     }
   });
   const uniqueProducts = [...new Set(productsArray)];
   console.log(uniqueProducts);
+  // sort the products based on the order in PRODUCT_NAMES
+  uniqueProducts.sort((a, b) => PRODUCT_NAMES.indexOf(a) - PRODUCT_NAMES.indexOf(b));
   uniqueProducts.forEach((product) => {
-    const productPages = downloadPages.filter((page) => (page.products.toLowerCase().indexOf(product) > -1));
+    const productPages = downloadPages.filter((page) => (page.products.toLowerCase().indexOf(product.toLowerCase()) > -1));
     const div = document.createElement('div');
     div.className = 'download-cards';
     const h2 = document.createElement('h2');
