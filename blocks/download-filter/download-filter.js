@@ -4,7 +4,7 @@ import { getDownloadsIndexData } from '../../scripts/utils.js';
 import { renderCardList } from '../cards/cards.js';
 import { PRODUCT_NAMES } from '../../scripts/constants.js';
 
-const downloadPages = await getDownloadsIndexData();
+let downloadPages = [];
 
 function groupItemsByType(block) {
   const types = [];
@@ -63,6 +63,13 @@ function groupItemsByProduct(block) {
 
 export default async function decorate(block) {
   await loadCSS(`${window.hlx.codeBasePath}/blocks/cards/cards.css`);
+  const indexUrl = block.querySelector('a').href;
+  if (indexUrl) {
+    downloadPages = await getDownloadsIndexData(indexUrl);
+    block.querySelector('a').remove();
+  } else {
+    downloadPages = await getDownloadsIndexData();
+  }
 
   // get the last part of the url as the product name
   const url = window.location.href;

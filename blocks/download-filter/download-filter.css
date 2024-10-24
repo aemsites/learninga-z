@@ -45,7 +45,7 @@ main > .section-outer > .section.download-cards-section {
 }
 
 .download-cards .card .card-thumbnail::before {
-    content: url("/icons/file-image-regular.svg");
+    content: url("/icons/file-lines-regular.svg");
     position: absolute;
     transform: translate(-50%, -50%);
     top: 25%;
@@ -59,8 +59,8 @@ main > .section-outer > .section.download-cards-section {
     content: url("/icons/newspaper-solid.svg");
 }
 
-.download-cards .card.one-sheets .card-thumbnail::before {
-    content: url("/icons/file-lines-regular.svg");
+.download-cards .card.brochures .card-thumbnail::before {
+    content: url("/icons/file-image-regular.svg");
 }
 
 .download-cards .card .card-thumbnail {
