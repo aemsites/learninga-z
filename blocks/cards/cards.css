@@ -23,7 +23,7 @@
   }
 
   i.arrow {
-    background-color: var(--light-grey);
+    background-color: var(--light-gray);
     padding: 10px;
     position: absolute;
     bottom: 0;
@@ -244,7 +244,7 @@
 
     .card {
       width: 100%;
-      border-top: 1px solid var(--light-grey);
+      border-top: 1px solid var(--light-gray);
       padding: 25px 0;
       display: flex;
       gap:10px;
@@ -255,7 +255,7 @@
     }
 
     .card:last-of-type {
-      border-bottom: 1px solid var(--light-grey);
+      border-bottom: 1px solid var(--light-gray);
     }
 
     .card>div {

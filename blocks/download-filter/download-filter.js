@@ -17,7 +17,6 @@ function groupItemsByType(block) {
   const uniqueTypes = [...new Set(types)].sort();
   uniqueTypes.forEach((type) => {
     const typePages = downloadPages.filter((page) => page.category === type);
-    console.log(type, typePages);
     const div = document.createElement('div');
     div.className = 'download-cards';
     const h2 = document.createElement('h2');
@@ -47,7 +46,6 @@ function groupItemsByProduct(block) {
     }
   });
   const uniqueProducts = [...new Set(productsArray)];
-  console.log(uniqueProducts);
   // sort the products based on the order in PRODUCT_NAMES
   uniqueProducts.sort((a, b) => PRODUCT_NAMES.indexOf(a) - PRODUCT_NAMES.indexOf(b));
   uniqueProducts.forEach((product) => {

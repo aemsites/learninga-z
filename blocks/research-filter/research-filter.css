@@ -9,7 +9,7 @@
 
 .research-filter hr {
     margin: 20px 0;
-    border-top: 1px solid var(--light-grey);
+    border-top: 1px solid var(--light-gray);
 }
 
 @media screen and (width >=568px) {

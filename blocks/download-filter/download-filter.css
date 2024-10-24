@@ -4,7 +4,7 @@ main > .section-outer > .section.download-cards-section {
     max-width: 100%;
 
     .default-content-wrapper {
-        background-color: #f8f8f8;
+        background-color: var(--very-light-gray);
         
         p{
             padding: 20px 0;
@@ -32,7 +32,7 @@ main > .section-outer > .section.download-cards-section {
 .download-cards .card {
     margin-right: 0;
     float: left;
-    border-top: 1px solid #cbcbcb;
+    border-top: 1px solid var(--light-gray);
     display: flex;
     clear: both;
     width: 100%;
@@ -68,7 +68,7 @@ main > .section-outer > .section.download-cards-section {
     height: fit-content;
     border-radius: 50%;
     width: 30%;
-    background-color: #242120;
+    background-color: var(--dark-gray);
     box-shadow: inset 0 0 0 1000px var(--dark-gray);
 }
 
