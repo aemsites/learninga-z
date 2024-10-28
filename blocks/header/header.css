@@ -394,7 +394,7 @@ header .megamenu>.section-outer {
 
   h3>a,
   a>h3 {
-    font-size: var(--heading-font-size-s);
+    font-size: var(--body-font-size-m);
     color: var(--charcoal-gray);
     font-family: var(--body-font-family);
   }
