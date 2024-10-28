@@ -18,6 +18,10 @@ export default async function decorate(block) {
       }
     });
   });
+  // sort categories alphabetically
+  categories[Symbol.iterator] = function* iterateCategories() {
+    yield* [...this.entries()].sort((a, b) => a[1].localeCompare(b[1]));
+  };
   const form = document.createElement('form');
   form.setAttribute('class', 'video-filter-form');
   form.setAttribute('method', 'get');
