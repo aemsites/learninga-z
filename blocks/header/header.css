@@ -70,6 +70,7 @@ header .nav-sections ul.primary-nav-items>li strong,
 header .nav-tools ul>li strong {
   display: block;
   height: 100%;
+  padding-top: 20px;
 }
 
 header .nav-sections ul.primary-nav-items,
