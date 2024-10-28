@@ -403,6 +403,8 @@ header .megamenu>.section-outer {
     font-weight: var(--font-weight-normal);
     color: #48433F;
     text-transform: none;
+    display: flex;
+    align-items: center;
   }
 
   ul>li .icon {
