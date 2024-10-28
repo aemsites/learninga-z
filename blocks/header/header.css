@@ -432,12 +432,25 @@ header .megamenu>.section-outer {
   width: 25%;
 }
 
+.header .megamenu .columns-container.content-cards {
+  align-items: stretch;
+
+  .default-content-wrapper p {
+    margin: 0;
+    height: 100%;
+  }
+
+  .default-content-wrapper p *{
+    height: 100%;
+  }
+}
+
 .header .megamenu .columns-container.content-cards .columns {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 5px;
-  max-height: 90%;
+  max-height: 100%;
 }
 
 .header .megamenu .columns-container.content-cards .columns>div, header.header-mobile .nav-sections > .section > .default-content-wrapper > p:last-child {
