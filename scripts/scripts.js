@@ -12,8 +12,49 @@ import {
   loadCSS,
   sampleRUM,
   getMetadata,
-  toClassName, decorateBlock,
+  toClassName,
+  decorateBlock,
+  loadScript,
+  toCamelCase,
 } from './aem.js';
+
+/**
+ * Determines if the current audience is mobile or desktop.
+ * @type {{desktop: (function(): boolean), mobile: (function(): boolean)}}
+ * Required per https://github.com/adobe/aem-experimentation
+ */
+const AUDIENCES = {
+  mobile: () => window.innerWidth < 600,
+  desktop: () => window.innerWidth >= 600,
+  // define your custom audiences here as needed
+};
+
+/**
+ * Gets all the metadata elements that are in the given scope.
+ * @param {String} scope The scope/prefix for the metadata
+ * @returns an array of HTMLElement nodes that match the given scope
+ */
+export function getAllMetadata(scope) {
+  return [...document.head.querySelectorAll(`meta[property^="${scope}:"],meta[name^="${scope}-"]`)]
+    .reduce((res, meta) => {
+      const id = toClassName(meta.name
+        ? meta.name.substring(scope.length + 1)
+        : meta.getAttribute('property').split(':')[1]);
+      res[id] = meta.getAttribute('content');
+      return res;
+    }, {});
+}
+
+// Define an execution context
+const pluginContext = {
+  getAllMetadata,
+  getMetadata,
+  loadCSS,
+  loadScript,
+  sampleRUM,
+  toCamelCase,
+  toClassName,
+};
 
 function buildPageDivider(main) {
   const allPageDivider = main.querySelectorAll('code');
@@ -80,6 +121,69 @@ async function loadFonts() {
 }
 
 /**
+ * check if link text is same as the href
+ * @param {Element} link the link element
+ * @returns {boolean} true or false
+ */
+export function linkTextIncludesHref(link) {
+  const href = link.getAttribute('href');
+  const textcontent = link.textContent;
+  return textcontent.includes(href);
+}
+
+export const PRODUCTION_DOMAINS = ['learninga-z.com'];
+
+const domainCheckCache = {};
+
+/**
+ * Checks a url to determine if it is a known domain.
+ * @param {string | URL} url the url to check
+ * @returns {Object} an object with properties indicating the urls domain types.
+ */
+export function checkDomain(url) {
+  const urlToCheck = typeof url === 'string' ? new URL(url) : url;
+
+  let result = domainCheckCache[urlToCheck.hostname];
+  if (!result) {
+    const isProd = PRODUCTION_DOMAINS.some((host) => urlToCheck.hostname.includes(host));
+    const isHlx = ['hlx.page', 'hlx.live', 'aem.page', 'aem.live'].some((host) => urlToCheck.hostname.includes(host));
+    const isLocal = urlToCheck.hostname.includes('localhost');
+    const isPreview = isLocal || urlToCheck.hostname.includes('hlx.page') || urlToCheck.hostname.includes('aem.page');
+    const isKnown = isProd || isHlx || isLocal;
+    const isExternal = !isKnown;
+    result = {
+      isProd,
+      isHlx,
+      isLocal,
+      isKnown,
+      isExternal,
+      isPreview,
+    };
+
+    domainCheckCache[urlToCheck.hostname] = result;
+  }
+
+  return result;
+}
+
+/**
+   * Builds fragment blocks from links to fragments
+   * @param {Element} main The container element
+   */
+export function buildFragmentBlocks(main) {
+  main.querySelectorAll('a[href]').forEach((a) => {
+    const url = new URL(a.href);
+    const domainCheck = checkDomain(url);
+    // don't autoblock the header navigation currently in fragments
+    if (domainCheck.isKnown && linkTextIncludesHref(a) && (url.pathname.includes('/fragments/') && !url.pathname.includes('header/'))) {
+      const block = buildBlock('fragment', url.pathname);
+      a.replaceWith(block);
+      decorateBlock(block);
+    }
+  });
+}
+
+/**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
  * @param {Function} templateModule The template module
@@ -88,6 +192,7 @@ function buildAutoBlocks(main, templateModule = undefined) {
   try {
     buildHeroBlock(main);
     buildPageDivider(main);
+    buildFragmentBlocks(main);
     if (templateModule && templateModule.default) {
       templateModule.default(main);
     }
@@ -135,6 +240,82 @@ export function createTag(tag, attributes, html = undefined) {
       });
   }
   return element;
+}
+
+/**
+ * Sets an optimized background image for a given section element.
+ * This function takes into account the device's viewport width and device pixel ratio
+ * to choose the most appropriate image from the provided breakpoints.
+ *
+ * @param {HTMLElement} section - The section element to which the background image will be applied.
+ * @param {string} bgImage - The base URL of the background image.
+ * @param {Array<{width: string, media?: string}>} [breakpoints=[
+ *  { width: '450' },
+ *   { media: '(min-width: 450px)', width: '750' },
+ *   { media: '(min-width: 768px)', width: '1024' },
+ *   { media: '(min-width: 1024px)', width: '1600' },
+ *   { media: '(min-width: 1600px)', width: '2000' },
+ * ]] - An array of breakpoint objects. Each object contains a `width` which is the width of the
+ * image to request, and an optional `media` which is a media query string indicating when this
+ * breakpoint should be used.
+ */
+
+const resizeListeners = new WeakMap();
+function getBackgroundImage(section) {
+  // look for "background" values in the section metadata
+  const bgImages = section.dataset.background.split(',');
+  if (bgImages.length === 1) {
+    return bgImages[0].trim();
+  } // if there are 2 images, first is for desktop and second is for mobile
+  return (window.innerWidth > 1024 && bgImages.length === 2)
+    ? bgImages[0].trim() : bgImages[1].trim();
+}
+
+function createOptimizedBackgroundImage(section, breakpoints = [
+  { width: '450' },
+  { media: '(min-width: 450px)', width: '768' },
+  { media: '(min-width: 768px)', width: '1024' },
+  { media: '(min-width: 1024px)', width: '1600' },
+  { media: '(min-width: 1600px)', width: '2000' },
+]) {
+  const updateBackground = () => {
+    const bgImage = getBackgroundImage(section);
+    const url = new URL(bgImage, window.location.href);
+    const pathname = encodeURI(url.pathname);
+
+    const matchedBreakpoints = breakpoints.filter(
+      (br) => !br.media || window.matchMedia(br.media).matches,
+    );
+    // If there are any matching breakpoints, pick the one with the highest resolution
+    const matchedBreakpoint = matchedBreakpoints.reduce(
+      (acc, curr) => (parseInt(curr.width, 10) > parseInt(acc.width, 10) ? curr : acc),
+      breakpoints[0],
+    );
+
+    const adjustedWidth = matchedBreakpoint.width * window.devicePixelRatio;
+    section.style.backgroundImage = `url(${pathname}?width=${adjustedWidth}&format=webply&optimize=highest)`;
+    section.style.backgroundSize = 'cover';
+  };
+
+  if (resizeListeners.has(section)) {
+    window.removeEventListener('resize', resizeListeners.get(section));
+  }
+
+  resizeListeners.set(section, updateBackground);
+  window.addEventListener('resize', updateBackground);
+  updateBackground();
+}
+
+/**
+ * Finds all sections in the main element of the document
+ * that require adding a background image
+ * @param {Element} main
+ */
+
+function decorateStyledSections(main) {
+  Array.from(main.querySelectorAll('.section-outer[data-background]')).forEach((section) => {
+    createOptimizedBackgroundImage(section);
+  });
 }
 
 /**
@@ -238,17 +419,6 @@ export function decorateExternalLinks(main) {
 }
 
 /**
- * check if link text is same as the href
- * @param {Element} link the link element
- * @returns {boolean} true or false
- */
-export function linkTextIncludesHref(link) {
-  const href = link.getAttribute('href');
-  const textcontent = link.textContent;
-  return textcontent.includes(href);
-}
-
-/**
  * Builds video blocks when encounter video links.
  * @param {Element} main The container element
  */
@@ -277,6 +447,7 @@ export function decorateMain(main, templateModule) {
   decorateBlocks(main);
   decorateLinkedImages(main);
   decorateExternalLinks(main);
+  decorateStyledSections(main);
   buildEmbedBlocks(main);
 }
 
@@ -411,6 +582,14 @@ async function buildBreadcrumbs() {
  */
 async function loadEager(doc) {
   document.documentElement.lang = 'en';
+  // Add below snippet early in the eager phase
+  if (getMetadata('experiment')
+      || Object.keys(getAllMetadata('campaign')).length
+      || Object.keys(getAllMetadata('audience')).length) {
+    // eslint-disable-next-line import/no-relative-packages
+    const { loadEager: runEager } = await import('../plugins/experimentation/src/index.js');
+    await runEager(document, { audiences: AUDIENCES }, pluginContext);
+  }
   decorateTemplateAndTheme();
   const templateModule = await loadTemplate();
   const main = doc.querySelector('main');
@@ -431,6 +610,11 @@ async function loadEager(doc) {
   } catch (e) {
     // do nothing
   }
+  // load convert script that they want in the head
+  loadScript('https://cdn-4.convertexperiments.com/v1/js/10047477-10048673.js', {
+    type: 'text/javascript',
+    charset: 'utf-8',
+  });
 }
 
 /**
@@ -442,7 +626,6 @@ async function loadLazy(doc) {
   await loadSections(main);
   // const breadcrumb = await breadcrumbs(doc);
   // main.prepend(breadcrumb);
-
   const templateName = getMetadata('template');
   if (templateName) {
     await loadTemplate(doc, templateName);
@@ -455,6 +638,14 @@ async function loadLazy(doc) {
   loadFooter(doc.querySelector('footer'));
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
+  // used for the authoring overlay
+  if ((getMetadata('experiment')
+      || Object.keys(getAllMetadata('campaign')).length
+      || Object.keys(getAllMetadata('audience')).length)) {
+    // eslint-disable-next-line import/no-relative-packages
+    const { loadLazy: runLazy } = await import('../plugins/experimentation/src/index.js');
+    await runLazy(document, { audiences: AUDIENCES }, pluginContext);
+  }
 }
 
 /**
@@ -498,8 +689,46 @@ export function redirectTagPage() {
   }
 }
 
+/**
+ * Redirect video page with url parameter to
+ * video page in url path.
+ */
+export function redirectVideoPage() {
+  const windowHref = window.location.href;
+  const url = new URL(windowHref);
+  const basePath = url.pathname;
+  const params = new URLSearchParams(url.search);
+  const videoMapping = {
+    5204: 'learning-a-z',
+    7867: 'foundations-a-z',
+    5454: 'raz-plus',
+    7300: 'raz-plus-connected-classroom',
+    5097: 'reading-a-z',
+    5103: 'raz-kids',
+    5104: 'science-a-z',
+    5098: 'writing-a-z',
+    5099: 'vocabulary-a-z',
+    6275: 'raz-plus-ell',
+    5384: 'funding',
+    5491: 'testimonials',
+    5592: 'professional-learning',
+    5100: 'learning-a-z',
+  };
+
+  const videoId = params.get('SortByProduct');
+  if (videoId && videoMapping[videoId]) {
+    const newPath = `${basePath}?category=${videoMapping[videoId]}`;
+    params.delete('SortByProduct');
+    // Add additional query parameters, construct the new URL
+    const newLoc = params.toString() ? `${newPath}&${params.toString()}` : newPath;
+    // Set the new window location
+    window.location.replace(newLoc);
+  }
+}
+
 async function loadPage() {
   redirectTagPage();
+  redirectVideoPage();
   await loadEager(document);
   await loadLazy(document);
   loadDelayed();

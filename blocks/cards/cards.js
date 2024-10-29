@@ -1,6 +1,9 @@
 /* eslint-disable max-len */
-import { getRelativePath, getGenericIndexData, generatePagination } from '../../scripts/utils.js';
+import {
+  getRelativePath, getGenericIndexData, generatePagination, getDateRange,
+} from '../../scripts/utils.js';
 import { createOptimizedPicture } from '../../scripts/aem.js';
+import { decorateExternalLinks } from '../../scripts/scripts.js';
 
 const indexData = await getGenericIndexData();
 let imgWidth = '750';
@@ -37,10 +40,17 @@ export function populateCard(container, cardInfo, type = 'card') {
   container.append(card);
 }
 
+/**
+ * Populates a news card with the provided card information and appends it to the specified container.
+ */
 function populateNewsCard(container, cardInfo) {
   const card = document.createElement('div');
   card.className = 'card';
-  const date = new Date(cardInfo.date);
+  const dateParts = cardInfo.date.split('-');
+  const year = parseInt(dateParts[0], 10);
+  const month = parseInt(dateParts[1], 10) - 1;
+  const day = parseInt(dateParts[2], 10);
+  const date = new Date(year, month, day);
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
   const bodyDate = date.toLocaleDateString('en-US', options);
 
@@ -50,7 +60,7 @@ function populateNewsCard(container, cardInfo) {
   card.innerHTML = `
         <div class="card-left">
           <div class="card-thumbnail">
-            ${createOptimizedPicture(cardInfo.image, cardInfo.title, false, [{ width: imgWidth }]).outerHTML}
+            ${createOptimizedPicture(cardInfo.image, cardInfo.title, false, [{ width: 200 }]).outerHTML}
           </div>
           <div class="card-body">
             <a href="${cardInfo.path}">
@@ -68,44 +78,94 @@ function populateNewsCard(container, cardInfo) {
   container.append(card);
 }
 
+/**
+ * Populates an events card with the provided card information and appends it to the specified container.
+ */
+function populateEventsCard(container, cardInfo) {
+  cardInfo.dateRange = getDateRange(cardInfo.startDate, cardInfo.endDate);
+  const card = document.createElement('div');
+  card.className = 'card';
+  const link = document.createElement('a');
+  link.href = cardInfo.path;
+  link.innerText = 'Learn More';
+
+  card.innerHTML = `
+        <div class="card-left">
+          <div class="card-thumbnail">
+            ${createOptimizedPicture(cardInfo.image, cardInfo.title, false, [{ width: 200 }]).outerHTML}
+          </div>
+          <div class="card-body">
+            <h3>${cardInfo.title}</h3>
+            <p>${cardInfo.description}</p>
+            ${(cardInfo.type === 'upcoming' && cardInfo.path) ? link.outerHTML : ''}
+          </div>
+        </div>
+        <div class="card-right">
+        <div class="events-type">
+              <span>${cardInfo.type}</span>
+          </div>
+          <div class="events-date">
+              <span>${cardInfo.dateRange}</span>
+          </div>
+        </div>
+    `;
+  container.append(card);
+}
+
+function populateDownloadCard(container, cardInfo) {
+  const card = document.createElement('div');
+  card.className = `card ${cardInfo.category.replace(/ /g, '-').toLowerCase()}`;
+  card.innerHTML = `
+        <div class="card-thumbnail">
+                ${createOptimizedPicture(cardInfo.image, cardInfo.title, false, [{ width: imgWidth }]).outerHTML}
+        </div>
+        <div class="card-body">
+                <h3>${cardInfo.title}</h3>
+            <a href="${cardInfo.path}"><p>Read More</p></a>
+        </div>
+    `;
+  container.append(card);
+}
+
 /** function to render card list when an array of card objects are passed.
  * this also supports pagination
 */
 export async function renderCardList(wrapper, cards, limit = 9, type = 'card') {
   let limitPerPage = limit;
-  if (limit === undefined) {
+  if (limit === 0) {
     limitPerPage = cards.length;
   } else {
     limitPerPage = Number.isNaN(parseInt(limit, 10)) ? 10 : parseInt(limit, 10);
   }
 
   wrapper.innerHTML = '';
-  let pageSize = 10;
   if (!cards || cards.length === 0) {
     return;
   }
-  if (limitPerPage) {
-    pageSize = Math.round(limitPerPage - (limitPerPage % 3));
-  }
   const list = document.createElement('div');
-  list.classList.add('article-teaser-list');
+  list.classList.add('cards-list');
   let currentPage = 1;
   const match = window.location.hash.match(/page=(\d+)/);
   if (match) {
     currentPage = Number.isNaN(parseInt(match[1], 10)) ? currentPage : parseInt(match[1], 10);
   }
-  const totalPages = Math.ceil(cards.length / pageSize);
-  const cardsList = cards.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+  const totalPages = Math.ceil(cards.length / limitPerPage);
+  const cardsList = cards.slice((currentPage - 1) * limitPerPage, currentPage * limitPerPage);
 
   cardsList.forEach((card) => {
-    if (type === 'news') {
+    if (type === 'events') {
+      populateEventsCard(wrapper, card);
+    } else if (type === 'news') {
       populateNewsCard(wrapper, card);
+    } else if (type === 'downloads') {
+      populateDownloadCard(wrapper, card);
     } else {
       populateCard(wrapper, card, type);
     }
   });
+  decorateExternalLinks(wrapper);
 
-  if (totalPages > 1) {
+  if (totalPages > 1 && limit !== 0) {
     const paginationContainer = document.createElement('div');
     paginationContainer.classList.add('pagination-container');
     generatePagination(paginationContainer, currentPage, totalPages);
@@ -141,6 +201,6 @@ export default function decorate(block) {
   } else {
     imgWidth = '750';
   }
-  renderCardList(cardsWrapper, cardsArray, undefined);
+  renderCardList(cardsWrapper, cardsArray, 0);
   block.append(cardsWrapper);
 }

@@ -38,7 +38,8 @@
   --yellow: #FDDC3F;
   --white: #FFF;
   --off-white: #F6F6F6;
-  --light-grey: #CBCBCB;
+  --light-gray: #CBCBCB;
+  --very-light-gray: #f8f8f8;
   --divider-gray: #eee;
   --black: #000;
   --light-red: #ed7790;
@@ -93,6 +94,7 @@
 
 
   /* body sizes */
+  --body-font-size-l: 1.4rem; /* 22px */
   --body-font-size-m: 1.125rem; /* 18px */
   --body-font-size-s: 16px; /* default body font size */
   --body-font-size-xs: .875rem; /* 14px */

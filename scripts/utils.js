@@ -3,6 +3,8 @@ import ffetch from './ffetch.js';
 const INDEX = '/query-index.json';
 const VIDEO_INDEX = '/site/resources/videos/query-index.json';
 const NEWS_INDEX = '/site/company/news/query-index.json';
+const EVENTS_LIST = '/site/company/events/events-list.json';
+const DOWNLOAD_LIBRARY_INDEX = '/site/resources/download-library/query-index.json';
 
 /**
  * Returns the relative path from a given path.
@@ -71,6 +73,19 @@ async function getIndexData(index = INDEX) {
   return retrievedData;
 }
 
+const eventsListData = [];
+/**
+ * Retrieves the events list data.
+ * @returns {Promise<Array>} A promise that resolves to an array of events list data.
+ */
+export async function getEventsListData() {
+  if (!eventsListData.length) {
+    eventsListData.push(...await getIndexData(EVENTS_LIST));
+  }
+  // Protected against callers modifying the objects
+  return structuredClone(eventsListData);
+}
+
 const newsIndexData = [];
 /**
  * Retrieves the videos index data.
@@ -82,6 +97,15 @@ export async function getNewsIndexData() {
   }
   // Protected against callers modifying the objects
   return structuredClone(newsIndexData);
+}
+
+const downloadsIndexData = [];
+export async function getDownloadsIndexData(path = DOWNLOAD_LIBRARY_INDEX) {
+  if (!downloadsIndexData.length) {
+    downloadsIndexData.push(...await getIndexData(path));
+  }
+  // Protected against callers modifying the objects
+  return structuredClone(downloadsIndexData);
 }
 
 const videosIndexData = [];
@@ -120,7 +144,7 @@ function titleToName(name) {
   return name.toLowerCase().replace(' ', '-');
 }
 
-const taxonomyEndpoint = '/taxonomy.json';
+const taxonomyEndpoint = '/tools/taxonomy.json';
 let taxonomyPromise;
 function fetchTaxonomy() {
   if (!taxonomyPromise) {
@@ -306,4 +330,37 @@ export function generatePagination(paginationContainer, currentPage, totalPages)
     nextDiv.appendChild(createPageLink(currentPage + 1, 'NEXT >', 'active'));
   }
   paginationContainer.appendChild(nextDiv);
+}
+
+export function getDateRange(startDate, endDate) {
+  if (startDate.getFullYear() === endDate.getFullYear()) {
+    if (startDate.getMonth() === endDate.getMonth()) {
+      return `${startDate.toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric',
+      })} - ${endDate.getDate()}, ${endDate.toLocaleDateString('en-US', {
+        year: 'numeric',
+      })}`;
+    }
+    return `${startDate.toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+    })} - ${endDate.toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+    })}, ${endDate.toLocaleDateString('en-US', {
+      year: 'numeric',
+    })}`;
+  }
+  return `${startDate.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+  })}, ${startDate.toLocaleDateString('en-US', {
+    year: 'numeric',
+  })} - ${endDate.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+  })}, ${endDate.toLocaleDateString('en-US', {
+    year: 'numeric',
+  })}`;
 }

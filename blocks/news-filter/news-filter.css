@@ -20,7 +20,7 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
-    border-top: 1px solid var(--light-grey);
+    border-top: 1px solid var(--light-gray);
     flex-direction: column-reverse;
 }
 
@@ -32,7 +32,6 @@
 }
 
 .news-cards .card .card-left {
-    width: 90%;
     flex-direction: column;
 }
 
@@ -44,7 +43,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 80%;
+    width: 100%;
     height: auto;
 
     p>span::after {
@@ -58,39 +57,43 @@
 }
 
 .news-cards .card .card-thumbnail {
-    width: 25%;
-    text-align: center;
-
     picture {
-        width: 100%;
+        width: 140px; 
+        height: 140px;
+
+        img {
+            width: 100%;
+            object-fit: cover;
+            aspect-ratio: 4/3;
+        }
     }
 }
 
 .news-cards .card .news-date {
     font-size: 16px;
     font-weight: 600;
-    color: #717171;
+    color: var(--dark-gray);
     text-transform: uppercase;
 }
 
 @media screen and (width >=576px) {
     .news-cards .card .card-left {
         flex-direction: row;
-    }
-
-    .news-cards .card .card-thumbnail {
-        width: 20%;
-        text-align: center;
-
-        picture {
-            width: 90%;
-        }
+        gap: 20px;
     }
 }
 
 @media screen and (width >=768px) {
     .news-cards .card {
         flex-direction: row;
+    }
+
+    .news-cards .card .card-left {
+        width: 90%;
+    }
+
+    .news-cards .card .card-body {
+        width: 80%;
     }
 
     .news-cards .card .card-left,
