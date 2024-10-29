@@ -35,7 +35,7 @@
   --red: #E21D46;
   --sky-blue: #A2DAE8;
   --turquoise: #3FC1C0;
-  --yellow: #FDDC3F;
+  --yellow: #F8BE15;
   --white: #FFF;
   --off-white: #F6F6F6;
   --light-gray: #CBCBCB;
@@ -618,20 +618,24 @@ body.yellow {
   .table table th {
     background-color: var(--yellow);
     }
+
+  h3 {
+    color: var(--yellow);
+  }
 }
 
-  [data-theme="yellow"] {
+[data-theme="yellow"] {
+  background-color: var(--yellow);
+
+  .breadcrumbs-outer {
     background-color: var(--yellow);
-
-    .breadcrumbs-outer {
-      background-color: var(--yellow);
-    }
-
-    a:any-link {
-      color: var(--text-color);
-      text-decoration: underline;
-    }
   }
+
+  a:any-link {
+    color: var(--text-color);
+    text-decoration: underline;
+  }
+}
 
   /* end themes */
 

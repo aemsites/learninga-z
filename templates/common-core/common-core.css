@@ -1,0 +1,32 @@
+.wrapper {
+  display: flex;
+
+  aside {
+    min-width: 270px;
+
+    ul {
+
+      li {
+        border-bottom: 1px solid #aaa;
+        &:first-child { border-top: 1px solid #aaa }
+
+        a {
+          text-decoration: none;
+          color: #333;
+          display: block;
+          padding: 18px;
+          font-size: 18px;
+          line-height: 30px;
+          &:hover, &.active { background: #fffaed }
+          &.active { font-weight: bold }
+        }
+      }
+    }
+  }
+
+  section {
+    flex-grow: 1;
+    padding: 0 0 0 50px;
+  }
+}
+
