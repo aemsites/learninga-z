@@ -112,6 +112,9 @@ function populateEventsCard(container, cardInfo) {
   container.append(card);
 }
 
+/**
+ * Populates a download card in the specified container with the given card information.
+ */
 function populateDownloadCard(container, cardInfo) {
   const card = document.createElement('div');
   card.className = `card ${cardInfo.category.replace(/ /g, '-').toLowerCase()}`;
@@ -122,6 +125,31 @@ function populateDownloadCard(container, cardInfo) {
         <div class="card-body">
                 <h3>${cardInfo.title}</h3>
             <a href="${cardInfo.path}"><p>Read More</p></a>
+        </div>
+    `;
+  container.append(card);
+}
+
+/**
+ * Populates a award card in the specified container with the given card information (used in /site/company/awards-and-accolades page).
+ */
+function populateAwardsCard(container, cardInfo) {
+  const card = document.createElement('div');
+  card.className = 'card';
+  const description = cardInfo.description?.split('|').map((item) => {
+    const parts = item.split(':');
+    if (parts.length > 1) {
+      return `${parts[0]}: <strong>${parts[1]}</strong>`;
+    }
+    return item;
+  }).join('<br>');
+  card.innerHTML = `
+        <div class="card-thumbnail">
+                ${createOptimizedPicture(cardInfo.image, cardInfo.title, false, [{ width: imgWidth }]).outerHTML}
+        </div>
+        <div class="card-body">
+                ${cardInfo.path ? `<a href="${cardInfo.path}"><h3>${cardInfo.title}</h3></a>` : `<h3>${cardInfo.title}</h3>`}
+                <p>${description}</p>
         </div>
     `;
   container.append(card);
@@ -159,6 +187,8 @@ export async function renderCardList(wrapper, cards, limit = 9, type = 'card') {
       populateNewsCard(wrapper, card);
     } else if (type === 'downloads') {
       populateDownloadCard(wrapper, card);
+    } else if (type === 'awards') {
+      populateAwardsCard(wrapper, card);
     } else {
       populateCard(wrapper, card, type);
     }

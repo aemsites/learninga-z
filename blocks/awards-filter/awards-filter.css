@@ -1,0 +1,60 @@
+.awards-filter-container {
+    & a > h3, a{
+        color: var(--product-purple) !important;
+    }
+}
+
+.awards-cards .card {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    border-top: 1px solid var(--light-gray);
+    flex-direction: column;
+    gap: 30px;
+    padding: 25px 0;
+}
+
+.awards-cards .card .card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    height: auto;
+
+    p {
+        margin: 0;
+    }
+
+    h3 {
+        margin: 0;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+}
+
+.awards-cards .card .card-thumbnail {
+    picture {
+        width: 140px;
+        height: 140px;
+
+        img {
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+}
+
+@media screen and (width >=576px) {
+    .awards-cards .card {
+        flex-direction: row;
+    }
+}
+
+@media screen and (width >=768px) {
+    .awards-cards .card .card-body {
+        width: 80%;
+    }
+}
