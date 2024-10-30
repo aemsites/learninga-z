@@ -3,7 +3,7 @@
   color: #555;
   position: relative;
   transition: background-color .2s;
-  padding: 15px 15px 0;
+  padding: 15px 15px 1px;
   margin:20px 0;
 }
 
