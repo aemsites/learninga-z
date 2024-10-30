@@ -42,303 +42,300 @@
   }
 }
 
-  .cards .card:hover img {
-    transform: scale(1.05);
-    opacity: 0.9;
+.cards .card:hover img {
+  transform: scale(1.05);
+  opacity: 0.9;
 
-  }
+}
 
-  .card a {
-    text-decoration: none;
-  }
+.card a {
+  text-decoration: none;
+}
 
 
-  .card .card-body p {
-    font-weight: var(--font-weight-normal);
-    color: var(--charcoal-blue);
-  }
+.card .card-body p {
+  font-weight: var(--font-weight-normal);
+  color: var(--charcoal-blue);
+}
 
-  .card .card-thumbnail .video-playbtn {
-    display: none;
-  }
+.card .card-thumbnail .video-playbtn {
+  display: none;
+}
 
-  /* pagination */
-  .pagination-container {
-    width: 100%;
-    text-align: center;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    display: inline-block;
-    padding-left: 0;
-    margin: 20px 0;
-    border-radius: 4px;
-  }
+/* pagination */
+.pagination-container {
+  width: 100%;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  display: inline-block;
+  padding-left: 0;
+  margin: 20px 0;
+  border-radius: 4px;
+}
 
-  .pagination-container .next{
-    float: right;
-  }
+.pagination-container .next {
+  float: right;
+}
 
-  .pagination-container .prev{
-    float: left;
-  }
+.pagination-container .prev {
+  float: left;
+}
 
-  .pagination {
-    display: inline-block;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
+.pagination {
+  display: inline-block;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 
-  .pagination li {
-    display: inline;
-    padding: 0 10px;
-    margin: 0;
-  }
+.pagination li {
+  display: inline;
+  padding: 0 10px;
+  margin: 0;
+}
 
-  .pagination-container a {
-    font-size: var(--body-font-size-m);
-    font-weight: var(--font-weight-bold);
-    text-transform: uppercase;
-    transition: all .4s;
-  }
+.pagination-container a {
+  font-size: var(--body-font-size-m);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  transition: all .4s;
+}
 
-  .pagination-container a:not([href]) {
-    color: var(--dark-gray) !important;
-    pointer-events: none;
-    cursor: default;
-  }
+.pagination-container a:not([href]) {
+  color: var(--dark-gray) !important;
+  pointer-events: none;
+  cursor: default;
+}
 
-  /* pagination ends */
-
-  .cards:not(.suggested-videos), .card-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: 20px;
-  }
+/* pagination ends */
+.cards:not(.suggested-videos),
+.card-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 20px;
+}
 
 .cards:not(.suggested-videos) {
-    .card-wrapper > .card {
-      margin-bottom: 20px;
-    }
+  container-type: inline-size;
 
-    .card {
-      background: var(--divider-gray);
-      height: auto;
-      position: relative;
+  .card-wrapper>.card {
+    margin-bottom: 20px;
+  }
 
-      picture {
-        background-color: var(--black);
+  .card {
+    background: var(--divider-gray);
+    height: auto;
+    position: relative;
+
+    picture {
+      background-color: var(--black);
 
       img {
         width: 100%;
         object-fit: cover;
         aspect-ratio: 36/24;
       }
-      }
     }
+  }
 
-    .card a {
-      display: inline-block;
-      width: 100%;
-      overflow: hidden;
-      position: relative;
-    }
+  .card a {
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
 
-    .card h3 {
-      font-size: var(--body-font-size-m);
-      font-family: var(--body-font-family);
-      font-weight: var(--font-weight-extra-bold);
-    }
+  .card h3 {
+    font-size: var(--body-font-size-m);
+    font-family: var(--body-font-family);
+    font-weight: var(--font-weight-extra-bold);
+  }
 
-    .card .card-body {
-      padding: 0 20px 20px;
+  .card .card-body {
+    padding: 0 20px 20px;
 
-      p {
-        font-weight: var(--font-weight-normal);
-        color: var(--charcoal-blue);
-      }
-    }
-
-    .card .efficacy-badge {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: absolute;
-      color: white;
-      top: 10px;
-      right: 0;
-      z-index: 100;
-      padding: 8px 30px 8px 12px;
-      border-radius: 6px 0 0 6px;
-      white-space: nowrap;
-      left: calc(100% - 120px);
-      transition: left .65s ease;
-      width: fit-content;
-    }
-
-    .card:hover .efficacy-badge {
-      left: calc(100% - 36px);
-    }
-
-
-    .card .efficacy-badge.strong {
-      background-color: var(--red);
-    }
-
-    .card .efficacy-badge.moderate {
-      background-color: var(--orange-red);
-    }
-
-    .card .efficacy-badge.effective {
-      background-color: var(--bright-yellow);
-    }
-
-    .card .efficacy-badge .flag {
-      width: 16px;
-      height: 16px;
-      display: inline-block;
-      content: url("/icons/flag.svg");
-    }
-
-    .card .efficacy-badge:not(.strong) .flag {
-      filter: invert(1);
-    }
-
-    .card .efficacy-badge .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0 0 0 0);
-      border: 0;
-    }
-
-    .card .efficacy-badge p {
-      margin: 0;
-      padding: 0;
-      margin-left: 8px;
+    p {
       font-weight: var(--font-weight-normal);
-    }
-
-    .card .efficacy-badge:not(.strong) p {
-      filter: invert(1);
+      color: var(--charcoal-blue);
     }
   }
 
-  .cards.suggested-videos {
-    margin: 20px 0;
-
-    h3 {
-      font-family: var(--body-font-family);
-      font-size: var(--body-font-size-m);
-      font-weight: var(--font-weight-medium);
-      color: inherit;
-    }
-
-    .card-wrapper {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .card {
-      width: 100%;
-      border-top: 1px solid var(--light-gray);
-      padding: 25px 0;
-      display: flex;
-      gap:10px;
-    }
-
-    .card:hover img {
-      transform: none;
-    }
-
-    .card:last-of-type {
-      border-bottom: 1px solid var(--light-gray);
-    }
-
-    .card>div {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .card img::before {
-      display: inline-block;
-      width: auto;
-      height: auto;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      color: #888;
-      line-height: 1;
-      z-index: 2;
-      font-size: 2em;
-      margin-top: -25px;
-      margin-left: -15px;
-    }
-
-    .card>.card-thumbnail a {
-      display: block;
-      pointer-events: none;
-      text-align: center;
-    }
-
-    .card>.card-thumbnail a picture {
-      width: 80px;
-      height: 80px;
-      margin: 0 auto;
-    }
-
-    .card>.card-thumbnail a img {
-      border-radius: 50%;
-      position: relative;
-      left: 0;
-      width: 80px;
-      height: 80px;
-      object-fit: cover;
-      filter: brightness(75%);
-    }
-
-    .card .card-body {
-      display: flex;
-      position: relative;
-    }
-
-    .card .card-body h3 {
-      font-weight: var(--font-weight-extra-bold);
-    }
-
-    .card .card-body a,
-    .card i.arrow {
-      display: none;
-    }
-
-    /* just show the first a */
-    .card .card-body a:first-of-type {
-      display: flex;
-      text-decoration: none;
-    }
+  .card .efficacy-badge {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    color: white;
+    top: 10px;
+    right: 0;
+    z-index: 100;
+    padding: 8px 30px 8px 12px;
+    border-radius: 6px 0 0 6px;
+    white-space: nowrap;
+    left: calc(100% - 120px);
+    transition: left .65s ease;
+    width: fit-content;
   }
 
-  @media (width >= 768px) {
-    .cards:not(.suggested-videos) {
-      margin-right: -20px;
-    }
-
-    .cards:not(.suggested-videos) .card {
-      width: 47%;
-      padding: 10px;
-  }
+  .card:hover .efficacy-badge {
+    left: calc(100% - 36px);
   }
 
 
-  @media (width >= 992px) {
-    .cards:not(.suggested-videos) .card {
-        width: 31.33%;
-    }
+  .card .efficacy-badge.strong {
+    background-color: var(--red);
   }
+
+  .card .efficacy-badge.moderate {
+    background-color: var(--orange-red);
+  }
+
+  .card .efficacy-badge.effective {
+    background-color: var(--bright-yellow);
+  }
+
+  .card .efficacy-badge .flag {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    content: url("/icons/flag.svg");
+  }
+
+  .card .efficacy-badge:not(.strong) .flag {
+    filter: invert(1);
+  }
+
+  .card .efficacy-badge .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    border: 0;
+  }
+
+  .card .efficacy-badge p {
+    margin: 0;
+    padding: 0;
+    margin-left: 8px;
+    font-weight: var(--font-weight-normal);
+  }
+
+  .card .efficacy-badge:not(.strong) p {
+    filter: invert(1);
+  }
+}
+
+.cards.suggested-videos {
+  margin: 20px 0;
+
+  h3 {
+    font-family: var(--body-font-family);
+    font-size: var(--body-font-size-m);
+    font-weight: var(--font-weight-medium);
+    color: inherit;
+  }
+
+  .card-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .card {
+    width: 100%;
+    border-top: 1px solid var(--light-gray);
+    padding: 25px 0;
+    display: flex;
+    gap: 10px;
+  }
+
+  .card:hover img {
+    transform: none;
+  }
+
+  .card:last-of-type {
+    border-bottom: 1px solid var(--light-gray);
+  }
+
+  .card>div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .card img::before {
+    display: inline-block;
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: #888;
+    line-height: 1;
+    z-index: 2;
+    font-size: 2em;
+    margin-top: -25px;
+    margin-left: -15px;
+  }
+
+  .card>.card-thumbnail a {
+    display: block;
+    pointer-events: none;
+    text-align: center;
+  }
+
+  .card>.card-thumbnail a picture {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+  }
+
+  .card>.card-thumbnail a img {
+    border-radius: 50%;
+    position: relative;
+    left: 0;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    filter: brightness(75%);
+  }
+
+  .card .card-body {
+    display: flex;
+    position: relative;
+  }
+
+  .card .card-body h3 {
+    font-weight: var(--font-weight-extra-bold);
+  }
+
+  .card .card-body a,
+  .card i.arrow {
+    display: none;
+  }
+
+  /* just show the first a */
+  .card .card-body a:first-of-type {
+    display: flex;
+    text-decoration: none;
+  }
+}
+
+@container (width >=576px) {
+  .card {
+    width: 47%;
+    padding: 10px;
+  }
+}
+
+@container (width>=992px) {
+  .card {
+    width: 31.33%;
+  }
+}
