@@ -4,15 +4,14 @@ export default {
     // eslint-disable-next-line no-unused-vars
     document,
     url,
-    params,
   }) => {
-    const main = document.querySelector('.event-listing-section');
+    const main = document.querySelector('.post-listing');
     const results = [];
 
     // main page import - "element" is provided, i.e. a docx will be created
     results.push({
       element: main,
-      path: new URL(url).pathname
+      path: new URL(url).pathname,
     });
 
     // find pdf links
@@ -26,12 +25,6 @@ export default {
           path: newPath,
           from: u.toString(),
         });
-
-       // update the link to new path on the target host
-        // this is required to be able to follow the links in Word
-        // you will need to replace "main--repo--owner" by your project setup
-        const newHref = new URL(newPath, 'https://main--learninga-z--aemsites.hlx.page').toString();
-        image.setAttribute('src', newPath);
       }
     });
     return results;
