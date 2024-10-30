@@ -5,6 +5,7 @@ const VIDEO_INDEX = '/site/resources/videos/query-index.json';
 const NEWS_INDEX = '/site/company/news/query-index.json';
 const EVENTS_LIST = '/site/company/events/events-list.json';
 const DOWNLOAD_LIBRARY_INDEX = '/site/resources/download-library/query-index.json';
+const AWARDS_LIST = '/site/company/awards-n-accolades/awards.json';
 
 /**
  * Returns the relative path from a given path.
@@ -71,6 +72,19 @@ async function getIndexData(index = INDEX) {
     });
   }
   return retrievedData;
+}
+
+const awardsListData = [];
+/**
+ * Retrieves the awards list data.
+ * @returns {Promise<Array>} A promise that resolves to an array of events list data.
+ */
+export async function getAwardsListData() {
+  if (!awardsListData.length) {
+    awardsListData.push(...await getIndexData(AWARDS_LIST));
+  }
+  // Protected against callers modifying the objects
+  return structuredClone(awardsListData);
 }
 
 const eventsListData = [];
