@@ -1,6 +1,7 @@
 /* stylelint-disable no-descending-specificity */
 .card-wrapper {
   margin-bottom: 36px;
+  padding: 0 10px;
 }
 
 .card {
@@ -109,12 +110,14 @@
 
   /* pagination ends */
 
-  .cards:not(.suggested-videos) {
+  .cards:not(.suggested-videos), .card-wrapper {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
     gap: 20px;
+  }
 
+.cards:not(.suggested-videos) {
     .card-wrapper > .card {
       margin-bottom: 20px;
     }
@@ -137,7 +140,7 @@
 
     .card a {
       display: inline-block;
-      max-width: 100%;
+      width: 100%;
       overflow: hidden;
       position: relative;
     }
@@ -322,8 +325,20 @@
     }
   }
 
-  @media (width >= 568px) {
+  @media (width >= 768px) {
     .cards:not(.suggested-videos) {
       margin-right: -20px;
+    }
+
+    .cards:not(.suggested-videos) .card {
+      width: 47%;
+      padding: 10px;
+  }
+  }
+
+
+  @media (width >= 992px) {
+    .cards:not(.suggested-videos) .card {
+        width: 31.33%;
     }
   }
