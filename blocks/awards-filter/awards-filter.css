@@ -1,5 +1,5 @@
 .awards-filter-container {
-    & a > h3, a{
+    & h3, a, .default-content-wrapper:first-of-type p > strong{
         color: var(--product-purple) !important;
     }
 }
