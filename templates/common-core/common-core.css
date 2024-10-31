@@ -3,6 +3,7 @@
 
   aside {
     min-width: 270px;
+    margin-right: 50px;
 
     ul {
       list-style: none;
@@ -30,7 +31,6 @@
 
   section {
     flex-grow: 1;
-    padding: 0 0 0 50px;
   }
 }
 
