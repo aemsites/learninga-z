@@ -8,16 +8,7 @@
       color: inherit;
     }
 
-    .card-wrapper {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-
     .card {
-      width: 100%;
-      border-top: 1px solid var(--light-gray);
       padding: 25px 0;
       display: flex;
       gap:10px;
@@ -25,10 +16,6 @@
 
     .card:hover img {
       transform: none;
-    }
-
-    .card:last-of-type {
-      border-bottom: 1px solid var(--light-gray);
     }
 
     .card>div {
@@ -59,19 +46,17 @@
     }
 
     .card>.card-thumbnail a picture {
-      width: 80px;
-      height: 80px;
       margin: 0 auto;
     }
 
     .card>.card-thumbnail a img {
-      border-radius: 50%;
       position: relative;
       left: 0;
-      width: 80px;
-      height: 80px;
+      width: 135px;
+      height: 135px;
       object-fit: cover;
       filter: brightness(75%);
+      max-width: fit-content;
     }
 
     .card .card-body {

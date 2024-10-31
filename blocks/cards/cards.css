@@ -109,7 +109,7 @@
 }
 
 /* pagination ends */
-.cards:not(.suggested-videos),
+.cards,
 .card-wrapper {
   display: flex;
   flex-wrap: wrap;
@@ -117,9 +117,11 @@
   gap: 20px;
 }
 
-.cards:not(.suggested-videos) {
+.cards {
   container-type: inline-size;
+}
 
+.cards:not(.suggested-videos, .circle-image) {
   .card-wrapper>.card {
     margin-bottom: 20px;
   }
@@ -161,73 +163,73 @@
       color: var(--charcoal-blue);
     }
   }
+}
 
-  .card .efficacy-badge {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: absolute;
-    color: white;
-    top: 10px;
-    right: 0;
-    z-index: 100;
-    padding: 8px 30px 8px 12px;
-    border-radius: 6px 0 0 6px;
-    white-space: nowrap;
-    left: calc(100% - 120px);
-    transition: left .65s ease;
-    width: fit-content;
-  }
+.card .efficacy-badge {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  color: white;
+  top: 10px;
+  right: 0;
+  z-index: 100;
+  padding: 8px 30px 8px 12px;
+  border-radius: 6px 0 0 6px;
+  white-space: nowrap;
+  left: calc(100% - 120px);
+  transition: left .65s ease;
+  width: fit-content;
+}
 
-  .card:hover .efficacy-badge {
-    left: calc(100% - 36px);
-  }
+.card:hover .efficacy-badge {
+  left: calc(100% - 36px);
+}
 
 
-  .card .efficacy-badge.strong {
-    background-color: var(--red);
-  }
+.card .efficacy-badge.strong {
+  background-color: var(--red);
+}
 
-  .card .efficacy-badge.moderate {
-    background-color: var(--orange-red);
-  }
+.card .efficacy-badge.moderate {
+  background-color: var(--orange-red);
+}
 
-  .card .efficacy-badge.effective {
-    background-color: var(--bright-yellow);
-  }
+.card .efficacy-badge.effective {
+  background-color: var(--bright-yellow);
+}
 
-  .card .efficacy-badge .flag {
-    width: 16px;
-    height: 16px;
-    display: inline-block;
-    content: url("/icons/flag.svg");
-  }
+.card .efficacy-badge .flag {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  content: url("/icons/flag.svg");
+}
 
-  .card .efficacy-badge:not(.strong) .flag {
-    filter: invert(1);
-  }
+.card .efficacy-badge:not(.strong) .flag {
+  filter: invert(1);
+}
 
-  .card .efficacy-badge .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    border: 0;
-  }
+.card .efficacy-badge .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  border: 0;
+}
 
-  .card .efficacy-badge p {
-    margin: 0;
-    padding: 0;
-    margin-left: 8px;
-    font-weight: var(--font-weight-normal);
-  }
+.card .efficacy-badge p {
+  margin: 0;
+  padding: 0;
+  margin-left: 8px;
+  font-weight: var(--font-weight-normal);
+}
 
-  .card .efficacy-badge:not(.strong) p {
-    filter: invert(1);
-  }
+.card .efficacy-badge:not(.strong) p {
+  filter: invert(1);
 }
 
 .cards.suggested-videos {
