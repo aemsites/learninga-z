@@ -50,6 +50,7 @@
     }
 
     .card>.card-thumbnail a img {
+      border-radius: 50%;
       position: relative;
       left: 0;
       width: 135px;
