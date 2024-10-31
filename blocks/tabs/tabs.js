@@ -3,7 +3,80 @@ import { toClassName } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 
 export default async function decorate(block) {
-  if (block.classList.contains('columns')) {
+  if (block.classList.contains('square')) {
+    const rows = block.querySelectorAll(':scope > div');
+
+    const container = document.createElement('div');
+    container.className = 'tabs-square-container';
+
+    const tabsSquare = document.createElement('div');
+    tabsSquare.className = 'tabs-square';
+
+    const tabsContentContainer = document.createElement('div');
+    tabsContentContainer.className = 'tab-square-content-container';
+
+    rows.forEach((row, rowIdx) => {
+      const squareTab = document.createElement('div');
+      const squareContent = document.createElement('div');
+      row.querySelectorAll(':scope > div').forEach((column, colIdx) => {
+        if (colIdx === 0) {
+          squareTab.classList.add('tab-square');
+          squareTab.id = `tab-square-${rowIdx}`;
+          squareTab.setAttribute('data-tab', `tab-square-content-${rowIdx}`);
+          if (rowIdx === 0) {
+            squareTab.classList.add('active');
+          }
+          const appendLeafNodes = (element) => {
+            if (element.children.length === 0) {
+              squareTab.append(element.cloneNode(true));
+            } else {
+              Array.from(element.children).forEach(appendLeafNodes);
+            }
+          };
+          appendLeafNodes(column);
+          tabsSquare.append(squareTab);
+        } else if (colIdx === 1) {
+          squareContent.classList.add('tab-square-content');
+          squareContent.id = `tab-square-content-${rowIdx}`;
+          if (rowIdx === 0) {
+            squareContent.classList.add('active');
+          }
+          const fragmentLink = column.querySelector('a[href*="/fragment"]');
+          if (fragmentLink) {
+            const fragmentPath = fragmentLink.getAttribute('href');
+            loadFragment(fragmentPath).then((fragment) => {
+              while (fragment.firstElementChild) squareContent.append(fragment.firstElementChild);
+            });
+          } else {
+            squareContent.append(column);
+          }
+          tabsContentContainer.append(squareContent);
+        }
+      });
+      row.remove();
+    });
+
+    container.append(tabsSquare);
+    container.append(tabsContentContainer);
+
+    block.prepend(container);
+
+    // Get all tab elements
+    const tabs = document.querySelectorAll('.tab-square');
+    const contents = document.querySelectorAll('.tab-square-content');
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        // Remove active class from all tabs and contents
+        tabs.forEach((t) => t.classList.remove('active'));
+        contents.forEach((c) => c.classList.remove('active'));
+
+        // Add active class to clicked tab and its corresponding content
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.tab).classList.add('active');
+      });
+    });
+  } else {
     // build tablist
     const tablist = document.createElement('div');
     tablist.className = 'tabs-list';
@@ -93,78 +166,5 @@ export default async function decorate(block) {
     });
 
     block.prepend(tablist);
-  } else if (block.classList.contains('square')) {
-    const rows = block.querySelectorAll(':scope > div');
-
-    const container = document.createElement('div');
-    container.className = 'tabs-square-container';
-
-    const tabsSquare = document.createElement('div');
-    tabsSquare.className = 'tabs-square';
-
-    const tabsContentContainer = document.createElement('div');
-    tabsContentContainer.className = 'tab-square-content-container';
-
-    rows.forEach((row, rowIdx) => {
-      const squareTab = document.createElement('div');
-      const squareContent = document.createElement('div');
-      row.querySelectorAll(':scope > div').forEach((column, colIdx) => {
-        if (colIdx === 0) {
-          squareTab.classList.add('tab-square');
-          squareTab.id = `tab-square-${rowIdx}`;
-          squareTab.setAttribute('data-tab', `tab-square-content-${rowIdx}`);
-          if (rowIdx === 0) {
-            squareTab.classList.add('active');
-          }
-          const appendLeafNodes = (element) => {
-            if (element.children.length === 0) {
-              squareTab.append(element.cloneNode(true));
-            } else {
-              Array.from(element.children).forEach(appendLeafNodes);
-            }
-          };
-          appendLeafNodes(column);
-          tabsSquare.append(squareTab);
-        } else if (colIdx === 1) {
-          squareContent.classList.add('tab-square-content');
-          squareContent.id = `tab-square-content-${rowIdx}`;
-          if (rowIdx === 0) {
-            squareContent.classList.add('active');
-          }
-          const fragmentLink = column.querySelector('a[href*="/fragment"]');
-          if (fragmentLink) {
-            const fragmentPath = fragmentLink.getAttribute('href');
-            loadFragment(fragmentPath).then((fragment) => {
-              while (fragment.firstElementChild) squareContent.append(fragment.firstElementChild);
-            });
-          } else {
-            squareContent.append(column);
-          }
-          tabsContentContainer.append(squareContent);
-        }
-      });
-      row.remove();
-    });
-
-    container.append(tabsSquare);
-    container.append(tabsContentContainer);
-
-    block.prepend(container);
-
-    // Get all tab elements
-    const tabs = document.querySelectorAll('.tab-square');
-    const contents = document.querySelectorAll('.tab-square-content');
-
-    tabs.forEach((tab) => {
-      tab.addEventListener('click', () => {
-        // Remove active class from all tabs and contents
-        tabs.forEach((t) => t.classList.remove('active'));
-        contents.forEach((c) => c.classList.remove('active'));
-
-        // Add active class to clicked tab and its corresponding content
-        tab.classList.add('active');
-        document.getElementById(tab.dataset.tab).classList.add('active');
-      });
-    });
   }
 }
