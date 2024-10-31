@@ -47,7 +47,6 @@
 .tabs-square-container {
   display: flex;
   flex-direction: row;
-  height: 80vh;
 }
 
 .tabs-square {
