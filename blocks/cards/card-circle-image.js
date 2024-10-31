@@ -10,12 +10,15 @@ export async function getCircleCardsArray(block, indexData, isDescription) {
   [...block.children].forEach((row) => {
     let card;
     let img = '';
+    let isIcon = false;
     [...row.children].forEach((col) => {
       const pic = col.querySelector('img');
-      console.log(col, pic);
       const a = col.querySelector('a');
       if (pic) {
         img = pic.getAttribute('src');
+        if (pic.parentElement.classList.contains('icon')) {
+          isIcon = true;
+        }
       }
       if (a) {
         const path = a.getAttribute('href');
@@ -23,6 +26,7 @@ export async function getCircleCardsArray(block, indexData, isDescription) {
         card = indexData.find((item) => item.path === relPath);
         card.image = img;
         card.isDescription = isDescription;
+        card.isIcon = isIcon;
         cards.push(card);
       }
     });
@@ -35,11 +39,11 @@ export function populateCircleImageCard(wrapper, cardInfo) {
   const card = document.createElement('div');
   card.className = 'card';
   card.innerHTML = `
-          <div class="card-thumbnail">
-          <a href="${cardInfo.path}">
-                  ${createOptimizedPicture(cardInfo.image, cardInfo.title, false, [{ width: 250 }]).outerHTML}
-          </a>
-                  </div>
+          <div class="card-thumbnail${cardInfo.isIcon ? ' icon' : ''}">
+                    <a href="${cardInfo.path}">
+                            ${createOptimizedPicture(cardInfo.image, cardInfo.title, false, [{ width: 250 }]).outerHTML}
+                    </a>
+         </div>
           <div class="card-body">
                 <a href="${cardInfo.path}">
                     <h3 style=color:var(--${theme})>${cardInfo.title}</h3>
@@ -47,6 +51,10 @@ export function populateCircleImageCard(wrapper, cardInfo) {
                 ${cardInfo.isDescription ? ` <a href="${cardInfo.path}"><p>${cardInfo.description}</p></a>` : ''}
           </div>
       `;
-  card.querySelector('img').setAttribute('style', `background-color: var(--${theme});`);
+  if (cardInfo.isIcon) {
+    card.querySelector('picture').setAttribute('style', `background-color: var(--${theme});`);
+  } else {
+    card.querySelector('img').setAttribute('style', `background-color: var(--${theme});`);
+  }
   wrapper.append(card);
 }
