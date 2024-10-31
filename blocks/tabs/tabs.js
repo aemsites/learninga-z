@@ -1,5 +1,6 @@
 // eslint-disable-next-line import/no-unresolved
 import { toClassName } from '../../scripts/aem.js';
+import { loadFragment } from '../fragment/fragment.js';
 
 export default async function decorate(block) {
   if (block.classList.contains('columns')) {
@@ -115,7 +116,14 @@ export default async function decorate(block) {
           if (rowIdx === 0) {
             squareTab.classList.add('active');
           }
-          squareTab.append(column);
+          const appendLeafNodes = (element) => {
+            if (element.children.length === 0) {
+              squareTab.append(element.cloneNode(true));
+            } else {
+              Array.from(element.children).forEach(appendLeafNodes);
+            }
+          };
+          appendLeafNodes(column);
           tabsSquare.append(squareTab);
         } else if (colIdx === 1) {
           squareContent.classList.add('tab-square-content');
@@ -123,7 +131,15 @@ export default async function decorate(block) {
           if (rowIdx === 0) {
             squareContent.classList.add('active');
           }
-          squareContent.append(column);
+          const fragmentLink = column.querySelector('a[href*="/fragment"]');
+          if (fragmentLink) {
+            const fragmentPath = fragmentLink.getAttribute('href');
+            loadFragment(fragmentPath).then((fragment) => {
+              while (fragment.firstElementChild) squareContent.append(fragment.firstElementChild);
+            });
+          } else {
+            squareContent.append(column);
+          }
           tabsContentContainer.append(squareContent);
         }
       });
