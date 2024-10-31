@@ -60,7 +60,6 @@
       position: relative;
       left: 0;
       object-fit: cover;
-      filter: brightness(75%);
       width: 135px;
       height: 135px;
       max-width: fit-content;
