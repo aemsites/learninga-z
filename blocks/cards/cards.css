@@ -336,7 +336,7 @@
 }
 
 @container (width>=992px) {
-  .card {
+  .cards .card {
     width: 31.33%;
   }
 }

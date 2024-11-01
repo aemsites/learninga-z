@@ -12,6 +12,7 @@
         padding: 25px 0;
         display: flex;
         gap: 10px;
+        align-items: center;
     }
 
     .card>div {
@@ -38,6 +39,7 @@
     .card>.card-thumbnail {
         width: auto;
         height: auto;
+        cursor: pointer;
     }
 
     .card>.card-thumbnail a {
@@ -59,7 +61,8 @@
         position: relative;
         left: 0;
         object-fit: cover;
-        border-radius: 50%;
+        width: 100%;
+        height: 100%;
     }
 
     .card>.card-thumbnail.icon a img {
@@ -75,20 +78,27 @@
     .card .card-body {
         display: flex;
         position: relative;
+        flex-direction: column;
     }
 
     .card .card-body h3 {
         font-weight: var(--font-weight-extra-bold);
+        margin: 0 auto;
     }
 
-    .card .card-body a,
-    .card i.arrow {
-        display: none;
+    .card .card-body a{
+        width: 100%;
     }
 
     /* just show the first a */
     .card .card-body a:first-of-type {
         display: flex;
         text-decoration: none;
+    }
+}
+
+@container (width>=992px) {
+    .cards.circle-image:not(.no-description) .card {
+      width: 47%;
     }
 }
