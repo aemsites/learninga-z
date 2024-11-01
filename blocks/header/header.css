@@ -394,7 +394,7 @@ header .megamenu>.section-outer {
 
   h3>a,
   a>h3 {
-    font-size: var(--heading-font-size-s);
+    font-size: var(--body-font-size-m);
     color: var(--charcoal-gray);
     font-family: var(--body-font-family);
   }
@@ -403,6 +403,8 @@ header .megamenu>.section-outer {
     font-weight: var(--font-weight-normal);
     color: #48433F;
     text-transform: none;
+    display: flex;
+    align-items: center;
   }
 
   ul>li .icon {
@@ -432,12 +434,25 @@ header .megamenu>.section-outer {
   width: 25%;
 }
 
+.header .megamenu .columns-container.content-cards {
+  align-items: stretch;
+
+  .default-content-wrapper p {
+    margin: 0;
+    height: 100%;
+  }
+
+  .default-content-wrapper p *{
+    height: 100%;
+  }
+}
+
 .header .megamenu .columns-container.content-cards .columns {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 5px;
-  max-height: 90%;
+  max-height: 100%;
 }
 
 .header .megamenu .columns-container.content-cards .columns>div, header.header-mobile .nav-sections > .section > .default-content-wrapper > p:last-child {

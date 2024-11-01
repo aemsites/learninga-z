@@ -121,6 +121,69 @@ async function loadFonts() {
 }
 
 /**
+ * check if link text is same as the href
+ * @param {Element} link the link element
+ * @returns {boolean} true or false
+ */
+export function linkTextIncludesHref(link) {
+  const href = link.getAttribute('href');
+  const textcontent = link.textContent;
+  return textcontent.includes(href);
+}
+
+export const PRODUCTION_DOMAINS = ['learninga-z.com'];
+
+const domainCheckCache = {};
+
+/**
+ * Checks a url to determine if it is a known domain.
+ * @param {string | URL} url the url to check
+ * @returns {Object} an object with properties indicating the urls domain types.
+ */
+export function checkDomain(url) {
+  const urlToCheck = typeof url === 'string' ? new URL(url) : url;
+
+  let result = domainCheckCache[urlToCheck.hostname];
+  if (!result) {
+    const isProd = PRODUCTION_DOMAINS.some((host) => urlToCheck.hostname.includes(host));
+    const isHlx = ['hlx.page', 'hlx.live', 'aem.page', 'aem.live'].some((host) => urlToCheck.hostname.includes(host));
+    const isLocal = urlToCheck.hostname.includes('localhost');
+    const isPreview = isLocal || urlToCheck.hostname.includes('hlx.page') || urlToCheck.hostname.includes('aem.page');
+    const isKnown = isProd || isHlx || isLocal;
+    const isExternal = !isKnown;
+    result = {
+      isProd,
+      isHlx,
+      isLocal,
+      isKnown,
+      isExternal,
+      isPreview,
+    };
+
+    domainCheckCache[urlToCheck.hostname] = result;
+  }
+
+  return result;
+}
+
+/**
+   * Builds fragment blocks from links to fragments
+   * @param {Element} main The container element
+   */
+export function buildFragmentBlocks(main) {
+  main.querySelectorAll('a[href]').forEach((a) => {
+    const url = new URL(a.href);
+    const domainCheck = checkDomain(url);
+    // don't autoblock the header navigation currently in fragments
+    if (domainCheck.isKnown && linkTextIncludesHref(a) && (url.pathname.includes('/fragments/') && !url.pathname.includes('header/'))) {
+      const block = buildBlock('fragment', url.pathname);
+      a.replaceWith(block);
+      decorateBlock(block);
+    }
+  });
+}
+
+/**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
  * @param {Function} templateModule The template module
@@ -129,6 +192,7 @@ function buildAutoBlocks(main, templateModule = undefined) {
   try {
     buildHeroBlock(main);
     buildPageDivider(main);
+    buildFragmentBlocks(main);
     if (templateModule && templateModule.default) {
       templateModule.default(main);
     }
@@ -355,23 +419,12 @@ export function decorateExternalLinks(main) {
 }
 
 /**
- * check if link text is same as the href
- * @param {Element} link the link element
- * @returns {boolean} true or false
- */
-export function linkTextIncludesHref(link) {
-  const href = link.getAttribute('href');
-  const textcontent = link.textContent;
-  return textcontent.includes(href);
-}
-
-/**
  * Builds video blocks when encounter video links.
  * @param {Element} main The container element
  */
 export function buildEmbedBlocks(main) {
   main.querySelectorAll('a[href]').forEach((a) => {
-    if ((a.href.includes('youtu') || a.href.includes('vimeo')) && linkTextIncludesHref(a)) {
+    if ((a.href.includes('youtu') || a.href.includes('vimeo') || a.href.includes('go.learninga-z.com')) && linkTextIncludesHref(a)) {
       const embedBlock = buildBlock('embed', a.cloneNode(true));
       a.replaceWith(embedBlock);
       decorateBlock(embedBlock);
