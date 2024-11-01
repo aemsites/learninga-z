@@ -129,6 +129,7 @@
     background: var(--divider-gray);
     height: auto;
     position: relative;
+    width: 100%;
 
     picture {
       background-color: var(--black);
@@ -232,7 +233,7 @@
 }
 
 @container (width >=576px) {
-  .card {
+  .cards .card {
     width: 47%;
     padding: 10px;
   }
