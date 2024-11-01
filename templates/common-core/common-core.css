@@ -6,9 +6,17 @@
   .wrapper {
     display: flex;
 
+    @media(max-width:760px) {
+      display: block;
+    }
+
     aside {
       min-width: 270px;
-      margin-right: 50px;
+      margin: 0 50px 50px 0;
+
+      @media(max-width:1024px) {
+        min-width: 200px;
+      }
 
       ul {
         list-style: none;
