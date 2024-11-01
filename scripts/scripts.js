@@ -466,6 +466,7 @@ const validTemplates = [
   'product',
   'errorpage',
   'landing',
+  'common-core',
 ];
 async function loadTemplate() {
   const templateName = toClassName(getMetadata('template'));
