@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { getCircleCardsArray, populateCircleImageCard } from './card-circle-image.js';
+import { getCircleCardsArray, populateCircleImageCard } from './cards-circle-image.js';
 import {
   getRelativePath, getGenericIndexData, generatePagination, getDateRange,
 } from '../../scripts/utils.js';
@@ -219,6 +219,7 @@ export default async function decorate(block) {
   cardsWrapper.className = 'card-wrapper';
   let cardsArray = [];
   if (block.classList.contains('suggested-videos')) {
+    await loadCSS(`${window.hlx.codeBasePath}/blocks/cards/cards-suggested-videos.css`);
     imgWidth = '200';
     const title = document.createElement('h3');
     title.innerHTML = 'Suggested Videos';
@@ -229,7 +230,7 @@ export default async function decorate(block) {
   if (block.classList.contains('no-description')) isDescription = false;
   // check if the block is a circle image card block
   if (block.classList.contains('circle-image')) {
-    await loadCSS(`${window.hlx.codeBasePath}/blocks/cards/card-cirlce-image.css`);
+    await loadCSS(`${window.hlx.codeBasePath}/blocks/cards/cards-cirlce-image.css`);
     cardsArray = await getCircleCardsArray(block, indexData, isDescription);
     renderCardList(cardsWrapper, cardsArray, 0, 'circleImage');
   } else {
