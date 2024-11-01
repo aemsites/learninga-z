@@ -117,6 +117,10 @@ header:not(.header-mobile) .nav-sections ul.primary-nav-items>li>a{
   transform: translateY(-50%);
 }
 
+header:not(.header-mobile) .nav-sections .nav-item.active > a {
+  color: #888;;
+}
+
 header .nav-sections ul.primary-nav-items>li:not(.button-container)>a:not(.button)::after {
   content: url("/icons/solutions-right.svg");
   position: absolute;
@@ -134,7 +138,7 @@ header .nav-tools ul>li a.button {
 }
 
 header .nav-sections ul.primary-nav-items>li[aria-expanded="true"]>a {
-  color: var(--red);
+  color: var(--red) !important;
   border-bottom: 2px solid var(--red);
 }
 

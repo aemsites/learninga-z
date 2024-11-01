@@ -241,6 +241,11 @@ export default async function decorate(block) {
     navItemsWrapper.className = 'primary-nav-items';
     navItemsWrapper.querySelectorAll(':scope > li').forEach((navSection) => {
       navSection.classList.add('nav-item');
+      const navSectionLink = navSection.querySelector('a');
+      // check if navSectionLink is part of current page url
+      if (navSectionLink && window.location.href.includes(navSectionLink.href)) {
+        navSection.classList.add('active');
+      }
       const secondaryNav = document.createElement('div');
       secondaryNav.className = 'megamenu-container';
       const navChildFragmentLink = navSection.querySelectorAll('a[href*="/fragment"]');
