@@ -288,7 +288,7 @@ a:hover {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  transition: color 0.4s, background-color 0.4s;
+  transition: all 0.4s;
 }
 
 
@@ -619,8 +619,21 @@ body.yellow {
     background-color: var(--yellow);
     }
 
-  h3 {
+  h3, a {
     color: var(--yellow);
+  }
+
+
+
+  /* secondary button colors */
+  .button.secondary {
+    color: var(--yellow) !important;
+    border-color: var(--yellow) !important;
+
+    &:hover {
+      color: black;
+      border-color: black;
+    }
   }
 }
 

@@ -1,11 +1,11 @@
-.subnav {
+.subnav-wrapper {
   background: #f8f8f8;
   width: 100vw;
   margin: 0;
   padding: 0;
   line-height: 56px;
 
-  .subnav-wrapper {
+  .subnav {
     max-width: 1170px;
     margin: 0 auto;
   }

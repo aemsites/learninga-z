@@ -13,8 +13,10 @@ function highlightActiveLink() {
 
 export default async function decorate(doc) {
   const subNavFrag = await loadFragment('/fragments/common-core-subnav');
+  const $subNav = subNavFrag.querySelector('.subnav-wrapper');
+
   const $section = section();
-  $section.append(...doc.querySelectorAll('div'));
+  $section.append(...doc.querySelectorAll('div.section-outer'));
 
   // only key-topics has a leftnav
   let $aside;
@@ -23,11 +25,11 @@ export default async function decorate(doc) {
     $aside = aside(leftNavFrag ? leftNavFrag.querySelector('.default-content-wrapper') : '');
   }
 
-  const $page = div({ class: 'section-outer' },
-    div({ class: 'section' },
+  const $page = div({ class: 'page section-outer' },
+    div({ class: 'section h1' },
       h1('Common Core'),
     ),
-    div({ class: 'subnav' }, subNavFrag ? subNavFrag.querySelector('.subnav-wrapper') : ''),
+    $subNav,
     div({ class: 'section' },
       div({ class: 'wrapper' },
         $aside,
