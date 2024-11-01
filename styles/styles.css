@@ -523,6 +523,10 @@ body.purple {
   .news-filter-container h3, .news-filter-container a, .news-filter-container p>strong, .news-filter-container strong>p {
     color: var(--purple);
   }
+
+  .cards.circle-image .card picture {
+    background-color: var(--purple);
+  }
 }
 
 [data-theme="purple"] {
@@ -553,6 +557,10 @@ body.laz-blue {
 
   .table table th {
     background-color: var(--laz-blue);
+    }
+
+    .cards.circle-image .card picture {
+      background-color: var(--laz-blue);
     }
 }
 
@@ -595,6 +603,10 @@ body.red {
   .table table th {
     background-color: var(--red);
     }
+
+    .cards.circle-image .card picture {
+      background-color: var(--red);
+    }
 }
 
 [data-theme="red"] {
@@ -617,6 +629,10 @@ body.yellow {
 
   .table table th {
     background-color: var(--yellow);
+    }
+  
+    .cards.circle-image .card picture {
+      background-color: var(--yellow);
     }
 }
 

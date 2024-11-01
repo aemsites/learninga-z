@@ -9,16 +9,15 @@
     }
 
     .card {
-        padding: 25px 0;
+        padding: 10px 0;
         display: flex;
-        gap: 10px;
+        gap: 16px;
         align-items: center;
     }
 
     .card>div {
         display: flex;
         align-items: center;
-        gap: 10px;
     }
 
     .card img::before {
@@ -51,8 +50,8 @@
 
     .card>.card-thumbnail a picture {
         margin: 0 auto;
-        width: 135px;
-        height: 135px;
+        width: 115px;
+        height: 115px;
         border-radius: 50%;
         overflow: hidden;
     }
@@ -83,7 +82,7 @@
 
     .card .card-body h3 {
         font-weight: var(--font-weight-extra-bold);
-        margin: 0 auto;
+        margin: 0;
     }
 
     .card .card-body a{

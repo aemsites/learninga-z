@@ -35,7 +35,6 @@ export async function getCircleCardsArray(block, indexData, isDescription) {
 }
 
 export function populateCircleImageCard(wrapper, cardInfo) {
-  const theme = document.querySelector('meta[name="theme"]').getAttribute('content');
   const card = document.createElement('div');
   card.className = 'card';
   card.innerHTML = `
@@ -46,15 +45,10 @@ export function populateCircleImageCard(wrapper, cardInfo) {
          </div>
           <div class="card-body">
                 <a href="${cardInfo.path}">
-                    <h3 style=color:var(--${theme})>${cardInfo.title}</h3>
+                    <h3>${cardInfo.title.replace(/ \| Learning A-Z$|- Learning A-Z$/, '')}</h3>
                 </a>
                 ${cardInfo.isDescription ? ` <a href="${cardInfo.path}"><p>${cardInfo.description}</p></a>` : ''}
           </div>
       `;
-  if (cardInfo.isIcon) {
-    card.querySelector('picture').setAttribute('style', `background-color: var(--${theme});`);
-  } else {
-    card.querySelector('img').setAttribute('style', `background-color: var(--${theme});`);
-  }
   wrapper.append(card);
 }
