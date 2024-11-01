@@ -129,6 +129,11 @@ function loadSecondaryNavFragment(navChildFragmentLink, secondaryNav) {
   loadFragment(navChildFragmentPath).then((fragment) => {
     while (fragment.firstElementChild) navChildFragment.append(fragment.firstElementChild);
     secondaryNav.replaceChildren(navChildFragment);
+    secondaryNav.querySelectorAll('a.button').forEach((link) => {
+      if (link.textContent.toLowerCase() === 'learn more') {
+        link.setAttribute('title', 'More about this product');
+      }
+    });
   });
 }
 
