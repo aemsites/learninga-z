@@ -20,7 +20,6 @@
 
   img {
     transition: transform .65s ease, opacity .75s ease-in-out;
-
   }
 
   i.arrow {
@@ -109,7 +108,7 @@
 }
 
 /* pagination ends */
-.cards:not(.suggested-videos),
+.cards,
 .card-wrapper {
   display: flex;
   flex-wrap: wrap;
@@ -117,9 +116,11 @@
   gap: 20px;
 }
 
-.cards:not(.suggested-videos) {
+.cards {
   container-type: inline-size;
+}
 
+.cards:not(.suggested-videos, .circle-image) {
   .card-wrapper>.card {
     margin-bottom: 20px;
   }
@@ -161,181 +162,84 @@
       color: var(--charcoal-blue);
     }
   }
-
-  .card .efficacy-badge {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: absolute;
-    color: white;
-    top: 10px;
-    right: 0;
-    z-index: 100;
-    padding: 8px 30px 8px 12px;
-    border-radius: 6px 0 0 6px;
-    white-space: nowrap;
-    left: calc(100% - 120px);
-    transition: left .65s ease;
-    width: fit-content;
-  }
-
-  .card:hover .efficacy-badge {
-    left: calc(100% - 36px);
-  }
-
-
-  .card .efficacy-badge.strong {
-    background-color: var(--red);
-  }
-
-  .card .efficacy-badge.moderate {
-    background-color: var(--orange-red);
-  }
-
-  .card .efficacy-badge.effective {
-    background-color: var(--bright-yellow);
-  }
-
-  .card .efficacy-badge .flag {
-    width: 16px;
-    height: 16px;
-    display: inline-block;
-    content: url("/icons/flag.svg");
-  }
-
-  .card .efficacy-badge:not(.strong) .flag {
-    filter: invert(1);
-  }
-
-  .card .efficacy-badge .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    border: 0;
-  }
-
-  .card .efficacy-badge p {
-    margin: 0;
-    padding: 0;
-    margin-left: 8px;
-    font-weight: var(--font-weight-normal);
-  }
-
-  .card .efficacy-badge:not(.strong) p {
-    filter: invert(1);
-  }
 }
 
-.cards.suggested-videos {
-  margin: 20px 0;
+.card .efficacy-badge {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  color: white;
+  top: 10px;
+  right: 0;
+  z-index: 100;
+  padding: 8px 30px 8px 12px;
+  border-radius: 6px 0 0 6px;
+  white-space: nowrap;
+  left: calc(100% - 120px);
+  transition: left .65s ease;
+  width: fit-content;
+}
 
-  h3 {
-    font-family: var(--body-font-family);
-    font-size: var(--body-font-size-m);
-    font-weight: var(--font-weight-medium);
-    color: inherit;
-  }
+.card:hover .efficacy-badge {
+  left: calc(100% - 36px);
+}
 
-  .card-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
 
-  .card {
-    width: 100%;
-    border-top: 1px solid var(--light-gray);
-    padding: 25px 0;
-    display: flex;
-    gap: 10px;
-  }
+.card .efficacy-badge.strong {
+  background-color: var(--red);
+}
 
-  .card:hover img {
-    transform: none;
-  }
+.card .efficacy-badge.moderate {
+  background-color: var(--orange-red);
+}
 
-  .card:last-of-type {
-    border-bottom: 1px solid var(--light-gray);
-  }
+.card .efficacy-badge.effective {
+  background-color: var(--bright-yellow);
+}
 
-  .card>div {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
+.card .efficacy-badge .flag {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  content: url("/icons/flag.svg");
+}
 
-  .card img::before {
-    display: inline-block;
-    width: auto;
-    height: auto;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    color: #888;
-    line-height: 1;
-    z-index: 2;
-    font-size: 2em;
-    margin-top: -25px;
-    margin-left: -15px;
-  }
+.card .efficacy-badge:not(.strong) .flag {
+  filter: invert(1);
+}
 
-  .card>.card-thumbnail a {
-    display: block;
-    pointer-events: none;
-    text-align: center;
-  }
+.card .efficacy-badge .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  border: 0;
+}
 
-  .card>.card-thumbnail a picture {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto;
-  }
+.card .efficacy-badge p {
+  margin: 0;
+  padding: 0;
+  margin-left: 8px;
+  font-weight: var(--font-weight-normal);
+}
 
-  .card>.card-thumbnail a img {
-    border-radius: 50%;
-    position: relative;
-    left: 0;
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    filter: brightness(75%);
-  }
-
-  .card .card-body {
-    display: flex;
-    position: relative;
-  }
-
-  .card .card-body h3 {
-    font-weight: var(--font-weight-extra-bold);
-  }
-
-  .card .card-body a,
-  .card i.arrow {
-    display: none;
-  }
-
-  /* just show the first a */
-  .card .card-body a:first-of-type {
-    display: flex;
-    text-decoration: none;
-  }
+.card .efficacy-badge:not(.strong) p {
+  filter: invert(1);
 }
 
 @container (width >=576px) {
-  .card {
+  .cards .card {
     width: 47%;
     padding: 10px;
   }
 }
 
 @container (width>=992px) {
-  .card {
+  .cards .card {
     width: 31.33%;
   }
 }
