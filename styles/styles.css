@@ -623,8 +623,6 @@ body.yellow {
     color: var(--yellow);
   }
 
-
-
   /* secondary button colors */
   .button.secondary {
     color: var(--yellow) !important;
