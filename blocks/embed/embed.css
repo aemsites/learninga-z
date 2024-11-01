@@ -2,7 +2,6 @@
     width: unset;
     text-align: center;
     max-width: 800px;
-    min-height: 450px;
     margin: 32px auto;
 
   &.youtube, &.vimeo {

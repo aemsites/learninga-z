@@ -63,7 +63,7 @@ function groupItemsByProduct(block) {
 
 export default async function decorate(block) {
   await loadCSS(`${window.hlx.codeBasePath}/blocks/cards/cards.css`);
-  const indexUrl = block.querySelector('a').href;
+  const indexUrl = block.querySelector('a')?.href;
   if (indexUrl) {
     downloadPages = await getDownloadsIndexData(indexUrl);
     block.querySelector('a').remove();
