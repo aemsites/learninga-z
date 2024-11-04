@@ -3,8 +3,8 @@ import { getCircleCardsArray, populateCircleImageCard } from './cards-circle-ima
 import {
   getRelativePath, getGenericIndexData, generatePagination, getDateRange,
 } from '../../scripts/utils.js';
-import { createOptimizedPicture, loadCSS } from '../../scripts/aem.js';
-import { decorateExternalLinks } from '../../scripts/scripts.js';
+import { loadCSS } from '../../scripts/aem.js';
+import { createOptimizedPicture, decorateExternalLinks } from '../../scripts/scripts.js';
 
 const indexData = await getGenericIndexData();
 let imgWidth = '750';

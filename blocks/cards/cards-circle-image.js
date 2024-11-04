@@ -2,7 +2,8 @@
 import {
   getRelativePath,
 } from '../../scripts/utils.js';
-import { createOptimizedPicture, decorateIcons } from '../../scripts/aem.js';
+import { decorateIcons } from '../../scripts/aem.js';
+import { createOptimizedPicture } from '../../scripts/scripts.js';
 
 export async function getCircleCardsArray(block, indexData, isDescription) {
   decorateIcons(block);

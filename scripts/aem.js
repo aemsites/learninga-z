@@ -272,7 +272,8 @@ function getMetadata(name, doc = document) {
  * @param {boolean} [eager] Set loading attribute to eager
  * @param {Array} [breakpoints] Breakpoints and corresponding params (eg. width)
  * @returns {Element} The picture element
- */
+
+ Moved to scripts.js per https://github.com/adobe/franklin-sidekick-library#considerations-when-building-blocks-for-the-library
 function createOptimizedPicture(
   src,
   alt = '',
@@ -311,6 +312,7 @@ function createOptimizedPicture(
 
   return picture;
 }
+*/
 
 /**
  * Set template (page structure) and theme (page styles).
@@ -700,7 +702,7 @@ init();
 
 export {
   buildBlock,
-  createOptimizedPicture,
+  // createOptimizedPicture,
   decorateBlock,
   decorateBlocks,
   decorateButtons,
