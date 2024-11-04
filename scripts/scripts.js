@@ -367,7 +367,8 @@ function createOptimizedBackgroundImage(section, breakpoints = [
     const bgImage = getBackgroundImage(section);
     const url = new URL(bgImage, window.location.href);
     const pathname = encodeURI(url.pathname);
-
+    const sectionInner = section.querySelector('div.section');
+    const target = sectionInner || section;
     const matchedBreakpoints = breakpoints.filter(
       (br) => !br.media || window.matchMedia(br.media).matches,
     );
@@ -378,8 +379,8 @@ function createOptimizedBackgroundImage(section, breakpoints = [
     );
 
     const adjustedWidth = matchedBreakpoint.width * window.devicePixelRatio;
-    section.style.backgroundImage = `url(${pathname}?width=${adjustedWidth}&format=webply&optimize=highest)`;
-    section.style.backgroundSize = 'cover';
+    target.style.backgroundImage = `url(${pathname}?width=${adjustedWidth}&format=webply&optimize=highest)`;
+    target.style.backgroundSize = 'cover';
   };
 
   if (resizeListeners.has(section)) {
