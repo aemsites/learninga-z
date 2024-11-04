@@ -670,12 +670,14 @@ body.yellow {
   /* sections */
   main > .section-outer {
     margin: auto;
+    background-size: cover
   }
 
   main > .section-outer > .section {
     margin: 0 auto;
     padding: 48px 15px;
     max-width: 750px;
+    background-size: cover;
   }
 
   main > .section:first-of-type {
