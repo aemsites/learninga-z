@@ -320,11 +320,9 @@ function svgImageLinks(doc) {
   const links = doc.querySelectorAll('a[href*="/images/svgs/"][href$=".svg"]');
   links.forEach((link) => {
     const href = link.getAttribute('href');
-    const title = link.getAttribute('title');
     const img = document.createElement('img');
     img.src = href;
     img.alt = link.textContent || '';
-    img.title = title;
     link.replaceWith(img);
   });
 }
