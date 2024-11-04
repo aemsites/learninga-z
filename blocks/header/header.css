@@ -939,7 +939,6 @@ nav[aria-expanded="false"] {
   header .nav-sections,
   header .nav-tools {
     display: flex;
-    position: relative;
   }
 
   .search-bar-large.active {
