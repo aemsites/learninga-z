@@ -129,6 +129,58 @@ function loadSecondaryNavFragment(navChildFragmentLink, secondaryNav) {
   loadFragment(navChildFragmentPath).then((fragment) => {
     while (fragment.firstElementChild) navChildFragment.append(fragment.firstElementChild);
     secondaryNav.replaceChildren(navChildFragment);
+    secondaryNav.querySelectorAll('a.button').forEach((link) => {
+      if (link.textContent.toLowerCase() === 'learn more') {
+        link.setAttribute('title', 'More about this product');
+      }
+    });
+  });
+}
+
+/* Load search form */
+function loadSearchForm(wrapper) {
+  const searchForm = document.createElement('div');
+  searchForm.className = 'search-bar-large';
+  const container = document.createElement('div');
+  container.className = 'container container-large';
+  const form = document.createElement('form');
+  form.id = 'supernav-search';
+  form.method = 'get';
+  form.action = '/site/search';
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.name = 'search';
+  input.placeholder = 'What are you searching for?';
+  input.title = 'site search';
+  const button = document.createElement('button');
+  button.type = 'submit';
+  button.className = 'fa fa-search';
+  button.innerHTML = '<em>Search</em>';
+  form.append(input);
+  form.append(button);
+  container.append(form);
+  searchForm.append(container);
+  wrapper.append(searchForm);
+  // search icon click event
+  const navTools = wrapper.querySelector('.nav-tools');
+  const searchIcon = navTools.querySelector('span.icon-search')?.closest('li');
+  if (searchIcon) {
+    searchIcon.addEventListener('click', () => {
+      searchForm.classList.toggle('active');
+      if (searchForm.classList.contains('active')) {
+        input.focus();
+      } else {
+        input.blur();
+      }
+    });
+  }
+  // remove active class when clicked outside
+  document.addEventListener('click', (event) => {
+    const { target } = event;
+    if (!searchIcon.contains(target) && !searchForm.contains(target)) {
+      searchForm.classList.remove('active');
+      input.blur();
+    }
   });
 }
 
@@ -241,6 +293,11 @@ export default async function decorate(block) {
     navItemsWrapper.className = 'primary-nav-items';
     navItemsWrapper.querySelectorAll(':scope > li').forEach((navSection) => {
       navSection.classList.add('nav-item');
+      const navSectionLink = navSection.querySelector('a');
+      // check if navSectionLink is part of current page url
+      if (navSectionLink && window.location.href.includes(navSectionLink.href)) {
+        navSection.classList.add('active');
+      }
       const secondaryNav = document.createElement('div');
       secondaryNav.className = 'megamenu-container';
       const navChildFragmentLink = navSection.querySelectorAll('a[href*="/fragment"]');
@@ -295,6 +352,7 @@ export default async function decorate(block) {
   // toggleMenu(nav, navSections, isDesktop.matches);
   isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
   navWrapper.append(nav);
+  loadSearchForm(navWrapper);
   decorateButtons(nav);
   block.append(navWrapper);
 }
