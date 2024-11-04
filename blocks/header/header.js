@@ -174,6 +174,14 @@ function loadSearchForm(wrapper) {
       }
     });
   }
+  // remove active class when clicked outside
+  document.addEventListener('click', (event) => {
+    const { target } = event;
+    if (!searchIcon.contains(target) && !searchForm.contains(target)) {
+      searchForm.classList.remove('active');
+      input.blur();
+    }
+  });
 }
 
 /**
