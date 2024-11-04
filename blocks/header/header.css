@@ -358,49 +358,51 @@ header .megamenu>.section-outer {
 }
 
 /* Search Bar */
+.search-bar-large {
+  display: none;
+}
+
 .search-bar-large.active {
   display: block;
-  right: 351px;
+  right: 15%;
   left: unset;
   background-color: unset;
   max-width: 532px;
   bottom: -55px;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   width: 100%;
   position: absolute;
 
   #supernav-search {
     height: 60px;
-    display: inline;
-    font-size: 13px;
+    display: block;
     text-transform: uppercase;
-    margin-top: 0em;
-    unicode-bidi: isolate;
 
     input {
-      background-color: #ffffff;
-      color: #000;
+      background-color: white;
       border-radius: 4px;
       height: 100%;
       padding: 5px 30px;
       outline: none;
       width: 100%;
       border: none;
-      line-height: 50px;
-      font-size: 16px;
+    }
+
+    input::placeholder {
+      font-weight: var(--font-weight-extra-bold);
+      color: var(--dark-gray);
     }
 
     button {
-      background-color: #e21d46;
+      background-color: var(--red);
       height: 100%;
       width: 10%;
-      padding: 0;
       border-top-right-radius: 4px;
       border-bottom-right-radius: 4px;
       right: 0;
       position: absolute;
       font-size: 20px;
-      color: #fff;
+      color:white;
       border: none;
       top: 50%;
       transform: translate(0, -50%);
@@ -411,10 +413,10 @@ header .megamenu>.section-outer {
       }
 
       ::before { 
-        content: url("/icons/search.svg");
+        content: url("/icons/search-white.svg");
         width: 20px;
         height: 20px;
-        display: block;
+        display: inline-block;
         margin: auto;
       }
     }
@@ -937,6 +939,7 @@ nav[aria-expanded="false"] {
   header .nav-sections,
   header .nav-tools {
     display: flex;
+    position: relative;
   }
 
   header .nav-brand {
@@ -1037,5 +1040,9 @@ nav[aria-expanded="false"] {
 @media (width >=1660px) {
   header nav {
     max-width: 1527px;
+  }
+
+  .search-bar-large {
+    right: 20%;
   }
 }
