@@ -363,7 +363,7 @@ header .megamenu>.section-outer {
 }
 
 .search-bar-large.active {
-  display: block;
+  display: none;
   right: 15%;
   left: unset;
   background-color: unset;
@@ -940,6 +940,10 @@ nav[aria-expanded="false"] {
   header .nav-tools {
     display: flex;
     position: relative;
+  }
+
+  .search-bar-large.active {
+    display: block;
   }
 
   header .nav-brand {
