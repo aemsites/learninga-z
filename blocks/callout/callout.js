@@ -1,4 +1,4 @@
-import { createOptimizedPicture } from '../../scripts/aem.js';
+import { createOptimizedPicture } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
   const rows = block.querySelectorAll(':scope > div');
