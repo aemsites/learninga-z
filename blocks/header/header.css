@@ -118,7 +118,7 @@ header:not(.header-mobile) .nav-sections ul.primary-nav-items>li>a{
 }
 
 header:not(.header-mobile) .nav-sections .nav-item.active > a {
-  color: #888;;
+  color: var(--medium-light-gray);
 }
 
 header .nav-sections ul.primary-nav-items>li:not(.button-container)>a:not(.button)::after {
