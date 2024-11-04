@@ -311,6 +311,23 @@ export function createTag(tag, attributes, html = undefined) {
 }
 
 /**
+ * Replaces links to SVG images
+ * This function searches for all <a> elements that link to SVG images.
+ * It then converts them to an <img> element
+ * @param {Document} doc - doc object
+ */
+function svgImageLinks(doc) {
+  const links = doc.querySelectorAll('a[href*="/images/svgs/"][href$=".svg"]');
+  links.forEach((link) => {
+    const href = link.getAttribute('href');
+    const img = document.createElement('img');
+    img.src = href;
+    img.alt = link.textContent || '';
+    link.replaceWith(img);
+  });
+}
+
+/**
  * Sets an optimized background image for a given section element.
  * This function takes into account the device's viewport width and device pixel ratio
  * to choose the most appropriate image from the provided breakpoints.
@@ -691,6 +708,8 @@ async function loadEager(doc) {
  * @param {Element} doc The container element
  */
 async function loadLazy(doc) {
+  svgImageLinks(doc);
+
   const main = doc.querySelector('main');
   await loadSections(main);
   // const breadcrumb = await breadcrumbs(doc);
