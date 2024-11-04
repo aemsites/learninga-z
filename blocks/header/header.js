@@ -137,6 +137,45 @@ function loadSecondaryNavFragment(navChildFragmentLink, secondaryNav) {
   });
 }
 
+/* Load search form */
+function loadSearchForm(wrapper) {
+  const searchForm = document.createElement('div');
+  searchForm.className = 'search-bar-large';
+  const container = document.createElement('div');
+  container.className = 'container container-large';
+  const form = document.createElement('form');
+  form.id = 'supernav-search';
+  form.method = 'get';
+  form.action = '/site/search';
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.name = 'search';
+  input.placeholder = 'What are you searching for?';
+  input.title = 'site search';
+  const button = document.createElement('button');
+  button.type = 'submit';
+  button.className = 'fa fa-search';
+  button.innerHTML = '<em>Search</em>';
+  form.append(input);
+  form.append(button);
+  container.append(form);
+  searchForm.append(container);
+  wrapper.append(searchForm);
+  // search icon click event
+  const navTools = wrapper.querySelector('.nav-tools');
+  const searchIcon = navTools.querySelector('span.icon-search')?.closest('li');
+  if (searchIcon) {
+    searchIcon.addEventListener('click', () => {
+      searchForm.classList.toggle('active');
+      if (searchForm.classList.contains('active')) {
+        input.focus();
+      } else {
+        input.blur();
+      }
+    });
+  }
+}
+
 /**
  * loads and decorates the header, mainly the nav
  * @param {Element} block The header block element
@@ -305,6 +344,7 @@ export default async function decorate(block) {
   // toggleMenu(nav, navSections, isDesktop.matches);
   isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
   navWrapper.append(nav);
+  loadSearchForm(navWrapper);
   decorateButtons(nav);
   block.append(navWrapper);
 }
