@@ -369,7 +369,7 @@ header .megamenu>.section-outer {
   background-color: unset;
   max-width: 532px;
   bottom: -55px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 20px var(--light-gray);
   width: 100%;
   position: absolute;
 
