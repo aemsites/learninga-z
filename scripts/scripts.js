@@ -380,7 +380,6 @@ function createOptimizedBackgroundImage(section, breakpoints = [
 
     const adjustedWidth = matchedBreakpoint.width * window.devicePixelRatio;
     target.style.backgroundImage = `url(${pathname}?width=${adjustedWidth}&format=webply&optimize=highest)`;
-    target.style.backgroundSize = 'cover';
   };
 
   if (resizeListeners.has(section)) {
