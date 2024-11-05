@@ -37,7 +37,7 @@ export default async function decorate(block) {
   const sortByProducts = urlParams.get('sortByProducts');
   const sortByStates = urlParams.get('sortByStates');
   let filteredReviews = reviews;
-  if (sortByLocation) {
+  if (sortByLocation && sortByLocation !== 'showAllCountries') {
     filteredReviews = filteredReviews.filter((review) => review.Country === sortByLocation);
     form.querySelector(`option[value="${sortByLocation}"]`).setAttribute('selected', 'selected');
     form.querySelector('option[value="showAllCountries"]').removeAttribute('selected');
@@ -51,12 +51,12 @@ export default async function decorate(block) {
         </select>
     `;
   }
-  if (sortByProducts) {
+  if (sortByProducts && sortByProducts !== 'showAllProducts') {
     filteredReviews = filteredReviews.filter((review) => review.Product.includes(sortByProducts));
     form.querySelector(`option[value="${sortByProducts}"]`).setAttribute('selected', 'selected');
     form.querySelector('option[value="showAllProducts"]').removeAttribute('selected');
   }
-  if (sortByStates) {
+  if (sortByStates && sortByStates !== 'showAllStates') {
     filteredReviews = filteredReviews.filter((review) => review.State === sortByStates);
     form.querySelector(`option[value="${sortByStates}"]`).setAttribute('selected', 'selected');
     form.querySelector('option[value="showAllStates"]').removeAttribute('selected');
