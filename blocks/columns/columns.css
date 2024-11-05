@@ -46,3 +46,30 @@
     order: unset;
   }
 }
+
+
+
+.test {
+  > div {
+    border-bottom: 1px solid #dfdfdf;
+    padding: 20px 0 40px;
+  }
+  div > div:nth-child(1) {
+    max-width: 200px;
+  }
+  div > div:nth-child(2) {
+    h6 {
+      background: #eee;
+      padding: 20px 30px;
+      font-size: 18px;
+      font-style: italic;
+      font-weight: normal;
+      color: #666;
+
+      strong {
+        font-weight: bold;
+        color: #C83192;
+      }
+    }
+  }
+}
