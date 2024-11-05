@@ -368,7 +368,7 @@ function createOptimizedBackgroundImage(section, breakpoints = [
     const url = new URL(bgImage, window.location.href);
     const pathname = encodeURI(url.pathname);
     const sectionInner = section.querySelector('div.section');
-    const target = sectionInner || section;
+    const target = (sectionInner && sectionInner.classList.contains('inner')) ? sectionInner : section;
     const matchedBreakpoints = breakpoints.filter(
       (br) => !br.media || window.matchMedia(br.media).matches,
     );
