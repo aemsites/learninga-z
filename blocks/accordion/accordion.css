@@ -40,7 +40,7 @@
   content: '+';
   position: absolute;
   font-size: 25px;
-  top: 10%;
+  top: 30%;
   right: 22px;
   transition: transform 0.4s;
 }
@@ -61,6 +61,20 @@
 
 .accordion details[open] .accordion-item-body {
   border-top: 2px solid #ccc;
-  transition: all .4s ease-in;
+  transition: all 0.4s ease-in-out;
+}
 
+.accordion.round details[open] .accordion-item-body {
+  border: 1px solid #eee;
+  margin-top: 10px;
+  transition: all 1s ease-in-out;
+}
+
+.accordion.round .accordion-item-label{
+  padding: 15px 20px;
+  border-radius: 6px;
+}
+
+.accordion.round details {
+  border: 0;
 }
