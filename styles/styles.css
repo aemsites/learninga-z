@@ -672,7 +672,8 @@ body.yellow {
   /* sections */
   main > .section-outer {
     margin: auto;
-    background-size: cover
+    background-size: cover;
+    width: 100%;
   }
 
   main > .section-outer > .section {
@@ -680,6 +681,7 @@ body.yellow {
     padding: 48px 15px;
     max-width: 750px;
     background-size: cover;
+    width: 100%;
   }
 
   main > .section:first-of-type {
