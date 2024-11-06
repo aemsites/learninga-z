@@ -8,9 +8,8 @@ export default async function decorate(block) {
   const reviews = await getReviews();
 
   // from reviews, get all unique products
-  const products = [...new Set(reviews.flatMap((review) => review['Product tags'].split(',')))].sort();
+  const products = [...new Set(reviews.flatMap((review) => review.Product.split(',').map((product) => product.trim())))].sort();
   const countries = [...new Set(reviews.map((review) => review.Country))].sort();
-  countries.push('US');
 
   const form = document.createElement('form');
   form.setAttribute('class', 'reviews-filter-form');
@@ -39,7 +38,7 @@ export default async function decorate(block) {
     form.querySelector('option[value="showAllCountries"]').removeAttribute('selected');
     const formContainer = form.querySelector('.form-container');
     // add a states dropdown
-    const states = [...new Set(filteredReviews.map((review) => review.State))].sort();
+    const states = [...new Set(filteredReviews.map((review) => review.State).filter((state) => state !== ''))].sort();
     formContainer.innerHTML += `
         <select id="sortByStates" name="sortByStates" onchange="window.location.hash = 'page=1';this.form.submit();">
             <option value="showAllStates" selected="selected">Show all states</option>
