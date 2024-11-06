@@ -2,10 +2,6 @@
     .section-outer {
         margin: unset;
 
-        > .section {
-            width: 100%;
-        }
-
         h2 {
             font-size: var(--body-font-size-m);
             font-weight: var(--font-weight-bold);
