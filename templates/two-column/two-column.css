@@ -3,7 +3,6 @@
         margin: unset;
 
         > .section {
-            padding: 0 15px;
             width: 100%;
         }
 
@@ -95,10 +94,6 @@
         max-width: unset;
 
         .section-outer {
-            > .section {
-                padding: 0;
-            }
-
             &:not(last-of-type) {
                 grid-area: auto / content;
                 display: grid;
