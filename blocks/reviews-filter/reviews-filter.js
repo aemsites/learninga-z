@@ -2,20 +2,18 @@
 import { getReviews } from '../../scripts/utils.js';
 import { loadCSS } from '../../scripts/aem.js';
 import { renderCardList } from '../cards/cards.js';
-import { STATES } from '../../scripts/constants.js';
 
 export default async function decorate(block) {
   await loadCSS(`${window.hlx.codeBasePath}/blocks/cards/cards.css`);
   const reviews = await getReviews();
 
   // from reviews, get all unique products
-  console.log(reviews);
   const products = [...new Set(reviews.flatMap((review) => review['Product tags'].split(',')))].sort();
   const countries = [...new Set(reviews.map((review) => review.Country))].sort();
   countries.push('US');
 
   const form = document.createElement('form');
-  form.setAttribute('class', 'news-filter-form');
+  form.setAttribute('class', 'reviews-filter-form');
   form.setAttribute('method', 'get');
   form.innerHTML = `
         <div class="form-container">
