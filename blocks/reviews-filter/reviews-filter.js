@@ -16,16 +16,32 @@ export default async function decorate(block) {
   form.setAttribute('method', 'get');
   form.innerHTML = `
         <div class="form-container">
-        <select id="sortByProducts" name="sortByProducts" onchange="window.location.hash = 'page=1';this.form.submit();">
+        <select id="sortByProducts" name="sortByProducts" ">
             <option value="showAllProducts" selected="selected">Show all products</option>
             ${products.map((product) => `<option value="${product}">${product}</option>`).join('')}
         </select>
-        <select id="sortByLocation" name="sortByLocation" onchange="window.location.hash = 'page=1';this.form.submit();">
+        <select id="sortByLocation" name="sortByLocation">
             <option value="showAllCountries" selected="selected">Show all countries</option>
             ${countries.map((country) => `<option value="${country}">${country}</option>`).join('')}
         </select>
         </div>
     `;
+
+  // onchange of sortByProducs, show all countries and on change of sortByLocation, show all states
+  form.addEventListener('change', (event) => {
+    if (event.target.id === 'sortByProducts') {
+      form.querySelector('option[value="showAllCountries"]').selected = true;
+      if (form.querySelector('option[value="showAllStates"]')) {
+        form.querySelector('option[value="showAllStates"]').selected = true;
+      }
+    } else if (event.target.id === 'sortByLocation') {
+      if (form.querySelector('option[value="showAllStates"]')) {
+        form.querySelector('option[value="showAllStates"]').selected = true;
+      }
+    }
+    window.location.hash = 'page=1';
+    form.submit();
+  });
 
   const urlParams = new URLSearchParams(window.location.search);
   const sortByLocation = urlParams.get('sortByLocation');
