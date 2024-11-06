@@ -70,6 +70,8 @@
 @media (width >= 768px) {
     .two-column main {
         .section-outer .section {
+            padding-left: 0;
+            padding-right: 0;
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
