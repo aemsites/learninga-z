@@ -523,6 +523,7 @@ body.purple {
   .news-filter-container, .reviews-filter-container {
     h3, a, p>strong, strong>p {
       color: var(--purple);
+      margin: 0;
     }
   }
 
