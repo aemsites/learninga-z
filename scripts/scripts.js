@@ -542,10 +542,10 @@ export function decorateMain(main, templateModule) {
  * Need to add the template name to the validTemplates array.
  */
 const validTemplates = [
-  'home',
+  'wide',
   'blog-article',
   'blog-author',
-  'video-detail',
+  'two-column',
   'research-detail',
   'news-post',
   'product',

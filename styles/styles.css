@@ -520,8 +520,11 @@ body.purple {
     background-color: var(--purple);
     }
 
-  .news-filter-container h3, .news-filter-container a, .news-filter-container p>strong, .news-filter-container strong>p {
-    color: var(--purple);
+  .news-filter-container, .reviews-filter-container {
+    h3, a, p>strong, strong>p {
+      color: var(--purple);
+      margin: 0;
+    }
   }
 
   .accordion.round .accordion-item-label {
@@ -702,7 +705,8 @@ body.yellow {
   /* sections */
   main > .section-outer {
     margin: auto;
-    background-size: cover
+    background-size: cover;
+    width: 100%;
   }
 
   main > .section-outer > .section {
@@ -710,6 +714,7 @@ body.yellow {
     padding: 48px 15px;
     max-width: 750px;
     background-size: cover;
+    width: 100%;
   }
 
   main > .section:first-of-type {

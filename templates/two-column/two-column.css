@@ -1,11 +1,6 @@
-.video-detail main {
+.two-column main {
     .section-outer {
         margin: unset;
-
-        > .section {
-            padding: 0 15px;
-            width: 100%;
-        }
 
         h2 {
             font-size: var(--body-font-size-m);
@@ -73,8 +68,10 @@
 }
 
 @media (width >= 768px) {
-    .video-detail main {
+    .two-column main {
         .section-outer .section {
+            padding-left: 0;
+            padding-right: 0;
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
@@ -83,7 +80,7 @@
 }
 
 @media (width >= 1024px) {
-    .video-detail main {
+    .two-column main {
         display: grid;
         grid-template-areas:
         "breadcrumb breadcrumb breadcrumb breadcrumb"
@@ -95,10 +92,6 @@
         max-width: unset;
 
         .section-outer {
-            > .section {
-                padding: 0;
-            }
-
             &:not(last-of-type) {
                 grid-area: auto / content;
                 display: grid;
@@ -108,13 +101,17 @@
             &:last-of-type {
                 grid-area: sidebar;
                 grid-row-end: last-line;
+
+                &>.section {
+                    padding: 0;
+                }
             }
         }
     }
 }
 
 @media (width >= 1200px) {
-    .video-detail main {
+    .two-column main {
         grid-template-columns: 1fr minmax(0, 800px) 300px 1fr;
 
         .section-outer:not(last-of-type) {
@@ -124,7 +121,7 @@
 }
 
 @media (width >= 1660px) {
-    .video-detail main {
+    .two-column main {
         column-gap: 60px;
     }
 }
