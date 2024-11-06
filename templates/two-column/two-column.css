@@ -1,4 +1,4 @@
-.video-detail main {
+.two-column main {
     .section-outer {
         margin: unset;
 
@@ -73,7 +73,7 @@
 }
 
 @media (width >= 768px) {
-    .video-detail main {
+    .two-column main {
         .section-outer .section {
             max-width: 800px;
             margin-left: auto;
@@ -83,7 +83,7 @@
 }
 
 @media (width >= 1024px) {
-    .video-detail main {
+    .two-column main {
         display: grid;
         grid-template-areas:
         "breadcrumb breadcrumb breadcrumb breadcrumb"
@@ -114,7 +114,7 @@
 }
 
 @media (width >= 1200px) {
-    .video-detail main {
+    .two-column main {
         grid-template-columns: 1fr minmax(0, 800px) 300px 1fr;
 
         .section-outer:not(last-of-type) {
@@ -124,7 +124,7 @@
 }
 
 @media (width >= 1660px) {
-    .video-detail main {
+    .two-column main {
         column-gap: 60px;
     }
 }

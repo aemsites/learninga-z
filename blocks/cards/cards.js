@@ -234,15 +234,6 @@ export default async function decorate(block) {
   const cardsWrapper = document.createElement('div');
   cardsWrapper.className = 'card-wrapper';
   let cardsArray = [];
-  if (block.classList.contains('suggested-videos')) {
-    await loadCSS(`${window.hlx.codeBasePath}/blocks/cards/cards-suggested-videos.css`);
-    imgWidth = '200';
-    const title = document.createElement('h3');
-    title.innerHTML = 'Suggested Videos';
-    block.append(title);
-  } else {
-    imgWidth = '750';
-  }
   if (block.classList.contains('no-description')) isDescription = false;
   // check if the block is a circle image card block
   if (block.classList.contains('circle-image')) {
@@ -262,5 +253,14 @@ export default async function decorate(block) {
     renderCardList(cardsWrapper, cardsArray, 0);
   }
   block.innerHTML = '';
+  if (block.classList.contains('suggested-videos')) {
+    await loadCSS(`${window.hlx.codeBasePath}/blocks/cards/cards-suggested-videos.css`);
+    imgWidth = '200';
+    const title = document.createElement('h3');
+    title.innerHTML = 'Suggested Videos';
+    block.append(title);
+  } else {
+    imgWidth = '750';
+  }
   block.append(cardsWrapper);
 }
