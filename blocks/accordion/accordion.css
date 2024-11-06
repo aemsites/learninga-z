@@ -51,6 +51,7 @@
 }
 
 .accordion details .accordion-item-body {
+  opacity: 0;
   padding: 0 20px;
   overflow: hidden;
 }
@@ -62,12 +63,12 @@
 .accordion details[open] .accordion-item-body {
   border-top: 2px solid #ccc;
   transition: all 0.4s ease-in-out;
+  opacity: 1;
 }
 
 .accordion.round details[open] .accordion-item-body {
   border: 1px solid #eee;
   margin-top: 10px;
-  transition: all 1s ease-in-out;
 }
 
 .accordion.round .accordion-item-label{
