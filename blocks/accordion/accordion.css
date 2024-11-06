@@ -40,7 +40,7 @@
   content: '+';
   position: absolute;
   font-size: 25px;
-  top: 10%;
+  top: 30%;
   right: 22px;
   transition: transform 0.4s;
 }
@@ -51,6 +51,7 @@
 }
 
 .accordion details .accordion-item-body {
+  opacity: 0;
   padding: 0 20px;
   overflow: hidden;
 }
@@ -61,6 +62,20 @@
 
 .accordion details[open] .accordion-item-body {
   border-top: 2px solid #ccc;
-  transition: all .4s ease-in;
+  transition: all 0.4s ease-in-out;
+  opacity: 1;
+}
 
+.accordion.round details[open] .accordion-item-body {
+  border: 1px solid #eee;
+  margin-top: 10px;
+}
+
+.accordion.round .accordion-item-label{
+  padding: 15px 20px;
+  border-radius: 6px;
+}
+
+.accordion.round details {
+  border: 0;
 }
