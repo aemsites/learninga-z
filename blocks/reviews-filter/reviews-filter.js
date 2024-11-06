@@ -7,14 +7,12 @@ import { STATES } from '../../scripts/constants.js';
 export default async function decorate(block) {
   await loadCSS(`${window.hlx.codeBasePath}/blocks/cards/cards.css`);
   const reviews = await getReviews();
-  // in reviews, replace state with full state name from STATES
-  reviews.forEach((review) => {
-    review.State = STATES[review.State] ? STATES[review.State] : review.State;
-  });
 
   // from reviews, get all unique products
-  const products = [...new Set(reviews.flatMap((review) => review.Product.split(',')))].sort();
+  console.log(reviews);
+  const products = [...new Set(reviews.flatMap((review) => review['Product tags'].split(',')))].sort();
   const countries = [...new Set(reviews.map((review) => review.Country))].sort();
+  countries.push('US');
 
   const form = document.createElement('form');
   form.setAttribute('class', 'news-filter-form');
@@ -66,9 +64,9 @@ export default async function decorate(block) {
   const div = document.createElement('div');
   block.append(div);
   div.className = 'reviews-cards';
-  renderCardList(div, filteredReviews, 10, 'reviews');
+  renderCardList(div, filteredReviews, 4, 'reviews');
 
   window.addEventListener('hashchange', async () => {
-    renderCardList(div, filteredReviews, 10, 'reviews');
+    renderCardList(div, filteredReviews, 4, 'reviews');
   });
 }

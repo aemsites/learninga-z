@@ -6,7 +6,7 @@ const NEWS_INDEX = '/site/company/news/query-index.json';
 const EVENTS_LIST = '/site/company/events/events-list.json';
 const DOWNLOAD_LIBRARY_INDEX = '/site/resources/download-library/query-index.json';
 const AWARDS_LIST = '/site/company/awards-n-accolades/awards.json';
-const REVIEWS_N_TESTIMONIALS = '/site/company/reviews-and-testimonials/reviews.json';
+const REVIEWS_N_TESTIMONIALS = '/site/company/reviews-and-testimonials/testimonials.json';
 
 /**
  * Returns the relative path from a given path.

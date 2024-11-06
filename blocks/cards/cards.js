@@ -161,10 +161,10 @@ function populateReviewsCard(container, cardInfo) {
   card.className = 'card';
   card.innerHTML = `
         <div class="testimonial-statement">
-            <p>"${cardInfo.Testimonial}"</p>
+            <p>${cardInfo.Testimonial}</p>
         </div>
         <div class="testimonial-customer">
-               --- <b>${cardInfo.Name}</b>; ${cardInfo.Role}; ${cardInfo.Company}
+               --- <b>${cardInfo.Name}</b>; ${cardInfo.Title}; ${cardInfo.startDate}
         </div>
     `;
   container.append(card);
