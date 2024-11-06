@@ -99,6 +99,10 @@
             &:last-of-type {
                 grid-area: sidebar;
                 grid-row-end: last-line;
+
+                &>.section {
+                    padding: 0;
+                }
             }
         }
     }
