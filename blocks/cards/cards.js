@@ -156,6 +156,20 @@ function populateAwardsCard(container, cardInfo) {
   container.append(card);
 }
 
+function populateReviewsCard(container, cardInfo) {
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.innerHTML = `
+        <div class="testimonial-statement">
+            <p>${cardInfo.Testimonial}</p>
+        </div>
+        <div class="testimonial-customer">
+               --<b>${cardInfo.Name}</b>; ${cardInfo.Title}; ${cardInfo.State}
+        </div>
+    `;
+  container.append(card);
+}
+
 /** function to render card list when an array of card objects are passed.
  * this also supports pagination
 */
@@ -192,6 +206,8 @@ export async function renderCardList(wrapper, cards, limit = 9, type = 'card') {
       populateAwardsCard(wrapper, card);
     } else if (type === 'circleImage') {
       populateCircleImageCard(wrapper, card);
+    } else if (type === 'reviews') {
+      populateReviewsCard(wrapper, card);
     } else {
       populateCard(wrapper, card, type);
     }
@@ -218,15 +234,6 @@ export default async function decorate(block) {
   const cardsWrapper = document.createElement('div');
   cardsWrapper.className = 'card-wrapper';
   let cardsArray = [];
-  if (block.classList.contains('suggested-videos')) {
-    await loadCSS(`${window.hlx.codeBasePath}/blocks/cards/cards-suggested-videos.css`);
-    imgWidth = '200';
-    const title = document.createElement('h3');
-    title.innerHTML = 'Suggested Videos';
-    block.append(title);
-  } else {
-    imgWidth = '750';
-  }
   if (block.classList.contains('no-description')) isDescription = false;
   // check if the block is a circle image card block
   if (block.classList.contains('circle-image')) {
@@ -246,5 +253,14 @@ export default async function decorate(block) {
     renderCardList(cardsWrapper, cardsArray, 0);
   }
   block.innerHTML = '';
+  if (block.classList.contains('suggested-videos')) {
+    await loadCSS(`${window.hlx.codeBasePath}/blocks/cards/cards-suggested-videos.css`);
+    imgWidth = '200';
+    const title = document.createElement('h3');
+    title.innerHTML = 'Suggested Videos';
+    block.append(title);
+  } else {
+    imgWidth = '750';
+  }
   block.append(cardsWrapper);
 }

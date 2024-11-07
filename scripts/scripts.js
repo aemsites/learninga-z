@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import {
   buildBlock,
   loadHeader,
@@ -153,7 +154,7 @@ function buildHeroBlock(main) {
   if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
     const section = document.createElement('div');
     heroContent.append(h1);
-    if (h1.compareDocumentPosition(heroSubText) && Node.DOCUMENT_POSITION_FOLLOWING) {
+    if (heroSubText && h1.compareDocumentPosition(heroSubText) && Node.DOCUMENT_POSITION_FOLLOWING) {
       const h2 = document.createElement('h2');
       h2.append(heroSubText.textContent);
       heroSubText.remove();
@@ -542,10 +543,10 @@ export function decorateMain(main, templateModule) {
  * Need to add the template name to the validTemplates array.
  */
 const validTemplates = [
-  'home',
+  'wide',
   'blog-article',
   'blog-author',
-  'video-detail',
+  'two-column',
   'research-detail',
   'news-post',
   'product',

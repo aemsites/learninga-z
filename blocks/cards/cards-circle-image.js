@@ -25,10 +25,12 @@ export async function getCircleCardsArray(block, indexData, isDescription) {
         const path = a.getAttribute('href');
         const relPath = getRelativePath(path);
         card = indexData.find((item) => item.path === relPath);
-        card.image = img;
-        card.isDescription = isDescription;
-        card.isIcon = isIcon;
-        cards.push(card);
+        if (card) {
+          card.image = img;
+          card.isDescription = isDescription;
+          card.isIcon = isIcon;
+          cards.push(card);
+        }
       }
     });
   });

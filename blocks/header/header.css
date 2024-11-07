@@ -1,6 +1,25 @@
 /* stylelint-disable no-descending-specificity */
 
 /* header and nav layout */
+body.no-header {
+  header{
+    display: none;
+  }
+}
+
+body.no-nav {
+  header {
+    height: auto;
+  }
+
+  header .nav-wrapper {
+   .nav-announcement, nav>*:not(.nav-brand) {
+     display: none;
+   }
+  }
+}
+
+
 header .nav-wrapper {
   background-color: var(--background-color);
   width: 100%;
@@ -1043,7 +1062,7 @@ nav[aria-expanded="false"] {
 
 
 @media (width >=1660px) {
-  header nav {
+  body:not(.no-nav) header nav {
     max-width: 1527px;
   }
 
