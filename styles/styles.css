@@ -534,6 +534,10 @@ body.purple {
   .accordion.round details summary {
     color: var(--purple);
   }
+
+  .cards.circle-image .card picture {
+    background-color: var(--purple);
+  }
 }
 
 [data-theme="purple"] {
@@ -573,6 +577,10 @@ body.laz-blue {
   .accordion.round details summary {
     color: var(--laz-blue);
   }
+
+    .cards.circle-image .card picture {
+      background-color: var(--laz-blue);
+    }
 }
 
 [data-theme="laz-blue"] {
@@ -622,6 +630,10 @@ body.red {
   .accordion.round details summary {
     color: var(--red);
   }
+  
+    .cards.circle-image .card picture {
+      background-color: var(--red);
+    }
 }
 
 [data-theme="red"] {
@@ -644,6 +656,10 @@ body.yellow {
 
   .table table th {
     background-color: var(--yellow);
+    }
+  
+    .cards.circle-image .card picture {
+      background-color: var(--yellow);
     }
 
   .accordion.round .accordion-item-label {
