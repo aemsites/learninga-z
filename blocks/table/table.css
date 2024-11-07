@@ -42,6 +42,7 @@
   &.plain {
     table {
       border-collapse: collapse;
+
       thead th {
         background: transparent;
         p { color: unset }
