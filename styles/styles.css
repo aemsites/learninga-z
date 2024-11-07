@@ -630,7 +630,7 @@ body.red {
   .accordion.round details summary {
     color: var(--red);
   }
-  
+
     .cards.circle-image .card picture {
       background-color: var(--red);
     }
