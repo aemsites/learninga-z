@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import {
   buildBlock,
   loadHeader,
@@ -17,6 +18,74 @@ import {
   loadScript,
   toCamelCase,
 } from './aem.js';
+
+/**
+ * Returns the true origin of the current page in the browser.
+ * If the page is running in an iframe with srcdoc, the ancestor origin is returned.
+ * @returns {String} The true origin
+ */
+export function getOrigin() {
+  const { location } = window;
+  return location.href === 'about:srcdoc' ? window.parent.location.origin : location.origin;
+}
+
+/**
+ * Returns the true of the current page in the browser.
+ * If the page is running in an iframe with srcdoc,
+ * the ancestor origin + the path query param is returned.
+ * @returns {String} The href of the current page or the href of the block running in the library
+ */
+export function getHref() {
+  if (window.location.href !== 'about:srcdoc') return window.location.href;
+
+  const { location: parentLocation } = window.parent;
+  const urlParams = new URLSearchParams(parentLocation.search);
+  return `${parentLocation.origin}${urlParams.get('path')}`;
+}
+
+/** moved from aem.js per https://github.com/adobe/franklin-sidekick-library#considerations-when-building-blocks-for-the-library
+ * Returns a picture element with webp and fallbacks
+ * @param {string} src The image URL
+ * @param {string} [alt=''] - The alt text for the image.
+ * @param {boolean} [eager=false] - If true, the image will be loaded eagerly.
+ * @param {Array} breakpoints breakpoints and corresponding params (e.g. width)
+ */
+export function createOptimizedPicture(src, alt = '', eager = false, breakpoints = [{
+  media: '(min-width: 600px)',
+  width: '2000',
+}, { width: '750' }]) {
+  const url = new URL(src, getHref());
+  const picture = document.createElement('picture');
+  const { pathname } = url;
+  const ext = pathname.substring(pathname.lastIndexOf('.') + 1);
+
+  // webp
+  breakpoints.forEach((br) => {
+    const source = document.createElement('source');
+    if (br.media) source.setAttribute('media', br.media);
+    source.setAttribute('type', 'image/webp');
+    source.setAttribute('srcset', `${pathname}?width=${br.width}&format=webply&optimize=medium`);
+    picture.appendChild(source);
+  });
+
+  // fallback
+  breakpoints.forEach((br, i) => {
+    if (i < breakpoints.length - 1) {
+      const source = document.createElement('source');
+      if (br.media) source.setAttribute('media', br.media);
+      source.setAttribute('srcset', `${pathname}?width=${br.width}&format=${ext}&optimize=medium`);
+      picture.appendChild(source);
+    } else {
+      const img = document.createElement('img');
+      img.setAttribute('loading', eager ? 'eager' : 'lazy');
+      img.setAttribute('alt', alt);
+      picture.appendChild(img);
+      img.setAttribute('src', `${pathname}?width=${br.width}&format=${ext}&optimize=medium`);
+    }
+  });
+
+  return picture;
+}
 
 /**
  * Determines if the current audience is mobile or desktop.
@@ -85,7 +154,7 @@ function buildHeroBlock(main) {
   if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
     const section = document.createElement('div');
     heroContent.append(h1);
-    if (h1.compareDocumentPosition(heroSubText) && Node.DOCUMENT_POSITION_FOLLOWING) {
+    if (heroSubText && h1.compareDocumentPosition(heroSubText) && Node.DOCUMENT_POSITION_FOLLOWING) {
       const h2 = document.createElement('h2');
       h2.append(heroSubText.textContent);
       heroSubText.remove();
@@ -243,6 +312,23 @@ export function createTag(tag, attributes, html = undefined) {
 }
 
 /**
+ * Replaces links to SVG images
+ * This function searches for all <a> elements that link to SVG images.
+ * It then converts them to an <img> element
+ * @param {Document} doc - doc object
+ */
+function svgImageLinks(doc) {
+  const links = doc.querySelectorAll('a[href*="/images/svgs/"][href$=".svg"]');
+  links.forEach((link) => {
+    const href = link.getAttribute('href');
+    const img = document.createElement('img');
+    img.src = href;
+    img.alt = link.textContent || '';
+    link.replaceWith(img);
+  });
+}
+
+/**
  * Sets an optimized background image for a given section element.
  * This function takes into account the device's viewport width and device pixel ratio
  * to choose the most appropriate image from the provided breakpoints.
@@ -282,7 +368,8 @@ function createOptimizedBackgroundImage(section, breakpoints = [
     const bgImage = getBackgroundImage(section);
     const url = new URL(bgImage, window.location.href);
     const pathname = encodeURI(url.pathname);
-
+    const sectionInner = section.querySelector('div.section');
+    const target = (sectionInner && sectionInner.classList.contains('inner')) ? sectionInner : section;
     const matchedBreakpoints = breakpoints.filter(
       (br) => !br.media || window.matchMedia(br.media).matches,
     );
@@ -293,8 +380,7 @@ function createOptimizedBackgroundImage(section, breakpoints = [
     );
 
     const adjustedWidth = matchedBreakpoint.width * window.devicePixelRatio;
-    section.style.backgroundImage = `url(${pathname}?width=${adjustedWidth}&format=webply&optimize=highest)`;
-    section.style.backgroundSize = 'cover';
+    target.style.backgroundImage = `url(${pathname}?width=${adjustedWidth}&format=webply&optimize=highest)`;
   };
 
   if (resizeListeners.has(section)) {
@@ -457,15 +543,16 @@ export function decorateMain(main, templateModule) {
  * Need to add the template name to the validTemplates array.
  */
 const validTemplates = [
-  'home',
+  'wide',
   'blog-article',
   'blog-author',
-  'video-detail',
+  'two-column',
   'research-detail',
   'news-post',
   'product',
   'errorpage',
   'landing',
+  'common-core',
 ];
 async function loadTemplate() {
   const templateName = toClassName(getMetadata('template'));
@@ -622,6 +709,8 @@ async function loadEager(doc) {
  * @param {Element} doc The container element
  */
 async function loadLazy(doc) {
+  svgImageLinks(doc);
+
   const main = doc.querySelector('main');
   await loadSections(main);
   // const breadcrumb = await breadcrumbs(doc);

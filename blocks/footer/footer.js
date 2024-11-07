@@ -17,7 +17,11 @@ const decorateLinkItems = (footer) => {
     li.querySelectorAll('a').forEach((a) => {
       a.classList.add('nav-link');
       a.setAttribute('target', '_blank');
-      a.setAttribute('aria-label', `Visit us on ${a.href}`);
+      if (li.parentElement.classList.contains('social-links')) {
+        a.setAttribute('aria-label', `Visit us on ${a.href}`);
+      } else {
+        a.setAttribute('aria-label', `${a.href}`);
+      }
       if (!a.querySelector('span.icon')) {
         const lnkTxt = document.createElement('span');
         lnkTxt.classList.add('nav-link-text');
@@ -45,6 +49,12 @@ export default async function decorate(block) {
 
   const footerWrapper = footer.querySelector('.columns-container');
   if (footerWrapper) {
+    // Get first column ref to set aria-label
+    const logoIcon = footerWrapper.querySelector('a');
+    if (logoIcon) {
+      logoIcon.setAttribute('aria-label', `${logoIcon.href}`);
+    }
+
     const navLinksWrapper = footerWrapper.querySelector('ul');
     navLinksWrapper.classList.add('footer-links');
     if (navLinksWrapper) {

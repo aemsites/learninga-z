@@ -6,6 +6,7 @@ const NEWS_INDEX = '/site/company/news/query-index.json';
 const EVENTS_LIST = '/site/company/events/events-list.json';
 const DOWNLOAD_LIBRARY_INDEX = '/site/resources/download-library/query-index.json';
 const AWARDS_LIST = '/site/company/awards-n-accolades/awards.json';
+const REVIEWS_N_TESTIMONIALS = '/site/company/reviews-and-testimonials/testimonials.json';
 
 /**
  * Returns the relative path from a given path.
@@ -72,6 +73,19 @@ async function getIndexData(index = INDEX) {
     });
   }
   return retrievedData;
+}
+
+const reviewsData = [];
+/**
+ * Retrieves the reviews and testimonials from spreadsheet.
+ * @returns {Promise<Array>} A promise that resolves to an array of videos index data.
+ */
+export async function getReviews() {
+  if (!reviewsData.length) {
+    reviewsData.push(...await getIndexData(REVIEWS_N_TESTIMONIALS));
+  }
+  // Protected against callers modifying the objects
+  return structuredClone(reviewsData);
 }
 
 const awardsListData = [];

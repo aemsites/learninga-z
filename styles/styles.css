@@ -35,7 +35,7 @@
   --red: #E21D46;
   --sky-blue: #A2DAE8;
   --turquoise: #3FC1C0;
-  --yellow: #FDDC3F;
+  --yellow: #F8BE15;
   --white: #FFF;
   --off-white: #F6F6F6;
   --light-gray: #CBCBCB;
@@ -288,7 +288,7 @@ a:hover {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  transition: color 0.4s, background-color 0.4s;
+  transition: all 0.4s;
 }
 
 
@@ -520,8 +520,23 @@ body.purple {
     background-color: var(--purple);
     }
 
-  .news-filter-container h3, .news-filter-container a, .news-filter-container p>strong, .news-filter-container strong>p {
+  .news-filter-container, .reviews-filter-container {
+    h3, a, p>strong, strong>p {
+      color: var(--purple);
+      margin: 0;
+    }
+  }
+
+  .accordion.round .accordion-item-label {
+    border: 2px solid var(--purple);
+  }
+
+  .accordion.round details summary {
     color: var(--purple);
+  }
+
+  .cards.circle-image .card picture {
+    background-color: var(--purple);
   }
 }
 
@@ -553,6 +568,18 @@ body.laz-blue {
 
   .table table th {
     background-color: var(--laz-blue);
+    }
+
+  .accordion.round .accordion-item-label {
+    border: 2px solid var(--laz-blue);
+  }
+
+  .accordion.round details summary {
+    color: var(--laz-blue);
+  }
+
+    .cards.circle-image .card picture {
+      background-color: var(--laz-blue);
     }
 }
 
@@ -595,6 +622,18 @@ body.red {
   .table table th {
     background-color: var(--red);
     }
+
+  .accordion.round .accordion-item-label {
+    border: 2px solid var(--red);
+  }
+
+  .accordion.round details summary {
+    color: var(--red);
+  }
+
+    .cards.circle-image .card picture {
+      background-color: var(--red);
+    }
 }
 
 [data-theme="red"] {
@@ -618,20 +657,47 @@ body.yellow {
   .table table th {
     background-color: var(--yellow);
     }
-}
-
-  [data-theme="yellow"] {
-    background-color: var(--yellow);
-
-    .breadcrumbs-outer {
+  
+    .cards.circle-image .card picture {
       background-color: var(--yellow);
     }
 
-    a:any-link {
-      color: var(--text-color);
-      text-decoration: underline;
+  .accordion.round .accordion-item-label {
+    border: 2px solid var(--yellow);
+  }
+
+  .accordion.round details summary {
+    color: var(--yellow);
+  }
+
+  h3, a {
+    color: var(--yellow);
+  }
+
+  /* secondary button colors */
+  .button.secondary {
+    color: var(--yellow) !important;
+    border-color: var(--yellow) !important;
+
+    &:hover {
+      color: black;
+      border-color: black;
     }
   }
+}
+
+[data-theme="yellow"] {
+  background-color: var(--yellow);
+
+  .breadcrumbs-outer {
+    background-color: var(--yellow);
+  }
+
+  a:any-link {
+    color: var(--text-color);
+    text-decoration: underline;
+  }
+}
 
   /* end themes */
 
@@ -655,12 +721,16 @@ body.yellow {
   /* sections */
   main > .section-outer {
     margin: auto;
+    background-size: cover;
+    width: 100%;
   }
 
   main > .section-outer > .section {
     margin: 0 auto;
     padding: 48px 15px;
     max-width: 750px;
+    background-size: cover;
+    width: 100%;
   }
 
   main > .section:first-of-type {

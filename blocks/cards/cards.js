@@ -1,9 +1,10 @@
 /* eslint-disable max-len */
+import { getCircleCardsArray, populateCircleImageCard } from './cards-circle-image.js';
 import {
   getRelativePath, getGenericIndexData, generatePagination, getDateRange,
 } from '../../scripts/utils.js';
-import { createOptimizedPicture } from '../../scripts/aem.js';
-import { decorateExternalLinks } from '../../scripts/scripts.js';
+import { loadCSS } from '../../scripts/aem.js';
+import { createOptimizedPicture, decorateExternalLinks } from '../../scripts/scripts.js';
 
 const indexData = await getGenericIndexData();
 let imgWidth = '750';
@@ -117,7 +118,7 @@ function populateEventsCard(container, cardInfo) {
  */
 function populateDownloadCard(container, cardInfo) {
   const card = document.createElement('div');
-  card.className = `card ${cardInfo.category.replace(/ /g, '-').toLowerCase()}`;
+  card.className = 'card';
   card.innerHTML = `
         <div class="card-thumbnail">
                 ${createOptimizedPicture(cardInfo.image, cardInfo.title, false, [{ width: imgWidth }]).outerHTML}
@@ -150,6 +151,20 @@ function populateAwardsCard(container, cardInfo) {
         <div class="card-body">
                 ${cardInfo.path ? `<a href="${cardInfo.path}"><h3>${cardInfo.title}</h3></a>` : `<h3>${cardInfo.title}</h3>`}
                 <p>${description}</p>
+        </div>
+    `;
+  container.append(card);
+}
+
+function populateReviewsCard(container, cardInfo) {
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.innerHTML = `
+        <div class="testimonial-statement">
+            <p>${cardInfo.Testimonial}</p>
+        </div>
+        <div class="testimonial-customer">
+               --<b>${cardInfo.Name}</b>; ${cardInfo.Title}; ${cardInfo.State}
         </div>
     `;
   container.append(card);
@@ -189,6 +204,10 @@ export async function renderCardList(wrapper, cards, limit = 9, type = 'card') {
       populateDownloadCard(wrapper, card);
     } else if (type === 'awards') {
       populateAwardsCard(wrapper, card);
+    } else if (type === 'circleImage') {
+      populateCircleImageCard(wrapper, card);
+    } else if (type === 'reviews') {
+      populateReviewsCard(wrapper, card);
     } else {
       populateCard(wrapper, card, type);
     }
@@ -210,20 +229,32 @@ function getCardObject(link) {
   return indexData.find((item) => item.path === relPath);
 }
 
-export default function decorate(block) {
-  const cardLinks = block.querySelectorAll('a');
+export default async function decorate(block) {
+  let isDescription = true;
   const cardsWrapper = document.createElement('div');
   cardsWrapper.className = 'card-wrapper';
+  let cardsArray = [];
+  if (block.classList.contains('no-description')) isDescription = false;
+  // check if the block is a circle image card block
+  if (block.classList.contains('circle-image')) {
+    await loadCSS(`${window.hlx.codeBasePath}/blocks/cards/cards-cirlce-image.css`);
+    cardsArray = await getCircleCardsArray(block, indexData, isDescription);
+    renderCardList(cardsWrapper, cardsArray, 0, 'circleImage');
+  } else {
+    const cardLinks = block.querySelectorAll('a');
+    Array.from(cardLinks).map((cardLink) => {
+      const card = getCardObject(cardLink);
+      if (card) {
+        card.isDescription = isDescription;
+        cardsArray.push(card);
+      }
+      return card;
+    });
+    renderCardList(cardsWrapper, cardsArray, 0);
+  }
   block.innerHTML = '';
-  const cardsArray = [];
-  Array.from(cardLinks).map((cardLink) => {
-    const card = getCardObject(cardLink);
-    if (card) {
-      cardsArray.push(card);
-    }
-    return card;
-  });
   if (block.classList.contains('suggested-videos')) {
+    await loadCSS(`${window.hlx.codeBasePath}/blocks/cards/cards-suggested-videos.css`);
     imgWidth = '200';
     const title = document.createElement('h3');
     title.innerHTML = 'Suggested Videos';
@@ -231,6 +262,5 @@ export default function decorate(block) {
   } else {
     imgWidth = '750';
   }
-  renderCardList(cardsWrapper, cardsArray, 0);
   block.append(cardsWrapper);
 }
