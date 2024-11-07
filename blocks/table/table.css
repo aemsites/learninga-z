@@ -5,19 +5,15 @@
   table {
     width: 100%;
     min-width: 600px;
-    font-size: var(--body-font-size-xs);
 
-    @media (width >= 768px) { font-size: var(--body-font-size-s) }
-
-    @media (width >= 1024px) { font-size: var(--body-font-size-s) }
-
-    thead tr {
+    thead {
       th {
         padding: 1em;
         text-align: left;
         font-weight: bold;
         background: var(--red);
-       p {
+
+        p {
           color: #fff;
           margin: 0;
         }
@@ -46,7 +42,7 @@
   &.plain {
     table {
       border-collapse: collapse;
-      thead tr {
+      thead {
         th {
           background: transparent;
           p { color: unset }
