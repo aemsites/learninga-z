@@ -4,7 +4,7 @@
 
   table {
     width: 100%;
-    max-width: 100%;
+    min-width: 600px;
     font-size: var(--body-font-size-xs);
 
     @media (width >= 768px) { font-size: var(--body-font-size-s) }
@@ -17,7 +17,7 @@
         text-align: left;
         font-weight: bold;
         background: var(--red);
-        * {
+       p {
           color: #fff;
           margin: 0;
         }
@@ -49,7 +49,7 @@
       thead tr {
         th {
           background: transparent;
-          * { color: var(--text-color) }
+          p { color: unset }
         }
       }
       tbody tr { background: transparent }
