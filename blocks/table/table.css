@@ -17,6 +17,10 @@
         text-align: left;
         font-weight: bold;
         background: var(--red);
+        * {
+          color: #fff;
+          margin: 0;
+        }
       }
     }
 
@@ -43,7 +47,10 @@
     table {
       border-collapse: collapse;
       thead tr {
-        th { background: transparent }
+        th {
+          background: transparent;
+          * { color: var(--text-color) }
+        }
       }
       tbody tr { background: transparent }
     }
