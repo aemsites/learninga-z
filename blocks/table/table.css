@@ -5,7 +5,6 @@
   table {
     width: 100%;
     max-width: 100%;
-    border-collapse: collapse;
     font-size: var(--body-font-size-xs);
 
     @media (width >= 768px) { font-size: var(--body-font-size-s) }
@@ -14,18 +13,21 @@
 
     thead tr {
       th {
-        padding: 0.5em;
+        padding: 1em;
         text-align: left;
+        font-weight: bold;
+        background: var(--red);
       }
     }
 
     tbody tr {
       border-top: 1px solid #ccc;
+      background: #F2F2F2;
       &:last-child { border-bottom: 1px solid #ccc }
       &:nth-child(even) { background: #E5E6E5; }
 
       td {
-        padding: 0.5em;
+        padding: 1em;
         text-align: left;
 
         p {
@@ -39,6 +41,10 @@
   /* variant styles */
   &.plain {
     table {
+      border-collapse: collapse;
+      thead tr {
+        th { background: transparent }
+      }
       tbody tr { background: transparent }
     }
   }
