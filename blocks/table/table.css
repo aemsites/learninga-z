@@ -47,6 +47,7 @@
         background: transparent;
         p { color: unset }
       }
+
       tbody tr { background: transparent }
     }
   }
