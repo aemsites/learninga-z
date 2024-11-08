@@ -186,6 +186,15 @@ export default {
         frame.replaceWith(a);
       }
     });
+
+    main.querySelectorAll('form').forEach((form) => {
+      if (form.action.includes('go.learninga-z.com')) {
+        const a = document.createElement('a');
+        a.href = form.action;
+        a.textContent = form.action;
+        form.replaceWith(a);
+      }
+    });
     transformButtons(main);
     createMetadataBlock(main, document);
     WebImporter.DOMUtils.remove(main, [
