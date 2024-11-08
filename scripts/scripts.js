@@ -446,6 +446,33 @@ export function decorateButtons(element) {
           }
           a.classList.add('button', 'secondary');
           twoup.classList.add('button-container');
+          twoup.append(a);
+          up.remove();
+        }
+        // Button subtext
+        if (
+          twoup
+          && twoup.nextElementSibling
+          && twoup.nextElementSibling.tagName === 'P'
+          && twoup.nextElementSibling.querySelector('sup')
+          && twoup.nextElementSibling.textContent === twoup.nextElementSibling.querySelector('sup').textContent
+        ) {
+          let subText = '';
+          const link = twoup.nextElementSibling.querySelector('a');
+          if (link) {
+            const anchor = document.createElement('a');
+            anchor.href = link.href;
+            anchor.textContent = link.textContent;
+            subText = anchor;
+          } else {
+            const p = document.createElement('p');
+            p.textContent = twoup.nextElementSibling.querySelector('sup').textContent;
+            subText = p;
+          }
+          twoup.classList.add('has-subtext');
+          twoup.append(subText);
+          subText.classList.add('button-subtext');
+          twoup.nextElementSibling.remove();
         }
       }
     }

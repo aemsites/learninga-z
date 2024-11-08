@@ -297,10 +297,28 @@ a:hover {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
+  gap: 10px;
 }
 
 .buttons-container a.button {
   margin: 8px;
+}
+
+.button-container.has-subtext{
+  text-align: center;
+
+  .button-subtext {
+    display: block; 
+    font-size: var(--body-font-size-xxs);
+
+    &a{
+      color: var(--waz-blue);
+    }
+  }
+
+  a{
+    margin: 0;
+  }
 }
 
 /* primary button colors */
