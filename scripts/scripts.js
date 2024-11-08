@@ -515,6 +515,16 @@ function decorateLinkedImages(main) {
   });
 }
 
+/**
+ * Centers the headlines by adding the 'center' class to their parent elements.
+ */
+export function centerHeadlines() {
+  const headlines = document.querySelectorAll('h2 > strong, h3 > strong, h4 > strong');
+  headlines.forEach((headline) => {
+    headline.parentElement.classList.add('center');
+  });
+}
+
 // All .pdf and external links to open in a new tab
 export function decorateExternalLinks(main) {
   main.querySelectorAll('a').forEach((a) => {
@@ -562,6 +572,7 @@ export function decorateMain(main, templateModule) {
   decorateExternalLinks(main);
   decorateStyledSections(main);
   buildEmbedBlocks(main);
+  centerHeadlines(main);
 }
 
 /**
@@ -580,7 +591,6 @@ const validTemplates = [
   'errorpage',
   'landing',
   'common-core',
-  'lp-page',
 ];
 async function loadTemplate() {
   const templateName = toClassName(getMetadata('template'));
