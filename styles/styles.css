@@ -41,6 +41,7 @@
   --light-gray: #CBCBCB;
   --very-light-gray: #f8f8f8;
   --divider-gray: #eee;
+  --section-background-gray: #eee;
   --black: #000;
   --light-red: #ed7790;
   --b-green: #419e66;
@@ -568,6 +569,13 @@ body.purple {
 
   h1, h2, h3, h4, h5, h6, a:any-link {
     color: var(--white);
+  }
+}
+
+[data-theme="gray"] {
+  & .section.inner{
+    padding: 40px;
+    background-color: var(--section-background-gray);
   }
 }
 

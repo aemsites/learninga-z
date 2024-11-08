@@ -580,6 +580,7 @@ const validTemplates = [
   'errorpage',
   'landing',
   'common-core',
+  'lp-page',
 ];
 async function loadTemplate() {
   const templateName = toClassName(getMetadata('template'));
