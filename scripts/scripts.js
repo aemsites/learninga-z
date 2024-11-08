@@ -511,6 +511,7 @@ function decorateLinkedImages(main) {
     } else if (next && next.tagName === 'BR' && next.nextElementSibling && next.nextElementSibling.tagName === 'A') {
       const a = next.nextElementSibling;
       a.replaceChildren(picture);
+      next.remove();
     }
   });
 }
