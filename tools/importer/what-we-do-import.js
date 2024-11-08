@@ -94,33 +94,20 @@ const createMetadataBlock = (main, document) => {
 
 export default {
   /**
-           * Apply DOM operations to the provided document and return
-           * the root element to be then transformed to Markdown.
-           * @param {HTMLDocument} document The document
-           * @param {string} url The url of the page imported
-           * @param {string} html The raw html (the document is cleaned up during preprocessing)
-           * @param {object} params Object containing some parameters given by the import process.
-           * @returns {HTMLElement} The root element to be transformed
-           */
+         * Apply DOM operations to the provided document and return
+         * the root element to be then transformed to Markdown.
+         * @param {HTMLDocument} document The document
+         * @param {string} url The url of the page imported
+         * @param {string} html The raw html (the document is cleaned up during preprocessing)
+         * @param {object} params Object containing some parameters given by the import process.
+         * @returns {HTMLElement} The root element to be transformed
+         */
   transformDOM: ({
     // eslint-disable-next-line no-unused-vars
     document, url, html, params,
   }) => {
     const main = document.querySelector('.main-content');
-    const hero = document.querySelector('.lp-banner');
     const footerWidgets = document.querySelector('.footer-widgets');
-    if (hero) {
-      // const heroContent = hero.querySelector('.slide-content_left');
-      // const h3 = heroContent.querySelector('h3');
-      // const p = document.createElement('p');
-      // const em = document.createElement('em');
-      // em.innerText = h3.textContent;
-      // p.appendChild(em);
-      // h3.replaceWith(p);
-      // //append hero content after hero
-      // main.prepend(heroContent);
-      main.prepend(hero.cloneNode(true));
-    }
     if (footerWidgets) main.appendChild(footerWidgets.cloneNode(true));
     const subHeading = main.querySelector('.sub-heading');
     const breakroomTile = main.querySelector('.breakroom-tile');
@@ -159,7 +146,7 @@ export default {
 
     const rows = main.querySelectorAll('.row');
     rows.forEach((row) => {
-      if (row.children.length > 1 && [...row.children].some((child) => child.className.includes('col-'))) {
+      if (row.children.length > 1 && [...row.children].some((child) => child.className.includes('col-md'))) {
         const cells = [
           ['Columns'],
           [...row.children].map((child) => [child]),
@@ -178,14 +165,6 @@ export default {
     }
 
     main.querySelectorAll('a').forEach(fixUrl);
-    main.querySelectorAll('iframe').forEach((frame) => {
-      if ((frame.src.includes('youtu') || frame.src.includes('vimeo') || frame.src.includes('go.learninga-z.com'))) {
-        const a = document.createElement('a');
-        a.href = frame.src;
-        a.textContent = frame.src;
-        frame.replaceWith(a);
-      }
-    });
     transformButtons(main);
     createMetadataBlock(main, document);
     WebImporter.DOMUtils.remove(main, [
@@ -195,14 +174,14 @@ export default {
   },
 
   /**
-           * Return a path that describes the document being transformed (file name, nesting...).
-           * The path is then used to create the corresponding Word document.
-           * @param {HTMLDocument} document The document
-           * @param {string} url The url of the page imported
-           * @param {string} html The raw html (the document is cleaned up during preprocessing)
-           * @param {object} params Object containing some parameters given by the import process.
-           * @return {string} The path
-           */
+         * Return a path that describes the document being transformed (file name, nesting...).
+         * The path is then used to create the corresponding Word document.
+         * @param {HTMLDocument} document The document
+         * @param {string} url The url of the page imported
+         * @param {string} html The raw html (the document is cleaned up during preprocessing)
+         * @param {object} params Object containing some parameters given by the import process.
+         * @return {string} The path
+         */
   generateDocumentPath: ({
     // eslint-disable-next-line no-unused-vars
     document, url, html, params,
