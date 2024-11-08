@@ -230,10 +230,6 @@ blockquote {
   font-size: var(--body-font-size-xs);
 }
 
-.center {
-  text-align: center;
-}
-
 code,
 pre {
   font-size: var(--body-font-size-s);
