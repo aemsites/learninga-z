@@ -451,12 +451,24 @@ export function decorateButtons(element) {
         }
         // Button subtext
         if (
-          twoup.nextElementSibling
+          twoup
+          && twoup.nextElementSibling
           && twoup.nextElementSibling.tagName === 'P'
-          && twoup.nextElementSibling.querySelector('a')
-          && twoup.nextElementSibling.textContent === twoup.nextElementSibling.querySelector('a').textContent
+          && twoup.nextElementSibling.querySelector('sup')
+          && twoup.nextElementSibling.textContent === twoup.nextElementSibling.querySelector('sup').textContent
         ) {
-          const subText = twoup.nextElementSibling.querySelector('a');
+          let subText = '';
+          const link = twoup.nextElementSibling.querySelector('a');
+          if (link) {
+            const anchor = document.createElement('a');
+            anchor.href = link.href;
+            anchor.textContent = link.textContent;
+            subText = anchor;
+          } else {
+            const p = document.createElement('p');
+            p.textContent = twoup.nextElementSibling.querySelector('sup').textContent;
+            subText = p;
+          }
           twoup.classList.add('has-subtext');
           twoup.append(subText);
           subText.classList.add('button-subtext');

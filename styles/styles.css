@@ -297,6 +297,7 @@ a:hover {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
+  gap: 10px;
 }
 
 .buttons-container a.button {
@@ -307,9 +308,12 @@ a:hover {
   text-align: center;
 
   .button-subtext {
-    display: block;
+    display: block; 
     font-size: var(--body-font-size-xxs);
-    color: var(--waz-blue);
+
+    &a{
+      color: var(--waz-blue);
+    }
   }
 
   a{
