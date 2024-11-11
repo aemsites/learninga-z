@@ -726,6 +726,25 @@ body.yellow {
   }
 }
 
+body.berry {
+  & h3, a {
+    color: var(--berry);
+  }
+}
+
+[data-theme="berry"] {
+  background-color: var(--berry);
+    color: var(--white);
+
+    a {
+      text-decoration: underline;
+    }
+
+    h1, h2, h3, h4, h5, h6, a:any-link {
+      color: var(--white);
+    }
+}
+
   /* end themes */
 
   main img {
