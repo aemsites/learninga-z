@@ -41,6 +41,7 @@
   --light-gray: #CBCBCB;
   --very-light-gray: #f8f8f8;
   --divider-gray: #eee;
+  --gray-background: #eee;
   --black: #000;
   --light-red: #ed7790;
   --b-green: #419e66;
@@ -211,6 +212,10 @@ h3 {
   color: var(--dark-purple);
 }
 
+.center {
+  text-align: center;
+}
+
 p,
 dl,
 ol,
@@ -223,10 +228,6 @@ blockquote {
 
 .footnote {
   font-size: var(--body-font-size-xs);
-}
-
-.center {
-  text-align: center;
 }
 
 code,
@@ -568,6 +569,13 @@ body.purple {
 
   h1, h2, h3, h4, h5, h6, a:any-link {
     color: var(--white);
+  }
+}
+
+[data-theme="gray"] {
+  & .section.inner{
+    padding: 40px;
+    background-color: var(--gray-background);
   }
 }
 

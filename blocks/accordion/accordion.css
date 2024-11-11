@@ -67,7 +67,7 @@
 }
 
 .accordion.round details[open] .accordion-item-body {
-  border: 1px solid #eee;
+  border: 1px solid var(--gray-background);
   margin-top: 10px;
 }
 

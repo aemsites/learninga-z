@@ -8,6 +8,8 @@
 }
 
 .columns > div > div {
+  container-type: inline-size;
+  width: 100%;
   order: 1;
 }
 
