@@ -1,16 +1,24 @@
 .columns > div {
   display: flex;
-  flex-direction: column;
+  flex-flow: column;
+  gap: 24px;
+  align-items: stretch;
 }
 
 .columns img {
-  width: 100%;
+  max-width: 100%;
 }
 
 .columns > div > div {
   container-type: inline-size;
   width: 100%;
   order: 1;
+  padding: 5px;
+  flex: 1 1 100%;
+}
+
+.columns.wrap > div {
+  flex-wrap: wrap;
 }
 
 .columns > div > .columns-img-col {
@@ -36,15 +44,25 @@
   }
 }
 
-@media (width >= 1024px) {
+.columns.gray {
+  > div > div {
+    background: var(--divider-gray);
+    border-radius: 20px;
+  }
+}
+
+@media (width >=768px) {
   .columns > div {
-    align-items: center;
-    flex-direction: unset;
-    gap: 24px;
+    flex-direction: row;
   }
 
-  .columns > div > div {
-    flex: 1;
-    order: unset;
+  .columns.wrap > div > div {
+    flex: 1 1 47%;
+  }
+}
+
+@media (width>=992px) {
+  .columns.wrap > div > div {
+    flex: 1 1;
   }
 }
