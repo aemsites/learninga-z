@@ -21,10 +21,6 @@
   flex-wrap: wrap;
 }
 
-.columns > div > .columns-img-col {
-  order: 0;
-}
-
 .columns > div > .columns-img-col img {
   display: block;
 }
