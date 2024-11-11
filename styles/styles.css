@@ -574,7 +574,7 @@ body.purple {
 }
 
 [data-theme="gray"] {
-  & .section.inner{
+  & .section.inner, & .section{
     padding: 40px;
     background-color: var(--gray-background);
   }
