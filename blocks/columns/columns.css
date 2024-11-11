@@ -62,6 +62,10 @@
 }
 
 @media (width>=992px) {
+  .columns > div > div {
+    flex: 1 1;
+  }
+  
   .columns.wrap > div > div {
     flex: 1 1;
   }
