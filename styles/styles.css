@@ -290,6 +290,7 @@ a:hover {
   text-overflow: ellipsis;
   white-space: nowrap;
   transition: all 0.4s;
+  text-wrap: auto;
 }
 
 
