@@ -1,4 +1,3 @@
-/* blog-article specific JavaScript goes here */
 import { getBlogsIndexData } from '../../scripts/utils.js';
 import { renderCardList } from '../cards/cards.js';
 import { getMetadata, loadCSS } from '../../scripts/aem.js';
