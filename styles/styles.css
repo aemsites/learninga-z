@@ -560,7 +560,19 @@ body.purple {
   }
 }
 
-[data-theme="purple"] {
+[data-background] {
+  color: var(--white);
+
+  a {
+    text-decoration: underline;
+  }
+
+  h1, h2, h3, h4, h5, h6, a:any-link {
+    color: var(--white);
+  }
+}
+
+[data-theme="purple"]:not([data-background]) {
   background-color: var(--purple);
   color: var(--white);
 
@@ -573,10 +585,24 @@ body.purple {
   }
 }
 
-[data-theme="gray"] {
-  & .section.inner{
+[data-theme="gray"]:not([data-background]) {
+  & .section.inner, & .section{
     padding: 40px;
     background-color: var(--gray-background);
+  }
+}
+
+[data-theme="orange-red"]:not([data-background]) {
+  & .section.inner, & .section{
+    padding: 40px;
+    background-color: var(--orange-red);
+  }
+
+  background-color: var(--orange-red);
+
+
+  h3 {
+    color: var(--white);
   }
 }
 
@@ -610,7 +636,8 @@ body.laz-blue {
     }
 }
 
-[data-theme="laz-blue"] {
+
+[data-theme="laz-blue"]:not([data-background]) {
   background-color: var(--laz-blue);
   color: var(--white);
 
@@ -663,7 +690,7 @@ body.red {
     }
 }
 
-[data-theme="red"] {
+[data-theme="red"]:not([data-background]) {
   .button.primary {
     background-color: var(--red);
     border-color: var(--red);
@@ -713,7 +740,7 @@ body.yellow {
   }
 }
 
-[data-theme="yellow"] {
+[data-theme="yellow"]:not([data-background]) {
   background-color: var(--yellow);
 
   .breadcrumbs-outer {
@@ -724,6 +751,67 @@ body.yellow {
     color: var(--text-color);
     text-decoration: underline;
   }
+}
+
+body.berry {
+  & h3, a {
+    color: var(--berry);
+  }
+}
+
+[data-theme="berry"]:not([data-background]) {
+  background-color: var(--berry);
+    color: var(--white);
+
+    a {
+      text-decoration: underline;
+    }
+
+    h1, h2, h3, h4, h5, h6, a:any-link {
+      color: var(--white);
+    }
+}
+
+body.orange-red {
+  .breadcrumbs-outer {
+    background-color: var(--orange-red);
+  }
+
+  .button.primary {
+    background-color: var(--white);
+    border-color: var(--orange-red);
+    color: var(--orange-red);
+  }
+
+  .button.secondary {
+    background-color: var(--white);
+    border-color: var(--orange-red);
+    color: var(--orange-red);
+  }
+
+  a {
+    color: var(--orange-red);
+  }
+
+  h2 {
+    color: var(--orange-red);
+  }
+
+  .table table th {
+    background-color: var(--orange-red);
+    }
+
+  .accordion.round .accordion-item-label {
+    border: 2px solid var(--orange-red);
+  }
+
+  .accordion.round details summary {
+    color: var(--orange-red);
+  }
+
+    .cards.circle-image .card picture {
+      background-color: var(--orange-red);
+    }
 }
 
   /* end themes */

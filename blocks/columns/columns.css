@@ -2,6 +2,7 @@
   display: flex;
   flex-flow: column;
   gap: 24px;
+  padding-bottom: 24px;
   align-items: stretch;
 }
 
@@ -41,8 +42,8 @@
 }
 
 .columns.gray {
-  > div > div {
-    background: var(--divider-gray);
+  > div > div.col-has-content {
+    background: var(--gray-background);
     border-radius: 20px;
   }
 }
