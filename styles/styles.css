@@ -592,6 +592,20 @@ body.purple {
   }
 }
 
+[data-theme="orange-red"]:not([data-background]) {
+  & .section.inner, & .section{
+    padding: 40px;
+    background-color: var(--orange-red);
+  }
+
+  background-color: var(--orange-red);
+
+
+  h3 {
+    color: var(--white);
+  }
+}
+
 body.laz-blue {
   .breadcrumbs-outer {
     background-color: var(--laz-blue);
@@ -621,6 +635,7 @@ body.laz-blue {
       background-color: var(--laz-blue);
     }
 }
+
 
 [data-theme="laz-blue"]:not([data-background]) {
   background-color: var(--laz-blue);
@@ -754,6 +769,48 @@ body.berry {
 
     h1, h2, h3, h4, h5, h6, a:any-link {
       color: var(--white);
+    }
+}
+
+body.orange-red {
+  .breadcrumbs-outer {
+    background-color: var(--orange-red);
+  }
+
+  .button.primary {
+    background-color: var(--white);
+    border-color: var(--orange-red);
+    color: var(--orange-red);
+  }
+
+  .button.secondary {
+    background-color: var(--white);
+    border-color: var(--orange-red);
+    color: var(--orange-red);
+  }
+
+  a {
+    color: var(--orange-red);
+  }
+
+  h2 {
+    color: var(--orange-red);
+  }
+
+  .table table th {
+    background-color: var(--orange-red);
+    }
+
+  .accordion.round .accordion-item-label {
+    border: 2px solid var(--orange-red);
+  }
+
+  .accordion.round details summary {
+    color: var(--orange-red);
+  }
+
+    .cards.circle-image .card picture {
+      background-color: var(--orange-red);
     }
 }
 
