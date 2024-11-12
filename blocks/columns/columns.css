@@ -42,7 +42,7 @@
 }
 
 .columns.gray {
-  > div > div:has(p), > div > div:has(a), > div > div:has(h2) {
+  > div > div.col-has-content {
     background: var(--gray-background);
     border-radius: 20px;
   }
