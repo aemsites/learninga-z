@@ -5,6 +5,9 @@ export default function decorate(block) {
   // setup image columns
   [...block.children].forEach((row) => {
     [...row.children].forEach((col) => {
+      if (col.children.length > 0) {
+        col.classList.add('col-has-content');
+      }
       const pic = col.querySelector('picture');
       if (pic) {
         const picWrapper = pic.closest('div');
