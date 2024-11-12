@@ -9,7 +9,7 @@ body.no-header {
 
 body.no-nav {
   header {
-    height: auto;
+    height: var(--nav-height);
   }
 
   header .nav-wrapper {
