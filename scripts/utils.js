@@ -150,10 +150,12 @@ export async function getVideosIndexData() {
   return structuredClone(videosIndexData);
 }
 
-const blogsIndexData = [];
 /**
- * Retrieves the videos index data. * @returns {Promise<Array>} A promise that resolves to an array of videos index data.
- */export async function getBlogsIndexData() {
+ * Retrieves the blogs index data.
+ * * @returns {Promise<Array>} A promise that resolves to an array of blogs index data.
+ */
+const blogsIndexData = [];
+export async function getBlogsIndexData() {
   if (!blogsIndexData.length) {
     blogsIndexData.push(...await getIndexData(BLOGS_INDEX));
   }

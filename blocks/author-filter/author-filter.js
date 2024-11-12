@@ -19,20 +19,17 @@ blogs.forEach((blog) => {
 
 export async function getBlogsByAuthor() {
   const authName = getMetadata('author');
-  console.log('authors', authors);
   const filteredBlogs = blogs.filter((blog) => blog.author.split(',').map((auth) => auth.toLowerCase().trim().replaceAll(' ', '-')).includes(authName.toLowerCase().trim().replaceAll(' ', '-'))
       && blog.template === 'blog-article');
   if (filteredBlogs.length > 0) {
     return filteredBlogs;
   }
-  console.error('Author not found or does not match');
   return [];
 }
 
 export default async function decorate(block) {
   await loadCSS(`${window.hlx.codeBasePath}/blocks/cards/cards.css`);
   const authorBlogs = await getBlogsByAuthor();
-  console.log('author Blogs', authorBlogs);
   const div = document.createElement('div');
   block.append(div);
   div.className = 'cards';
