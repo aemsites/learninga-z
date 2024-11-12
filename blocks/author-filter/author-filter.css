@@ -1,1 +1,4 @@
 /* block specific CSS goes here */
+div.author-cards.section.author-filter-container {
+  padding-top: 0;
+}
