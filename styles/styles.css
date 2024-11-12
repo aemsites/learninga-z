@@ -560,6 +560,18 @@ body.purple {
   }
 }
 
+[data-background] {
+  color: var(--white);
+
+  a {
+    text-decoration: underline;
+  }
+
+  h1, h2, h3, h4, h5, h6, a:any-link {
+    color: var(--white);
+  }
+}
+
 [data-theme="purple"]:not([data-background]) {
   background-color: var(--purple);
   color: var(--white);
