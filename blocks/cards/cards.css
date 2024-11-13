@@ -126,7 +126,7 @@
   }
 
   .card {
-    background: var(--divider-gray);
+    background: var(--gray);
     height: auto;
     position: relative;
 

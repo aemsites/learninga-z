@@ -22,9 +22,9 @@
   cursor: pointer;
   list-style: none;
   overflow: auto;
-  font-family: Solway, serif;
+  font-family: var(--heading-font-family);
   font-size: 20px;
-  color: #093567;
+  color: var(--product-navy-blue);
 }
 
 .accordion details[open] summary {
@@ -67,7 +67,7 @@
 }
 
 .accordion.round details[open] .accordion-item-body {
-  border: 1px solid var(--gray-background);
+  border: 1px solid var(--gray);
   margin-top: 10px;
 }
 
