@@ -1,1 +1,24 @@
-/* home page specific styles */
+.wide h1 {
+    font-size: var(--heading-font-size-l);
+    margin: 1em 0 .5em;
+    line-height: 1.1;
+}
+
+p .icon-check-circle-white {
+    img {
+        width: 17px;
+        vertical-align: text-bottom;
+    }
+}
+
+@media (width >= 1024px) {
+    .wide h1 {
+        font-size: var(--heading-font-size-xxl);
+    }
+}
+
+@media (width >= 1660px) {
+    main > .section-outer:nth-child(2) > .section {
+        max-width: 1527px;
+    }
+}
