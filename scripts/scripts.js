@@ -508,7 +508,7 @@ function decorateLinkedImages(main) {
  * Centers the headlines by adding the 'center' class to their parent elements.
  */
 export function centerHeadlines() {
-  const headlines = document.querySelectorAll('h2 > strong, h3 > strong, h4 > strong');
+  const headlines = document.querySelectorAll('h1 > Strong, h2 > strong, h3 > strong, h4 > strong');
   headlines.forEach((headline) => {
     headline.parentElement.classList.add('center');
   });
