@@ -579,12 +579,23 @@ body.purple {
   h1, h2, h3, h4, h5, h6, a:any-link {
     color: var(--white);
   }
+
+  &:has(.inner) {
+    background-color: var(--white);
+
+    .section.inner {
+      background-color: var(--purple);
+    }
+  }
 }
 
 [data-theme="gray"]:not([data-background]) {
-  & .section.inner, & .section{
-    padding: 40px;
-    background-color: var(--gray);
+  &:has(.inner) {
+    background-color: var(--white);
+
+    .section.inner {
+      background-color: var(--gray);
+    }
   }
 }
 
@@ -599,6 +610,14 @@ body.purple {
 
   h3 {
     color: var(--white);
+  }
+
+  &:has(.inner) {
+    background-color: var(--white);
+
+    .section.inner {
+      background-color: var(--orange-red);
+    }
   }
 }
 
@@ -650,6 +669,14 @@ body.laz-blue {
     h1, h2, h3, h4, h5, h6, a:any-link  {
       color: var(--white);
     }
+
+    &:has(.inner) {
+      background-color: var(--white);
+  
+      .section.inner {
+        background-color: var(--laz-blue);
+      }
+    }
   }
 
 body.red {
@@ -695,6 +722,14 @@ body.red {
     &:hover {
       color: var(--red);
       border-color: var(--red);
+    }
+  }
+
+  &:has(.inner) {
+    background-color: var(--white);
+
+    .section.inner {
+      background-color: var(--red);
     }
   }
 }
@@ -747,6 +782,14 @@ body.yellow {
     color: var(--text-color);
     text-decoration: underline;
   }
+
+  &:has(.inner) {
+    background-color: var(--white);
+
+    .section.inner {
+      background-color: var(--yellow);
+    }
+  }
 }
 
 body.berry {
@@ -765,7 +808,15 @@ body.berry {
 
 [data-theme="pink"] {
     background-color: var(--light-pink);
+
+    &:has(.inner) {
+      background-color: var(--white);
+  
+      .section.inner {
+        background-color: var(--light-pink);
+      }
     }
+  }
 
 [data-theme="berry"]:not([data-background]) {
   background-color: var(--product-berry);
@@ -798,6 +849,14 @@ body.berry {
 
     h1, h2, h3, h4, h5, h6, a:any-link {
       color: var(--white);
+    }
+
+    &:has(.inner) {
+      background-color: var(--white);
+  
+      .section.inner {
+        background-color: var(--product-berry);
+      }
     }
 }
 
