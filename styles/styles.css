@@ -797,10 +797,51 @@ body.yellow {
   }
 }
 
+
 body.berry {
-  & h3, a {
+  .breadcrumbs-outer {
+    background-color: var(--berry);
+  }
+
+  .related-posts :is(h3, a, a:hover) {
     color: var(--berry);
   }
+
+  h3, .card h3 {
+    color: var(--berry);
+  }
+
+  a {
+    color: var(--berry);
+  }
+
+  .table table th {
+    background-color: var(--berry);
+    }
+
+  .accordion.round .accordion-item-label {
+    border: 2px solid var(--berry);
+  }
+
+  .accordion.round details summary {
+    color: var(--berry);
+  }
+
+    .cards.circle-image .card picture {
+      background-color: var(--berry);
+    }
+
+    .button.primary {
+      background-color: var(--white);
+      border-color: var(--berry);
+      color: var(--berry);
+    }
+  
+    .button.secondary {
+      background-color: var(--white);
+      border-color: var(--berry);
+      color: var(--berry);
+    }
 }
 
 [data-theme="berry"]:not([data-background]) {
