@@ -579,34 +579,12 @@ body.purple {
   h1, h2, h3, h4, h5, h6, a:any-link {
     color: var(--white);
   }
-
-  &:has(.inner) {
-    background-color: var(--white);
-
-    .section.inner {
-      background-color: var(--purple);
-    }
-  }
 }
 
 [data-theme="gray"]:not([data-background]) {
-  background-color: var(--gray-background);
-  color: var(--white);
-
-  a {
-    text-decoration: underline;
-  }
-
-  h1, h2, h3, h4, h5, h6, a:any-link {
-    color: var(--white);
-  }
-
-  &:has(.inner) {
-    background-color: var(--white);
-
-    .section.inner {
-      background-color: var(--gray);
-    }
+  & .section.inner, & .section{
+    padding: 40px;
+    background-color: var(--gray);
   }
 }
 
@@ -621,14 +599,6 @@ body.purple {
 
   h3 {
     color: var(--white);
-  }
-
-  &:has(.inner) {
-    background-color: var(--white);
-
-    .section.inner {
-      background-color: var(--orange-red);
-    }
   }
 }
 
@@ -679,14 +649,6 @@ body.laz-blue {
 
     h1, h2, h3, h4, h5, h6, a:any-link  {
       color: var(--white);
-    }
-
-    &:has(.inner) {
-      background-color: var(--white);
-  
-      .section.inner {
-        background-color: var(--laz-blue);
-      }
     }
   }
 
@@ -785,23 +747,28 @@ body.yellow {
     color: var(--text-color);
     text-decoration: underline;
   }
-
-  &:has(.inner) {
-    .section.inner {
-      background-color: var(--yellow);
-    }
-  }
 }
-
 
 body.berry {
-  & h3, a {
-    color: var(--berry);
+  & h1, h3, a {
+    color: var(--product-berry);
+  }
+
+  .breadcrumbs-outer {
+    background-color: var(--product-berry);
+  }
+
+  .table table th {
+    background-color: var(--product-berry);
   }
 }
 
+[data-theme="pink"] {
+    background-color: var(--light-pink);
+    }
+
 [data-theme="berry"]:not([data-background]) {
-  background-color: var(--berry);
+  background-color: var(--product-berry);
     color: var(--white);
 
   .button.primary.bgcolor-theme {
@@ -831,14 +798,6 @@ body.berry {
 
     h1, h2, h3, h4, h5, h6, a:any-link {
       color: var(--white);
-    }
-
-    &:has(.inner) {
-      background-color: var(--white);
-
-      .section.inner {
-        background-color: var(--berry);
-      }
     }
 }
 
