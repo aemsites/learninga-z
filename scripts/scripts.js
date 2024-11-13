@@ -154,7 +154,7 @@ function buildHeroBlock(main) {
   if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
     const section = document.createElement('div');
     heroContent.append(h1);
-    if (heroSubText && h1.compareDocumentPosition(heroSubText) && Node.DOCUMENT_POSITION_FOLLOWING) {
+    if (heroSubText && h1.nextElementSibling === heroSubText) {
       const h2 = document.createElement('h2');
       h2.append(heroSubText.textContent);
       heroSubText.remove();

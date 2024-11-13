@@ -303,12 +303,19 @@ a:hover {
   margin: 8px;
 }
 
+sup, sub{
+  font-size: var(--body-font-size-xxs);
+}
+
 .button-container.has-subtext{
   text-align: center;
 
   .button-subtext {
     display: block;
-    font-size: var(--body-font-size-xxs);
+
+    br {
+      display: none;
+    }
 
     &a{
       color: var(--waz-blue);
@@ -540,8 +547,19 @@ body.purple {
     background-color: var(--purple);
   }
 
-  a {
-    color: var(--laz-logo-blue);
+  a,h2, h3, h4, h5, h6, a:any-link {
+    color: var(--purple);
+  }
+
+  .button.secondary {
+    color: var(--purple);
+    border-color: var(--purple);
+  }
+
+  .button.primary {
+    color: var(--white);
+    background-color: var(--purple);
+    border-color: var(--purple);
   }
 
   .table table th {
