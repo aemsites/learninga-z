@@ -23,20 +23,21 @@ export function populateCard(container, cardInfo, type = 'card') {
   }
   card.className = 'card';
   card.innerHTML = `
-        <div class="card-thumbnail">
         <a href="${cardInfo.path}">
+        <div class="card-thumbnail">
+        
         ${createOptimizedPicture(cardInfo.image, cardInfo.title, false, [{ width: imgWidth }]).outerHTML}
         ${videoPlayBtn}
         ${efficacyBadge}
-        </a>
+        
         </div>
         <div class="card-body">
-        <a href="${cardInfo.path}">
+
             <h3>${cardInfo.title.replace(/ \| Learning A-Z$|- Learning A-Z$/, '')}</h3>
-         </a>
-            <a href="${cardInfo.path}"><p>${cardInfo.description}</p></a>
+        
+            <p>${cardInfo.description}</p>
                <i class="arrow"><img alt="arrow" src="/icons/solutions-right.svg"></i>
-        </div>
+        </div></a>
     `;
   container.append(card);
 }
