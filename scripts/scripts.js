@@ -259,7 +259,10 @@ export function buildFragmentBlocks(main) {
  */
 function buildAutoBlocks(main, templateModule = undefined) {
   try {
-    buildHeroBlock(main);
+    const templateName = toClassName(getMetadata('template'));
+    if (templateName !== 'wide') {
+      buildHeroBlock(main);
+    }
     buildPageDivider(main);
     buildFragmentBlocks(main);
     if (templateModule && templateModule.default) {
@@ -279,7 +282,7 @@ function buildAutoBlocks(main, templateModule = undefined) {
  */
 export function extractColor(anchor) {
   const text = anchor.textContent;
-  let colorOne = 'red';
+  let colorOne = 'theme';
   let colorTwo = 'white';
   const regex = /{([^|}]+)(?:\|([^}]+))?}/;
   const matches = text.match(regex);
@@ -508,7 +511,7 @@ function decorateLinkedImages(main) {
  * Centers the headlines by adding the 'center' class to their parent elements.
  */
 export function centerHeadlines() {
-  const headlines = document.querySelectorAll('h1 > Strong, h2 > strong, h3 > strong, h4 > strong');
+  const headlines = document.querySelectorAll('h1 > strong, h2 > strong, h3 > strong, h4 > strong');
   headlines.forEach((headline) => {
     headline.parentElement.classList.add('center');
   });

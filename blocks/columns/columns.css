@@ -32,7 +32,7 @@
 }
 
 .columns.lines > div {
-    border-bottom: 1px solid var(--divider-gray);
+    border-bottom: 1px solid var(--gray);
 
   .embed {
     &.youtube, &.vimeo {
@@ -43,7 +43,7 @@
 
 .columns.gray {
   > div > div.col-has-content {
-    background: var(--gray-background);
+    background: var(--gray);
     border-radius: 20px;
   }
 }
@@ -62,7 +62,7 @@
   .columns > div > div {
     flex: 1 1;
   }
-  
+
   .columns.wrap > div > div {
     flex: 1 1;
   }

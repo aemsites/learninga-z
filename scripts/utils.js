@@ -7,6 +7,7 @@ const EVENTS_LIST = '/site/company/events/events-list.json';
 const DOWNLOAD_LIBRARY_INDEX = '/site/resources/download-library/query-index.json';
 const AWARDS_LIST = '/site/company/awards-n-accolades/awards.json';
 const REVIEWS_N_TESTIMONIALS = '/site/company/reviews-and-testimonials/testimonials.json';
+const BLOGS_INDEX = '/site/resources/breakroom-blog/query-index.json';
 
 /**
  * Returns the relative path from a given path.
@@ -147,6 +148,19 @@ export async function getVideosIndexData() {
   }
   // Protected against callers modifying the objects
   return structuredClone(videosIndexData);
+}
+
+/**
+ * Retrieves the blogs index data.
+ * * @returns {Promise<Array>} A promise that resolves to an array of blogs index data.
+ */
+const blogsIndexData = [];
+export async function getBlogsIndexData() {
+  if (!blogsIndexData.length) {
+    blogsIndexData.push(...await getIndexData(BLOGS_INDEX));
+  }
+  // Protected against callers modifying the objects
+  return structuredClone(blogsIndexData);
 }
 
 let indexData = null;

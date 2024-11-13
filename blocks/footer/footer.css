@@ -1,6 +1,6 @@
 /* stylelint-disable no-descending-specificity */
 footer {
-  background-color: var(--light-color);
+  background-color: var(--very-light-gray);
 }
 
 footer .email-banner h3 {
@@ -141,7 +141,7 @@ footer .social-links .icon:hover img {
 
 footer .cambium-banner {
   background-color: var(--charcoal-gray);
-  color: var(--light-color);
+  color: var(--very-light-gray);
   padding: 1.5em;
 }
 

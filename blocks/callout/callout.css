@@ -1,5 +1,5 @@
 .callout {
-  background-color: var(--gray-background);
+  background-color: var(--gray);
   color: #555;
   position: relative;
   transition: background-color .2s;
