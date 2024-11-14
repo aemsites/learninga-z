@@ -28,6 +28,7 @@ main > .section-outer > .section.hero-container{
   margin-right: auto;
   color: var(--background-color);
   font-size: var(--heading-font-size-xxl);
+  text-shadow: 1px 1px 6px var(--medium-gray);
 }
 
 .hero .hero-content h2 {
