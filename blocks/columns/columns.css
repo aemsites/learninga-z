@@ -1,9 +1,18 @@
+/* stylelint-disable no-descending-specificity */
 .columns > div {
   display: flex;
   flex-flow: column;
   gap: 24px;
   padding-bottom: 24px;
   align-items: stretch;
+}
+
+.columns.middle > div {
+  align-items: center;
+  
+  > * {
+    margin: 0;
+  }
 }
 
 .columns img {
