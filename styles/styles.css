@@ -854,6 +854,27 @@ body.berry {
 [data-theme="pink"] {
     background-color: var(--light-pink);
 
+    .button.primary.bgcolor-theme {
+      background-color: var(--white);
+      border-color: var(--white);
+      color: var(--light-pink);
+  
+      &:hover {
+        color: var(--white);
+        background-color: var(--light-pink);
+      }
+    }
+  
+    .button.secondary.textcolor-theme {
+      color: var(--white);
+      border-color: var(--white);
+  
+      &:hover {
+        background-color: var(--white);
+        color: var(--light-pink);
+      }
+    }
+
     &:has(.inner) {
       background-color: var(--white);
   
