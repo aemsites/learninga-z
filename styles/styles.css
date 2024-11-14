@@ -542,7 +542,7 @@ nav li {
 THEMES
 *********/
 
-body.purple {
+body.purple main{
   .breadcrumbs-outer {
     background-color: var(--purple);
   }
@@ -551,15 +551,28 @@ body.purple {
     color: var(--purple);
   }
 
-  .button.secondary {
-    color: var(--purple);
-    border-color: var(--purple);
-  }
-
   .button.primary {
     color: var(--white);
     background-color: var(--purple);
     border-color: var(--purple);
+
+    &:hover {
+      color: var(--purple);
+      background-color: transparent;
+      border-color: var(--purple);
+    }
+  }
+
+  .button.secondary {
+    color: var(--purple);
+    border-color: var(--purple);
+    background-color: transparent;
+
+    &:hover {
+      background-color: var(--purple);
+      color: var(--white);
+      border-color: var(--purple);
+    }
   }
 
   .table table th {
@@ -598,6 +611,27 @@ body.purple {
     color: var(--white);
   }
 
+  .button.primary.bgcolor-theme {
+    background-color: var(--white);
+    border-color: var(--white);
+    color: var(--purple);
+
+    &:hover {
+      color: var(--white);
+      background-color: var(--purple);
+    }
+  }
+
+  .button.secondary.textcolor-theme {
+    color: var(--white);
+    border-color: var(--white);
+
+    &:hover {
+      background-color: var(--white);
+      color: var(--purple);
+    }
+  }
+
   &:has(.inner) {
     background-color: var(--white);
 
@@ -612,6 +646,27 @@ body.purple {
 
   a {
     text-decoration: underline;
+  }
+
+  .button.primary.bgcolor-theme {
+    background-color: var(--white);
+    border-color: var(--white);
+    color: var(--sky-blue);
+
+    &:hover {
+      color: var(--white);
+      background-color: var(--sky-blue);
+    }
+  }
+
+  .button.secondary.textcolor-theme {
+    color: var(--white);
+    border-color: var(--white);
+
+    &:hover {
+      background-color: var(--white);
+      color: var(--sky-blue);
+    }
   }
 
   &:has(.inner) {
@@ -641,6 +696,27 @@ body.purple {
 
   background-color: var(--orange-red);
 
+  .button.primary.bgcolor-theme {
+    background-color: var(--white);
+    border-color: var(--white);
+    color: var(--orange-red);
+
+    &:hover {
+      color: var(--white);
+      background-color: var(--orange-red);
+    }
+  }
+
+  .button.secondary.textcolor-theme {
+    color: var(--white);
+    border-color: var(--white);
+
+    &:hover {
+      background-color: var(--white);
+      color: var(--orange-red);
+    }
+  }
+
 
   h3 {
     color: var(--white);
@@ -655,7 +731,7 @@ body.purple {
   }
 }
 
-body.laz-blue {
+body.laz-blue main {
   .breadcrumbs-outer {
     background-color: var(--laz-blue);
   }
@@ -682,6 +758,30 @@ body.laz-blue {
 
     .cards.circle-image .card picture {
       background-color: var(--laz-blue);
+    }
+
+    .button.primary {
+      color: var(--white);
+      background-color: var(--laz-blue);
+      border-color: var(--laz-blue);
+  
+      &:hover {
+        color: var(--laz-blue);
+        background-color: transparent;
+        border-color: var(--laz-blue);
+      }
+    }
+  
+    .button.secondary {
+      color: var(--laz-blue);
+      border-color: var(--laz-blue);
+      background-color: transparent;
+  
+      &:hover {
+        background-color: var(--laz-blue);
+        color: var(--white);
+        border-color: var(--laz-blue);
+      }
     }
 }
 
@@ -713,7 +813,7 @@ body.laz-blue {
     }
   }
 
-body.red {
+body.red main{
   .breadcrumbs-outer {
     background-color: var(--red);
   }
@@ -768,7 +868,7 @@ body.red {
   }
 }
 
-body.yellow {
+body.yellow main{
   .breadcrumbs-outer {
     background-color: var(--yellow);
   }
@@ -826,7 +926,7 @@ body.yellow {
   }
 }
 
-body.berry {
+body.berry main{
   & h1, h3, a {
     color: var(--product-berry);
   }
@@ -839,15 +939,28 @@ body.berry {
     background-color: var(--product-berry);
   }
 
-  .button.secondary {
-    color: var(--product-berry);
-    border-color: var(--product-berry);
-  }
-
   .button.primary {
     color: var(--white);
     background-color: var(--product-berry);
     border-color: var(--product-berry);
+
+    &:hover {
+      color: var(--product-berry);
+      background-color: transparent;
+      border-color: var(--product-berry);
+    }
+  }
+
+  .button.secondary {
+    color: var(--product-berry);
+    border-color: var(--product-berry);
+    background-color: transparent;
+
+    &:hover {
+      background-color: var(--product-berry);
+      color: var(--white);
+      border-color: var(--product-berry);
+    }
   }
 }
 
@@ -926,21 +1039,33 @@ body.berry {
     }
 }
 
-body.orange-red {
+body.orange-red main{
   .breadcrumbs-outer {
     background-color: var(--orange-red);
   }
 
   .button.primary {
-    background-color: var(--white);
+    color: var(--white);
+    background-color: var(--orange-red);
     border-color: var(--orange-red);
-    color: var(--orange-red);
+
+    &:hover {
+      color: var(--orange-red);
+      background-color: transparent;
+      border-color: var(--orange-red);
+    }
   }
 
   .button.secondary {
-    background-color: var(--white);
-    border-color: var(--orange-red);
     color: var(--orange-red);
+    border-color: var(--orange-red);
+    background-color: transparent;
+
+    &:hover {
+      background-color: var(--orange-red);
+      color: var(--white);
+      border-color: var(--orange-red);
+    }
   }
 
   a {
