@@ -3,7 +3,6 @@
   gap: 0.5ch;
   font-size: var(--body-font-size-xs);
   overflow-x: auto;
-  width: 25%;
 }
 
 .tabs .tabs-list button {

@@ -45,6 +45,7 @@
   > div > div.col-has-content {
     background: var(--gray);
     border-radius: 20px;
+    padding: 15px;
   }
 }
 

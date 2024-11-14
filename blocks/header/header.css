@@ -236,6 +236,7 @@ header .megamenu>.section-outer {
 
 .header .tabs.columns .tabs-list {
   flex-direction: column;
+  width: 25%;
 }
 
 .header .tabs.columns .tabs-list>button {
