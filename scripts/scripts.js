@@ -153,6 +153,7 @@ function buildHeroBlock(main) {
   // eslint-disable-next-line no-bitwise
   if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
     const section = document.createElement('div');
+    // prevent hero block from being built with text if it is a picture only
     if (h1.querySelector('u')) {
       section.replaceChildren(buildBlock('hero', { elems: [picture] }));
       h1.innerHTML = h1.querySelector('u').innerHTML;
