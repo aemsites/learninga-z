@@ -1,6 +1,9 @@
 // eslint-disable-next-line import/no-unresolved
-import { toClassName } from '../../scripts/aem.js';
+import { toClassName, loadSections } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
+import {
+  decorateMain,
+} from '../../scripts/scripts.js';
 
 export default async function decorate(block) {
   if (block.classList.contains('square')) {
@@ -60,6 +63,8 @@ export default async function decorate(block) {
     container.append(tabsContentContainer);
 
     block.prepend(container);
+    decorateMain(block);
+    await loadSections(block);
 
     // Get all tab elements
     const tabs = document.querySelectorAll('.tab-square');

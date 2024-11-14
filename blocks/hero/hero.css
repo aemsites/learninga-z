@@ -18,6 +18,10 @@ main > .section-outer > .section.hero-container{
   min-height: 300px;
 }
 
+.hero.hero-picture-only {
+  padding: 0;
+}
+
 .hero h1 {
   max-width: 1200px;
   margin-left: auto;
@@ -41,6 +45,11 @@ main > .section-outer > .section.hero-container{
   box-sizing: border-box;
 }
 
+.hero.hero-picture-only picture {
+  position: relative;
+  z-index: 0;
+}
+
 .hero img {
   object-fit: cover;
   width: 100%;
@@ -54,7 +63,7 @@ main > .section-outer > .section.hero-container{
 }
 
 @media (width >= 1200px) {
-  .hero {
+  .hero:not(.hero-picture-only) {
     padding: 40px 32px;
   }
 

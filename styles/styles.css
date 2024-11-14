@@ -607,6 +607,22 @@ body.purple {
   }
 }
 
+[data-theme="light-blue"]:not([data-background]) {
+  background-color: var(--sky-blue);
+
+  a {
+    text-decoration: underline;
+  }
+
+  &:has(.inner) {
+    background-color: var(--white);
+
+    .section.inner {
+      background-color: var(--sky-blue);
+    }
+  }
+}
+
 [data-theme="gray"]:not([data-background]) {
   &:has(.inner) {
     background-color: var(--white);
@@ -821,6 +837,17 @@ body.berry {
 
   .table table th {
     background-color: var(--product-berry);
+  }
+
+  .button.secondary {
+    color: var(--product-berry);
+    border-color: var(--product-berry);
+  }
+
+  .button.primary {
+    color: var(--white);
+    background-color: var(--product-berry);
+    border-color: var(--product-berry);
   }
 }
 

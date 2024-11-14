@@ -48,6 +48,13 @@
   }
 }
 
+.columns.white {
+  > div > div.col-has-content {
+    background: var(--white);
+    border-radius: 20px;
+  }
+}
+
 @media (width >=768px) {
   .columns > div {
     flex-direction: row;

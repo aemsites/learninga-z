@@ -153,15 +153,21 @@ function buildHeroBlock(main) {
   // eslint-disable-next-line no-bitwise
   if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
     const section = document.createElement('div');
-    heroContent.append(h1);
-    if (heroSubText && h1.nextElementSibling === heroSubText) {
-      const h2 = document.createElement('h2');
-      h2.append(heroSubText.textContent);
-      heroSubText.remove();
-      heroContent.append(h2);
-      section.append(buildBlock('hero', { elems: [picture, heroContent] }));
+    if (h1.querySelector('u')) {
+      section.replaceChildren(buildBlock('hero', { elems: [picture] }));
+      h1.innerHTML = h1.querySelector('u').innerHTML;
+      section.querySelector('.hero').classList.add('hero-picture-only');
     } else {
-      section.append(buildBlock('hero', { elems: [picture, heroContent] }));
+      heroContent.append(h1);
+      if (heroSubText && h1.nextElementSibling === heroSubText) {
+        const h2 = document.createElement('h2');
+        h2.append(heroSubText.textContent);
+        heroSubText.remove();
+        heroContent.append(h2);
+        section.append(buildBlock('hero', { elems: [picture, heroContent] }));
+      } else {
+        section.append(buildBlock('hero', { elems: [picture, heroContent] }));
+      }
     }
     main.prepend(section);
   }
@@ -427,7 +433,7 @@ export function decorateButtons(element) {
           up.childNodes.length === 1
           && up.tagName === 'STRONG'
           && twoup.childNodes.length === 1
-          && (twoup.tagName === 'P' || twoup.tagName === 'LI')
+          && (twoup.tagName === 'P' || twoup.tagName === 'LI' || twoup.tagName === 'DIV')
         ) {
           const colors = extractColor(a);
           if (colors) {
@@ -441,7 +447,7 @@ export function decorateButtons(element) {
           up.childNodes.length === 1
           && up.tagName === 'EM'
           && twoup.childNodes.length === 1
-          && (twoup.tagName === 'P' || twoup.tagName === 'LI')
+          && (twoup.tagName === 'P' || twoup.tagName === 'LI' || twoup.tagName === 'DIV')
         ) {
           const colors = extractColor(a);
           if (colors) {
