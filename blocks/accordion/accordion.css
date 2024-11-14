@@ -17,6 +17,14 @@
   width: 85%;
 }
 
+.accordion h4 {
+  font-size: var(--body-font-size-s);
+  line-height: 1.4286;
+  margin-bottom: .8em;
+  margin-top: .8em;
+  width: 85%;
+}
+
 .accordion details summary {
   position: relative;
   cursor: pointer;
@@ -40,9 +48,13 @@
   content: '+';
   position: absolute;
   font-size: 25px;
-  top: 30%;
+  top: 20%;
   right: 22px;
   transition: transform 0.4s;
+}
+
+.accordion.round details summary::after {
+  top: 30%;
 }
 
 .accordion details[open] summary::after {
