@@ -151,7 +151,7 @@ function buildHeroBlock(main) {
   const heroContent = document.createElement('div');
   heroContent.className = 'hero-content';
   // eslint-disable-next-line no-bitwise
-  if (h1 && picture && (picture.nextElementSibling === h1)) {
+  if (h1 && picture && (picture.closest('div').nextElementSibling === h1) && h1.parentElement === picture.closest('div')) {
     const section = document.createElement('div');
     // prevent hero block from being built with text if it is a picture only
     if (h1.querySelector('u')) {
