@@ -1,9 +1,18 @@
+/* stylelint-disable no-descending-specificity */
 .columns > div {
   display: flex;
   flex-flow: column;
   gap: 24px;
   padding-bottom: 24px;
   align-items: stretch;
+}
+
+.columns.middle > div {
+  align-items: center;
+  
+  > * {
+    margin: 0;
+  }
 }
 
 .columns img {
@@ -44,6 +53,14 @@
 .columns.gray {
   > div > div.col-has-content {
     background: var(--gray);
+    border-radius: 20px;
+    padding: 15px;
+  }
+}
+
+.columns.white {
+  > div > div.col-has-content {
+    background: var(--white);
     border-radius: 20px;
   }
 }
