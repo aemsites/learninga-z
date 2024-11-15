@@ -371,8 +371,25 @@ function createOptimizedBackgroundImage(section, breakpoints = [
     const bgImage = getBackgroundImage(section);
     const url = new URL(bgImage, window.location.href);
     const pathname = encodeURI(url.pathname);
-    const sectionInner = section.querySelector('div.section');
-    const target = (sectionInner && sectionInner.classList.contains('inner')) ? sectionInner : section;
+
+    let bgContainer = section.querySelector('.bg-image-container');
+    if (!bgContainer) {
+      bgContainer = createTag('div', { class: 'bg-image-container' });
+      const sectionInner = section.querySelector('div.section.inner');
+      // we have to clone so we can put the bg-image-container in there
+      if (sectionInner) {
+        const clone = sectionInner.cloneNode(true);
+        sectionInner.innerHTML = '';
+        sectionInner.className = 'section inner';
+        clone.classList.remove('inner');
+        sectionInner.appendChild(bgContainer);
+        bgContainer.appendChild(clone);
+      } else {
+        bgContainer.appendChild(section.firstChild);
+        section.appendChild(bgContainer);
+      }
+    }
+
     const matchedBreakpoints = breakpoints.filter(
       (br) => !br.media || window.matchMedia(br.media).matches,
     );
@@ -383,7 +400,7 @@ function createOptimizedBackgroundImage(section, breakpoints = [
     );
 
     const adjustedWidth = matchedBreakpoint.width * window.devicePixelRatio;
-    target.style.backgroundImage = `url(${pathname}?width=${adjustedWidth}&format=webply&optimize=highest)`;
+    bgContainer.style.backgroundImage = `url(${pathname}?width=${adjustedWidth}&format=webply&optimize=highest)`;
   };
 
   if (resizeListeners.has(section)) {

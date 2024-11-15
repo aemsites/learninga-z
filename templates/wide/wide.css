@@ -1,7 +1,12 @@
+
 .wide h1 {
     font-size: var(--heading-font-size-l);
     margin: 1em 0 .5em;
     line-height: 1.1;
+}
+
+body.berry h1 {
+    color: var(--product-berry);
 }
 
 p .icon-check-circle-white {
@@ -18,7 +23,8 @@ p .icon-check-circle-white {
 }
 
 @media (width >= 1660px) {
-    main > .section-outer:nth-child(2) > .section {
+    main > .section-outer:nth-child(2) .section {
         max-width: 1527px;
+        margin: 0 auto;
     }
 }
