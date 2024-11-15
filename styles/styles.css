@@ -244,7 +244,7 @@ main {
   margin-bottom: 50px;
 }
 
-main > div > div {
+main > div > div:not(.bg-image-container) {
   margin: 40px 16px;
 }
 
@@ -290,6 +290,12 @@ a:hover {
   text-wrap: auto;
 }
 
+.button.secondary:hover,
+.button.secondary.textcolor-red:hover,
+.button.secondary.textcolor-theme:hover {
+    background-color: var(--product-red);
+    color: var(--white);
+}
 
 /* Buttons Container */
 .buttons-container {
@@ -307,11 +313,16 @@ sup, sub{
   font-size: var(--body-font-size-xxs);
 }
 
+.button-container {
+  margin-bottom: 0;
+}
+
 .button-container.has-subtext{
   text-align: center;
 
   .button-subtext {
     display: block;
+    font-size: var(--body-font-size-xxs);
 
     br {
       display: none;
@@ -389,7 +400,7 @@ nav li {
 THEMES
 *********/
 
-body.purple main{
+body.purple main {
   .breadcrumbs-outer {
     background-color: var(--purple);
   }
@@ -450,7 +461,7 @@ body.purple main{
   background-color: var(--purple);
   color: var(--white);
 
-  a {
+  a:not(.button) {
     text-decoration: underline;
   }
 
@@ -491,29 +502,8 @@ body.purple main{
 [data-theme="light-blue"]:not([data-background]) {
   background-color: var(--sky-blue);
 
-  a {
+  a:not(.button) {
     text-decoration: underline;
-  }
-
-  .button.primary.bgcolor-theme {
-    background-color: var(--white);
-    border-color: var(--white);
-    color: var(--sky-blue);
-
-    &:hover {
-      color: var(--white);
-      background-color: var(--sky-blue);
-    }
-  }
-
-  .button.secondary.textcolor-theme {
-    color: var(--white);
-    border-color: var(--white);
-
-    &:hover {
-      background-color: var(--white);
-      color: var(--sky-blue);
-    }
   }
 
   &:has(.inner) {
@@ -526,54 +516,13 @@ body.purple main{
 }
 
 [data-theme="gray"]:not([data-background]) {
+    background-color: var(--gray);
+
   &:has(.inner) {
     background-color: var(--white);
 
     .section.inner {
       background-color: var(--gray);
-    }
-  }
-}
-
-[data-theme="orange-red"]:not([data-background]) {
-  & .section.inner, & .section{
-    padding: 40px;
-    background-color: var(--orange-red);
-  }
-
-  background-color: var(--orange-red);
-
-  .button.primary.bgcolor-theme {
-    background-color: var(--white);
-    border-color: var(--white);
-    color: var(--orange-red);
-
-    &:hover {
-      color: var(--white);
-      background-color: var(--orange-red);
-    }
-  }
-
-  .button.secondary.textcolor-theme {
-    color: var(--white);
-    border-color: var(--white);
-
-    &:hover {
-      background-color: var(--white);
-      color: var(--orange-red);
-    }
-  }
-
-
-  h3 {
-    color: var(--white);
-  }
-
-  &:has(.inner) {
-    background-color: var(--white);
-
-    .section.inner {
-      background-color: var(--orange-red);
     }
   }
 }
@@ -607,29 +556,29 @@ body.laz-blue main {
       background-color: var(--laz-blue);
     }
 
-    .button.primary {
-      color: var(--white);
-      background-color: var(--laz-blue);
-      border-color: var(--laz-blue);
-  
-      &:hover {
-        color: var(--laz-blue);
-        background-color: transparent;
-        border-color: var(--laz-blue);
-      }
-    }
-  
-    .button.secondary {
+  .button.primary {
+    color: var(--white);
+    background-color: var(--laz-blue);
+    border-color: var(--laz-blue);
+
+    &:hover {
       color: var(--laz-blue);
-      border-color: var(--laz-blue);
       background-color: transparent;
-  
-      &:hover {
-        background-color: var(--laz-blue);
-        color: var(--white);
-        border-color: var(--laz-blue);
-      }
+      border-color: var(--laz-blue);
     }
+  }
+
+  .button.secondary {
+    color: var(--laz-blue);
+    border-color: var(--laz-blue);
+    background-color: transparent;
+
+    &:hover {
+      background-color: var(--laz-blue);
+      color: var(--white);
+      border-color: var(--laz-blue);
+    }
+  }
 }
 
 
@@ -651,16 +600,16 @@ body.laz-blue main {
       color: var(--white);
     }
 
-    &:has(.inner) {
-      background-color: var(--white);
-  
-      .section.inner {
-        background-color: var(--laz-blue);
-      }
+  &:has(.inner) {
+    background-color: var(--white);
+
+    .section.inner {
+      background-color: var(--laz-blue);
     }
   }
+}
 
-body.red main{
+body.red main {
   .breadcrumbs-outer {
     background-color: var(--red);
   }
@@ -715,7 +664,7 @@ body.red main{
   }
 }
 
-body.yellow main{
+body.yellow main {
   .breadcrumbs-outer {
     background-color: var(--yellow);
   }
@@ -759,7 +708,7 @@ body.yellow main{
     background-color: var(--yellow);
   }
 
-  a:any-link {
+  a:not(.button) {
     color: var(--text-color);
     text-decoration: underline;
   }
@@ -773,8 +722,8 @@ body.yellow main{
   }
 }
 
-body.berry main{
-  & h1, h3, a {
+body.berry main {
+  & h3, a {
     color: var(--product-berry);
   }
 
@@ -785,68 +734,49 @@ body.berry main{
   .table table th {
     background-color: var(--product-berry);
   }
+}
 
-  .button.primary {
-    color: var(--white);
+[data-theme="pink"] {
+  background-color: var(--light-pink);
+
+  .button.primary.bgcolor-theme {
     background-color: var(--product-berry);
     border-color: var(--product-berry);
 
     &:hover {
       color: var(--product-berry);
-      background-color: transparent;
+      background-color: var(--white);
       border-color: var(--product-berry);
     }
   }
 
-  .button.secondary {
-    color: var(--product-berry);
+  .button.secondary.textcolor-theme {
     border-color: var(--product-berry);
-    background-color: transparent;
+    color: var(--product-berry);
 
     &:hover {
       background-color: var(--product-berry);
       color: var(--white);
-      border-color: var(--product-berry);
+    }
+  }
+
+  &:has(.inner) {
+    background-color: var(--white);
+
+    .section.inner {
+      background-color: var(--light-pink);
     }
   }
 }
 
-[data-theme="pink"] {
-    background-color: var(--light-pink);
-
-    .button.primary.bgcolor-theme {
-      background-color: var(--white);
-      border-color: var(--white);
-      color: var(--light-pink);
-  
-      &:hover {
-        color: var(--white);
-        background-color: var(--light-pink);
-      }
-    }
-  
-    .button.secondary.textcolor-theme {
-      color: var(--white);
-      border-color: var(--white);
-  
-      &:hover {
-        background-color: var(--white);
-        color: var(--light-pink);
-      }
-    }
-
-    &:has(.inner) {
-      background-color: var(--white);
-  
-      .section.inner {
-        background-color: var(--light-pink);
-      }
-    }
+body main [data-theme="berry"], body main [data-theme="berry-gradient"] {
+  h2, h3, h4, h5, h6, p, li, a:any-link {
+    color: var(--white);
   }
 
-[data-theme="berry"]:not([data-background]) {
-  background-color: var(--product-berry);
+  .section h1 {
     color: var(--white);
+  }
 
   .button.primary.bgcolor-theme {
     background-color: var(--white);
@@ -869,50 +799,75 @@ body.berry main{
     }
   }
 
-    a:not(.button) {
-      text-decoration: underline;
-    }
-
-    h1, h2, h3, h4, h5, h6, a:any-link {
-      color: var(--white);
-    }
-
-    &:has(.inner) {
-      background-color: var(--white);
-  
-      .section.inner {
-        background-color: var(--product-berry);
-      }
-    }
+  a:not(.button) {
+    text-decoration: underline;
+  }
 }
 
-body.orange-red main{
+[data-theme="berry"]:has(+ :not(.section.inner)) {
+  background-color: var(--product-berry);
+}
+
+[data-theme="berry-gradient"]:has(+ :not(.section.inner)) {
+  /* background-color: var(--product-berry); */
+  background: radial-gradient(ellipse at center bottom, var(--product-berry), var(--product-berry), var(--product-purple));
+}
+
+[data-theme="berry"]:has(.section.inner) {
+  background: none;
+
+  .section.inner {
+    background-color: var(--product-berry);
+    border-radius: 50px;
+    padding: 60px;
+    margin: 50px auto;
+
+    &:has(.bg-image-container) {
+      padding: 0;
+
+      .bg-image-container {
+        padding: 60px;
+      }
+    }
+  }
+
+  .section.short {
+    padding: 15px;
+  }
+}
+
+[data-theme="berry-gradient"]:has(.section.inner) {
+  background: none;
+
+  .section.inner {
+    background: radial-gradient(ellipse at center bottom, var(--product-berry), var(--product-berry), var(--product-purple));
+    border-radius: 50px;
+    margin: 50px auto;
+
+    &:has(.bg-image-container) {
+      padding: 0;
+
+      .bg-image-container {
+        padding: 60px;
+      }
+    }
+  }
+}
+
+body.orange-red main {
   .breadcrumbs-outer {
     background-color: var(--orange-red);
   }
 
   .button.primary {
-    color: var(--white);
-    background-color: var(--orange-red);
     border-color: var(--orange-red);
-
-    &:hover {
-      color: var(--orange-red);
-      background-color: transparent;
-      border-color: var(--orange-red);
-    }
+    color: var(--orange-red);
   }
 
   .button.secondary {
-    color: var(--orange-red);
+    background-color: var(--white);
     border-color: var(--orange-red);
-    background-color: transparent;
-
-    &:hover {
-      background-color: var(--orange-red);
-      color: var(--white);
-      border-color: var(--orange-red);
-    }
+    color: var(--orange-red);
   }
 
   a {
@@ -925,7 +880,7 @@ body.orange-red main{
 
   .table table th {
     background-color: var(--orange-red);
-    }
+  }
 
   .accordion.round .accordion-item-label {
     border: 2px solid var(--orange-red);
@@ -935,16 +890,58 @@ body.orange-red main{
     color: var(--orange-red);
   }
 
-    .cards.circle-image .card picture {
+  .cards.circle-image .card picture {
+    background-color: var(--orange-red);
+  }
+}
+
+[data-theme="orange-red"]:not([data-background]) {
+  & .section.inner, & .section{
+    padding: 40px;
+    background-color: var(--orange-red);
+  }
+
+  background-color: var(--orange-red);
+
+  .button.primary.bgcolor-theme {
+    background-color: var(--white);
+    border-color: var(--white);
+    color: var(--orange-red);
+
+    &:hover {
+      color: var(--white);
       background-color: var(--orange-red);
     }
+  }
+
+  .button.secondary.textcolor-theme {
+    color: var(--white);
+    border-color: var(--white);
+
+    &:hover {
+      background-color: var(--white);
+      color: var(--orange-red);
+    }
+  }
+
+  h3 {
+    color: var(--white);
+  }
+
+  &:has(.inner) {
+    background-color: var(--white);
+
+    .section.inner {
+      background-color: var(--orange-red);
+    }
+  }
 }
 
   /* end themes */
 
-  /* primary button colors */
+/* primary button colors */
 
-body main .button.primary {
+.button.primary {
   &.bgcolor-red, &.bgcolor-theme {
     background-color: var(--red);
     border-color: var(--red);
@@ -1008,17 +1005,6 @@ body main .button.primary {
     }
   }
 
-  &.bgcolor-yellow {
-    background-color: var(--yellow);
-    border-color: var(--yellow);
-    color: var(--white);
-
-    &:hover {
-      color: var(--yellow);
-      border-color: var(--yellow);
-    }
-  }
-
   &.textcolor-black {
     color: var(--laz-black);
 
@@ -1042,151 +1028,76 @@ body main .button.primary {
 
 /* end primary button colors */
 
+a.button.secondary,
+button.secondary {
+  background-color: unset;
+  border: 2px solid;
+}
 
-  a.button.secondary,
-  button.secondary {
-    background-color: unset;
-    border: 2px solid;
+/* secondary button colors */
+
+.button.secondary.textcolor-red,
+.button.secondary.textcolor-theme {
+  color: var(--product-red);
+  border-color: var(--product-red);
+
+  & :hover {
+    background-color: var(--product-red);
+    color: var(--white);
   }
+}
 
-  /* secondary button colors */
-  body main .button.secondary{
-        &.textcolor-red,
-      &.textcolor-theme {
-        color: var(--red);
-        border-color: var(--red);
-        
-        &:hover {
-          background-color: var(--red);
-          color: var(--white);
-          border-color: var(--red);
-        }
-      }
+.button.secondary.textcolor-light-blue {
+  color: var(--faz-light-blue);
+  border-color: var(--faz-light-blue);
+}
 
-      &.textcolor-light-blue {
-        color: var(--faz-light-blue);
-        border-color: var(--faz-light-blue);
+.button.secondary.textcolor-berry {
+  color: var(--product-berry);
+  border-color: var(--product-berry);
+}
 
-        &:hover {
-          background-color: var(--faz-light-blue);
-          color: var(--white);
-          border-color: var(--faz-light-blue);
-        }
-      }
+.button.secondary.textcolor-royal-blue {
+  color: var(--laz-logo-blue);
+  border-color: var(--laz-logo-blue);
+}
 
-      &.textcolor-berry {
-        color: var(--product-berry);
-        border-color: var(--product-berry);
+.button.secondary.textcolor-black {
+  color: var(--laz-black);
+  border-color: var(--laz-black);
+}
 
-        &:hover {
-          background-color: var(--product-berry);
-          color: var(--white);
-          border-color: var(--product-berry);
-        }
-      }
+.button.secondary.textcolor-gold {
+  color: var(--gold);
+  border-color: var(--gold);
+}
 
-      &.textcolor-yellow {
-        color: var(--yellow);
-        border-color: var(--yellow);
+.button.secondary.textcolor-dark-blue {
+  color: var(--product-dark-blue);
+  border-color: var(--product-dark-blue);
+}
 
-        &:hover {
-          background-color: var(--yellow);
-          color: var(--white);
-          border-color: var(--yellow);
-        }
-      }
+.button.secondary.textcolor-navy-blue {
+  color: var(--product-navy-blue);
+  border-color: var(--product-navy-blue);
+}
 
-      &.textcolor-royal-blue {
-        color: var(--laz-logo-blue);
-        border-color: var(--laz-logo-blue);
+.button.secondary.textcolor-orange {
+  color: var(--product-orange);
+  border-color: var(--product-orange);
+}
 
-        &:hover {
-          background-color: var(--laz-logo-blue);
-          color: var(--white);
-          border-color: var(--laz-logo-blue);
-        }
-      }
+.button.secondary.textcolor-purple {
+  color: var(--product-purple);
+  border-color: var(--product-purple);
+}
 
-      &.textcolor-black {
-        color: var(--laz-black);
-        border-color: var(--laz-black);
+.button.secondary.textcolor-green {
+  color: var(--product-green);
+  border-color: var(--product-green);
+}
 
-        &:hover {
-          background-color: var(--laz-black);
-          color: var(--white);
-          border-color: var(--laz-black);
-        }
-      }
-
-      &.textcolor-gold {
-        color: var(--gold);
-        border-color: var(--gold);
-
-        &:hover {
-          background-color: var(--gold);
-          color: var(--white);
-          border-color: var(--gold);
-        }
-      }
-
-      &.textcolor-dark-blue {
-        color: var(--product-dark-blue);
-        border-color: var(--product-dark-blue);
-
-        &:hover {
-          background-color: var(--product-dark-blue);
-          color: var(--white);
-          border-color: var(--product-dark-blue);
-        }
-      }
-
-      &.textcolor-navy-blue {
-        color: var(--product-navy-blue);
-        border-color: var(--product-navy-blue);
-
-        &:hover {
-          background-color: var(--product-navy-blue);
-          color: var(--white);
-          border-color: var(--product-navy-blue);
-        }
-      }
-
-      &.textcolor-orange {
-        color: var(--product-orange);
-        border-color: var(--product-orange);
-
-        &:hover {
-          background-color: var(--product-orange);
-          color: var(--white);
-          border-color: var(--product-orange);
-        }
-      }
-
-      &.textcolor-purple {
-        color: var(--product-purple);
-        border-color: var(--product-purple);
-
-        &:hover {
-          background-color: var(--product-purple);
-          color: var(--white);
-          border-color: var(--product-purple);
-        }
-      }
-
-      &.textcolor-green {
-        color: var(--product-green);
-        border-color: var(--product-green);
-
-        &:hover {
-          background-color: var(--product-green);
-          color: var(--white);
-          border-color: var(--product-green);
-        }
-      }
-  }
-  
-
-  /* end secondary button colors */
+/* end secondary button colors */
 
   main img {
     max-width: 100%;
@@ -1206,26 +1117,48 @@ body main .button.primary {
   }
 
   /* sections */
+
+
   main > .section-outer {
     margin: auto;
     background-size: cover;
     width: 100%;
+
+    > .section, > .bg-image-container > .section {
+      margin: 0 auto;
+      padding: 40px 15px;
+      max-width: 750px;
+      background-size: cover;
+      width: 100%;
+    }
+
+    > .section:has(.bg-image-container) {
+      padding: 0;
+    }
+
+    .section.product {
+      padding: 50px 0 200px;
+    }
+
+    .section.short {
+      padding: 10px 15px;
+    }
   }
 
-  main > .section-outer > .section {
-    margin: 0 auto;
-    padding: 48px 15px;
-    max-width: 750px;
-    background-size: cover;
-    width: 100%;
-  }
 
   main > .section:first-of-type {
     margin-top: 0;
   }
 
+  .bg-image-container {
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: cover;
+  }
+
   @media (width >= 768px) {
-    main > .section-outer > .section {
+    main > .section-outer > .section,
+    main > .section-outer > .bg-image-container > .section{
       margin: 0 auto;
     }
 
@@ -1235,7 +1168,9 @@ body main .button.primary {
   }
 
   @media (width >= 1024px) {
-    main > .section-outer > .section, .breadcrumbs-container, .hero-content {
+    main > .section-outer > .section,
+    main > .section-outer > .bg-image-container > .section,
+    .breadcrumbs-container, .hero-content {
       max-width: 990px;
     }
 
@@ -1247,7 +1182,9 @@ body main .button.primary {
     }
 
   @media (width >= 1200px) {
-    main > .section-outer > .section, .breadcrumbs-container, .hero-content {
+    main > .section-outer > .section,
+    main > .section-outer > .bg-image-container > .section,
+    .breadcrumbs-container, .hero-content {
       max-width: 1170px;
     }
   }
@@ -1265,4 +1202,3 @@ body main .button.primary {
     margin: 0;
     padding: 40px 0;
   }
-  
