@@ -1,6 +1,5 @@
 .subnav-wrapper {
   background: #f8f8f8;
-  width: 100vw;
   margin: 0;
   padding: 0;
   line-height: 56px;
@@ -23,13 +22,10 @@
     list-style: none;
     margin: 0 0 0 15px;
     padding: 0;
-
-    @media(width <= 991px) {
-      display: block;
-    }
+    display: flex;
+    flex-wrap: wrap;
 
     li {
-      display: inline-block;
       margin: 0;
       transition: all 0.2s;
 
