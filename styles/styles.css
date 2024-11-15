@@ -290,6 +290,12 @@ a:hover {
   text-wrap: auto;
 }
 
+.button.secondary:hover,
+.button.secondary.textcolor-red:hover,
+.button.secondary.textcolor-theme:hover {
+    background-color: var(--product-red);
+    color: var(--white);
+}
 
 /* Buttons Container */
 .buttons-container {
@@ -305,6 +311,10 @@ a:hover {
 
 sup, sub{
   font-size: var(--body-font-size-xxs);
+}
+
+.button-container {
+  margin-bottom: 0;
 }
 
 .button-container.has-subtext{
@@ -492,29 +502,8 @@ body.purple main {
 [data-theme="light-blue"]:not([data-background]) {
   background-color: var(--sky-blue);
 
-  a {
+  a:not(.button) {
     text-decoration: underline;
-  }
-
-  .button.primary.bgcolor-theme {
-    background-color: var(--white);
-    border-color: var(--white);
-    color: var(--sky-blue);
-
-    &:hover {
-      color: var(--white);
-      background-color: var(--sky-blue);
-    }
-  }
-
-  .button.secondary.textcolor-theme {
-    color: var(--white);
-    border-color: var(--white);
-
-    &:hover {
-      background-color: var(--white);
-      color: var(--sky-blue);
-    }
   }
 
   &:has(.inner) {
@@ -618,7 +607,7 @@ body.laz-blue main {
       background-color: var(--laz-blue);
     }
   }
-  }
+}
 
 body.red main {
   .breadcrumbs-outer {
@@ -751,23 +740,23 @@ body.berry main {
   background-color: var(--light-pink);
 
   .button.primary.bgcolor-theme {
-    background-color: var(--white);
-    border-color: var(--white);
-    color: var(--light-pink);
+    background-color: var(--product-berry);
+    border-color: var(--product-berry);
 
     &:hover {
-      color: var(--white);
-      background-color: var(--light-pink);
+      color: var(--product-berry);
+      background-color: var(--white);
+      border-color: var(--product-berry);
     }
   }
 
   .button.secondary.textcolor-theme {
-    color: var(--white);
-    border-color: var(--white);
+    border-color: var(--product-berry);
+    color: var(--product-berry);
 
     &:hover {
-      background-color: var(--white);
-      color: var(--light-pink);
+      background-color: var(--product-berry);
+      color: var(--white);
     }
   }
 
@@ -1046,10 +1035,16 @@ button.secondary {
 }
 
 /* secondary button colors */
+
 .button.secondary.textcolor-red,
 .button.secondary.textcolor-theme {
-  color: var(--red);
-  border-color: var(--red);
+  color: var(--product-red);
+  border-color: var(--product-red);
+
+  & :hover {
+    background-color: var(--product-red);
+    color: var(--white);
+  }
 }
 
 .button.secondary.textcolor-light-blue {
@@ -1102,7 +1097,7 @@ button.secondary {
   border-color: var(--product-green);
 }
 
-/* end primary button colors */
+/* end secondary button colors */
 
   main img {
     max-width: 100%;
