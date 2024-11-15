@@ -535,7 +535,7 @@ nav li {
 THEMES
 *********/
 
-body.purple {
+body.purple main {
   .breadcrumbs-outer {
     background-color: var(--purple);
   }
