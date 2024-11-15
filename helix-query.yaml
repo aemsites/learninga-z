@@ -39,7 +39,7 @@ indices:
       tags:
         select: head > meta[name="article:tag"]
         value: attribute(el, "content")
-      
+
   news:
     include:
       - /site/company/news/**
@@ -181,4 +181,42 @@ indices:
       products:
         select: head > meta[name="products"]
         value: attribute(el, "content")
-  
+  breakroom-blog:
+    include:
+      - /site/resources/breakroom-blog/**
+    exclude: *excludes
+    target: /site/resources/breakroom-blog/query-index.json
+    properties:
+      title:
+        select: head > meta[property="og:title"]
+        value: attribute(el, "content")
+      image:
+        select: head > meta[property="og:image"]
+        value: match(attribute(el, "content"), "https:\/\/[^/]+(/.*)")
+      description:
+        select: head > meta[name="description"]
+        value: attribute(el, "content")
+      date:
+        select: head > meta[name="date"]
+        value: attribute(el, "content")
+      lastModified:
+        select: none
+        value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss GMT")
+      tags:
+        select: head > meta[name="article:tag"]
+        value: attribute(el, "content")
+      category:
+        select: head > meta[name="category"]
+        value: attribute(el, "content")
+      author:
+        select: head > meta[name="author"]
+        value: attribute(el, "content")
+      author-title:
+        select: head > meta[name="author-title"]
+        value: attribute(el, "content")
+      template:
+        select: head > meta[name="template"]
+        value: attribute(el, "content")
+      products:
+        select: head > meta[name="products"]
+        value: attribute(el, "content")

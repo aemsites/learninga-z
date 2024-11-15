@@ -151,17 +151,24 @@ function buildHeroBlock(main) {
   const heroContent = document.createElement('div');
   heroContent.className = 'hero-content';
   // eslint-disable-next-line no-bitwise
-  if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
+  if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING) && h1.parentElement === picture.closest('div')) {
     const section = document.createElement('div');
-    heroContent.append(h1);
-    if (heroSubText && h1.compareDocumentPosition(heroSubText) && Node.DOCUMENT_POSITION_FOLLOWING) {
-      const h2 = document.createElement('h2');
-      h2.append(heroSubText.textContent);
-      heroSubText.remove();
-      heroContent.append(h2);
-      section.append(buildBlock('hero', { elems: [picture, heroContent] }));
+    // prevent hero block from being built with text if it is a picture only
+    if (h1.querySelector('u')) {
+      section.replaceChildren(buildBlock('hero', { elems: [picture] }));
+      h1.innerHTML = h1.querySelector('u').innerHTML;
+      section.querySelector('.hero').classList.add('hero-picture-only');
     } else {
-      section.append(buildBlock('hero', { elems: [picture, heroContent] }));
+      heroContent.append(h1);
+      if (heroSubText && h1.nextElementSibling === heroSubText) {
+        const h2 = document.createElement('h2');
+        h2.append(heroSubText.textContent);
+        heroSubText.remove();
+        heroContent.append(h2);
+        section.append(buildBlock('hero', { elems: [picture, heroContent] }));
+      } else {
+        section.append(buildBlock('hero', { elems: [picture, heroContent] }));
+      }
     }
     main.prepend(section);
   }
@@ -259,7 +266,10 @@ export function buildFragmentBlocks(main) {
  */
 function buildAutoBlocks(main, templateModule = undefined) {
   try {
-    buildHeroBlock(main);
+    const templateName = toClassName(getMetadata('template'));
+    if (templateName !== 'wide') {
+      buildHeroBlock(main);
+    }
     buildPageDivider(main);
     buildFragmentBlocks(main);
     if (templateModule && templateModule.default) {
@@ -279,7 +289,7 @@ function buildAutoBlocks(main, templateModule = undefined) {
  */
 export function extractColor(anchor) {
   const text = anchor.textContent;
-  let colorOne = 'red';
+  let colorOne = 'theme';
   let colorTwo = 'white';
   const regex = /{([^|}]+)(?:\|([^}]+))?}/;
   const matches = text.match(regex);
@@ -424,7 +434,7 @@ export function decorateButtons(element) {
           up.childNodes.length === 1
           && up.tagName === 'STRONG'
           && twoup.childNodes.length === 1
-          && (twoup.tagName === 'P' || twoup.tagName === 'LI')
+          && (twoup.tagName === 'P' || twoup.tagName === 'LI' || twoup.tagName === 'DIV')
         ) {
           const colors = extractColor(a);
           if (colors) {
@@ -438,7 +448,7 @@ export function decorateButtons(element) {
           up.childNodes.length === 1
           && up.tagName === 'EM'
           && twoup.childNodes.length === 1
-          && (twoup.tagName === 'P' || twoup.tagName === 'LI')
+          && (twoup.tagName === 'P' || twoup.tagName === 'LI' || twoup.tagName === 'DIV')
         ) {
           const colors = extractColor(a);
           if (colors) {
@@ -446,6 +456,21 @@ export function decorateButtons(element) {
           }
           a.classList.add('button', 'secondary');
           twoup.classList.add('button-container');
+          twoup.append(a);
+          up.remove();
+        }
+        // Button subtext
+        if (
+          twoup
+          && twoup.nextElementSibling
+          && twoup.nextElementSibling.tagName === 'P'
+          && twoup.nextElementSibling.querySelector('sup')
+          && twoup.nextElementSibling.textContent === twoup.nextElementSibling.querySelector('sup').textContent
+        ) {
+          const subText = twoup.nextElementSibling;
+          twoup.classList.add('has-subtext');
+          twoup.append(subText);
+          subText.classList.add('button-subtext');
         }
       }
     }
@@ -484,7 +509,18 @@ function decorateLinkedImages(main) {
     } else if (next && next.tagName === 'BR' && next.nextElementSibling && next.nextElementSibling.tagName === 'A') {
       const a = next.nextElementSibling;
       a.replaceChildren(picture);
+      next.remove();
     }
+  });
+}
+
+/**
+ * Centers the headlines by adding the 'center' class to their parent elements.
+ */
+export function centerHeadlines() {
+  const headlines = document.querySelectorAll('h1 > strong, h2 > strong, h3 > strong, h4 > strong');
+  headlines.forEach((headline) => {
+    headline.parentElement.classList.add('center');
   });
 }
 
@@ -535,6 +571,7 @@ export function decorateMain(main, templateModule) {
   decorateExternalLinks(main);
   decorateStyledSections(main);
   buildEmbedBlocks(main);
+  centerHeadlines(main);
 }
 
 /**

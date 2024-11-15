@@ -17,14 +17,23 @@
   width: 85%;
 }
 
+.accordion h4 {
+  font-family: var(--heading-font-family);
+  font-size: 20px;
+  line-height: 1.4286;
+  margin-bottom: .8em;
+  margin-top: .8em;
+  width: 85%;
+}
+
 .accordion details summary {
   position: relative;
   cursor: pointer;
   list-style: none;
   overflow: auto;
-  font-family: Solway, serif;
+  font-family: var(--heading-font-family);
   font-size: 20px;
-  color: #093567;
+  color: var(--product-navy-blue);
 }
 
 .accordion details[open] summary {
@@ -40,9 +49,13 @@
   content: '+';
   position: absolute;
   font-size: 25px;
-  top: 30%;
+  top: 20%;
   right: 22px;
   transition: transform 0.4s;
+}
+
+.accordion.round details summary::after {
+  top: 30%;
 }
 
 .accordion details[open] summary::after {
@@ -67,7 +80,7 @@
 }
 
 .accordion.round details[open] .accordion-item-body {
-  border: 1px solid #eee;
+  border: 1px solid var(--gray);
   margin-top: 10px;
 }
 

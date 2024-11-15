@@ -1,96 +1,85 @@
 .cards.suggested-videos {
     margin: 20px 0;
-  
+    gap: 0;
+
     h3 {
       font-family: var(--body-font-family);
       font-size: var(--body-font-size-m);
       font-weight: var(--font-weight-medium);
       color: inherit;
     }
-  
+
     .card-wrapper {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+        gap: 0;
     }
-  
+
     .card {
       width: 100%;
-      border-top: 1px solid var(--light-gray);
-      padding: 25px 0;
+      border-bottom: 1px solid var(--light-gray);
+      padding: 20px 0;
       display: flex;
       gap: 10px;
     }
-  
+
     .card:hover img {
       transform: none;
     }
-  
-    .card:last-of-type {
-      border-bottom: 1px solid var(--light-gray);
-    }
-  
-    .card>div {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-  
-    .card img::before {
-      display: inline-block;
-      width: auto;
-      height: auto;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      color: #888;
-      line-height: 1;
-      z-index: 2;
-      font-size: 2em;
-      margin-top: -25px;
-      margin-left: -15px;
-    }
-  
-    .card>.card-thumbnail a {
-      display: block;
-      pointer-events: none;
-      text-align: center;
-    }
-  
-    .card>.card-thumbnail a picture {
-      width: 80px;
-      height: 80px;
-      margin: 0 auto;
-    }
-  
-    .card>.card-thumbnail a img {
-      border-radius: 50%;
-      position: relative;
-      left: 0;
-      width: 80px;
-      height: 80px;
-      object-fit: cover;
-      filter: brightness(75%);
-    }
-  
-    .card .card-body {
-      display: flex;
-      position: relative;
-    }
-  
-    .card .card-body h3 {
-      font-weight: var(--font-weight-extra-bold);
-    }
-  
-    .card .card-body a,
-    .card i.arrow {
-      display: none;
-    }
-  
-    /* just show the first a */
-    .card .card-body a:first-of-type {
-      display: flex;
-      text-decoration: none;
+
+    .card > a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        img::before {
+            display: inline-block;
+            width: auto;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            color: #888;
+            line-height: 1;
+            z-index: 2;
+            font-size: 2em;
+            margin-top: -25px;
+            margin-left: -15px;
+        }
+
+        .card-thumbnail picture {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto;
+        }
+
+        .card-thumbnail img {
+            border-radius: 50%;
+            position: relative;
+            left: 0;
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            filter: brightness(75%);
+        }
+
+        .card-body {
+            display: flex;
+            position: relative;
+        }
+
+        .card-body h3 {
+            font-weight: var(--font-weight-extra-bold);
+            display: flex;
+            text-decoration: none;
+        }
+
+        .card-body p,
+        i.arrow {
+            display: none;
+        }
+
     }
   }

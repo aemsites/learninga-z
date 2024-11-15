@@ -9,7 +9,7 @@ body.no-header {
 
 body.no-nav {
   header {
-    height: auto;
+    height: var(--nav-height);
   }
 
   header .nav-wrapper {
@@ -236,6 +236,7 @@ header .megamenu>.section-outer {
 
 .header .tabs.columns .tabs-list {
   flex-direction: column;
+  width: 25%;
 }
 
 .header .tabs.columns .tabs-list>button {
@@ -307,7 +308,7 @@ header .megamenu>.section-outer {
 }
 
 .header .tabs.columns .tabs-panel .left-content.has-border {
-  border-right: 3px solid var(--berry);
+  border-right: 3px solid var(--product-berry);
   border-top-right-radius: 2px;
   border-bottom-right-radius: 2px;
 }
@@ -432,7 +433,7 @@ header .megamenu>.section-outer {
         font-size: 0;
       }
 
-      ::before { 
+      ::before {
         content: url("/icons/search-white.svg");
         width: 20px;
         height: 20px;
@@ -806,7 +807,7 @@ nav[aria-expanded="false"] {
 
           .sub-content {
             padding: 20px;
-            border-left: 3px solid var(--berry);
+            border-left: 3px solid var(--product-berry);
 
             .icon {
               height: 30px;
@@ -921,7 +922,7 @@ nav[aria-expanded="false"] {
 
   .nav-sections ul.primary-nav-items>li:not(.button-container)>a:not(.button) {
     width: 100%;
-    border-bottom: 2px solid var(--divider-gray);
+    border-bottom: 2px solid var(--gray);
     margin: auto 0;
     padding-bottom: 50px;
   }
