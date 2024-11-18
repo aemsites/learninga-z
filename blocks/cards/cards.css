@@ -130,6 +130,10 @@
     height: auto;
     position: relative;
 
+    .card-thumbnail {
+      overflow: hidden;
+    }
+
     picture {
       background-color: var(--black);
 

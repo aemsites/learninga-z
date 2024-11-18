@@ -33,7 +33,7 @@
   position: absolute;
   cursor: pointer;
   transform: translate3d(-50%, -50%, 0);
-  top: 50%;
+  top: 25%;
   left: 50%;
   z-index: 1;
   background-color: transparent;
