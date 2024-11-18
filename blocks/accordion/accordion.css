@@ -92,3 +92,7 @@
 .accordion.round details {
   border: 0;
 }
+
+.accordion.faq summary p, .accordion.faq summary h4 {
+  color: var(--faq-blue);
+}

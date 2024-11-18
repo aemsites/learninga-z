@@ -5,15 +5,16 @@
     line-height: 1.1;
 }
 
-body.berry h1 {
-    color: var(--product-berry);
-}
 
 p .icon-check-circle-white {
     img {
         width: 17px;
         vertical-align: text-bottom;
     }
+}
+
+.section-outer:not(:nth-child(2)) .section.product {
+    max-width: 750px;
 }
 
 @media (width >= 1024px) {

@@ -1,6 +1,6 @@
 .callout {
   background-color: var(--gray);
-  color: #555;
+  color: var(--dark-gray);
   position: relative;
   transition: background-color .2s;
   padding: 15px 15px 1px;
@@ -23,7 +23,7 @@
 }
 
 .callout-quote {
-  color: #555;
+  color: var(--dark-gray);
   font-family: halyard-display, sans-serif;
   font-weight: var(--font-weight-light);
   font-size: 1.2em;

@@ -33,6 +33,11 @@
         display: flex;
         align-items: center;
         gap: 10px;
+        text-decoration: none;
+
+        &:hover h3 {
+            text-decoration: underline;
+        }
 
         img::before {
             display: inline-block;
@@ -73,7 +78,6 @@
         .card-body h3 {
             font-weight: var(--font-weight-extra-bold);
             display: flex;
-            text-decoration: none;
         }
 
         .card-body p,

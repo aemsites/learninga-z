@@ -10,71 +10,113 @@
  * governing permissions and limitations under the License.
  */
 /* stylelint-disable no-descending-specificity */
+
+/* fallback fonts */
+@font-face {
+  font-family: montserrat-normal-fallback;
+  size-adjust: 113%;
+  ascent-override: 93%;
+  descent-override: 12%;
+  line-gap-override: normal;
+  src: local("Arial");
+}
+
+@font-face {
+  font-family: solway-normal-fallback;
+  size-adjust: 113.741%;
+  src: local("Arial");
+}
+
 :root {
   /* colors */
-  --background-color: white;
   --white: #FFF;
-  --off-white: #F6F6F6;
-  --very-light-gray: #f8f8f8;
+  --very-light-gray: #f8f8f8; /* subnav */
   --light-gray: #CBCBCB;
-  --gray: #eee;
-  --dark-color: #505050;
-  --medium-gray: #555;
-  --medium-light-gray: #777;
-  --navy-blue: #0E4482;
-  --dark-blue: #005CB9;
-  --link-color: #3b63fb;
+  --gray: #eee; /* columns bg */
+  --medium-light-gray: #777; /* header text */
+  --dark-gray: #56524e; /* various text */
+  --charcoal-gray: #45423f; /* head + foot text */
+  --link-color: #31409A; /* laz-blue repeat */
   --link-hover-color: #1d3ecf;
-  --bright-blue: #00B3E2;
   --bright-green: #C1D52F;
-  --b-green: #419e66;
-  --green: #128641;
-  --bright-yellow: #FDDC3F;
+  --bright-yellow: #FDDC3F; /* button bg */
   --gold: #F8BE15;
-  --yellow: #F8BE15;
-  --light-pink: #F1CBE4;
-  --orange: #F48C21;
-  --orange-red: #F05B32;
-  --purple: #904799;
-  --red: #E21D46;
   --sky-blue: #A2DAE8;
   --turquoise: #3FC1C0;
   --light-red: #ed7790;
   --text-color: #131313;
   --black: #000;
   --laz-black: #35302C;
-  --laz-blue: #00B3E2;
-  --laz-logo-blue: #31409A; /* royal blue */
-  --faz-purple: #5D2C8A;
-  --faz-pink: #C83493;
+  --bright-blue: #00B3E2;
   --faz-light-blue: #00C0F3;
+  --laz-logo-blue: #31409A; /* h2, a */
+  --waz-blue: var(--product-dark-blue);
+  --navy-blue: var(--product-navy-blue);
+  --faz-pink: #C83493;
   --waz-yellow: #F3A814;
-  --waz-red: #E21D46;
-  --waz-blue: #005CB9;
   --rpe-dark-blue: #1A1831;
   --rpe-dark-purple: #5E2967;
   --rpe-magenta: #942A6A;
   --rpe-salmon: #C24A48;
-  --rpe-gold: #D5A13D;
-  --vaz-red-pastel: #FFCECB;
-  --vaz-blue-pastel: #ECEFF4;
-  --rk-blue: #D9E7F5;
-  --rk-blue-dark: #1E7DDD;
   --dark-purple: #613aaf; /* H3 color */
-  --dark-gray: #56524e;
   --dark-olive-green: #3E3F30;
-  --charcoal-gray: #45423f;
   --charcoal-blue: #263238;
   --maroon: #77001a;
 
     /* product colors */
-    --product-navy-blue: #12457e;
-    --product-berry: #c83192;
-    --product-dark-blue: #005cb9;
-    --product-red: #ea1947;
-    --product-green: #128641;
-    --product-purple: #92479a;
-    --product-orange: #f05b32;
+    --vaz-blue-pastel: #ECEFF4; /* top text area bg, other sections */
+
+  /* BRANDS */
+
+  /* Raz-kids product dark-blue */
+  --product-dark-blue: #005cb9;
+  --rk-blue: #D9E7F5; /* section bg */
+  --cta-thin: #ECEFF4; /* cta bg */
+  --rk-blue-dark: #1E7DDD; /* cta button bg, white btn txt, hover transp. */
+  --faq-blue: #093567; /* FAQ */
+  --dark-blue: #005CB9; /* headlines, top btn bg */
+  --gradient-rad-blue: radial-gradient(ellipse at center bottom, var(--rk-blue-dark), var(--product-dark-blue), var(--product-dark-blue));
+
+  /* Raz-plus berry */
+  --product-berry: #c83192;
+  --light-pink: #F1CBE4;
+  --gradient-rad-berry: radial-gradient(ellipse at center bottom, var(--product-berry), var(--product-berry), var(--product-purple));
+
+  /* Reading a-z red, Resources */
+  --product-red: #E21D46;
+  --vaz-red-pastel: #FFCECB; /* section bg */
+  --gradient-rad-red: radial-gradient(ellipse at center, var(--white) 0%, var(--light-red) 0%, #e21f48 60%, var(--product-red) 100%);
+  --gradient-lin-red: linear-gradient(var(--light-red), var(--product-red), var(--dark-blue));
+
+  /* Foundations a-z navy */
+  --product-navy-blue: #0E4482;
+  --gradient-rad-navy: radial-gradient(ellipse at center bottom, var(--product-berry), var(--product-purple), var(--product-navy-blue));
+  --gradient-lin-navy: linear-gradient(var(--product-navy-blue), var(--product-purple), var(--product-berry));
+
+/* Science a-z green */
+  --product-green: #128641; /* repeated */
+  --b-green: #419e66;
+  --gradient-rad-green: radial-gradient(ellipse at center bottom, var(--b-green), var(--b-green), var(--product-green));
+  --gradient-lin-green: linear-gradient(var(--b-green), var(--product-green), var(--b-green));
+
+  /* vocabulary a-z purple */
+  --product-purple: #904799;
+  --faz-purple: #5D2C8A; /* cta button */
+  --gradient-rad-purple: radial-gradient(ellipse at center bottom, var(--faz-purple), var(--product-purple), var(--faz-purple));
+  --gradient-lin-purple: linear-gradient(var(--faz-purple), var(--product-purple), var(--faz-purple));
+
+  /* writing a-z orange */
+  --product-orange: #f05b32;
+  --gradient-rad-orange: radial-gradient(ellipse at center bottom, var(--orange), var(--orange), var(--product-orange));
+  --gradient-lin-orange: linear-gradient(var(--orange), var(--orange), var(--product-orange));
+  --orange: #F48C21;
+
+/* yellow for what we do */
+  --rpe-gold: #D5A13D; /* use for What We Do pages still only 2.3 contrast */
+
+  /* laz-blue for blog */
+  --laz-blue: #00B3E2; /* mostly blog */
+  --blog-blue: #18a4ce; /* blog buttons contrast 2.9 */
 
   /* don't override user accessibility settings */
   forced-color-adjust: none;
@@ -108,23 +150,24 @@
 
   /* nav height */
   --nav-height: 90px;
-}
 
-/* fallback fonts */
-@font-face {
-  font-family: montserrat-normal-fallback;
-  size-adjust: 113%;
-  ascent-override: 93%;
-  descent-override: 12%;
-  line-gap-override: normal;
-  src: local("Arial");
-}
+  /* default button color theme is red */
+  --theme-btn-primary-border: var(--product-red);
+  --theme-btn-primary-bg: var(--product-red);
+  --theme-btn-primary-txt: var(--product-red);
+  --theme-btn-primary-border-hov: var(--product-red);
+  --theme-btn-primary-bg-hov: transparent;
+  --theme-btn-primary-txt-hov: var(--product-red);
+  --theme-btn-secondary-border: var(--product-red);
+  --theme-btn-secondary-bg: transparent;
+  --theme-btn-secondary-txt: var(--product-red);
+  --theme-btn-secondary-border-hov: var(--product-red);
+  --theme-btn-secondary-bg-hov: var(--product-red);
+  --theme-btn-secondary-txt-hov: var(--white);
+  --theme-table-head-txt: var(--white);
+  --theme-heading-color: var(--laz-logo-blue);
+} /* end root */
 
-@font-face {
-  font-family: solway-normal-fallback;
-  size-adjust: 113.741%;
-  src: local("Arial");
-}
 
 *, ::before, ::after {
   box-sizing: border-box;
@@ -145,7 +188,7 @@ img {
 body {
   display: none;
   margin: 0;
-  background-color: var(--background-color);
+  background-color: var(--white);
   color: var(--text-color);
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-s);
@@ -211,6 +254,10 @@ h3 {
 
 .center {
   text-align: center;
+
+  li {
+    text-align: left;
+  }
 }
 
 p,
@@ -240,18 +287,7 @@ pre {
   white-space: pre;
 }
 
-main {
-  margin-bottom: 50px;
-}
-
-main > div > div:not(.bg-image-container) {
-  margin: 40px 16px;
-}
-
-input,
-textarea,
-select,
-button {
+input, textarea, select, button {
   font: inherit;
 }
 
@@ -290,13 +326,6 @@ a:hover {
   text-wrap: auto;
 }
 
-.button.secondary:hover,
-.button.secondary.textcolor-red:hover,
-.button.secondary.textcolor-theme:hover {
-    background-color: var(--product-red);
-    color: var(--white);
-}
-
 /* Buttons Container */
 .buttons-container {
   display: flex;
@@ -328,12 +357,12 @@ sup, sub{
       display: none;
     }
 
-    &a{
-      color: var(--waz-blue);
+    & a {
+      color: var(--product-dark-blue);
     }
   }
 
-  a{
+  a {
     margin: 0;
   }
 }
@@ -364,7 +393,7 @@ nav li {
 
 .breadcrumbs-outer {
   grid-area: breadcrumb;
-  background-color: var(--navy-blue);
+  background-color: var(--product-navy-blue);
 
   .breadcrumbs-container {
     margin: 0 auto;
@@ -396,456 +425,462 @@ nav li {
   background-color: var(--gray);
 }
 
+main {
+  margin-bottom: 50px;
+
+  .breadcrumbs-outer {
+    background-color: var(--theme-breadcrumbs-bg);
+  }
+
+  a, a:any-link {
+    color: var(--theme-link-color);
+  }
+
+  h1,h2, h3, h4, h5, h6 {
+    color: var(--theme-heading-color);
+  }
+
+  .table table th {
+    background-color: var(--theme-table-head-bg);
+    color: var(--theme-table-head-txt);
+  }
+
+  .accordion.round .accordion-item-label {
+    border: 2px solid var(--theme-accordion-border);
+  }
+
+  .accordion.round details summary {
+    color: var(--theme-accordion-txt);
+  }
+
+  .cards.circle-image .card picture {
+    background-color: var(--theme-cards-circle-bg);
+  }
+}
+
+main > div > div:not(.bg-image-container) {
+  margin: 40px 16px;
+}
+
 /*********
 THEMES
 *********/
 
-body.purple main {
-  .breadcrumbs-outer {
-    background-color: var(--purple);
-  }
+/* default theme */
 
-  a,h2, h3, h4, h5, h6, a:any-link {
-    color: var(--purple);
+/* default button colors inherit the theme */
+.button.primary, .button.primary.bg-theme {
+  color: var(--white);
+  background-color: var(--theme-btn-primary-bg);
+  border-color: var(--theme-btn-primary-border);
+
+  &:hover {
+    color: var(--theme-btn-primary-txt-hov);
+    background-color: var(--theme-btn-primary-bg-hov);
+    border-color: var(--theme-btn-primary-border-hov);
+  }
+}
+
+.button.secondary, .button.primary.bg-theme {
+  color: var(--theme-btn-secondary-txt);
+  border-color: var(--theme-btn-secondary-border);
+  background-color: var(--theme-btn-secondary-bg);
+
+  &:hover {
+    color: var(--theme-btn-secondary-txt-hov);
+    border-color: var(--theme-btn-secondary-border-hov);
+    background-color: var(--theme-btn-secondary-bg-hov);
+  }
+}
+
+[data-theme] { /* section bg colors all have these items white */
+  --theme-heading-color: var(--white);
+  --theme-link-color: var(--white);
+  --theme-txt: var(--white);
+  --theme-btn-primary-border: var(--white);
+  --theme-btn-primary-bg: var(--white);
+  --theme-btn-primary-border-hov: var(--white);
+  --theme-btn-primary-bg-hov: transparent;
+  --theme-btn-primary-txt-hov: var(--white);
+  --theme-btn-secondary-border: var(--white);
+  --theme-btn-secondary-bg: transparent;
+  --theme-btn-secondary-txt: var(--white);
+  --theme-btn-secondary-bg-hov: var(--white);
+  --theme-btn-secondary-border-hov: var(--white);
+
+  background-color: var(--theme-bg);
+    color: var(--theme-txt);
+
+  a:not(.button) {
+    text-decoration: underline;
   }
 
   .button.primary {
-    color: var(--white);
-    background-color: var(--purple);
-    border-color: var(--purple);
+    color: var(--theme-btn-primary-txt);
 
     &:hover {
-      color: var(--purple);
-      background-color: transparent;
-      border-color: var(--purple);
+      color: var(--theme-btn-primary-txt-hov);
+      background-color: var(--theme-btn-primary-bg-hov);
+        border-color: var(--theme-btn-primary-border-hov);
+    }
+
+    .button.secondary {
+        color: var(--white);
+        border-color: var(--white);
+        background-color: var(--theme-btn-secondary-bg);
+
+        &:hover {
+            background-color: var(--theme-btn-secondary-bg-hov);
+            color: var(--theme-btn-secondary-txt-hov);
+          border-color: var(--theme-btn-secondary-bg-hov);
+        }
     }
   }
 
-  .button.secondary {
-    color: var(--purple);
-    border-color: var(--purple);
-    background-color: transparent;
+  &:has(.inner) {
+    background-color: unset;
 
-    &:hover {
-      background-color: var(--purple);
-      color: var(--white);
-      border-color: var(--purple);
+    .section.inner {
+      background-color: var(--theme-bg);
+      border-radius: 50px;
+      margin: 50px auto;
     }
   }
+}
 
-  .table table th {
-    background-color: var(--purple);
-    }
+.dark-blue main {
+  --theme-breadcrumbs-bg: var(--product-dark-blue);
+  --theme-heading-color: var(--laz-logo-blue);
+  --theme-link-color: var(--product-dark-blue);
+  --theme-btn-primary-border: var(--product-dark-blue);
+  --theme-btn-primary-bg: var(--product-dark-blue);
+  --theme-btn-primary-border-hov: var(--product-dark-blue);
+  --theme-btn-primary-txt-hov: var(--product-dark-blue);
+  --theme-btn-secondary-border: var(--product-dark-blue);
+  --theme-btn-secondary-txt: var(--product-dark-blue);
+  --theme-btn-secondary-border-hov: var(--product-dark-blue);
+  --theme-btn-secondary-bg-hov: var(--product-dark-blue);
+  --theme-table-head-bg: var(--product-dark-blue);
+  --theme-accordion-border: var(--product-dark-blue);
+  --theme-accordion-txt: var(--product-dark-blue);
+  --theme-cards-circle-bg: var(--product-dark-blue);
+}
+
+[data-theme="dark-blue"] {
+  --theme-bg: var(--product-dark-blue);
+  --theme-btn-primary-txt: var(--product-dark-blue);
+  --theme-btn-secondary-txt-hov: var(--product-dark-blue);
+}
+
+.berry main {
+  --theme-breadcrumbs-bg: var(--product-berry);
+  --theme-heading-color: var(--product-berry);
+  --theme-link-color: var(--product-berry);
+  --theme-btn-primary-border: var(--product-berry);
+  --theme-btn-primary-bg: var(--product-berry);
+  --theme-btn-primary-border-hov: var(--product-berry);
+  --theme-btn-primary-txt-hov: var(--product-berry);
+  --theme-btn-secondary-border: var(--product-berry);
+  --theme-btn-secondary-txt: var(--product-berry);
+  --theme-btn-secondary-border-hov: var(--product-berry);
+  --theme-btn-secondary-bg-hov: var(--product-berry);
+  --theme-table-head-bg: var(--product-berry);
+  --theme-accordion-border: var(--product-berry);
+  --theme-accordion-txt: var(--product-berry);
+  --theme-cards-circle-bg: var(--product-berry);
+}
+
+[data-theme="berry"], [data-theme="berry-gradient"] {
+  --theme-bg: var(--product-berry);
+  --theme-btn-primary-txt: var(--product-berry);
+  --theme-btn-secondary-txt-hov: var(--product-berry);
+}
+
+.red main {
+  --theme-breadcrumbs-bg: var(--product-red);
+  --theme-heading-color: var(--product-red);
+  --theme-link-color: var(--product-red);
+  --theme-table-head-bg: var(--product-red);
+  --theme-accordion-border: var(--product-red);
+  --theme-accordion-txt: var(--product-red);
+  --theme-cards-circle-bg: var(--product-red);
+  --theme-btn-secondary-txt-hov: var(--product-red);
+}
+
+[data-theme="red"] {
+  --theme-bg: var(--product-red);
+  --theme-btn-primary-txt: var(--product-red);
+  --theme-btn-secondary-txt-hov: var(--product-red);
+}
+
+.navy main {
+  --theme-breadcrumbs-bg: var(--product-navy-blue);
+  --theme-heading-color: var(--laz-logo-blue);
+  --theme-link-color: var(--product-navy-blue);
+  --theme-btn-primary-border: var(--product-navy-blue);
+  --theme-btn-primary-bg: var(--product-navy-blue);
+  --theme-btn-primary-border-hov: var(--product-navy-blue);
+  --theme-btn-primary-txt-hov: var(--product-navy-blue);
+  --theme-btn-secondary-border: var(--product-navy-blue);
+  --theme-btn-secondary-txt: var(--product-navy-blue);
+  --theme-btn-secondary-border-hov: var(--product-navy-blue);
+  --theme-btn-secondary-bg-hov: var(--product-navy-blue);
+  --theme-table-head-bg: var(--product-navy-blue);
+  --theme-accordion-border: var(--product-navy-blue);
+  --theme-accordion-txt: var(--product-navy-blue);
+  --theme-cards-circle-bg: var(--product-navy-blue);
+}
+
+[data-theme="navy"] {
+  --theme-bg: var(--product-navy-blue);
+  --theme-btn-primary-txt: var(--product-navy-blue);
+  --theme-btn-secondary-txt-hov: var(--product-navy-blue);
+}
+
+.green main {
+  --theme-breadcrumbs-bg: var(--product-green);
+  --theme-heading-color: var(--product-green);
+  --theme-link-color: var(--product-green);
+  --theme-btn-primary-border: var(--product-green);
+  --theme-btn-primary-bg: var(--product-green);
+  --theme-btn-primary-border-hov: var(--product-green);
+  --theme-btn-primary-txt-hov: var(--product-green);
+  --theme-btn-secondary-border: var(--product-green);
+  --theme-btn-secondary-txt: var(--product-green);
+  --theme-btn-secondary-border-hov: var(--product-green);
+  --theme-btn-secondary-bg-hov: var(--product-green);
+  --theme-table-head-bg: var(--product-green);
+  --theme-accordion-border: var(--product-green);
+  --theme-accordion-txt: var(--product-green);
+  --theme-cards-circle-bg: var(--product-green);
+}
+
+[data-theme="green"] {
+  --theme-bg: var(--product-green);
+  --theme-btn-primary-txt: var(--product-green);
+  --theme-btn-secondary-txt-hov: var(--product-green);
+}
+
+.purple main {
+  --theme-breadcrumbs-bg: var(--product-purple);
+  --theme-heading-color: var(--laz-logo-blue);
+  --theme-link-color: var(--product-purple);
+  --theme-btn-primary-border: var(--product-purple);
+  --theme-btn-primary-bg: var(--product-purple);
+  --theme-btn-primary-border-hov: var(--product-purple);
+  --theme-btn-primary-txt-hov: var(--product-purple);
+  --theme-btn-secondary-border: var(--product-purple);
+  --theme-btn-secondary-txt: var(--product-purple);
+  --theme-btn-secondary-border-hov: var(--product-purple);
+  --theme-btn-secondary-bg-hov: var(--product-purple);
+  --theme-table-head-bg: var(--product-purple);
+  --theme-accordion-border: var(--product-purple);
+  --theme-accordion-txt: var(--product-purple);
+  --theme-cards-circle-bg: var(--product-purple);
 
   .news-filter-container, .reviews-filter-container {
     h3, a, p>strong, strong>p {
-      color: var(--purple);
+      color: var(--product-purple);
       margin: 0;
     }
   }
-
-  .accordion.round .accordion-item-label {
-    border: 2px solid var(--purple);
-  }
-
-  .accordion.round details summary {
-    color: var(--purple);
-  }
-
-  .cards.circle-image .card picture {
-    background-color: var(--purple);
-  }
 }
 
-[data-theme="purple"]:not([data-background]) {
-  background-color: var(--purple);
-  color: var(--white);
-
-  a:not(.button) {
-    text-decoration: underline;
-  }
-
-  h1, h2, h3, h4, h5, h6, a:any-link {
-    color: var(--white);
-  }
-
-  .button.primary.bgcolor-theme {
-    background-color: var(--white);
-    border-color: var(--white);
-    color: var(--purple);
-
-    &:hover {
-      color: var(--white);
-      background-color: var(--purple);
-    }
-  }
-
-  .button.secondary.textcolor-theme {
-    color: var(--white);
-    border-color: var(--white);
-
-    &:hover {
-      background-color: var(--white);
-      color: var(--purple);
-    }
-  }
-
-  &:has(.inner) {
-    background-color: var(--white);
-
-    .section.inner {
-      background-color: var(--purple);
-    }
-  }
+[data-theme="purple"] {
+  --theme-bg: var(--product-purple);
+  --theme-btn-primary-txt: var(--product-purple);
+  --theme-btn-secondary-txt-hov: var(--product-purple);
 }
 
-[data-theme="light-blue"]:not([data-background]) {
-  background-color: var(--sky-blue);
-
-  a:not(.button) {
-    text-decoration: underline;
-  }
-
-  &:has(.inner) {
-    background-color: var(--white);
-
-    .section.inner {
-      background-color: var(--sky-blue);
-    }
-  }
+.orange main {
+  --theme-breadcrumbs-bg: var(--product-orange);
+  --theme-heading-color: var(--product-orange);
+  --theme-link-color: var(--product-orange);
+  --theme-btn-primary-border: var(--product-orange);
+  --theme-btn-primary-bg: var(--product-orange);
+  --theme-btn-primary-border-hov: var(--product-orange);
+  --theme-btn-primary-txt-hov: var(--product-orange);
+  --theme-btn-secondary-border: var(--product-orange);
+  --theme-btn-secondary-txt: var(--product-orange);
+  --theme-btn-secondary-border-hov: var(--product-orange);
+  --theme-btn-secondary-bg-hov: var(--product-orange);
+  --theme-table-head-bg: var(--product-orange);
+  --theme-accordion-border: var(--product-orange);
+  --theme-accordion-txt: var(--product-orange);
+  --theme-cards-circle-bg: var(--product-orange);
 }
 
-[data-theme="gray"]:not([data-background]) {
-    background-color: var(--gray);
-
-  &:has(.inner) {
-    background-color: var(--white);
-
-    .section.inner {
-      background-color: var(--gray);
-    }
-  }
+[data-theme="orange"] {
+  --theme-bg: var(--product-orange);
+  --theme-btn-primary-txt: var(--product-orange);
+  --theme-btn-secondary-txt-hov: var(--product-orange);
 }
 
-body.laz-blue main {
-  .breadcrumbs-outer {
-    background-color: var(--laz-blue);
-  }
-
-  h3, a {
-    color: var(--laz-logo-blue);
-  }
-
-  h2 {
-    color: var(--laz-logo-blue);
-  }
-
-  .table table th {
-    background-color: var(--laz-blue);
-    }
-
-  .accordion.round .accordion-item-label {
-    border: 2px solid var(--laz-blue);
-  }
-
-  .accordion.round details summary {
-    color: var(--laz-blue);
-  }
-
-    .cards.circle-image .card picture {
-      background-color: var(--laz-blue);
-    }
-
-  .button.primary {
-    color: var(--white);
-    background-color: var(--laz-blue);
-    border-color: var(--laz-blue);
-
-    &:hover {
-      color: var(--laz-blue);
-      background-color: transparent;
-      border-color: var(--laz-blue);
-    }
-  }
-
-  .button.secondary {
-    color: var(--laz-blue);
-    border-color: var(--laz-blue);
-    background-color: transparent;
-
-    &:hover {
-      background-color: var(--laz-blue);
-      color: var(--white);
-      border-color: var(--laz-blue);
-    }
-  }
+.gold main {
+  --theme-breadcrumbs-bg: var(--rpe-gold);
+  --theme-heading-color: var(--laz-logo-blue);
+  --theme-link-color: var(--rpe-gold);
+  --theme-btn-primary-border: var(--rpe-gold);
+  --theme-btn-primary-bg: var(--rpe-gold);
+  --theme-btn-primary-border-hov: var(--rpe-gold);
+  --theme-btn-primary-txt: var(--laz-logo-blue);
+  --theme-btn-primary-txt-hov: var(--rpe-gold);
+  --theme-btn-secondary-border: var(--rpe-gold);
+  --theme-btn-secondary-txt: var(--rpe-gold);
+  --theme-btn-secondary-border-hov: var(--rpe-gold);
+  --theme-btn-secondary-bg-hov: var(--rpe-gold);
+  --theme-table-head-bg: var(--rpe-gold);
+  --theme-accordion-border: var(--rpe-gold);
+  --theme-accordion-txt: var(--rpe-gold);
+  --theme-cards-circle-bg: var(--rpe-gold);
 }
 
-
-[data-theme="laz-blue"]:not([data-background]) {
-  background-color: var(--laz-blue);
-  color: var(--white);
-
-  h4 {
-    color: inherit;
-    font-weight: var(--font-weight-medium);
-    font-size: var(--body-font-size-m);
-    }
-
-  a:not(.button)  {
-    text-decoration: underline;
-  }
-
-    h1, h2, h3, h4, h5, h6, a:any-link  {
-      color: var(--white);
-    }
-
-  &:has(.inner) {
-    background-color: var(--white);
-
-    .section.inner {
-      background-color: var(--laz-blue);
-    }
-  }
+[data-theme="gold"] {
+  --theme-bg: var(--rpe-gold);
+  --theme-txt: var(--text-color);
+  --theme-heading-color: var(--laz-logo-blue);
+  --theme-btn-primary-txt: var(--rpe-gold);
+  --theme-btn-secondary-txt-hov: var(--rpe-gold);
 }
 
-body.red main {
-  .breadcrumbs-outer {
-    background-color: var(--red);
-  }
-
-  .related-posts :is(h3, a, a:hover) {
-    color: var(--red);
-  }
-
-  h3, .card h3 {
-    color: var(--red);
-  }
-
-  a {
-    color: var(--red);
-  }
-
-  .table table th {
-    background-color: var(--red);
-    }
-
-  .accordion.round .accordion-item-label {
-    border: 2px solid var(--red);
-  }
-
-  .accordion.round details summary {
-    color: var(--red);
-  }
-
-    .cards.circle-image .card picture {
-      background-color: var(--red);
-    }
+.laz-blue main {
+  --theme-breadcrumbs-bg: var(--laz-blue);
+  --theme-heading-color: var(--laz-logo-blue);
+  --theme-link-color: var(--laz-blue);
+  --theme-btn-primary-border: var(--blog-blue);
+  --theme-btn-primary-bg: var(--blog-blue);
+  --theme-btn-primary-border-hov: var(--blog-blue);
+  --theme-btn-primary-txt-hov: var(--blog-blue);
+  --theme-btn-secondary-border: var(--blog-blue);
+  --theme-btn-secondary-txt: var(--blog-blue);
+  --theme-btn-secondary-border-hov: var(--blog-blue);
+  --theme-btn-secondary-bg-hov: var(--blog-blue);
+  --theme-table-head-bg: var(--blog-blue);
+  --theme-accordion-border: var(--laz-blue);
+  --theme-accordion-txt: var(--laz-blue);
+  --theme-cards-circle-bg: var(--laz-blue);
 }
 
-[data-theme="red"]:not([data-background]) {
-  .button.primary {
-    background-color: var(--red);
-    border-color: var(--red);
-    color: var(--white);
-
-    &:hover {
-      color: var(--red);
-      border-color: var(--red);
-    }
-  }
-
-  &:has(.inner) {
-    background-color: var(--white);
-
-    .section.inner {
-      background-color: var(--red);
-    }
-  }
+[data-theme="laz-blue"] {
+  --theme-bg: var(--laz-blue);
+  --theme-btn-primary-txt: var(--laz-blue);
+  --theme-btn-secondary-txt-hov: var(--laz-blue);
 }
 
-body.yellow main {
-  .breadcrumbs-outer {
-    background-color: var(--yellow);
-  }
-
-  .table table th {
-    background-color: var(--yellow);
-    }
-
-    .cards.circle-image .card picture {
-      background-color: var(--yellow);
-    }
-
-  .accordion.round .accordion-item-label {
-    border: 2px solid var(--yellow);
-  }
-
-  .accordion.round details summary {
-    color: var(--yellow);
-  }
-
-  h3, a {
-    color: var(--yellow);
-  }
-
-  /* secondary button colors */
-  .button.secondary {
-    color: var(--yellow) !important;
-    border-color: var(--yellow) !important;
-
-    &:hover {
-      color: black;
-      border-color: black;
-    }
-  }
+[data-theme="light-blue"] {
+  --theme-bg: var(--sky-blue);
+  --theme-txt: var(--text-color);
+  --theme-heading-color: var(--laz-logo-blue);
+  --theme-link-color: var(--laz-logo-blue);
+  --theme-btn-primary-bg: var(--laz-logo-blue);
+  --theme-btn-primary-border: var(--laz-logo-blue);
+  --theme-btn-primary-txt: var(--gray);
+  --theme-btn-primary-border-hov: var(--laz-logo-blue);
+  --theme-btn-primary-txt-hov: var(--laz-logo-blue);
+  --theme-btn-secondary-border: var(--laz-logo-blue);
+  --theme-btn-secondary-bg: var(--sky-blue);
+  --theme-btn-secondary-txt: var(--laz-logo-blue);
+  --theme-btn-secondary-border-hov: var(--laz-logo-blue);
+  --theme-btn-secondary-bg-hov: var(--laz-logo-blue);
+  --theme-table-head-bg: var(--laz-logo-blue);
 }
 
-[data-theme="yellow"]:not([data-background]) {
-  background-color: var(--yellow);
-
-  .breadcrumbs-outer {
-    background-color: var(--yellow);
-  }
-
-  a:not(.button) {
-    color: var(--text-color);
-    text-decoration: underline;
-  }
-
-  &:has(.inner) {
-    background-color: var(--white);
-
-    .section.inner {
-      background-color: var(--yellow);
-    }
-  }
+[data-theme="gray"]  {
+  --theme-bg: var(--gray);
+  --theme-txt: var(--text-color);
+  --theme-heading-color: var(--laz-logo-blue);
+  --theme-link-color: var(--laz-logo-blue);
+  --theme-btn-primary-bg: var(--laz-logo-blue);
+  --theme-btn-primary-border: var(--laz-logo-blue);
+  --theme-btn-primary-txt: var(--gray);
+  --theme-btn-primary-border-hov: var(--laz-logo-blue);
+  --theme-btn-primary-txt-hov: var(--laz-logo-blue);
+  --theme-btn-secondary-border: var(--laz-logo-blue);
+  --theme-btn-secondary-bg: var(--gray);
+  --theme-btn-secondary-txt: var(--laz-logo-blue);
+  --theme-btn-secondary-border-hov: var(--laz-logo-blue);
+  --theme-btn-secondary-bg-hov: var(--laz-logo-blue);
+  --theme-table-head-bg: var(--laz-logo-blue);
 }
 
-body.berry main {
-  & h3, a {
-    color: var(--product-berry);
-  }
+[data-theme="red-pastel"] {
+  --theme-bg: var(--vaz-red-pastel);
+  --theme-text: var(--text-color);
+  --theme-heading-color: var(--laz-logo-blue);
 
-  .breadcrumbs-outer {
-    background-color: var(--product-berry);
-  }
-
-  .table table th {
-    background-color: var(--product-berry);
-  }
+  color: var(--text-color);
 }
 
 [data-theme="pink"] {
-  background-color: var(--light-pink);
+  --theme-bg: var(--light-pink);
+  --theme-heading-color: var(--product-berry);
+  --theme-link-color: var(--laz-logo-blue);
+  --theme-btn-primary-txt: var(--white);
+  --theme-btn-primary-border: var(--product-berry);
+  --theme-btn-primary-bg: var(--product-berry);
+  --theme-btn-primary-border-hov: var(--product-berry);
+  --theme-btn-primary-txt-hov: var(--product-berry);
+  --theme-btn-secondary-border: var(--product-berry);
+  --theme-btn-secondary-bg: var(--light-pink);
+  --theme-btn-secondary-txt: var(--product-berry);
+  --theme-btn-secondary-border-hov: var(--product-berry);
+  --theme-btn-secondary-bg-hov: var(--product-berry);
+  --theme-table-head-bg: var(--product-berry);
 
-  .button.primary.bgcolor-theme {
-    background-color: var(--product-berry);
-    border-color: var(--product-berry);
-
-    &:hover {
-      color: var(--product-berry);
-      background-color: var(--white);
-      border-color: var(--product-berry);
-    }
-  }
-
-  .button.secondary.textcolor-theme {
-    border-color: var(--product-berry);
-    color: var(--product-berry);
-
-    &:hover {
-      background-color: var(--product-berry);
-      color: var(--white);
-    }
-  }
+  color: var(--text-color);
 
   &:has(.inner) {
-    background-color: var(--white);
-
     .section.inner {
       background-color: var(--light-pink);
     }
   }
 }
 
-body main [data-theme="berry"], body main [data-theme="berry-gradient"] {
-  h2, h3, h4, h5, h6, p, li, a:any-link {
-    color: var(--white);
-  }
-
-  .section h1 {
-    color: var(--white);
-  }
-
-  .button.primary.bgcolor-theme {
-    background-color: var(--white);
-    border-color: var(--white);
-    color: var(--product-berry);
-
-    &:hover {
-      color: var(--white);
-      background-color: var(--product-berry);
-    }
-  }
-
-  .button.secondary.textcolor-theme {
-    color: var(--white);
-    border-color: var(--white);
-
-    &:hover {
-      background-color: var(--white);
-      color: var(--product-berry);
-    }
-  }
-
-  a:not(.button) {
-    text-decoration: underline;
-  }
+[data-theme="gradient-lin-red"]:has(+ :not(.section.inner)) {
+  background: var(--gradient-lin-red);
 }
 
-[data-theme="berry"]:has(+ :not(.section.inner)) {
-  background-color: var(--product-berry);
+[data-theme="gradient-rad-red"]:has(+ :not(.section.inner)) {
+  background: var(--gradient-rad-red);
 }
 
-[data-theme="berry-gradient"]:has(+ :not(.section.inner)) {
-  /* background-color: var(--product-berry); */
-  background: radial-gradient(ellipse at center bottom, var(--product-berry), var(--product-berry), var(--product-purple));
-}
-
-[data-theme="berry"]:has(.section.inner) {
+[data-theme="gradient-lin-red"]:has(.section.inner) {
   background: none;
 
   .section.inner {
-    background-color: var(--product-berry);
-    border-radius: 50px;
-    padding: 60px;
-    margin: 50px auto;
+    background: var(--gradient-lin-red);
 
     &:has(.bg-image-container) {
       padding: 0;
+
+      h1 {
+        margin-top: 0;
+      }
 
       .bg-image-container {
         padding: 60px;
       }
     }
   }
+}
 
-  .section.short {
-    padding: 15px;
-  }
+
+[data-theme="berry-gradient"]:has(+ :not(.section.inner)) {
+  background: var(--gradient-rad-berry);
 }
 
 [data-theme="berry-gradient"]:has(.section.inner) {
   background: none;
 
   .section.inner {
-    background: radial-gradient(ellipse at center bottom, var(--product-berry), var(--product-berry), var(--product-purple));
-    border-radius: 50px;
-    margin: 50px auto;
+    background: var(--gradient-rad-berry);
 
     &:has(.bg-image-container) {
       padding: 0;
+
+      h1 {
+        margin-top: 0;
+      }
 
       .bg-image-container {
         padding: 60px;
@@ -854,179 +889,192 @@ body main [data-theme="berry"], body main [data-theme="berry-gradient"] {
   }
 }
 
-body.orange-red main {
-  .breadcrumbs-outer {
-    background-color: var(--orange-red);
-  }
-
-  .button.primary {
-    border-color: var(--orange-red);
-    color: var(--orange-red);
-  }
-
-  .button.secondary {
-    background-color: var(--white);
-    border-color: var(--orange-red);
-    color: var(--orange-red);
-  }
-
-  a {
-    color: var(--orange-red);
-  }
-
-  h2 {
-    color: var(--orange-red);
-  }
-
-  .table table th {
-    background-color: var(--orange-red);
-  }
-
-  .accordion.round .accordion-item-label {
-    border: 2px solid var(--orange-red);
-  }
-
-  .accordion.round details summary {
-    color: var(--orange-red);
-  }
-
-  .cards.circle-image .card picture {
-    background-color: var(--orange-red);
-  }
-}
-
-[data-theme="orange-red"]:not([data-background]) {
-  & .section.inner, & .section{
-    padding: 40px;
-    background-color: var(--orange-red);
-  }
-
-  background-color: var(--orange-red);
-
-  .button.primary.bgcolor-theme {
-    background-color: var(--white);
-    border-color: var(--white);
-    color: var(--orange-red);
-
-    &:hover {
-      color: var(--white);
-      background-color: var(--orange-red);
-    }
-  }
-
-  .button.secondary.textcolor-theme {
-    color: var(--white);
-    border-color: var(--white);
-
-    &:hover {
-      background-color: var(--white);
-      color: var(--orange-red);
-    }
-  }
-
-  h3 {
-    color: var(--white);
-  }
-
-  &:has(.inner) {
-    background-color: var(--white);
-
-    .section.inner {
-      background-color: var(--orange-red);
-    }
-  }
-}
-
   /* end themes */
+
+/* custom overrides for H1 - H3 text color */
+
+/* custom backgound colors for when in a P tag by itself */
+
+.bg-dark-blue, .bg-navy, .bg-red, .bg-berry, .bg-orange, .bg-purple, .bg-green, .bg-laz-blue {
+  padding: 10px;
+  color: var(--white);
+}
+
+.bg-gray {
+  padding: 10px;
+  background: var(--gray);
+}
+
+.bg-dark-blue {
+  background-color: var(--product-dark-blue);
+}
+
+:is(h1, h2, h3, h4).dark-blue {
+  color: var(--product-dark-blue);
+}
+
+.bg-berry {
+  background-color: var(--product-berry);
+}
+
+:is(h1, h2, h3, h4).berry {
+  color: var(--product-berry);
+}
+
+.bg-navy {
+  background-color: var(--product-navy-blue);
+}
+
+:is(h1, h2, h3, h4).navy {
+  color: var(--product-navy-blue);
+}
+
+.bg-red {
+  background-color: var(--product-red);
+  color: var(--white);
+  padding: 10px;
+}
+
+:is(h1, h2, h3, h4).red {
+  color: var(--product-red);
+}
+
+.bg-orange {
+  background-color: var(--product-orange);
+  color: var(--white);
+  padding: 10px;
+}
+
+:is(h1, h2, h3, h4).orange {
+  color: var(--product-orange);
+}
+
+.bg-purple {
+  background-color: var(--product-purple);
+  color: var(--white);
+  padding: 10px;
+}
+
+:is(h1, h2, h3, h4).purple {
+  color: var(--product-purple);
+}
+
+.bg-green {
+  background-color: var(--product-green);
+  color: var(--white);
+  padding: 10px;
+}
+
+:is(h1, h2, h3, h4).green {
+  color: var(--product-green);
+}
 
 /* primary button colors */
 
 .button.primary {
-  &.bgcolor-red, &.bgcolor-theme {
-    background-color: var(--red);
-    border-color: var(--red);
-    color: var(--white);
+  &.bgcolor-red {
+    background-color: var(--product-red);
+    border-color: var(--product-red);
 
     &:hover {
-      color: var(--red);
-      border-color: var(--red);
+      color: var(--product-red);
+      border-color: var(--product-red);
+      background-color: var(--theme-btn-primary-bg-hov);
     }
   }
 
   &.bgcolor-berry {
     background-color: var(--product-berry);
     border-color: var(--product-berry);
-    color: var(--white);
 
     &:hover {
       color: var(--product-berry);
       border-color: var(--product-berry);
+      background-color: var(--theme-btn-primary-bg-hov);
     }
   }
 
   &.bgcolor-gold {
-    background-color: var(--gold);
-    border-color: var(--gold);
+    background-color: var(--rpe-gold);
+    border-color: var(--rpe-gold);
 
     &:hover {
-      color: var(--gold);
-      border-color: var(--gold);
+      color: var(--rpe-gold);
+      border-color: var(--rpe-gold);
+      background-color: var(--theme-btn-primary-bg-hov);
     }
   }
 
-  &.bgcolor-light-blue {
-    background-color: var(--faz-light-blue);
-    border-color: var(--faz-light-blue);
+  &.bgcolor-bright-yellow {
+    background-color: var(--bright-yellow);
+    border-color: var(--bright-yellow);
 
     &:hover {
-      color: var(--faz-light-blue);
-      border-color: var(--faz-light-blue);
+      color: var(--bright-yellow);
+      border-color: var(--bright-yellow);
+      background-color: var(--theme-btn-primary-bg-hov);
     }
   }
 
-  &.bgcolor-royal-blue {
-    background-color: var(--navy-blue);
-    border-color: var(--navy-blue);
+
+  &.bgcolor-laz-blue {
+    background-color: var(--blog-blue);
+    border-color: var(--blog-blue);
 
     &:hover {
-      color: var(--navy-blue);
-      border-color: var(--navy-blue);
+      color: var(--blog-blue);
+      border-color: var(--blog-blue);
+      background-color: var(--theme-btn-primary-bg-hov);
+    }
+  }
+
+  &.bgcolor-navy {
+    background-color: var(--product-navy-blue);
+    border-color: var(--product-navy-blue);
+
+    &:hover {
+      color: var(--product-navy-blue);
+      border-color: var(--product-navy-blue);
+      background-color: var(--theme-btn-primary-bg-hov);
     }
   }
 
   &.bgcolor-green {
-    background-color: var(--green);
-    border-color: var(--green);
-    color: var(--white);
+    background-color: var(--product-green);
+    border-color: var(--product-green);
 
     &:hover {
-      color: var(--green);
-      border-color: var(--green);
+      color: var(--product-green);
+      border-color: var(--product-green);
+      background-color: var(--theme-btn-primary-bg-hov);
+    }
+  }
+
+  &.bgcolor-purple {
+    background-color: var(--product-purple);
+    border-color: var(--product-purple);
+
+    &:hover {
+      color: var(--product-purple);
+      border-color: var(--product-purple);
+      background-color: var(--theme-btn-primary-bg-hov);
     }
   }
 
   &.textcolor-black {
     color: var(--laz-black);
+    border-color: var(--laz-black);
 
     &:hover {
+      color: var(--laz-black);
+      border-color: var(--laz-black);
       background-color: var(--laz-black);
     }
   }
-
-  &.textcolor-white {
-    color: var(--white);
-
-    &:hover {
-      background-color: var(--white);
-    }
-  }
-
-  &:hover {
-    background-color: var(--white);
-  }
 }
 
-/* end primary button colors */
+/* end primary button colors
+ Start secondary button colors */
 
 a.button.secondary,
 button.secondary {
@@ -1034,67 +1082,114 @@ button.secondary {
   border: 2px solid;
 }
 
-/* secondary button colors */
+.button.secondary.textcolor-laz-blue {
+  color: var(--blog-blue);
+  border-color: var(--blog-blue);
 
-.button.secondary.textcolor-red,
-.button.secondary.textcolor-theme {
-  color: var(--product-red);
-  border-color: var(--product-red);
-
-  & :hover {
-    background-color: var(--product-red);
+  &:hover {
+    background-color: var(--blog-blue);
     color: var(--white);
+    border-color: var(--blog-blue);
   }
-}
-
-.button.secondary.textcolor-light-blue {
-  color: var(--faz-light-blue);
-  border-color: var(--faz-light-blue);
 }
 
 .button.secondary.textcolor-berry {
   color: var(--product-berry);
   border-color: var(--product-berry);
+
+  &:hover {
+    background-color: var(--product-berry);
+    border-color: var(--product-berry);
+    color: var(--white);
+  }
 }
 
-.button.secondary.textcolor-royal-blue {
-  color: var(--laz-logo-blue);
-  border-color: var(--laz-logo-blue);
-}
+.button.secondary.textcolor-navy, .button.secondary.textcolor-navy-blue {
+  color: var(--product-navy-blue);
+  border-color: var(--product-navy-blue);
 
-.button.secondary.textcolor-black {
-  color: var(--laz-black);
-  border-color: var(--laz-black);
+  &:hover {
+    background-color: var(--product-navy-blue);
+    color: var(--white);
+    border-color: var(--product-navy-blue);
+  }
 }
 
 .button.secondary.textcolor-gold {
-  color: var(--gold);
-  border-color: var(--gold);
+  color: var(--rpe-gold);
+  border-color: var(--rpe-gold);
+
+  &:hover {
+    background-color: var(--rpe-gold);
+    color: var(--white);
+    border-color: var(--rpe-gold);
+  }
+}
+
+.button.secondary.textcolor-bright-yellow {
+  color: var(--bright-yellow);
+  border-color: var(--bright-yellow);
+
+  &:hover {
+    background-color: var(--bright-yellow);
+    color: var(--product-red);
+    border-color: var(--bright-yellow);
+  }
 }
 
 .button.secondary.textcolor-dark-blue {
   color: var(--product-dark-blue);
   border-color: var(--product-dark-blue);
-}
 
-.button.secondary.textcolor-navy-blue {
-  color: var(--product-navy-blue);
-  border-color: var(--product-navy-blue);
+  &:hover {
+    background-color: var(--product-dark-blue);
+    color: var(--white);
+    border-color: var(--product-dark-blue);
+  }
 }
 
 .button.secondary.textcolor-orange {
   color: var(--product-orange);
   border-color: var(--product-orange);
+
+  &:hover {
+    background-color: var(--product-orange);
+    color: var(--white);
+    border-color: var(--product-orange);
+  }
 }
 
 .button.secondary.textcolor-purple {
   color: var(--product-purple);
   border-color: var(--product-purple);
+
+  &:hover {
+    background-color: var(--product-purple);
+    color: var(--white);
+    border-color: var(--product-purple);
+  }
 }
 
 .button.secondary.textcolor-green {
   color: var(--product-green);
   border-color: var(--product-green);
+
+  &:hover {
+    background-color: var(--product-green);
+    color: var(--white);
+    border-color: var(--product-green);
+  }
+}
+
+.button.secondary.textcolor-black {
+  color: var(--laz-black);
+  border-color: var(--laz-black);
+
+  &:hover {
+    background-color: var(--laz-black);
+    color: var(--white);
+    border-color: var(--laz-black);
+  }
 }
 
 /* end secondary button colors */
@@ -1142,6 +1237,10 @@ button.secondary {
 
     .section.short {
       padding: 10px 15px;
+
+      .columns:last-child > div {
+        padding-bottom: 0;
+      }
     }
   }
 
