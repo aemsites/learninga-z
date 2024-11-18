@@ -48,7 +48,17 @@ export default async function decorate(block) {
               while (fragment.firstElementChild) squareContent.append(fragment.firstElementChild);
             });
           } else {
-            squareContent.append(column);
+            const slide = document.createElement('div');
+            slide.classList.add('tab-content-container');
+            if (column.firstElementChild.firstElementChild.tagName.toLowerCase() === 'span') {
+              slide.append(column.firstElementChild.firstElementChild.firstElementChild);
+            } else if (column.firstElementChild.firstElementChild.tagName.toLowerCase() === 'picture') {
+              slide.append(column.firstElementChild.firstElementChild.children[3]);
+            }
+            slide.append(column.children[1].firstElementChild);
+            slide.append(column.children[2]);
+
+            squareContent.append(slide);
           }
           tabsContentContainer.append(squareContent);
         }

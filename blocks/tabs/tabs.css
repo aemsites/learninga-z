@@ -6,6 +6,14 @@
   flex-wrap: wrap;
 }
 
+.tab-square-content p {
+  position: relative;
+  margin: 0 0 10px;
+  width: 80%;
+  top: -50px;
+  text-align: center;
+}
+
 .tabs .tabs-list button {
   flex: 0 0 max-content;
   margin: 0;
@@ -79,6 +87,11 @@
   transition: filter 0.1s ease;
 }
 
+.tab-square-content img {
+  max-width: 40%;
+  max-height: 5em;
+}
+
 .tab-square.active img {
   filter: brightness(0) invert(1);
 }
@@ -106,6 +119,20 @@
   color: black;
 }
 
+.tab-content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tab-content-container .embed {
+  width: 650px;
+}
+
 .tab-square-content.active {
   display: block;
+}
+
+.tab-square-content .carousel {
+  width:660px;
 }
