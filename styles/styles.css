@@ -165,6 +165,7 @@
   --theme-btn-secondary-bg-hov: var(--product-red);
   --theme-btn-secondary-txt-hov: var(--white);
   --theme-table-head-txt: var(--white);
+  --theme-heading-color: var(--laz-logo-blue);
 } /* end root */
 
 
