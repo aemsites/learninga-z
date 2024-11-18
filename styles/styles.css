@@ -585,7 +585,7 @@ THEMES
   --theme-cards-circle-bg: var(--product-berry);
 }
 
-[data-theme="berry"] {
+[data-theme="berry"], [data-theme="berry-gradient"] {
   --theme-bg: var(--product-berry);
   --theme-btn-primary-txt: var(--product-berry);
   --theme-btn-secondary-txt-hov: var(--product-berry);
@@ -822,20 +822,21 @@ THEMES
 }
 
 [data-theme="berry-gradient"]:has(+ :not(.section.inner)) {
-  /* background-color: var(--product-berry); */
-  background: radial-gradient(ellipse at center bottom, var(--product-berry), var(--product-berry), var(--product-purple));
+  background: var(--gradient-rad-berry);
 }
 
 [data-theme="berry-gradient"]:has(.section.inner) {
   background: none;
 
   .section.inner {
-    background: radial-gradient(ellipse at center bottom, var(--product-berry), var(--product-berry), var(--product-purple));
-    border-radius: 50px;
-    margin: 50px auto;
+    background: var(--gradient-rad-berry);
 
     &:has(.bg-image-container) {
       padding: 0;
+
+      h1 {
+        margin-top: 0;
+      }
 
       .bg-image-container {
         padding: 60px;

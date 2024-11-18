@@ -50,7 +50,7 @@
   }
 }
 
-.columns.gray div.col-has-content {
+.columns.gray div.col-has-content, .columns.bg-gray {
     background: var(--gray);
     border-radius: 20px;
     padding: 15px;
@@ -80,6 +80,16 @@
 
       > div:not(:nth-child(1)) {
         flex: 1 1 73%;
+      }
+    }
+
+    &.width-66 > div { /* first column 75% */
+      > div:nth-child(1) {
+        flex: 1 1 61%;
+      }
+
+      > div:not(:nth-child(1)) {
+        flex: 1 1 38%;
       }
     }
 
