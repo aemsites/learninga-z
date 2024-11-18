@@ -9,7 +9,7 @@
 
 .columns.middle > div {
   align-items: center;
-  
+
   > * {
     margin: 0;
   }
@@ -50,12 +50,10 @@
   }
 }
 
-.columns.gray {
-  > div > div.col-has-content {
+.columns.gray div.col-has-content {
     background: var(--gray);
     border-radius: 20px;
     padding: 15px;
-  }
 }
 
 .columns.white {
@@ -66,17 +64,39 @@
 }
 
 @media (width >=768px) {
-  .columns > div {
+  .columns {
+  > div {
     flex-direction: row;
   }
 
-  .columns.wrap > div > div {
-    flex: 1 1 47%;
+    &.wrap > div > div {
+      flex: 1 1 47%;
+    }
+
+    &.width-25 > div { /* first column 25% */
+      > div:nth-child(1) {
+        flex: 1 1 23%;
+      }
+
+      > div:not(:nth-child(1)) {
+        flex: 1 1 73%;
+      }
+    }
+
+    &.width-75 > div { /* first column 75% */
+      > div:nth-child(1) {
+        flex: 1 1 73%;
+        }
+
+      > div:not(:nth-child(1)) {
+        flex: 1 1 23%;
+      }
+    }
   }
 }
 
 @media (width>=992px) {
-  .columns > div > div {
+  .footer .columns > div > div {
     flex: 1 1;
   }
 

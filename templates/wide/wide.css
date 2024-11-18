@@ -5,9 +5,6 @@
     line-height: 1.1;
 }
 
-body.berry h1 {
-    color: var(--product-berry);
-}
 
 p .icon-check-circle-white {
     img {

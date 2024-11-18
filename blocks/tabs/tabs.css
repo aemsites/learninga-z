@@ -11,7 +11,7 @@
   border: 1px solid #dadada;
   border-radius: 0;
   padding: 0.5em;
-  background-color: var(--background-color);
+  background-color: var(--white);
   color: initial;
   font-weight: bold;
   line-height: unset;
@@ -28,7 +28,7 @@
 
 
 .tabs .tabs-list button[aria-selected='true'] {
-  border-bottom: 1px solid var(--background-color);
+  border-bottom: 1px solid var(--white);
   background-color: #31409A0D;
   cursor: initial;
 }
@@ -83,7 +83,7 @@
 }
 
 .tab-square.active {
-  background-color: var(--red);
+  background-color: var(--product-red);
   color: white;
 }
 

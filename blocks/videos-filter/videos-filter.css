@@ -9,7 +9,7 @@
     border: 3px solid #56514d !important;
     height: 45px;
     background: #56514d;
-    color: #fff;
+    color: var(--white);
     font-weight: bold;
     line-height: 39px;
     text-align: left;

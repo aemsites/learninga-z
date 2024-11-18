@@ -44,7 +44,7 @@
   border-radius: 2em;
   background-color: var(--color);
   border-style: solid;
-  border-color: #fff;
+  border-color: var(--white);
   color: #eee;
   padding: 1em 1.5em;
   cursor: pointer;
@@ -135,7 +135,7 @@
   display: grid;
   grid-area: header;
   grid-template:
-    "label actions" 
+    "label actions"
     "description actions"
     / 1fr min-content;
   background-color: #222;
@@ -272,7 +272,7 @@
   .hlx-highlight {
     --highlight-size: 1rem;
   }
-  
+
   .hlx-preview-overlay {
     flex-flow: row wrap-reverse;
     justify-content: flex-end;

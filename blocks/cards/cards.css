@@ -188,11 +188,11 @@
 
 
 .card .efficacy-badge.strong {
-  background-color: var(--red);
+  background-color: var(--product-red);
 }
 
 .card .efficacy-badge.moderate {
-  background-color: var(--orange-red);
+  background-color: var(--product-orange);
 }
 
 .card .efficacy-badge.effective {

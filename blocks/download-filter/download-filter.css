@@ -1,11 +1,11 @@
 /* stylelint-disable no-descending-specificity */
-main > .section-outer > .section.download-cards-section { 
+main > .section-outer > .section.download-cards-section {
     padding: 0;
     max-width: 100%;
 
     .default-content-wrapper {
         background-color: var(--very-light-gray);
-        
+
         p{
             padding: 20px 0;
         }
@@ -14,7 +14,7 @@ main > .section-outer > .section.download-cards-section {
 
 .download-filter {
     h2 {
-        color: var(--red);
+        color: var(--product-red);
         border: none;
         margin: 50px 0 20px;
         font-family: var(--body-font-family);
@@ -100,7 +100,7 @@ main > .section-outer > .section.download-cards-section {
     font-weight: 600;
     text-decoration: none;
     white-space: nowrap;
-    color: var(--red);
+    color: var(--product-red);
     margin: 0;
 }
 

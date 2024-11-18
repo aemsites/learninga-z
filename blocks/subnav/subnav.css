@@ -1,5 +1,5 @@
 .subnav-wrapper {
-  background: #f8f8f8;
+  background: #var(--very-light-gray);
   margin: 0;
   padding: 0;
   line-height: 56px;
