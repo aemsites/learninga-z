@@ -53,7 +53,7 @@ const transformButtons = (main) => {
       const text = button.textContent;
       const btnClass = btnClasses[0];
       const btnText = btnClass.trim().replace('btn-', '');
-      button.textContent = `${text} {${btnText}}`;
+      button.textContent = `${text} {${btnText === 'navy-blue' ? 'navy' : btnText}}`;
     }
     strong.appendChild(button.cloneNode(true));
     p.appendChild(strong);
@@ -167,6 +167,39 @@ export default {
 
     const footerWidgets = document.querySelector('.footer-widgets');
     if (footerWidgets) main.appendChild(footerWidgets.cloneNode(true));
+
+    // Dividers
+    const dividers = main.querySelectorAll('hr');
+    dividers.forEach((hr) => {
+      const p = document.createElement('p');
+      const code = document.createElement('code');
+      code.textContent = 'Divider';
+      p.appendChild(code);
+      hr.replaceWith(p);
+    });
+
+    // if first row has col-12, replace row with a div with content of col-12
+    const firstRow = main.querySelector('.row');
+    if (firstRow && firstRow.children[0].className.includes('col-12')) {
+      const div = document.createElement('div');
+      div.innerHTML = firstRow.children[0].innerHTML;
+      firstRow.replaceWith(div);
+    }
+
+    // if first row has more than 1 col, replace each col with a div with content of col and add a hr before last col
+    if (firstRow && firstRow.children.length > 1) {
+      const div = document.createElement('div');
+      Array.from(firstRow.children).forEach((col, index) => {
+        const newDiv = document.createElement('div');
+        newDiv.innerHTML = col.innerHTML;
+        div.appendChild(newDiv);
+        if (index < firstRow.children.length - 1) {
+          div.appendChild(document.createElement('hr'));
+        }
+      });
+      firstRow.replaceWith(div);
+    }
+
     const subHeading = main.querySelector('.sub-heading');
     const breakroomTile = main.querySelector('.breakroom-tile');
 
@@ -216,28 +249,6 @@ export default {
       subHeading.replaceWith(strong);
     }
 
-    // if first row has col-12, replace row with a div with content of col-12
-    const firstRow = main.querySelector('.row');
-    if (firstRow && firstRow.children[0].className.includes('col-12')) {
-      const div = document.createElement('div');
-      div.innerHTML = firstRow.children[0].innerHTML;
-      firstRow.replaceWith(div);
-    }
-
-    // if first row has more than 1 col, replace each col with a div with content of col and add a hr before last col
-    if (firstRow && firstRow.children.length > 1) {
-      const div = document.createElement('div');
-      Array.from(firstRow.children).forEach((col, index) => {
-        const newDiv = document.createElement('div');
-        newDiv.innerHTML = col.innerHTML;
-        div.appendChild(newDiv);
-        if (index < firstRow.children.length - 1) {
-          div.appendChild(document.createElement('hr'));
-        }
-      });
-      firstRow.replaceWith(div);
-    }
-
     // Handling headings: if h2 is not present, convert h3 to h2 and h4 to h3
     const h2 = main.querySelector('h2');
     if (!h2) {
@@ -256,21 +267,20 @@ export default {
     });
 
     // blockquotes
-    const blockquotes = main.querySelectorAll('p.blockquote-alt');
+    const blockquotes = main.querySelectorAll('p.blockquote-alt, blockquote');
     blockquotes.forEach((blockquote) => {
-      const bq = document.createElement('blockquote');
-      bq.innerHTML = blockquote.innerText;
-      blockquote.replaceWith(bq);
-    });
-
-    // Dividers
-    const dividers = main.querySelectorAll('hr');
-    dividers.forEach((hr) => {
-      const p = document.createElement('p');
-      const code = document.createElement('code');
-      code.textContent = 'Divider';
-      p.appendChild(code);
-      hr.replaceWith(p);
+      // if blockquote has <strong> tag, replace with <p></p>
+      const strong = blockquote.querySelector('strong');
+      if (strong) {
+        const p = document.createElement('p');
+        p.innerHTML = strong.innerHTML;
+        strong.replaceWith(p);
+      }
+      const cells = [
+        ['Callout (blue)'],
+        [blockquote.innerHTML],
+      ];
+      blockquote.replaceWith(WebImporter.DOMUtils.createTable(cells, document));
     });
 
     // Related Breakroom Posts
