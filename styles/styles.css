@@ -592,7 +592,8 @@ THEMES
   --theme-cards-circle-bg: var(--product-berry);
 }
 
-[data-theme="berry"], [data-theme="berry-gradient"] {
+[data-theme="berry"], [data-theme="berry-gradient"],
+[data-theme="gradient-rad-berry"], [data-theme="gradient-lin-berry"] {
   --theme-bg: var(--product-berry);
   --theme-btn-primary-txt: var(--product-berry);
   --theme-btn-secondary-txt-hov: var(--product-berry);
@@ -609,7 +610,7 @@ THEMES
   --theme-btn-secondary-txt-hov: var(--product-red);
 }
 
-[data-theme="red"] {
+[data-theme="red"], [data-theme="gradient-rad-red"], [data-theme="gradient-lin-red"] {
   --theme-bg: var(--product-red);
   --theme-btn-primary-txt: var(--product-red);
   --theme-btn-secondary-txt-hov: var(--product-red);
