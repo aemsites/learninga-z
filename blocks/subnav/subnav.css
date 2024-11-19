@@ -68,5 +68,23 @@
       }
     }
   }
+
+  &:has(.berry) {
+    background-color: var(--product-berry);
+
+   ul {
+     li {
+       /* stylelint-disable-next-line */
+       a {
+          color: var(--white);
+
+          &:hover, &:focus {
+            border-bottom: 6px solid var(--white);
+            color: var(--white);
+          }
+        }
+      }
+    }
+  }
 }
 
