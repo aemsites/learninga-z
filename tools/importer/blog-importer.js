@@ -60,7 +60,7 @@ const transformButtons = (main) => {
     button.replaceWith(p);
   });
 
-  const secondaryButtons = main.querySelectorAll('.btn:not(.rect-btn)');
+  const secondaryButtons = main.querySelectorAll('.btn:not(.rect-btn), .rect-btn.btn-white-border');
   secondaryButtons.forEach((button) => {
     const p = document.createElement('p');
     const em = document.createElement('em');
@@ -69,7 +69,11 @@ const transformButtons = (main) => {
       const text = button.textContent;
       const btnClass = btnClasses[0];
       const btnText = btnClass.trim().replace('btn-', '');
-      button.textContent = `${text} {${btnText}}`;
+      if (btnText && btnText !== 'white-border') {
+        button.textContent = `${text} {${btnText === 'navy-blue' ? 'navy' : btnText}}`;
+      } else {
+        button.textContent = text;
+      }
     }
     em.appendChild(button.cloneNode(true));
     p.appendChild(em);
@@ -221,7 +225,6 @@ export default {
     }
 
     const subHeading = main.querySelector('.sub-heading');
-    const breakroomTile = main.querySelector('.breakroom-tile');
 
     // Tables
     // Note: Handling tables before creating any block tables.
@@ -243,6 +246,17 @@ export default {
       newCell.style.fontWeight = 'bold';
     });
 
+    // Remove br tags from ULs and OLs
+    const uls = main.querySelectorAll('ul');
+    uls.forEach((ul) => {
+      ul.querySelectorAll('br').forEach((br) => br.remove());
+    });
+
+    const ols = main.querySelectorAll('ol');
+    ols.forEach((ol) => {
+      ol.querySelectorAll('br').forEach((br) => br.remove());
+    });
+
     // Callouts
     const calloutSection = main.querySelector('.author-trial-callout');
     if (calloutSection) {
@@ -253,14 +267,28 @@ export default {
       calloutSection.replaceWith(WebImporter.DOMUtils.createTable(cells, document));
     }
 
-    if (breakroomTile) {
-      const cells = [
-        ['Callout (center)'],
-        [breakroomTile.innerHTML],
-      ];
-      const calloutTable = WebImporter.DOMUtils.createTable(cells, document);
-      breakroomTile.replaceWith(calloutTable);
-    }
+    // const breakroomTiles = main.querySelectorAll('.breakroom-tile');
+    // breakroomTiles.forEach((breakroomTile) => {
+    //   const cells = [
+    //     ['Callout (center)'],
+    //     [breakroomTile.innerHTML],
+    //   ];
+    //   const calloutTable = WebImporter.DOMUtils.createTable(cells, document);
+    //   breakroomTile.replaceWith(calloutTable);
+    // });
+
+    const breakroomTiles = main.querySelectorAll('.breakroom-tile');
+    breakroomTiles.forEach((breakroomTile) => {
+      // insert an hr and section metadata table before each breakroom tile
+      const hr = document.createElement('hr');
+      breakroomTile.before(hr);
+      breakroomTile.before(createSectionMetadata(document, 'short, center', 'gray'));
+      // if breakroom tile is not the last element in the post-content, add an hr after the breakroom tile
+      if (breakroomTile !== postContent.lastElementChild) {
+        const hrAfter = document.createElement('hr');
+        breakroomTile.after(hrAfter);
+      }
+    });
 
     // if subHeading exists, replace with strong tag
     if (subHeading) {
@@ -301,6 +329,16 @@ export default {
         [blockquote.innerHTML],
       ];
       blockquote.replaceWith(WebImporter.DOMUtils.createTable(cells, document));
+    });
+
+    // quick tips
+    const quickTips = main.querySelectorAll('.quick-tip');
+    quickTips.forEach((tip) => {
+      const cells = [
+        ['Quick Tip'],
+        [tip.innerHTML],
+      ];
+      tip.replaceWith(WebImporter.DOMUtils.createTable(cells, document));
     });
 
     // Related Breakroom Posts
@@ -345,18 +383,16 @@ export default {
     const rows = main.querySelectorAll('.row');
     rows.forEach((row) => {
       if (row.parentElement.tagName !== 'TD' && row.parentElement.tagName !== 'TH' && row.parentElement.tagName !== 'TR') {
-        if (!row.parentElement.className.includes('breakroom-tile')) {
-          let columns = 'Columns';
-          if (row.parentElement.className.includes('resources-tile')) {
-            columns = 'Columns (bg-gray)';
-          }
-          if (row.children.length > 1 && [...row.children].some((child) => child.className.includes('col-'))) {
-            const cells = [
-              [columns],
-              [...row.children].map((child) => [child]),
-            ];
-            row.replaceWith(WebImporter.DOMUtils.createTable(cells, document));
-          }
+        let columns = 'Columns';
+        if (row.parentElement.className.includes('resources-tile')) {
+          columns = 'Columns (bg-gray)';
+        }
+        if (row.children.length > 1 && [...row.children].some((child) => child.className.includes('col-'))) {
+          const cells = [
+            [columns],
+            [...row.children].map((child) => [child]),
+          ];
+          row.replaceWith(WebImporter.DOMUtils.createTable(cells, document));
         }
       }
     });
