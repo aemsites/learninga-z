@@ -694,7 +694,7 @@ THEMES
 
 .orange main {
   --theme-breadcrumbs-bg: var(--product-orange);
-  --theme-heading-color: var(--product-orange);
+  --theme-heading-color: var(--laz-logo-blue);
   --theme-link-color: var(--product-orange);
   --theme-btn-primary-border: var(--product-orange);
   --theme-btn-primary-bg: var(--product-orange);
