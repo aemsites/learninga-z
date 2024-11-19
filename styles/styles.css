@@ -913,6 +913,10 @@ THEMES
   color: var(--product-dark-blue);
 }
 
+:is(h1, h2, h3, h4).logo-blue {
+  color: var(--laz-logo-blue);
+}
+
 .bg-berry {
   background-color: var(--product-berry);
 }
@@ -994,6 +998,17 @@ THEMES
     }
   }
 
+  &.bgcolor-orange {
+    background-color: var(--product-orange);
+    border-color: var(--product-orange);
+
+    &:hover {
+      color: var(--product-orange);
+      border-color: var(--product-orange);
+      background-color: var(--theme-btn-primary-bg-hov);
+    }
+  }
+
   &.bgcolor-gold {
     background-color: var(--rpe-gold);
     border-color: var(--rpe-gold);
@@ -1036,6 +1051,17 @@ THEMES
       color: var(--product-navy-blue);
       border-color: var(--product-navy-blue);
       background-color: var(--theme-btn-primary-bg-hov);
+    }
+  }
+
+  &.bgcolor-logo-blue {
+    background-color: var(--laz-logo-blue);
+    border-color: var(--laz-logo-blue);
+
+    &:hover {
+      color: var(--laz-logo-blue);
+      border-color: var(--laz-logo-blue);
+      background-color: var(--white);
     }
   }
 
@@ -1112,6 +1138,17 @@ button.secondary {
     background-color: var(--product-navy-blue);
     color: var(--white);
     border-color: var(--product-navy-blue);
+  }
+}
+
+.button.secondary.textcolor-logo-blue {
+  color: var(--laz-logo-blue);
+  border-color: var(--laz-logo-blue);
+
+  &:hover {
+    background-color: var(--laz-logo-blue);
+    color: var(--white);
+    border-color: var(--laz-logo-blue);
   }
 }
 
