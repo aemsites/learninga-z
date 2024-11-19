@@ -976,6 +976,29 @@ THEMES
   color: var(--product-green);
 }
 
+.bg-black {
+  background-color: var(--laz-black);
+  color: var(--white);
+  padding: 10px;
+}
+
+:is(h1, h2, h3, h4).black {
+  color: var(--laz-black);
+}
+
+
+.bg-gold {
+  background-color: var(--rpe-gold);
+  color: var(--white);
+  padding: 10px;
+}
+
+:is(h1, h2, h3, h4).gold {
+  color: var(--rpe-gold);
+}
+
+
+
 /* primary button colors */
 
 .button.primary {
