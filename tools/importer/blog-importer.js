@@ -137,13 +137,15 @@ const createMetadataBlock = (main, document, url) => {
   return meta;
 };
 
-// create a section metadata table
-function createGraySection(document) {
+// create a section metadata table: By default, adds a gray background and short style
+function createSectionMetadata(document, style = 'inner, short', theme) {
   const cells = [
     ['Section Metadata'],
-    ['Theme', 'gray'],
-    ['Style', 'inner, short'],
+    ['Style', style],
   ];
+  if (theme) {
+    cells.push(['Theme', theme]);
+  }
   return WebImporter.DOMUtils.createTable(cells, document);
 }
 
@@ -198,6 +200,24 @@ export default {
         }
       });
       firstRow.replaceWith(div);
+    }
+
+    // if .post-content ends with an ol, add an hr before the ol and add a section metadata table after the ol
+    const postContent = main.querySelector('.post-content');
+    if (postContent) {
+      const ol = postContent.querySelector('ol:last-child');
+      if (ol && ol === postContent.lastElementChild) {
+        const hr = document.createElement('hr');
+        postContent.insertBefore(hr, ol);
+        postContent.appendChild(createSectionMetadata(document, 'footnote, short'));
+      }
+
+      // do the same if post-content ends with a p with style font-size: 10pt;
+      if (postContent.lastElementChild.style.fontSize === '10pt' && postContent.lastElementChild.tagName === 'P') {
+        const hr = document.createElement('hr');
+        postContent.insertBefore(hr, postContent.lastElementChild);
+        postContent.appendChild(createSectionMetadata(document, 'footnote, short'));
+      }
     }
 
     const subHeading = main.querySelector('.sub-heading');
