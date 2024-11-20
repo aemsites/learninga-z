@@ -60,11 +60,17 @@
                 grid-area: auto / content;
                 display: grid;
                 grid-template-rows: max-content;
+                border: 1px solid red;
             }
 
             &:last-of-type {
                 grid-area: sidebar;
                 grid-row-end: last-line;
+            }
+
+            &:first-of-type {
+                grid-area: content;
+                border: 2px solid green;
             }
         }
     }

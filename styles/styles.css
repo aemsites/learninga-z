@@ -75,12 +75,14 @@
   --rk-blue-dark: #1E7DDD; /* cta button bg, white btn txt, hover transp. */
   --faq-blue: #093567; /* FAQ */
   --dark-blue: #005CB9; /* headlines, top btn bg */
-  --gradient-rad-blue: radial-gradient(ellipse at center bottom, var(--rk-blue-dark), var(--product-dark-blue), var(--product-dark-blue));
+  --gradient-rad-dark-blue: radial-gradient(ellipse at center bottom, var(--rk-blue-dark), var(--product-dark-blue), var(--product-dark-blue));
+  --gradient-lin-dark-blue: linear-gradient(var(--rk-blue-dark), var(--product-dark-blue), var(--product-dark-blue));
 
   /* Raz-plus berry */
   --product-berry: #c83192;
   --light-pink: #F1CBE4;
   --gradient-rad-berry: radial-gradient(ellipse at center bottom, var(--product-berry), var(--product-berry), var(--product-purple));
+  --gradient-lin-berry: linear-gradient(var(--product-berry), var(--product-purple), var(--product-berry));
 
   /* Reading a-z red, Resources */
   --product-red: #E21D46;
@@ -231,6 +233,7 @@ h6 {
 
 h1, h2 {
   font-family: var(--heading-font-family);
+  color: var(--laz-logo-blue);
 }
 
 h3, h4, h5, h6 {
@@ -251,7 +254,11 @@ h2 {
 
 h3 {
   font-size: var(--body-font-size-m);
-  color: var(--dark-purple);
+  color: var(--theme-heading-color);
+}
+
+h4 {
+  color: var(--theme-heading-color);
 }
 
 .center {
@@ -333,7 +340,6 @@ a:hover {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  gap: 10px;
 }
 
 .buttons-container a.button {
@@ -438,10 +444,6 @@ main {
     color: var(--theme-link-color);
   }
 
-  h1,h2, h3, h4, h5, h6 {
-    color: var(--theme-heading-color);
-  }
-
   .table table th {
     background-color: var(--theme-table-head-bg);
     color: var(--theme-table-head-txt);
@@ -510,6 +512,10 @@ THEMES
   --theme-btn-secondary-bg-hov: var(--white);
   --theme-btn-secondary-border-hov: var(--white);
 
+  h1, h2 {
+    color: var(--white)
+  }
+
   background-color: var(--theme-bg);
     color: var(--theme-txt);
 
@@ -544,8 +550,15 @@ THEMES
 
     .section.inner {
       background-color: var(--theme-bg);
-      border-radius: 50px;
+      border-radius: 30px;
       margin: 50px auto;
+    }
+
+    @media (width >= 1024px) {
+        .section.inner {
+          border-radius: 50px;
+          margin: 50px auto;
+        }
     }
   }
 }
@@ -572,6 +585,8 @@ THEMES
   --theme-bg: var(--product-dark-blue);
   --theme-btn-primary-txt: var(--product-dark-blue);
   --theme-btn-secondary-txt-hov: var(--product-dark-blue);
+  --theme-gradient-radial-dark-blue: var(--gradient-rad-dark-blue);
+  --theme-gradient-linear-dark-blue: var(--gradient-lin-dark-blue);
 }
 
 .berry main {
@@ -597,6 +612,8 @@ THEMES
   --theme-bg: var(--product-berry);
   --theme-btn-primary-txt: var(--product-berry);
   --theme-btn-secondary-txt-hov: var(--product-berry);
+  --theme-gradient-linear: var(--gradient-lin-berry);
+  --theme-gradient-radial: var(--gradient-rad-berry);
 }
 
 .red main {
@@ -614,6 +631,8 @@ THEMES
   --theme-bg: var(--product-red);
   --theme-btn-primary-txt: var(--product-red);
   --theme-btn-secondary-txt-hov: var(--product-red);
+  --theme-gradient-linear: var(--gradient-lin-red);
+  --theme-gradient-radial: var(--gradient-rad-red);
 }
 
 .navy main {
@@ -634,10 +653,12 @@ THEMES
   --theme-cards-circle-bg: var(--product-navy-blue);
 }
 
-[data-theme="navy"] {
+[data-theme="navy"], [data-theme="gradient-rad-navy"], [data-theme="gradient-lin-navy"]  {
   --theme-bg: var(--product-navy-blue);
   --theme-btn-primary-txt: var(--product-navy-blue);
   --theme-btn-secondary-txt-hov: var(--product-navy-blue);
+  --theme-gradient-linear: var(--gradient-lin-navy);
+  --theme-gradient-radial: var(--gradient-rad-navy);
 }
 
 .green main {
@@ -788,7 +809,7 @@ THEMES
   --theme-table-head-bg: var(--laz-logo-blue);
 }
 
-[data-theme="gray"]  {
+[data-theme="gray"], [data-theme="white"] {
   --theme-bg: var(--gray);
   --theme-txt: var(--text-color);
   --theme-heading-color: var(--laz-logo-blue);
@@ -804,6 +825,14 @@ THEMES
   --theme-btn-secondary-border-hov: var(--laz-logo-blue);
   --theme-btn-secondary-bg-hov: var(--laz-logo-blue);
   --theme-table-head-bg: var(--laz-logo-blue);
+
+  h1,h2 {
+    color: var(--laz-logo-blue);
+  }
+}
+
+[data-theme="white"]  {
+  --theme-bg: var(--white);
 }
 
 [data-theme="red-pastel"] {
@@ -812,6 +841,10 @@ THEMES
   --theme-heading-color: var(--laz-logo-blue);
 
   color: var(--text-color);
+
+  h1,h2 {
+    color: var(--laz-logo-blue);
+  }
 }
 
 [data-theme="pink"] {
@@ -839,54 +872,84 @@ THEMES
   }
 }
 
-[data-theme="gradient-lin-red"]:has(+ :not(.section.inner)) {
-  background: var(--gradient-lin-red);
-}
+/* Gradient section themes */
 
-[data-theme="gradient-rad-red"]:has(+ :not(.section.inner)) {
-  background: var(--gradient-rad-red);
-}
+:is([data-theme^="gradient-rad-"]) {
+  &:has(+ :not(.section.inner)) {
+    background: var(--theme-gradient-radial);
+  }
 
-[data-theme="gradient-lin-red"]:has(.section.inner) {
-  background: none;
+  &:has(.section.inner) {
+    background: none;
 
-  .section.inner {
-    background: var(--gradient-lin-red);
+    .section.inner {
+      background: var(--theme-gradient-radial);
 
-    &:has(.bg-image-container) {
+      &:has(.bg-image-container) {
+        padding: 0;
+
+        h1 {
+          margin-top: 0;
+        }
+
+        .bg-image-container {
+          padding: 60px;
+        }
+      }
+    }
+  }
+
+  @media (width >= 1024px) {
+    &:has(.section.inner) {
       padding: 0;
 
-      h1 {
-        margin-top: 0;
-      }
-
-      .bg-image-container {
-        padding: 60px;
+      .section.inner {
+        &:has(.bg-image-container) {
+          .bg-image-container {
+            padding: 60px;
+          }
+        }
       }
     }
   }
 }
 
+:is([data-theme^="gradient-lin-"]) {
+  &:has(+ :not(.section.inner)) {
+    background: var(--theme-gradient-linear);
+  }
 
-[data-theme="berry-gradient"]:has(+ :not(.section.inner)) {
-  background: var(--gradient-rad-berry);
-}
+  &:has(.section.inner) {
+    background: none;
+    padding: 0 15px;
 
-[data-theme="berry-gradient"]:has(.section.inner) {
-  background: none;
+    .section.inner {
+      background: var(--theme-gradient-linear);
 
-  .section.inner {
-    background: var(--gradient-rad-berry);
+      &:has(.bg-image-container) {
+        padding: 0;
 
-    &:has(.bg-image-container) {
+        h1 {
+          margin-top: 0;
+        }
+
+        .bg-image-container {
+          padding: 30px;
+        }
+      }
+    }
+  }
+
+  @media (width >= 1024px) {
+    &:has(.section.inner) {
       padding: 0;
 
-      h1 {
-        margin-top: 0;
-      }
-
-      .bg-image-container {
-        padding: 60px;
+      .section.inner {
+        &:has(.bg-image-container) {
+          .bg-image-container {
+            padding: 60px;
+          }
+        }
       }
     }
   }
@@ -897,15 +960,20 @@ THEMES
 /* custom overrides for H1 - H3 text color */
 
 /* custom backgound colors for when in a P tag by itself */
-
-.bg-dark-blue, .bg-navy, .bg-red, .bg-berry, .bg-orange, .bg-purple, .bg-green, .bg-laz-blue {
-  padding: 10px;
+.bg-dark-blue, .bg-navy, .bg-red, .bg-berry, .bg-orange, .bg-purple,
+.bg-green, .bg-laz-blue, .bg-gray, .bg-black, .bg-gold {
+  padding: 10px 10px 5px !important;
   color: var(--white);
 }
 
 .bg-gray {
-  padding: 10px;
   background: var(--gray);
+  color: var(--laz-black);
+}
+
+.bg-white {
+  background: var(--white);
+  color: var(--laz-black);
 }
 
 .bg-dark-blue {
@@ -938,8 +1006,6 @@ THEMES
 
 .bg-red {
   background-color: var(--product-red);
-  color: var(--white);
-  padding: 10px;
 }
 
 :is(h1, h2, h3, h4).red {
@@ -948,8 +1014,6 @@ THEMES
 
 .bg-orange {
   background-color: var(--product-orange);
-  color: var(--white);
-  padding: 10px;
 }
 
 :is(h1, h2, h3, h4).orange {
@@ -958,8 +1022,6 @@ THEMES
 
 .bg-purple {
   background-color: var(--product-purple);
-  color: var(--white);
-  padding: 10px;
 }
 
 :is(h1, h2, h3, h4).purple {
@@ -968,8 +1030,6 @@ THEMES
 
 .bg-green {
   background-color: var(--product-green);
-  color: var(--white);
-  padding: 10px;
 }
 
 :is(h1, h2, h3, h4).green {
@@ -978,19 +1038,14 @@ THEMES
 
 .bg-black {
   background-color: var(--laz-black);
-  color: var(--white);
-  padding: 10px;
 }
 
 :is(h1, h2, h3, h4).black {
   color: var(--laz-black);
 }
 
-
 .bg-gold {
   background-color: var(--rpe-gold);
-  color: var(--white);
-  padding: 10px;
 }
 
 :is(h1, h2, h3, h4).gold {
@@ -998,10 +1053,17 @@ THEMES
 }
 
 
-
 /* primary button colors */
 
 .button.primary {
+  &.bgcolor-red, &.bgcolor-berry, &.bgcolor-orange, &.bgcolor-gold, &.bgcolor-bright-yellow, &.bgcolor-laz-blue, &.bgcolor-navy, &.bgcolor-logo-blue, &.bgcolor-green, &.bgcolor-purple {
+    color: var(--white);
+
+    &:hover {
+      background-color: var(--theme-btn-primary-bg-hov);
+    }
+  }
+
   &.bgcolor-red {
     background-color: var(--product-red);
     border-color: var(--product-red);
@@ -1009,7 +1071,6 @@ THEMES
     &:hover {
       color: var(--product-red);
       border-color: var(--product-red);
-      background-color: var(--theme-btn-primary-bg-hov);
     }
   }
 
@@ -1020,7 +1081,6 @@ THEMES
     &:hover {
       color: var(--product-berry);
       border-color: var(--product-berry);
-      background-color: var(--theme-btn-primary-bg-hov);
     }
   }
 
@@ -1031,7 +1091,6 @@ THEMES
     &:hover {
       color: var(--product-orange);
       border-color: var(--product-orange);
-      background-color: var(--theme-btn-primary-bg-hov);
     }
   }
 
@@ -1042,21 +1101,19 @@ THEMES
     &:hover {
       color: var(--rpe-gold);
       border-color: var(--rpe-gold);
-      background-color: var(--theme-btn-primary-bg-hov);
     }
   }
 
   &.bgcolor-bright-yellow {
     background-color: var(--bright-yellow);
     border-color: var(--bright-yellow);
+    color: var(--laz-logo-blue);
 
     &:hover {
       color: var(--bright-yellow);
       border-color: var(--bright-yellow);
-      background-color: var(--theme-btn-primary-bg-hov);
     }
   }
-
 
   &.bgcolor-laz-blue {
     background-color: var(--blog-blue);
@@ -1065,7 +1122,6 @@ THEMES
     &:hover {
       color: var(--blog-blue);
       border-color: var(--blog-blue);
-      background-color: var(--theme-btn-primary-bg-hov);
     }
   }
 
@@ -1076,7 +1132,6 @@ THEMES
     &:hover {
       color: var(--product-navy-blue);
       border-color: var(--product-navy-blue);
-      background-color: var(--theme-btn-primary-bg-hov);
     }
   }
 
@@ -1098,7 +1153,6 @@ THEMES
     &:hover {
       color: var(--product-green);
       border-color: var(--product-green);
-      background-color: var(--theme-btn-primary-bg-hov);
     }
   }
 
@@ -1109,7 +1163,121 @@ THEMES
     &:hover {
       color: var(--product-purple);
       border-color: var(--product-purple);
-      background-color: var(--theme-btn-primary-bg-hov);
+    }
+  }
+}
+
+a.button.secondary,
+button.secondary {
+  background-color: unset;
+  border: 2px solid;
+
+  &.textcolor-laz-blue, &.textcolor-berry, &.textcolor-navy, &.textcolor-navy-blue,
+  &.textcolor-logo-blue, &.textcolor-gold, &.textcolor-bright-yellow, &.textcolor-dark-blue,
+  &.textcolor-orange, &.textcolor-purple, &.textcolor-green, &.textcolor-black {
+    &:hover {
+      color: var(--white);
+    }
+  }
+
+  &.textcolor-laz-blue {
+    color: var(--blog-blue);
+    border-color: var(--blog-blue);
+
+    &:hover {
+      background-color: var(--blog-blue);
+    }
+  }
+
+  &.textcolor-berry {
+    color: var(--product-berry);
+    border-color: var(--product-berry);
+
+    &:hover {
+      background-color: var(--product-berry);
+      border-color: var(--product-berry);
+    }
+  }
+
+  &.textcolor-navy, &.textcolor-navy-blue {
+    color: var(--product-navy-blue);
+    border-color: var(--product-navy-blue);
+
+    &:hover {
+      background-color: var(--product-navy-blue);
+      border-color: var(--product-navy-blue);
+    }
+  }
+
+  &.textcolor-logo-blue {
+    color: var(--laz-logo-blue);
+    border-color: var(--laz-logo-blue);
+
+    &:hover {
+      background-color: var(--laz-logo-blue);
+      border-color: var(--laz-logo-blue);
+    }
+  }
+
+  &.textcolor-gold {
+    color: var(--rpe-gold);
+    border-color: var(--rpe-gold);
+
+    &:hover {
+      background-color: var(--rpe-gold);
+      border-color: var(--rpe-gold);
+      color: var(--laz-logo-blue)
+    }
+  }
+
+  &.textcolor-bright-yellow {
+    color: var(--bright-yellow);
+    border-color: var(--bright-yellow);
+
+    &:hover {
+      background-color: var(--bright-yellow);
+      color: var(--laz-logo-blue);
+      border-color: var(--bright-yellow);
+    }
+  }
+
+  &.textcolor-dark-blue {
+    color: var(--product-dark-blue);
+    border-color: var(--product-dark-blue);
+
+    &:hover {
+      background-color: var(--product-dark-blue);
+      border-color: var(--product-dark-blue);
+    }
+  }
+
+  &.textcolor-orange {
+    color: var(--product-orange);
+    border-color: var(--product-orange);
+
+    &:hover {
+      background-color: var(--product-orange);
+      border-color: var(--product-orange);
+    }
+  }
+
+  &.textcolor-purple {
+    color: var(--product-purple);
+    border-color: var(--product-purple);
+
+    &:hover {
+      background-color: var(--product-purple);
+      border-color: var(--product-purple);
+    }
+  }
+
+  &.textcolor-green {
+    color: var(--product-green);
+    border-color: var(--product-green);
+
+    &:hover {
+      background-color: var(--product-green);
+      border-color: var(--product-green);
     }
   }
 
@@ -1122,136 +1290,6 @@ THEMES
       border-color: var(--laz-black);
       background-color: var(--laz-black);
     }
-  }
-}
-
-/* end primary button colors
- Start secondary button colors */
-
-a.button.secondary,
-button.secondary {
-  background-color: unset;
-  border: 2px solid;
-}
-
-.button.secondary.textcolor-laz-blue {
-  color: var(--blog-blue);
-  border-color: var(--blog-blue);
-
-  &:hover {
-    background-color: var(--blog-blue);
-    color: var(--white);
-    border-color: var(--blog-blue);
-  }
-}
-
-.button.secondary.textcolor-berry {
-  color: var(--product-berry);
-  border-color: var(--product-berry);
-
-  &:hover {
-    background-color: var(--product-berry);
-    border-color: var(--product-berry);
-    color: var(--white);
-  }
-}
-
-.button.secondary.textcolor-navy, .button.secondary.textcolor-navy-blue {
-  color: var(--product-navy-blue);
-  border-color: var(--product-navy-blue);
-
-  &:hover {
-    background-color: var(--product-navy-blue);
-    color: var(--white);
-    border-color: var(--product-navy-blue);
-  }
-}
-
-.button.secondary.textcolor-logo-blue {
-  color: var(--laz-logo-blue);
-  border-color: var(--laz-logo-blue);
-
-  &:hover {
-    background-color: var(--laz-logo-blue);
-    color: var(--white);
-    border-color: var(--laz-logo-blue);
-  }
-}
-
-.button.secondary.textcolor-gold {
-  color: var(--rpe-gold);
-  border-color: var(--rpe-gold);
-
-  &:hover {
-    background-color: var(--rpe-gold);
-    color: var(--white);
-    border-color: var(--rpe-gold);
-  }
-}
-
-.button.secondary.textcolor-bright-yellow {
-  color: var(--bright-yellow);
-  border-color: var(--bright-yellow);
-
-  &:hover {
-    background-color: var(--bright-yellow);
-    color: var(--product-red);
-    border-color: var(--bright-yellow);
-  }
-}
-
-.button.secondary.textcolor-dark-blue {
-  color: var(--product-dark-blue);
-  border-color: var(--product-dark-blue);
-
-  &:hover {
-    background-color: var(--product-dark-blue);
-    color: var(--white);
-    border-color: var(--product-dark-blue);
-  }
-}
-
-.button.secondary.textcolor-orange {
-  color: var(--product-orange);
-  border-color: var(--product-orange);
-
-  &:hover {
-    background-color: var(--product-orange);
-    color: var(--white);
-    border-color: var(--product-orange);
-  }
-}
-
-.button.secondary.textcolor-purple {
-  color: var(--product-purple);
-  border-color: var(--product-purple);
-
-  &:hover {
-    background-color: var(--product-purple);
-    color: var(--white);
-    border-color: var(--product-purple);
-  }
-}
-
-.button.secondary.textcolor-green {
-  color: var(--product-green);
-  border-color: var(--product-green);
-
-  &:hover {
-    background-color: var(--product-green);
-    color: var(--white);
-    border-color: var(--product-green);
-  }
-}
-
-.button.secondary.textcolor-black {
-  color: var(--laz-black);
-  border-color: var(--laz-black);
-
-  &:hover {
-    background-color: var(--laz-black);
-    color: var(--white);
-    border-color: var(--laz-black);
   }
 }
 
@@ -1294,19 +1332,24 @@ button.secondary {
       padding: 0;
     }
 
-    .section.product {
-      padding: 50px 0 200px;
-    }
-
     .section.short {
       padding: 10px 15px;
 
-      .columns:last-child > div {
-        padding-bottom: 0;
+      .columns {
+        h1, h2, h3, h4, p {
+          margin-bottom: 0;
+        }
+
+        &:last-child > div {
+          padding-bottom: 0;
+        }
       }
     }
-  }
 
+    .section.product {
+      padding: 50px 15px 200px;
+    }
+  }
 
   main > .section:first-of-type {
     margin-top: 0;
@@ -1335,13 +1378,7 @@ button.secondary {
     .breadcrumbs-container, .hero-content {
       max-width: 990px;
     }
-
-    .breadcrumbs-outer {
-      .breadcrumbs-container {
-    /*    padding: 0; */
-      }
   }
-    }
 
   @media (width >= 1200px) {
     main > .section-outer > .section,

@@ -1,15 +1,78 @@
 
-.wide h1 {
-    font-size: var(--heading-font-size-l);
-    margin: 1em 0 .5em;
-    line-height: 1.1;
+.wide {
+    .section.product {
+        display: grid;
+        align-content: center;
+    }
+
+    h1 {
+        font-size: var(--heading-font-size-m);
+        margin: 1em 0 .5em;
+        line-height: 1.1;
+    }
 }
 
+.hero {
+    > div {
+        background: var(--cta-thin);
+        padding: 40px;
+        border-radius: 10px;
+        margin-bottom:10px;
+    }
 
-p .icon-check-circle-white {
-    img {
-        width: 17px;
-        vertical-align: text-bottom;
+    h1 {
+        margin-top: 0;
+        color: var(--laz-logo-blue);
+    }
+
+    p, li {
+        font-weight: var(--font-weight-medium);
+        color: var(--text-color);
+    }
+
+    ul {
+        padding-inline-start: 0;
+
+        li {
+            list-style: none;
+            display: flex;
+            line-height: 1.5;
+
+            &::before {
+                content: url('/icons/checkmark-circle-navy.svg');
+                margin-right: 12px;
+                min-width: 17px;
+                width: 17px;
+            }
+        }
+    }
+
+    a:any-link:not(.button) {
+        color: var(--text-color);
+    }
+}
+
+.carousel.white {
+    .carousel-slide {
+        flex-direction: row;
+        padding-left: 20px;
+        justify-content: unset;
+
+        .carousel-slide-content {
+            display: block;
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        .carousel-slide-image {
+            width: 10%;
+        }
+    }
+
+    .carousel-navigation-buttons {
+        margin-top: -80px;
+        padding-left: 10px;
+        padding-right: 10px;
     }
 }
 
@@ -17,9 +80,86 @@ p .icon-check-circle-white {
     max-width: 750px;
 }
 
-@media (width >= 1024px) {
+@media (width >= 768px) {
     .wide h1 {
-        font-size: var(--heading-font-size-xxl);
+        font-size: 2.375rem;
+        line-height: 1.1;
+    }
+
+    .hero {
+        p {
+            font-size: var(--body-font-size-m);
+        }
+
+       h1 {
+           font-size: var(--heading-font-size-xl);
+       }
+    }
+
+}
+
+@media (width >= 1024px) {
+    .wide {
+        .section.product {
+            grid-template-areas:
+            "logo logo"
+            "hero image"
+            "price image";
+
+            .columns-wrapper:first-child {
+                grid-area: logo;
+            }
+
+            .columns-wrapper:nth-child(2) {
+                grid-area: hero;
+            }
+
+            .columns-wrapper:nth-child(3) {
+                grid-area: price;
+            }
+
+            .columns-wrapper:last-child {
+                grid-area: image;
+                align-content: center;
+            }
+
+            h1 {
+                font-size: var(--heading-font-size-xl);
+            }
+
+        }
+
+        .carousel.white {
+            .carousel-slide {
+                padding-left: 100px;
+                padding-right: 100px;
+
+                .carousel-slide-image {
+                    width: unset;
+                }
+
+                .carousel-slide-content {
+                    flex: 0 100%;
+                    margin: 40px 0 40px 60px;
+                }
+            }
+
+            .carousel-navigation-buttons {
+                padding-left: 10px;
+                padding-right: 10px;
+                transform: translateY(-170%);
+            }
+        }
+    }
+}
+
+@media (width >= 1296px) {
+    .carousel.white .carousel-navigation-buttons button.slide-prev {
+        left: 0;
+    }
+
+    .carousel.white .carousel-navigation-buttons button.slide-next {
+        right: 0;
     }
 }
 
