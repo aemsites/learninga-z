@@ -13,6 +13,8 @@
 
 import { blogs, blogVideos } from './blogs-data.mjs';
 
+let wideTemplate = false;
+
 const fixUrl = (a) => {
   let href = a.getAttribute('href');
   const text = a.textContent;
@@ -102,6 +104,10 @@ const createMetadataBlock = (main, document, url) => {
   el.src = image;
   meta.image = el;
 
+  if (wideTemplate) {
+    meta.template = 'wide';
+  }
+
   meta.date = getPubDate(document);
 
   // tags are name="keywords"
@@ -110,7 +116,6 @@ const createMetadataBlock = (main, document, url) => {
   // author
   const authorSection = main.querySelector('.flex-row');
   if (authorSection) {
-    console.log('Has authorSection', authorSection);
     const authorLinks = authorSection.querySelectorAll('a');
     authorLinks.forEach((link) => {
       // meta.author is comma separated list of authors
@@ -171,8 +176,6 @@ export default {
     document, url, html, params,
   }) => {
     const main = document.querySelector('.main-content');
-    // create metadata block
-    createMetadataBlock(main, document, url);
 
     const footerWidgets = document.querySelector('.footer-widgets');
     if (footerWidgets) main.appendChild(footerWidgets.cloneNode(true));
@@ -189,10 +192,11 @@ export default {
 
     // if first row has col-12, replace row with a div with content of col-12
     const firstRow = main.querySelector('.row');
-    if (firstRow && firstRow.children[0].className.includes('col-12')) {
+    if (firstRow && (firstRow.children[0].className.includes('col-12') || firstRow.children[0].className.includes('col-sm-12') || firstRow.children[0].className.includes('col-md-12') || firstRow.children[0].className.includes('col-lg-12'))) {
       const div = document.createElement('div');
       div.innerHTML = firstRow.children[0].innerHTML;
       firstRow.replaceWith(div);
+      wideTemplate = true;
     }
 
     // if first row has more than 1 col, replace each col with a div with content of col and add a hr before last col
@@ -277,6 +281,9 @@ export default {
       // Optionally, you can style the new cell
       newCell.style.fontWeight = 'bold';
     });
+
+    // Metadata Block
+    createMetadataBlock(main, document, url);
 
     // Remove br tags from ULs and OLs
     const uls = main.querySelectorAll('ul');
@@ -428,12 +435,15 @@ export default {
     rows.forEach((row) => {
       if (row.parentElement.tagName !== 'TD' && row.parentElement.tagName !== 'TH' && row.parentElement.tagName !== 'TR') {
         let columns = 'Columns';
-        if (row.parentElement.className.includes('resources-tile')) {
-          columns = 'Columns (bg-gray)';
+        if (row.parentElement.className.includes('resources-tile') || row.querySelector('.resources-tile')) {
+          columns = 'Columns (gray)';
         }
-        if (row.children.length > 1 && [...row.children].some((child) => child.className.includes('col-'))) {
+        if (row.children.length > 0 && [...row.children].some((child) => child.className.includes('col-'))) {
           if (row.children[0].className.includes('col-sm-3')) {
             columns = 'Columns (width 25)';
+          }
+          if (row.children[0].className.includes('col-sm-6')) {
+            columns = 'Columns (width 50)';
           }
           const cells = [
             [columns],
@@ -442,6 +452,15 @@ export default {
           row.replaceWith(WebImporter.DOMUtils.createTable(cells, document));
         }
       }
+    });
+
+    // whenever a text-align:center; is found, add a hr before it and a section metadata table after it with style center and hr after it
+    const centerAlign = main.querySelectorAll('[style*="text-align:center"]');
+    centerAlign.forEach((center) => {
+      const hr = document.createElement('hr');
+      center.before(hr);
+      center.before(createSectionMetadata(document, 'short, center'));
+      center.after(hr.cloneNode(true));
     });
 
     // Fix URLs
