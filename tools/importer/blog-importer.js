@@ -11,7 +11,7 @@
  * governing permissions and limitations under the License.
  */
 
-import { BLOGS_BY_CATEGORY } from './blogs-data.mjs';
+import { blogs, blogVideos } from './blogs-data.mjs';
 
 const fixUrl = (a) => {
   let href = a.getAttribute('href');
@@ -125,7 +125,10 @@ const createMetadataBlock = (main, document, url) => {
   }
 
   // category
-  const category = BLOGS_BY_CATEGORY.find((blog) => url.includes(blog.Path.replace('https://www.learninga-z.com/', '')))?.Category || '';
+  const category1 = blogs.find((blog) => url.includes(blog.path.replace('https://www.learninga-z.com/', '')))?.category1 || '';
+  const category2 = blogs.find((blog) => url.includes(blog.path.replace('https://www.learninga-z.com/', '')))?.category2 || '';
+  const category3 = blogs.find((blog) => url.includes(blog.path.replace('https://www.learninga-z.com/', '')))?.category3 || '';
+  const category = [category1, category2, category3].filter(Boolean).join(', ');
   meta.category = category;
 
   // products
@@ -206,6 +209,30 @@ export default {
       firstRow.replaceWith(div);
     }
 
+    // Suggested Videos
+    const suggestedVideos = main.querySelector('.related-resources-section');
+    if (suggestedVideos && suggestedVideos.querySelector('ul.post-listing')) {
+      const suggestedVideosCells = [
+        ['Cards (Suggested Videos)'],
+        [suggestedVideos.querySelector('ul.post-listing')],
+      ];
+      suggestedVideos.replaceWith(WebImporter.DOMUtils.createTable(suggestedVideosCells, document));
+    }
+
+    // Handling Videos
+    const videos = main.querySelectorAll('video');
+    videos.forEach((video) => {
+      // for each video, check current url in blogVideos array and replace video with a link to the video matching video{index} from blogVideos array
+      const videoIndex = Array.from(videos).indexOf(video) + 1;
+      const videoUrl = blogVideos.find((v) => url.includes(v.link.replace('https://www.learninga-z.com/', '')));
+      if (videoUrl) {
+        const a = document.createElement('a');
+        a.href = videoUrl[`video${videoIndex}`];
+        a.textContent = a.href;
+        video.closest('#laz-video-frame').replaceWith(a);
+      }
+    });
+
     // if .post-content ends with an ol, add an hr before the ol and add a section metadata table after the ol
     const postContent = main.querySelector('.post-content');
     if (postContent) {
@@ -220,6 +247,11 @@ export default {
       if (postContent.lastElementChild.style.fontSize === '10pt' && postContent.lastElementChild.tagName === 'P') {
         const hr = document.createElement('hr');
         postContent.insertBefore(hr, postContent.lastElementChild);
+        postContent.appendChild(createSectionMetadata(document, 'footnote, short'));
+      }
+
+      // if postContent.lastElementChild.tagName === 'P' and the text content contains string "Footnote:" ignoring case
+      if (postContent.lastElementChild.tagName === 'P' && postContent.lastElementChild.textContent.toLowerCase().includes('footnote:')) {
         postContent.appendChild(createSectionMetadata(document, 'footnote, short'));
       }
     }
@@ -279,14 +311,26 @@ export default {
 
     const breakroomTiles = main.querySelectorAll('.breakroom-tile');
     breakroomTiles.forEach((breakroomTile) => {
+      // if breakroom tile has an anchor with url containing "/site/breakroom/authors/", add Callout Table
+      const authorLink = breakroomTile.querySelector('a[href*="/site/breakroom/authors/"]');
+      const image = breakroomTile.querySelector('img');
+      if (authorLink && image) {
+        const cells = [
+          ['Callout'],
+          [image, authorLink.parentElement.innerHTML],
+        ];
+        const calloutTable = WebImporter.DOMUtils.createTable(cells, document);
+        breakroomTile.replaceWith(calloutTable);
+      } else {
       // insert an hr and section metadata table before each breakroom tile
-      const hr = document.createElement('hr');
-      breakroomTile.before(hr);
-      breakroomTile.before(createSectionMetadata(document, 'short, center', 'gray'));
-      // if breakroom tile is not the last element in the post-content, add an hr after the breakroom tile
-      if (breakroomTile !== postContent.lastElementChild) {
-        const hrAfter = document.createElement('hr');
-        breakroomTile.after(hrAfter);
+        const hr = document.createElement('hr');
+        breakroomTile.before(hr);
+        breakroomTile.before(createSectionMetadata(document, 'short, center', 'gray'));
+        // if breakroom tile is not the last element in the post-content, add an hr after the breakroom tile
+        if (breakroomTile !== postContent.lastElementChild) {
+          const hrAfter = document.createElement('hr');
+          breakroomTile.after(hrAfter);
+        }
       }
     });
 
@@ -388,6 +432,9 @@ export default {
           columns = 'Columns (bg-gray)';
         }
         if (row.children.length > 1 && [...row.children].some((child) => child.className.includes('col-'))) {
+          if (row.children[0].className.includes('col-sm-3')) {
+            columns = 'Columns (width 25)';
+          }
           const cells = [
             [columns],
             [...row.children].map((child) => [child]),
