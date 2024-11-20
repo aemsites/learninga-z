@@ -287,10 +287,11 @@ function buildAutoBlocks(main, templateModule = undefined) {
  * @returns {Object|null} - An object containing the extracted background color
  * and text color, or null if no color information is found.
  */
-export function extractColor(anchor) {
+
+export function extractButtonColor(anchor) {
   const text = anchor.textContent;
   let colorOne = 'theme';
-  let colorTwo = 'white';
+  let colorTwo = 'theme';
   const regex = /{([^|}]+)(?:\|([^}]+))?}/;
   const matches = text.match(regex);
   if (matches) {
@@ -301,6 +302,35 @@ export function extractColor(anchor) {
     return { colorOne, colorTwo };
   }
   return { colorOne, colorTwo };
+}
+
+/**
+ * Extracts color information from the h1-h4, p text content.
+ * @param {HTMLElement} textNodes - The elements from which to extract color information.
+ * @returns {Object|null} - An object containing the extracted color
+ * or null if no color information is found.
+ */
+export function extractElementsColor() {
+  const textNodes = Array.from(document.querySelectorAll('h1, h2, h3, h4, p'));
+  textNodes.forEach((node) => {
+    const up = node.parentElement;
+    const isParagraph = node.tagName === 'P';
+    const text = node.textContent;
+    // we want to match the whole text content if it's a paragraph
+    const regex = isParagraph ? /^{([^|}]+)?}$/ : /{([^|}]+)?}/;
+    const matches = text.match(regex);
+
+    if (matches) {
+      const colorOne = matches[1] || '';
+      if (isParagraph) {
+        up.classList.add(`bg-${colorOne}`);
+        node.remove();
+      } else {
+        node.textContent = text.replace(regex, ''); // remove the text content that was used to extract the color
+        node.classList.add(colorOne);
+      }
+    }
+  });
 }
 
 export function createTag(tag, attributes, html = undefined) {
@@ -378,8 +408,25 @@ function createOptimizedBackgroundImage(section, breakpoints = [
     const bgImage = getBackgroundImage(section);
     const url = new URL(bgImage, window.location.href);
     const pathname = encodeURI(url.pathname);
-    const sectionInner = section.querySelector('div.section');
-    const target = (sectionInner && sectionInner.classList.contains('inner')) ? sectionInner : section;
+
+    let bgContainer = section.querySelector('.bg-image-container');
+    if (!bgContainer) {
+      bgContainer = createTag('div', { class: 'bg-image-container' });
+      const sectionInner = section.querySelector('div.section.inner');
+      // we have to clone so we can put the bg-image-container in there
+      if (sectionInner) {
+        const clone = sectionInner.cloneNode(true);
+        sectionInner.innerHTML = '';
+        sectionInner.className = 'section inner';
+        clone.classList.remove('inner');
+        sectionInner.appendChild(bgContainer);
+        bgContainer.appendChild(clone);
+      } else {
+        bgContainer.appendChild(section.firstChild);
+        section.appendChild(bgContainer);
+      }
+    }
+
     const matchedBreakpoints = breakpoints.filter(
       (br) => !br.media || window.matchMedia(br.media).matches,
     );
@@ -390,7 +437,7 @@ function createOptimizedBackgroundImage(section, breakpoints = [
     );
 
     const adjustedWidth = matchedBreakpoint.width * window.devicePixelRatio;
-    target.style.backgroundImage = `url(${pathname}?width=${adjustedWidth}&format=webply&optimize=highest)`;
+    bgContainer.style.backgroundImage = `url(${pathname}?width=${adjustedWidth}&format=webply&optimize=highest)`;
   };
 
   if (resizeListeners.has(section)) {
@@ -436,7 +483,7 @@ export function decorateButtons(element) {
           && twoup.childNodes.length === 1
           && (twoup.tagName === 'P' || twoup.tagName === 'LI' || twoup.tagName === 'DIV')
         ) {
-          const colors = extractColor(a);
+          const colors = extractButtonColor(a);
           if (colors) {
             a.classList.add(`bgcolor-${colors.colorOne}`);
             a.classList.add(`textcolor-${colors.colorTwo}`);
@@ -450,10 +497,11 @@ export function decorateButtons(element) {
           && twoup.childNodes.length === 1
           && (twoup.tagName === 'P' || twoup.tagName === 'LI' || twoup.tagName === 'DIV')
         ) {
-          const colors = extractColor(a);
+          const colors = extractButtonColor(a);
           if (colors) {
             a.classList.add(`textcolor-${colors.colorOne}`);
           }
+
           a.classList.add('button', 'secondary');
           twoup.classList.add('button-container');
           twoup.append(a);
@@ -572,6 +620,7 @@ export function decorateMain(main, templateModule) {
   decorateStyledSections(main);
   buildEmbedBlocks(main);
   centerHeadlines(main);
+  extractElementsColor();
 }
 
 /**

@@ -1,9 +1,47 @@
+/* stylelint-disable no-descending-specificity */
 .columns > div {
   display: flex;
   flex-flow: column;
   gap: 24px;
   padding-bottom: 24px;
   align-items: stretch;
+}
+
+.columns.stacked {
+  display: grid;
+  grid-template-columns: 1fr;
+
+  &.gray {
+    background: var(--gray);
+    border-radius: 0;
+    padding: 15px;
+    margin-bottom: 0;
+  }
+
+  > div {
+    display: contents;
+    padding-bottom: 0;
+  }
+}
+
+  .columns.middle > div {
+    align-items: center;
+
+    > * {
+      margin: 0;
+    }
+  }
+
+.columns.stacked > div > div:nth-child(1) {
+    order: 1;
+  }
+
+.columns.stacked > div > div:nth-child(2) {
+  order: 2;
+}
+
+.columns.stacked > div > div:nth-child(3) {
+  order: 3;
 }
 
 .columns img {
@@ -23,7 +61,7 @@
 }
 
 .columns > div > .columns-img-col img {
-  display: block;
+  /* display: block; */
 }
 
 .columns.top > div, .columns.top .buttons-container {
@@ -41,12 +79,11 @@
   }
 }
 
-.columns.gray {
-  > div > div.col-has-content {
+.columns.gray div.col-has-content, .columns.bg-gray {
     background: var(--gray);
     border-radius: 20px;
     padding: 15px;
-  }
+  margin-bottom: 20px;
 }
 
 .columns.white {
@@ -56,19 +93,90 @@
   }
 }
 
+
+.columns.translucent {
+  > div > div.col-has-content {
+    padding: 40px;
+    margin-bottom: 20px;
+    background-color: rgb(255 255 255 / 14%);
+    border-radius: 30px;
+  }
+}
+
+
 @media (width >=768px) {
-  .columns > div {
+  .columns {
+  > div {
     flex-direction: row;
   }
 
-  .columns.wrap > div > div {
-    flex: 1 1 47%;
+    &.wrap > div > div {
+      flex: 1 1 47%;
+    }
+
+    &.width-25 > div { /* first column 25% */
+      > div:nth-child(1) {
+        flex: 1 1 23%;
+      }
+
+      > div:not(:nth-child(1)) {
+        flex: 1 1 73%;
+      }
+    }
+
+    &.width-50 > div { /* first column 50% */
+
+      > div:nth-child(1) {
+        flex: 1 1 48%;
+      }
+    }
+
+    &.width-66 > div { /* first column 66% */
+      > div:nth-child(1) {
+        flex: 1 1 64%;
+      }
+
+      > div:not(:nth-child(1)) {
+        flex: 1 1 31%;
+      }
+    }
+
+    &.width-75 > div { /* first column 75% */
+      > div:nth-child(1) {
+        flex: 1 1 73%;
+        }
+
+      > div:not(:nth-child(1)) {
+        flex: 1 1 23%;
+      }
+    }
   }
 }
 
 @media (width>=992px) {
-  .columns > div > div {
+  .footer .columns > div > div {
     flex: 1 1;
+  }
+
+  .columns.stacked {
+    display: block;
+
+    > div {
+      display: flex;
+      flex-direction: row;
+
+
+      > div:nth-child(1), div:nth-child(2), div:nth-child(3) {
+        container-type: inline-size;
+        width: 100%;
+        order: 1;
+        flex: 1 1 100%;
+      }
+    }
+  }
+
+  .columns.price {
+    width: 64%;
   }
 
   .columns.wrap > div > div {

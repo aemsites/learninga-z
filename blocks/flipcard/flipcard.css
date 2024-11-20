@@ -44,7 +44,7 @@
 }
 
 .flip-card-back {
-  background-color: var(--purple);
+  background-color: var(--product-purple);
   color: white;
   transform: rotateY(180deg);
   display: flex;

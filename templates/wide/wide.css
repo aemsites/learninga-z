@@ -1,14 +1,20 @@
+
 .wide h1 {
     font-size: var(--heading-font-size-l);
     margin: 1em 0 .5em;
     line-height: 1.1;
 }
 
+
 p .icon-check-circle-white {
     img {
         width: 17px;
         vertical-align: text-bottom;
     }
+}
+
+.section-outer:not(:nth-child(2)) .section.product {
+    max-width: 750px;
 }
 
 @media (width >= 1024px) {
@@ -18,7 +24,8 @@ p .icon-check-circle-white {
 }
 
 @media (width >= 1660px) {
-    main > .section-outer:nth-child(2) > .section {
+    main > .section-outer:nth-child(2) .section {
         max-width: 1527px;
+        margin: 0 auto;
     }
 }

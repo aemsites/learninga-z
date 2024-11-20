@@ -1,24 +1,22 @@
 .table {
-  width: 100%;
   overflow-x: auto;
 
   table {
     width: 100%;
     min-width: 600px;
 
-    thead {
       th {
         padding: 1em;
         text-align: left;
         font-weight: bold;
-        background: var(--red);
+        background: var(--product-red); /* make var(--table-header) background */
 
         p {
-          color: #fff;
+          color: var(--white);
           margin: 0;
         }
-      }
-    }
+
+}
 
     tbody tr {
       border-top: 1px solid #ccc;
@@ -39,6 +37,53 @@
   }
 
   /* variant styles */
+
+/* these can be cleaned up better */
+
+  &.dark-blue table th {
+    background: var(--dark-blue);
+    color: var(--white);
+  }
+
+  &.navy-blue table th {
+    background: var(--product-navy-blue);
+    color: var(--white);
+  }
+
+  &.berry table th {
+    background: var(--product-berry);
+    color: var(--white);
+  }
+
+  &.red table th {
+    background: var(--product-red);
+    color: var(--white);
+  }
+
+  &.green table th {
+    background: var(--product-green);
+    color: var(--white);
+  }
+
+  &.yellow table th {
+    background: var(--rpe-gold);
+  }
+
+  &.orange table th {
+    background: var(--product-orange);
+    color: var(--white);
+  }
+
+  &.purple table th {
+    background: var(--product-purple);
+    color: var(--white);
+  }
+
+  &.laz-blue table th {
+    background: var(--laz-blue);
+    color: var(--white);
+  }
+
   &.plain {
     table {
       border-collapse: collapse;
@@ -51,4 +96,38 @@
       tbody tr { background: transparent }
     }
   }
+}
+
+@media (width >= 1024px) {
+  .table {
+    display: flex;
+
+    &.width-33 {
+      table {
+        width: 33%;
+        min-width: unset;
+      }
+    }
+
+    &.width-50 {
+      table {
+        width: 50%;
+        min-width: unset;
+      }
+  }
+
+  &.width-66 {
+    table {
+      width: 66%;
+      min-width: unset;
+    }
+ }
+
+    &.width-75 {
+      table {
+        width: 75%;
+        min-width: unset;
+      }
+   }
+ }
 }
