@@ -45,7 +45,7 @@ const getPubDate = (document) => {
 };
 
 const transformButtons = (main) => {
-  const primaryButtons = main.querySelectorAll('.btn.rect-btn');
+  const primaryButtons = main.querySelectorAll('.rect-btn');
   primaryButtons.forEach((button) => {
     const p = document.createElement('p');
     const strong = document.createElement('strong');
@@ -104,9 +104,9 @@ const createMetadataBlock = (main, document, url) => {
   el.src = image;
   meta.image = el;
 
-  if (wideTemplate) {
-    meta.template = 'wide';
-  }
+  // if (wideTemplate) {
+  //   meta.template = 'wide';
+  // }
 
   meta.date = getPubDate(document);
 
@@ -179,6 +179,26 @@ export default {
 
     const footerWidgets = document.querySelector('.footer-widgets');
     if (footerWidgets) main.appendChild(footerWidgets.cloneNode(true));
+
+    // Tables
+    // Note: Handling tables before creating any block tables.
+    const tables = main.querySelectorAll('table');
+    tables.forEach((table) => {
+      // Create a new row
+      const newRow = table.createTHead().insertRow(0); // Insert at the top (index 0)
+
+      // Create a new cell
+      const newCell = newRow.insertCell(0); // Insert the cell in the new row
+
+      // Set the cell content
+      newCell.textContent = 'Table';
+
+      // Optionally, you can set the cell to span all columns
+      newCell.colSpan = table.rows[1] ? table.rows[1].cells.length : 1;
+
+      // Optionally, you can style the new cell
+      newCell.style.fontWeight = 'bold';
+    });
 
     // Dividers
     const dividers = main.querySelectorAll('hr');
@@ -261,26 +281,6 @@ export default {
     }
 
     const subHeading = main.querySelector('.sub-heading');
-
-    // Tables
-    // Note: Handling tables before creating any block tables.
-    const tables = main.querySelectorAll('table');
-    tables.forEach((table) => {
-      // Create a new row
-      const newRow = table.insertRow(0); // Insert at the top (index 0)
-
-      // Create a new cell
-      const newCell = newRow.insertCell(0); // Insert the cell in the new row
-
-      // Set the cell content
-      newCell.textContent = 'Table';
-
-      // Optionally, you can set the cell to span all columns
-      newCell.colSpan = table.rows[1] ? table.rows[1].cells.length : 1;
-
-      // Optionally, you can style the new cell
-      newCell.style.fontWeight = 'bold';
-    });
 
     // Metadata Block
     createMetadataBlock(main, document, url);
@@ -440,10 +440,18 @@ export default {
         }
         if (row.children.length > 0 && [...row.children].some((child) => child.className.includes('col-'))) {
           if (row.children[0].className.includes('col-sm-3')) {
-            columns = 'Columns (width 25)';
+            if (columns.includes('(')) {
+              columns = columns.replace(')', ', width 25)');
+            } else {
+              columns = 'Columns (width 25)';
+            }
           }
           if (row.children[0].className.includes('col-sm-6')) {
-            columns = 'Columns (width 50)';
+            if (columns.includes('(')) {
+              columns = columns.replace(')', ', width 50)');
+            } else {
+              columns = 'Columns (width 50)';
+            }
           }
           const cells = [
             [columns],
@@ -455,12 +463,18 @@ export default {
     });
 
     // whenever a text-align:center; is found, add a hr before it and a section metadata table after it with style center and hr after it
-    const centerAlign = main.querySelectorAll('[style*="text-align:center"]');
+    const centerAlign = main.querySelectorAll('[style*="center"]');
     centerAlign.forEach((center) => {
-      const hr = document.createElement('hr');
-      center.before(hr);
-      center.before(createSectionMetadata(document, 'short, center'));
-      center.after(hr.cloneNode(true));
+      if (!center.closest('table') && !center.closest('.breakroom-tile') && !(center.previousElementSibling?.tagName === 'HR' || center.previousElementSibling?.tagName === 'TABLE' || center.nextElementSibling?.tagName === 'HR')) {
+        const hr = document.createElement('hr');
+        center.before(hr);
+        if (center.closest('.resources-tile')) {
+          center.before(createSectionMetadata(document, 'short, center', 'gray'));
+        } else {
+          center.before(createSectionMetadata(document, 'short, center'));
+        }
+        center.after(hr.cloneNode(true));
+      }
     });
 
     // Fix URLs
