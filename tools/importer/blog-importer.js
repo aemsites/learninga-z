@@ -11,7 +11,7 @@
  * governing permissions and limitations under the License.
  */
 
-import { blogs, blogVideos } from './blogs-data.mjs';
+import { blogs, blogVideos, blogAuthors } from './blogs-data.mjs';
 
 let wideTemplate = false;
 
@@ -146,10 +146,16 @@ const createMetadataBlock = (main, document, url) => {
     authorLinks.forEach((link) => {
       // meta.author is comma separated list of authors
       const authorName = link.textContent.replace(/,\s*$/, '');
+      let newAuthorName = authorName;
+      // check in blogAuthors array if authorName is present as oldname, if yes, replace authorName with newName if present
+      const author = blogAuthors.find((a) => a.oldname === authorName);
+      if (author) {
+        newAuthorName = author.newname ? author.newname : authorName;
+      }
       if (meta.author) {
-        meta.author += `, ${authorName}`;
+        meta.author += `, ${newAuthorName}`;
       } else {
-        meta.author = authorName;
+        meta.author = newAuthorName;
       }
     });
     authorSection.remove();
