@@ -60,7 +60,6 @@
                 grid-area: auto / content;
                 display: grid;
                 grid-template-rows: max-content;
-                border: 1px solid red;
             }
 
             &:last-of-type {
@@ -70,7 +69,6 @@
 
             &:first-of-type {
                 grid-area: content;
-                border: 2px solid green;
             }
         }
     }
