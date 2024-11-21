@@ -220,3 +220,18 @@ indices:
       products:
         select: head > meta[name="products"]
         value: attribute(el, "content")
+authors:
+    include:
+      - /site/resources/breakroom-blog/authors/**
+    exclude: *excludes
+    target: /site/resources/breakroom-blog/authors/query-index.json
+    properties:
+      name:
+        select: head > meta[name="author"]
+        value: attribute(el, "content")
+      title:
+        select: head > meta[name="author-title"]
+        value: attribute(el, "content")
+      description:
+        select: head > meta[name="description"]
+        value: attribute(el, "content")
