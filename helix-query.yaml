@@ -227,10 +227,10 @@ authors:
     target: /site/resources/breakroom-blog/authors/query-index.json
     properties:
       name:
-        select: head > meta[property="author"]
+        select: head > meta[name="author"]
         value: attribute(el, "content")
       title:
-        select: head > meta[property="author-title"]
+        select: head > meta[name="author-title"]
         value: match(attribute(el, "content"), "https:\/\/[^/]+(/.*)")
       description:
         select: head > meta[name="description"]
