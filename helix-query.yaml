@@ -231,7 +231,7 @@ authors:
         value: attribute(el, "content")
       title:
         select: head > meta[name="author-title"]
-        value: match(attribute(el, "content"), "https:\/\/[^/]+(/.*)")
+        value: attribute(el, "content")
       description:
         select: head > meta[name="description"]
         value: attribute(el, "content")
