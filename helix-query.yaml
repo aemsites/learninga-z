@@ -184,7 +184,9 @@ indices:
   breakroom-blog:
     include:
       - /site/resources/breakroom-blog/**
-    exclude: *excludes
+    exclude: 
+      - *excludes
+      - /site/resources/breakroom-blog/authors/**
     target: /site/resources/breakroom-blog/query-index.json
     properties:
       title:
@@ -211,9 +213,6 @@ indices:
       author:
         select: head > meta[name="author"]
         value: attribute(el, "content")
-      author-title:
-        select: head > meta[name="author-title"]
-        value: attribute(el, "content")
       template:
         select: head > meta[name="template"]
         value: attribute(el, "content")
@@ -226,10 +225,10 @@ authors:
     exclude: *excludes
     target: /site/resources/breakroom-blog/authors/query-index.json
     properties:
-      name:
+      author:
         select: head > meta[name="author"]
         value: attribute(el, "content")
-      title:
+      author-title:
         select: head > meta[name="author-title"]
         value: attribute(el, "content")
       description:
