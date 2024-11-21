@@ -1,6 +1,5 @@
 /* stylelint-disable no-descending-specificity */
 main > .section-outer > .section.download-cards-section {
-    padding: 0;
     max-width: 100%;
 
     .default-content-wrapper {
