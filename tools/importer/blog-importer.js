@@ -234,6 +234,7 @@ export default {
     // if first row has col-12, replace row with a div with content of col-12
     const firstRow = main.querySelector('.row');
     if (firstRow && (firstRow.children[0].className.includes('col-12') || firstRow.children[0].className.includes('col-sm-12') || firstRow.children[0].className.includes('col-md-12') || firstRow.children[0].className.includes('col-lg-12'))) {
+      console.log('1Column', url);
       const div = document.createElement('div');
       div.innerHTML = firstRow.children[0].innerHTML;
       firstRow.replaceWith(div);
@@ -454,7 +455,7 @@ export default {
     // Columns
     const rows = main.querySelectorAll('.row');
     rows.forEach((row) => {
-      if (row.parentElement.tagName !== 'TD' && row.parentElement.tagName !== 'TH' && row.parentElement.tagName !== 'TR' && !row.closest('table')) {
+      if (row.parentElement.tagName !== 'TD' && row.parentElement.tagName !== 'TH' && row.parentElement.tagName !== 'TR' && !row.closest('table') && !row.querySelector('table')) {
         let columns = 'Columns';
         if (row.parentElement.className.includes('resources-tile') || row.querySelector('.resources-tile')) {
           columns = 'Columns (gray)';
