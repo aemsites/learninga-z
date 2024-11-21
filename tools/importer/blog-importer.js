@@ -55,6 +55,13 @@ const transformButtons = (main) => {
       const btnClass = btnClasses[0];
       const btnText = btnClass.trim().replace('btn-', '');
       if (btnText && btnText !== 'white-border') {
+        if (btnText === 'navy-blue') {
+          button.textContent = `${text} {navy}`;
+        } else if (btnText === 'orange-red') {
+          button.textContent = `${text} {orange}`;
+        } else {
+          button.textContent = `${text} {${btnText}}`;
+        }
         button.textContent = `${text} {${btnText === 'navy-blue' ? 'navy' : btnText}}`;
       } else {
         button.textContent = text;
@@ -160,6 +167,11 @@ const createMetadataBlock = (main, document, url) => {
   // products
   meta.products = '';
 
+  // theme
+  if (wideTemplate) {
+    meta.theme = 'laz-blue, col-1';
+  }
+
   // helper to create the metadata block
   const block = WebImporter.Blocks.getMetadataBlock(document, meta);
 
@@ -235,6 +247,7 @@ export default {
     const firstRow = main.querySelector('.row');
     if (firstRow && (firstRow.children[0].className.includes('col-12') || firstRow.children[0].className.includes('col-sm-12') || firstRow.children[0].className.includes('col-md-12') || firstRow.children[0].className.includes('col-lg-12'))) {
       console.log('1Column', url);
+      wideTemplate = true;
       const div = document.createElement('div');
       div.innerHTML = firstRow.children[0].innerHTML;
       firstRow.replaceWith(div);
@@ -466,13 +479,6 @@ export default {
               columns = columns.replace(')', ', width 25)');
             } else {
               columns = 'Columns (width 25)';
-            }
-          }
-          if (row.children[0].className.includes('col-sm-6')) {
-            if (columns.includes('(')) {
-              columns = columns.replace(')', ', width 50)');
-            } else {
-              columns = 'Columns (width 50)';
             }
           }
           const cells = [
