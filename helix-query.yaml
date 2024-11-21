@@ -185,7 +185,12 @@ indices:
     include:
       - /site/resources/breakroom-blog/**
     exclude:
-      - *excludes
+      - '**/drafts/**'
+      - '**/images/**'
+      - '**/icons/**'
+      - '**/test/**'
+      - '**/fragments/**'
+      - '**/user_area/**'
       - /site/resources/breakroom-blog/authors/**
     target: /site/resources/breakroom-blog/query-index.json
     properties:
