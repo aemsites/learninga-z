@@ -219,7 +219,7 @@ indices:
       products:
         select: head > meta[name="products"]
         value: attribute(el, "content")
-authors:
+  authors:
     include:
       - /site/resources/breakroom-blog/authors/**
     exclude: *excludes
