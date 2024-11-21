@@ -168,7 +168,7 @@
 
     &.width-25 > div { /* first column 25% */
       > div:nth-child(1) {
-        flex: 1 1 23%;
+        flex: 1 0 23%;
       }
 
       > div:not(:nth-child(1)) {
@@ -176,16 +176,26 @@
       }
     }
 
+    &.width-33 > div { /* first column 25% */
+      > div:nth-child(1) {
+        flex: 1 0 31%;
+      }
+
+      > div:not(:nth-child(1)) {
+        flex: 1 1 64%;
+      }
+    }
+
     &.width-50 > div { /* first column 50% */
 
       > div:nth-child(1) {
-        flex: 1 1 48%;
+        flex: 1 0 48%;
       }
     }
 
     &.width-66 > div { /* first column 66% */
       > div:nth-child(1) {
-        flex: 1 1 64%;
+        flex: 1 0 64%;
       }
 
       > div:not(:nth-child(1)) {
@@ -195,7 +205,7 @@
 
     &.width-75 > div { /* first column 75% */
       > div:nth-child(1) {
-        flex: 1 1 73%;
+        flex: 1 0 73%;
         }
 
       > div:not(:nth-child(1)) {
