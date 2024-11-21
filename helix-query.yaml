@@ -1,4 +1,4 @@
-.exclude: &excludes
+.excludes: &excludes
   - '**/drafts/**'
   - '**/images/**'
   - '**/icons/**'
