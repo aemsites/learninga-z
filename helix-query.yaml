@@ -1,4 +1,4 @@
-.excludes: &excludes
+.exclude: &excludes
   - '**/drafts/**'
   - '**/images/**'
   - '**/icons/**'
@@ -184,7 +184,7 @@ indices:
   breakroom-blog:
     include:
       - /site/resources/breakroom-blog/**
-    exclude: 
+    exclude:
       - *excludes
       - /site/resources/breakroom-blog/authors/**
     target: /site/resources/breakroom-blog/query-index.json
