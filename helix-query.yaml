@@ -17,8 +17,8 @@ indices:
       - '**/icons/**'
       - '**/fragments/**'
       - '**/user_area/**'
-      - '/nav'
-      - '/footer'
+      - /nav
+      - /footer
     target: /query-index.json
     properties:
       title:
