@@ -45,24 +45,7 @@ const getPubDate = (document) => {
 };
 
 const transformButtons = (main) => {
-  const primaryButtons = main.querySelectorAll('.rect-btn');
-  primaryButtons.forEach((button) => {
-    const p = document.createElement('p');
-    const strong = document.createElement('strong');
-    // if button has a class starting with btn- ,  add remaining part of class to the button text wrapped in {{}}
-    const btnClasses = button.className.split(' ').filter((c) => c.startsWith('btn-'));
-    if (btnClasses.length > 0) {
-      const text = button.textContent;
-      const btnClass = btnClasses[0];
-      const btnText = btnClass.trim().replace('btn-', '');
-      button.textContent = `${text} {${btnText === 'navy-blue' ? 'navy' : btnText}}`;
-    }
-    strong.appendChild(button.cloneNode(true));
-    p.appendChild(strong);
-    button.replaceWith(p);
-  });
-
-  const secondaryButtons = main.querySelectorAll('.btn:not(.rect-btn), .rect-btn.btn-white-border');
+  const secondaryButtons = main.querySelectorAll('.btn:not(.rect-btn)');
   secondaryButtons.forEach((button) => {
     const p = document.createElement('p');
     const em = document.createElement('em');
@@ -80,6 +63,42 @@ const transformButtons = (main) => {
     em.appendChild(button.cloneNode(true));
     p.appendChild(em);
     button.replaceWith(p);
+  });
+
+  const primaryButtons = main.querySelectorAll('.rect-btn');
+  primaryButtons.forEach((button) => {
+    if (button.className.includes('btn-white-border')) { // this is a secondary button
+      const p = document.createElement('p');
+      const em = document.createElement('em');
+      const btnClasses = button.className.split(' ').filter((c) => c.startsWith('btn-'));
+      if (btnClasses.length > 0) {
+        const text = button.textContent;
+        const btnClass = btnClasses[0];
+        const btnText = btnClass.trim().replace('btn-', '');
+        if (btnText && btnText !== 'white-border') {
+          button.textContent = `${text} {${btnText === 'navy-blue' ? 'navy' : btnText}}`;
+        } else {
+          button.textContent = text;
+        }
+      }
+      em.appendChild(button.cloneNode(true));
+      p.appendChild(em);
+      button.replaceWith(p);
+    } else {
+      const p = document.createElement('p');
+      const strong = document.createElement('strong');
+      // if button has a class starting with btn- ,  add remaining part of class to the button text wrapped in {{}}
+      const btnClasses = button.className.split(' ').filter((c) => c.startsWith('btn-'));
+      if (btnClasses.length > 0) {
+        const text = button.textContent;
+        const btnClass = btnClasses[0];
+        const btnText = btnClass.trim().replace('btn-', '');
+        button.textContent = `${text} {${btnText === 'navy-blue' ? 'navy' : btnText}}`;
+      }
+      strong.appendChild(button.cloneNode(true));
+      p.appendChild(strong);
+      button.replaceWith(p);
+    }
   });
 };
 
@@ -133,7 +152,9 @@ const createMetadataBlock = (main, document, url) => {
   const category1 = blogs.find((blog) => url.includes(blog.path.replace('https://www.learninga-z.com/', '')))?.category1 || '';
   const category2 = blogs.find((blog) => url.includes(blog.path.replace('https://www.learninga-z.com/', '')))?.category2 || '';
   const category3 = blogs.find((blog) => url.includes(blog.path.replace('https://www.learninga-z.com/', '')))?.category3 || '';
-  const category = [category1, category2, category3].filter(Boolean).join(', ');
+  const category4 = blogs.find((blog) => url.includes(blog.path.replace('https://www.learninga-z.com/', '')))?.category4 || '';
+  const category5 = blogs.find((blog) => url.includes(blog.path.replace('https://www.learninga-z.com/', '')))?.category5 || '';
+  const category = [category1, category2, category3, category4, category5].filter(Boolean).join(', ');
   meta.category = category;
 
   // products
@@ -366,7 +387,7 @@ export default {
     });
 
     // blockquotes
-    const blockquotes = main.querySelectorAll('p.blockquote-alt, blockquote');
+    const blockquotes = main.querySelectorAll('p.blockquote-alt, blockquote, .blockquote-sky-blue');
     blockquotes.forEach((blockquote) => {
       // if blockquote has <strong> tag, replace with <p></p>
       const strong = blockquote.querySelector('strong');
@@ -433,7 +454,7 @@ export default {
     // Columns
     const rows = main.querySelectorAll('.row');
     rows.forEach((row) => {
-      if (row.parentElement.tagName !== 'TD' && row.parentElement.tagName !== 'TH' && row.parentElement.tagName !== 'TR') {
+      if (row.parentElement.tagName !== 'TD' && row.parentElement.tagName !== 'TH' && row.parentElement.tagName !== 'TR' && !row.closest('table')) {
         let columns = 'Columns';
         if (row.parentElement.className.includes('resources-tile') || row.querySelector('.resources-tile')) {
           columns = 'Columns (gray)';
