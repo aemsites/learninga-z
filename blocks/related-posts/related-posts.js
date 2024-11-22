@@ -4,7 +4,8 @@ export async function createPageLinks(row, style) {
   const linkPost = document.createElement('div');
   if (style) linkPost.classList.add(style);
   const title = createTag('div', { class: 'title' });
-  title.innerHTML = `<a href="${row.path}"><h3>${row.title}</h3></a>`;
+  title.innerHTML = `<a href="${row.path}"><h3>${row.title.replace(/ \| Learning A-Z$|- Learning A-Z$/, '')}</h3></a>`;
+
   linkPost.append(title);
   return linkPost;
 }
