@@ -34,8 +34,14 @@
         }
     }
 
-.blog-article.col-1 main .section-outer .section .default-content-wrapper {
-    text-align: left;
+.blog-article.col-1 main .section-outer {
+    & .section .default-content-wrapper {
+        text-align: left;
+    }
+
+    &:last-of-type {
+        margin-top: 0;
+    }
 }
 
 @media (width >= 768px) {
