@@ -11,3 +11,9 @@
         }
     }
 }
+
+@media (width >=1200px) {
+    .author-info picture {
+        width: 16%
+    }
+}
