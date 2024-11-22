@@ -233,7 +233,7 @@ indices:
       author:
         select: head > meta[name="author"]
         value: attribute(el, "content")
-      author-title:
+      authorTitle:
         select: head > meta[name="author-title"]
         value: attribute(el, "content")
       description:
