@@ -7,13 +7,7 @@
     picture {
         img {
             border-radius: 50%;
-            max-height: 140px;
+            max-height: 120px;
         }
-    }
-}
-
-@media (width >=1200px) {
-    .author-info picture {
-        width: 16%
     }
 }
