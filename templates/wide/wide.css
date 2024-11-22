@@ -39,7 +39,7 @@
             line-height: 1.5;
 
             &::before {
-                content: url('/icons/checkmark-circle-navy.svg');
+                content: var(--theme-checkmark-circle);
                 margin-right: 12px;
                 min-width: 17px;
                 width: 17px;
@@ -61,7 +61,7 @@
         .carousel-slide-content {
             display: block;
             flex: 1;
-            margin-right: 20px;
+            margin: 20px 30px 40px 20px;
         }
 
         .carousel-slide-image {
@@ -78,6 +78,7 @@
 
 .section-outer:not(:nth-child(2)) .section.product {
     max-width: 750px;
+    padding-bottom: 200px;
 }
 
 @media (width >= 768px) {

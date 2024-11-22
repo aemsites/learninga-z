@@ -35,7 +35,7 @@
     }
 
 .blog-article.col-1 main .section-outer .section .default-content-wrapper {
-    text-align: left;
+    text-align: unset;
 }
 
 @media (width >= 768px) {
@@ -75,6 +75,7 @@
                 grid-area: auto / content;
                 display: grid;
                 grid-template-rows: max-content;
+                margin-bottom: 24px;
             }
 
             &:last-of-type {

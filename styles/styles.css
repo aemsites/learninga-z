@@ -547,6 +547,7 @@ THEMES
 
   &:has(.inner) {
     background-color: unset;
+    padding: 0 15px;
 
     .section.inner {
       background-color: var(--theme-bg);
@@ -563,7 +564,7 @@ THEMES
   }
 }
 
-.dark-blue main {
+.dark-blue main, .blue main {
   --theme-breadcrumbs-bg: var(--product-dark-blue);
   --theme-heading-color: var(--laz-logo-blue);
   --theme-link-color: var(--product-dark-blue);
@@ -579,9 +580,10 @@ THEMES
   --theme-accordion-border: var(--product-dark-blue);
   --theme-accordion-txt: var(--product-dark-blue);
   --theme-cards-circle-bg: var(--product-dark-blue);
+  --theme-checkmark-circle: url('/icons/checkmark-circle-dark-blue.svg');
 }
 
-[data-theme="dark-blue"] {
+[data-theme="dark-blue"], [data-theme="blue"] {
   --theme-bg: var(--product-dark-blue);
   --theme-btn-primary-txt: var(--product-dark-blue);
   --theme-btn-secondary-txt-hov: var(--product-dark-blue);
@@ -605,6 +607,7 @@ THEMES
   --theme-accordion-border: var(--product-berry);
   --theme-accordion-txt: var(--product-berry);
   --theme-cards-circle-bg: var(--product-berry);
+  --theme-checkmark-circle: url('/icons/checkmark-circle-berry.svg');
 }
 
 [data-theme="berry"], [data-theme="berry-gradient"],
@@ -625,6 +628,7 @@ THEMES
   --theme-accordion-txt: var(--product-red);
   --theme-cards-circle-bg: var(--product-red);
   --theme-btn-secondary-txt-hov: var(--product-red);
+  --theme-checkmark-circle: url('/icons/checkmark-circle-red.svg');
 }
 
 [data-theme="red"], [data-theme="gradient-rad-red"], [data-theme="gradient-lin-red"] {
@@ -651,6 +655,7 @@ THEMES
   --theme-accordion-border: var(--product-navy-blue);
   --theme-accordion-txt: var(--product-navy-blue);
   --theme-cards-circle-bg: var(--product-navy-blue);
+  --theme-checkmark-circle: url('/icons/checkmark-circle-navy.svg');
 }
 
 [data-theme="navy"], [data-theme="gradient-rad-navy"], [data-theme="gradient-lin-navy"]  {
@@ -921,7 +926,6 @@ THEMES
 
   &:has(.section.inner) {
     background: none;
-    padding: 0 15px;
 
     .section.inner {
       background: var(--theme-gradient-linear);
@@ -976,11 +980,11 @@ THEMES
   color: var(--laz-black);
 }
 
-.bg-dark-blue {
+.bg-dark-blue, .bg-blue {
   background-color: var(--product-dark-blue);
 }
 
-:is(h1, h2, h3, h4).dark-blue {
+:is(h1, h2, h3, h4).dark-blue, :is(h1, h2, h3, h4).blue {
   color: var(--product-dark-blue);
 }
 
@@ -1174,7 +1178,7 @@ button.secondary {
 
   &.textcolor-laz-blue, &.textcolor-berry, &.textcolor-navy, &.textcolor-navy-blue,
   &.textcolor-logo-blue, &.textcolor-gold, &.textcolor-bright-yellow, &.textcolor-dark-blue,
-  &.textcolor-orange, &.textcolor-purple, &.textcolor-green, &.textcolor-black {
+  &.textcolor-orange, &.textcolor-red, &.textcolor-purple, &.textcolor-green, &.textcolor-black {
     &:hover {
       color: var(--white);
     }
@@ -1261,6 +1265,16 @@ button.secondary {
     }
   }
 
+  &.textcolor-red {
+    color: var(--product-red);
+    border-color: var(--product-red);
+
+    &:hover {
+      background-color: var(--product-red);
+      border-color: var(--product-red);
+    }
+  }
+
   &.textcolor-purple {
     color: var(--product-purple);
     border-color: var(--product-purple);
@@ -1325,7 +1339,6 @@ button.secondary {
       padding: 40px 15px;
       max-width: 750px;
       background-size: cover;
-      width: 100%;
     }
 
     > .section:has(.bg-image-container) {
@@ -1340,6 +1353,10 @@ button.secondary {
           margin-bottom: 0;
         }
 
+        > div {
+          gap: 8px;
+        }
+
         &:last-child > div {
           padding-bottom: 0;
         }
@@ -1347,7 +1364,7 @@ button.secondary {
     }
 
     .section.product {
-      padding: 50px 15px 200px;
+      padding: 20px 15px 80px;
     }
   }
 
@@ -1385,6 +1402,10 @@ button.secondary {
     main > .section-outer > .bg-image-container > .section,
     .breadcrumbs-container, .hero-content {
       max-width: 1170px;
+    }
+
+    main > .section-outer .section.product {
+      padding-bottom: 200px;
     }
   }
 

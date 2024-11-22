@@ -52,6 +52,10 @@
     font-size: var(--body-font-size-l);
   }
 
+  .buttons-container {
+    flex-flow: row;
+  }
+
   .button.primary, .button.secondary {
     padding: 8px 20px 6px;
   }
@@ -143,12 +147,12 @@
   > div > div.col-has-content {
     padding: 40px;
     margin-bottom: 20px;
-    background-color: rgb(255 255 255 / 14%);
+    background-color: rgb(255 255 255 / 13%);
     border-radius: 30px;
   }
 }
 
-@container price (max-width: 800px) {
+@container price (max-width:660px) {
    div:first-child {
      > div {
        flex-flow: column;
@@ -239,6 +243,12 @@
         flex: 1 1 100%;
       }
     }
+  }
+
+  .columns.signs > div:last-child picture:last-child {
+    position: relative;
+    right: -54%;
+    top: -450%;
   }
 
   .columns.wrap > div > div {
