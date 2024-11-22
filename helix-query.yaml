@@ -239,3 +239,15 @@ indices:
       description:
         select: head > meta[name="description"]
         value: attribute(el, "content")
+      image:
+        select: head > meta[property="og:image"]
+        value: match(attribute(el, "content"), "https:\/\/[^/]+(/.*)")
+      lastModified:
+        select: none
+        value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss GMT")
+      date:
+        select: head > meta[name="date"]
+        value: attribute(el, "content")
+      tags:
+        select: head > meta[name="article:tag"]
+        value: attribute(el, "content")
