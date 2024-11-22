@@ -1,0 +1,13 @@
+.author-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0 10px;
+
+    picture {
+        img {
+            border-radius: 50%;
+            max-height: 140px;
+        }
+    }
+}

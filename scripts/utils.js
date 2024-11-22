@@ -8,6 +8,7 @@ const DOWNLOAD_LIBRARY_INDEX = '/site/resources/download-library/query-index.jso
 const AWARDS_LIST = '/site/company/awards-n-accolades/awards.json';
 const REVIEWS_N_TESTIMONIALS = '/site/company/reviews-and-testimonials/testimonials.json';
 const BLOGS_INDEX = '/site/resources/breakroom-blog/query-index.json';
+const AUTHORS = '/site/resources/breakroom-blog/authors/query-index.json';
 
 /**
  * Returns the relative path from a given path.
@@ -74,6 +75,19 @@ async function getIndexData(index = INDEX) {
     });
   }
   return retrievedData;
+}
+
+const authors = [];
+/**
+ * Retrieves the authors from the index.
+ * @returns {Promise<Array>} A promise that resolves to an array of authors.
+ */
+export async function getAuthors() {
+  if (!authors.length) {
+    authors.push(...await getIndexData(AUTHORS));
+  }
+  // Protected against callers modifying the objects
+  return structuredClone(authors);
 }
 
 const reviewsData = [];
