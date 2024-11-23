@@ -304,19 +304,17 @@ export default {
       const ol = postContent.querySelector('ol:last-child');
       if (ol && ol === postContent.lastElementChild) {
         const hr = document.createElement('hr');
-        postContent.insertBefore(hr, ol);
+        if (ol.previousElementSibling?.tagName !== 'HR') {
+          postContent.insertBefore(hr, ol);
+        }
         postContent.appendChild(createSectionMetadata(document, 'footnote, short'));
-      }
-
-      // do the same if post-content ends with a p with style font-size: 10pt;
-      if (postContent.lastElementChild.style.fontSize === '10pt' && postContent.lastElementChild.tagName === 'P') {
+      } else if (postContent.lastElementChild.style.fontSize === '10pt') { // do the same if post-content ends with a p with style font-size: 10pt;
         const hr = document.createElement('hr');
-        postContent.insertBefore(hr, postContent.lastElementChild);
+        if (postContent.lastElementChild.previousElementSibling.tagName !== 'HR') {
+          postContent.insertBefore(hr, postContent.lastElementChild);
+        }
         postContent.appendChild(createSectionMetadata(document, 'footnote, short'));
-      }
-
-      // if postContent.lastElementChild.tagName === 'P' and the text content contains string "Footnote:" ignoring case
-      if (postContent.lastElementChild.tagName === 'P' && postContent.lastElementChild.textContent.toLowerCase().includes('footnote:')) {
+      } else if (postContent.lastElementChild.textContent.toLowerCase().includes('footnote:')) { // if postContent.lastElementChild.tagName === 'P' and the text content contains string "Footnote:" ignoring case
         postContent.appendChild(createSectionMetadata(document, 'footnote, short'));
       }
     }
@@ -362,6 +360,10 @@ export default {
       // if breakroom tile has an anchor with url containing "/site/breakroom/authors/", add Callout Table
       const authorLink = breakroomTile.querySelector('a[href*="/site/breakroom/authors/"]');
       const image = breakroomTile.querySelector('img');
+      const rows = breakroomTile.querySelector('.row');
+      const cols = breakroomTile.querySelectorAll('[class*="col-"]');
+      // if this is an author callout or a callout with out any columns, add a Callout block else
+      // add a section metadata table before and after the breakroom tile as we can not support columns in a callout
       if (authorLink && image) {
         const cells = [
           ['Callout'],
@@ -369,15 +371,26 @@ export default {
         ];
         const calloutTable = WebImporter.DOMUtils.createTable(cells, document);
         breakroomTile.replaceWith(calloutTable);
+      } else if (!rows || (cols && cols.length === 1)) {
+        const cells = [
+          ['Callout (center)'],
+          [breakroomTile.innerHTML],
+        ];
+        const calloutTable = WebImporter.DOMUtils.createTable(cells, document);
+        breakroomTile.replaceWith(calloutTable);
       } else {
       // insert an hr and section metadata table before each breakroom tile
         const hr = document.createElement('hr');
-        breakroomTile.before(hr);
+        if (breakroomTile.previousElementSibling?.tagName !== 'HR') {
+          breakroomTile.before(hr);
+        }
         breakroomTile.before(createSectionMetadata(document, 'short, center', 'gray'));
         // if breakroom tile is not the last element in the post-content, add an hr after the breakroom tile
         if (breakroomTile !== postContent.lastElementChild) {
           const hrAfter = document.createElement('hr');
-          breakroomTile.after(hrAfter);
+          if (breakroomTile.nextElementSibling?.tagName !== 'HR') {
+            breakroomTile.after(hrAfter);
+          }
         }
       }
     });
@@ -501,13 +514,17 @@ export default {
     centerAlign.forEach((center) => {
       if (!center.closest('table') && !center.closest('.breakroom-tile') && !(center.previousElementSibling?.tagName === 'HR' || center.previousElementSibling?.tagName === 'TABLE' || center.nextElementSibling?.tagName === 'HR')) {
         const hr = document.createElement('hr');
-        center.before(hr);
+        if (center.previousElementSibling?.tagName !== 'HR') {
+          center.before(hr);
+        }
         if (center.closest('.resources-tile')) {
           center.before(createSectionMetadata(document, 'short, center', 'gray'));
         } else {
           center.before(createSectionMetadata(document, 'short, center'));
         }
-        center.after(hr.cloneNode(true));
+        if (center.nextElementSibling?.tagName !== 'HR') {
+          center.after(hr.cloneNode(true));
+        }
       }
     });
 
