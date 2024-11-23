@@ -583,12 +583,13 @@ THEMES
   --theme-checkmark-circle: url('/icons/checkmark-circle-dark-blue.svg');
 }
 
-[data-theme="dark-blue"], [data-theme="blue"] {
+[data-theme="dark-blue"], [data-theme="blue"],
+[data-theme="gradient-rad-dark-blue"], [data-theme="gradient-lin-dark-blue"]{
   --theme-bg: var(--product-dark-blue);
   --theme-btn-primary-txt: var(--product-dark-blue);
   --theme-btn-secondary-txt-hov: var(--product-dark-blue);
-  --theme-gradient-radial-dark-blue: var(--gradient-rad-dark-blue);
-  --theme-gradient-linear-dark-blue: var(--gradient-lin-dark-blue);
+  --theme-gradient-radial: var(--gradient-rad-dark-blue);
+  --theme-gradient-linear: var(--gradient-lin-dark-blue);
 }
 
 .berry main {
@@ -610,7 +611,7 @@ THEMES
   --theme-checkmark-circle: url('/icons/checkmark-circle-berry.svg');
 }
 
-[data-theme="berry"], [data-theme="berry-gradient"],
+[data-theme="berry"],
 [data-theme="gradient-rad-berry"], [data-theme="gradient-lin-berry"] {
   --theme-bg: var(--product-berry);
   --theme-btn-primary-txt: var(--product-berry);
@@ -684,7 +685,7 @@ THEMES
   --theme-cards-circle-bg: var(--product-green);
 }
 
-[data-theme="green"] {
+[data-theme="green"],[data-theme="gradient-rad-green"], [data-theme="gradient-lin-green"]  {
   --theme-bg: var(--product-green);
   --theme-btn-primary-txt: var(--product-green);
   --theme-btn-secondary-txt-hov: var(--product-green);
@@ -715,10 +716,12 @@ THEMES
   }
 }
 
-[data-theme="purple"] {
+[data-theme="purple"], [data-theme="gradient-rad-purple"], [data-theme="gradient-lin-purple"] {
   --theme-bg: var(--product-purple);
   --theme-btn-primary-txt: var(--product-purple);
   --theme-btn-secondary-txt-hov: var(--product-purple);
+  --theme-gradient-linear: var(--gradient-lin-green);
+  --theme-gradient-radial: var(--gradient-rad-green);
 }
 
 .orange main {
@@ -739,10 +742,12 @@ THEMES
   --theme-cards-circle-bg: var(--product-orange);
 }
 
-[data-theme="orange"] {
+[data-theme="orange"],[data-theme="gradient-rad-orange"], [data-theme="gradient-lin-orange"]  {
   --theme-bg: var(--product-orange);
   --theme-btn-primary-txt: var(--product-orange);
   --theme-btn-secondary-txt-hov: var(--product-orange);
+  --theme-gradient-linear: var(--gradient-lin-orange);
+    --theme-gradient-radial: var(--gradient-rad-orange);
 }
 
 .gold main {
@@ -797,7 +802,7 @@ THEMES
 }
 
 [data-theme="light-blue"] {
-  --theme-bg: var(--sky-blue);
+  --theme-bg: var(--rk-blue);
   --theme-txt: var(--text-color);
   --theme-heading-color: var(--laz-logo-blue);
   --theme-link-color: var(--laz-logo-blue);
@@ -807,7 +812,7 @@ THEMES
   --theme-btn-primary-border-hov: var(--laz-logo-blue);
   --theme-btn-primary-txt-hov: var(--laz-logo-blue);
   --theme-btn-secondary-border: var(--laz-logo-blue);
-  --theme-btn-secondary-bg: var(--sky-blue);
+  --theme-btn-secondary-bg: var(--rk-blue);
   --theme-btn-secondary-txt: var(--laz-logo-blue);
   --theme-btn-secondary-border-hov: var(--laz-logo-blue);
   --theme-btn-secondary-bg-hov: var(--laz-logo-blue);
@@ -1060,7 +1065,9 @@ THEMES
 /* primary button colors */
 
 .button.primary {
-  &.bgcolor-red, &.bgcolor-berry, &.bgcolor-orange, &.bgcolor-gold, &.bgcolor-bright-yellow, &.bgcolor-laz-blue, &.bgcolor-navy, &.bgcolor-logo-blue, &.bgcolor-green, &.bgcolor-purple {
+  &.bgcolor-red, &.bgcolor-berry, &.bgcolor-orange, &.bgcolor-gold, &.bgcolor-bright-yellow,
+  &.bgcolor-laz-blue, &.bgcolor-navy, &.bgcolor-logo-blue, &.bgcolor-green,
+  &.bgcolor-purple, &.bgcolor-dark-blue {
     color: var(--white);
 
     &:hover {
@@ -1146,6 +1153,17 @@ THEMES
     &:hover {
       color: var(--laz-logo-blue);
       border-color: var(--laz-logo-blue);
+      background-color: var(--white);
+    }
+  }
+
+  &.bgcolor-dark-blue {
+    background-color: var(--dark-blue);
+    border-color: var(--dark-blue);
+
+    &:hover {
+      color: var(--dark-blue);
+      border-color: var(--dark-blue);
       background-color: var(--white);
     }
   }
