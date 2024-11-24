@@ -80,3 +80,36 @@ loadScript('https://widget.intercom.io/widget/x8m18b9a', {
   charset: 'utf-8',
   async: true,
 });
+
+// eslint-disable-next-line no-unused-vars
+const pricingApi = async () => {
+  const response = await fetch('https://api.learninga-z.com/v1/marketing/get-ip-address');
+  const data = await response.json();
+  if (data.ip) {
+    const pricingJson = await fetch('https://api.learninga-z.com/v1/marketing/get-price', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        ipAddress: '',
+        product: [
+          {
+            productNumber: 'WAZ-AZ-INDV',
+          },
+          {
+            productNumber: 'RP-INDV',
+            coupon: '10PERCENTOFF',
+          },
+          {
+            productNumber: 'FAZ-INDV',
+            referralCode: 'ROXDNXMAHQ',
+          },
+        ],
+      }),
+    });
+    const pricingData = await pricingJson.json();
+    console.log('pricingData : ', pricingData);
+  }
+};
+pricingApi();
