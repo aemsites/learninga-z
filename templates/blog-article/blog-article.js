@@ -4,6 +4,7 @@ import { div } from '../../scripts/dom-helpers.js';
 
 export default async function decorate(main) {
   const author = getMetadata('author');
+  if (!author) return;
   const authorInfo = buildBlock('author-info', [
     [`<p>${author}</p>`],
   ]);
