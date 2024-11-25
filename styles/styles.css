@@ -1038,7 +1038,9 @@ THEMES
     padding: 10px 10px 5px !important;
   }
 
-  color: var(--white);
+  a,h1,h2,h3,h4,h5,h6,p {
+    color: var(--white) !important;
+  }
 }
 
 .bg-gray {
