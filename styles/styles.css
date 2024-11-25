@@ -1227,7 +1227,7 @@ THEMES
   background-color: var(--rpe-gold);
 }
 
-:is(h1, h2, h3, h4).gold {
+:is(h1, h2, h3, h4).rpe-gold {
   color: var(--rpe-gold);
 }
 
