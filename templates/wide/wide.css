@@ -83,6 +83,7 @@
 .section-outer:not(:nth-child(2)) .section.product {
     max-width: 750px;
     padding-bottom: 200px;
+    text-align: center;
 }
     }
 
@@ -137,12 +138,14 @@
         }
 
         .carousel.white {
+            padding: 60px 0 40px;
+
             .carousel-slide {
                 padding-left: 100px;
                 padding-right: 100px;
 
                 .carousel-slide-image {
-                    width: unset;
+                    width: 55%;
                 }
 
                 .carousel-slide-content {
@@ -154,7 +157,7 @@
             .carousel-navigation-buttons {
                 padding-left: 10px;
                 padding-right: 10px;
-                transform: translateY(-170%);
+                transform: translateY(-180%);
             }
         }
     }

@@ -58,7 +58,6 @@
   --rpe-dark-purple: #5E2967;
   --rpe-magenta: #942A6A;
   --rpe-salmon: #C24A48;
-  --dark-purple: #613aaf; /* H3 color */
   --dark-olive-green: #3E3F30;
   --charcoal-blue: #263238;
   --maroon: #77001a;
@@ -120,6 +119,7 @@
   /* laz-blue for blog */
   --laz-blue: #00B3E2; /* mostly blog */
   --blog-blue: #18a4ce; /* blog buttons contrast 2.9 */
+  --dark-purple: #613aaf; /* blog H3 color */
 
   /* don't override user accessibility settings */
   forced-color-adjust: none;
@@ -464,6 +464,53 @@ main > div > div:not(.bg-image-container) {
   margin: 40px 16px;
 }
 
+/************
+ SECTIONS
+**************/
+
+main > .section-outer {
+  margin: auto;
+  background-size: cover;
+  width: 100%;
+
+  > .section, > .bg-image-container > .section {
+    margin: 0 auto;
+    padding: 40px 15px;
+    max-width: 750px;
+    background-size: cover;
+  }
+
+  > .section:has(.bg-image-container) {
+    padding: 0;
+  }
+
+  .section.short {
+    padding: 10px 15px;
+
+    .columns {
+      h1, h2, h3, h4, p {
+        margin-bottom: 0;
+      }
+
+      > div {
+        gap: 8px;
+      }
+
+      &:last-child > div {
+        padding-bottom: 0;
+      }
+    }
+  }
+
+  .section.product {
+    padding: 20px 15px 80px;
+  }
+}
+
+main > .section:first-of-type {
+  margin-top: 0;
+}
+
 /*********
 THEMES
 *********/
@@ -557,6 +604,11 @@ THEMES
         .section.inner {
           border-radius: 50px;
           margin: 50px auto;
+
+
+          &.short {
+            border-radius: 30px;
+          }
         }
     }
   }
@@ -729,8 +781,8 @@ THEMES
   --theme-bg: var(--product-purple);
   --theme-btn-primary-txt: var(--product-purple);
   --theme-btn-secondary-txt-hov: var(--product-purple);
-  --theme-gradient-linear: var(--gradient-lin-green);
-  --theme-gradient-radial: var(--gradient-rad-green);
+  --theme-gradient-linear: var(--gradient-lin-purple);
+  --theme-gradient-radial: var(--gradient-rad-purple);
 }
 
 .red main {
@@ -831,6 +883,10 @@ THEMES
 
 [data-theme="white"]  {
   --theme-bg: var(--white);
+}
+
+[data-theme="bright-yellow"]  {
+  --theme-bg: var(--bright-yellow);
 }
 
 [data-theme="pink"] {
@@ -1044,6 +1100,14 @@ THEMES
 
 :is(h1, h2, h3, h4).purple {
   color: var(--product-purple);
+}
+
+.bg-dark-purple {
+  background-color: var(--dark-purple);
+}
+
+:is(h1, h2, h3, h4).dark-purple {
+  color: var(--dark-purple);
 }
 
 .bg-green {
@@ -1351,53 +1415,6 @@ button.secondary {
   .icon img {
     height: 100%;
     width: 100%;
-  }
-
-  /************
- /* SECTIONS */
-
-
-  main > .section-outer {
-    margin: auto;
-    background-size: cover;
-    width: 100%;
-
-    > .section, > .bg-image-container > .section {
-      margin: 0 auto;
-      padding: 40px 15px;
-      max-width: 750px;
-      background-size: cover;
-    }
-
-    > .section:has(.bg-image-container) {
-      padding: 0;
-    }
-
-    .section.short {
-      padding: 10px 15px;
-
-      .columns {
-        h1, h2, h3, h4, p {
-          margin-bottom: 0;
-        }
-
-        > div {
-          gap: 8px;
-        }
-
-        &:last-child > div {
-          padding-bottom: 0;
-        }
-      }
-    }
-
-    .section.product {
-      padding: 20px 15px 80px;
-    }
-  }
-
-  main > .section:first-of-type {
-    margin-top: 0;
   }
 
   .bg-image-container {

@@ -325,7 +325,6 @@ export function extractElementsColor() {
       if (isParagraph) {
         up.classList.add(`bg-${colorOne}`);
         node.remove();
-        console.log('a paragraph matches the regex and was removed');
       } else {
         node.textContent = text.replace(regex, ''); // remove the text content that was used to extract the color
         node.classList.add(colorOne);
