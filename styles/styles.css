@@ -464,6 +464,53 @@ main > div > div:not(.bg-image-container) {
   margin: 40px 16px;
 }
 
+/************
+ SECTIONS
+**************/
+
+main > .section-outer {
+  margin: auto;
+  background-size: cover;
+  width: 100%;
+
+  > .section, > .bg-image-container > .section {
+    margin: 0 auto;
+    padding: 40px 15px;
+    max-width: 750px;
+    background-size: cover;
+  }
+
+  > .section:has(.bg-image-container) {
+    padding: 0;
+  }
+
+  .section.short {
+    padding: 10px 15px;
+
+    .columns {
+      h1, h2, h3, h4, p {
+        margin-bottom: 0;
+      }
+
+      > div {
+        gap: 8px;
+      }
+
+      &:last-child > div {
+        padding-bottom: 0;
+      }
+    }
+  }
+
+  .section.product {
+    padding: 20px 15px 80px;
+  }
+}
+
+main > .section:first-of-type {
+  margin-top: 0;
+}
+
 /*********
 THEMES
 *********/
@@ -557,6 +604,11 @@ THEMES
         .section.inner {
           border-radius: 50px;
           margin: 50px auto;
+
+
+          &.short {
+            border-radius: 30px;
+          }
         }
     }
   }
@@ -729,8 +781,8 @@ THEMES
   --theme-bg: var(--product-purple);
   --theme-btn-primary-txt: var(--product-purple);
   --theme-btn-secondary-txt-hov: var(--product-purple);
-  --theme-gradient-linear: var(--gradient-lin-green);
-  --theme-gradient-radial: var(--gradient-rad-green);
+  --theme-gradient-linear: var(--gradient-lin-purple);
+  --theme-gradient-radial: var(--gradient-rad-purple);
 }
 
 .red main {
@@ -1351,53 +1403,6 @@ button.secondary {
   .icon img {
     height: 100%;
     width: 100%;
-  }
-
-  /************
- /* SECTIONS */
-
-
-  main > .section-outer {
-    margin: auto;
-    background-size: cover;
-    width: 100%;
-
-    > .section, > .bg-image-container > .section {
-      margin: 0 auto;
-      padding: 40px 15px;
-      max-width: 750px;
-      background-size: cover;
-    }
-
-    > .section:has(.bg-image-container) {
-      padding: 0;
-    }
-
-    .section.short {
-      padding: 10px 15px;
-
-      .columns {
-        h1, h2, h3, h4, p {
-          margin-bottom: 0;
-        }
-
-        > div {
-          gap: 8px;
-        }
-
-        &:last-child > div {
-          padding-bottom: 0;
-        }
-      }
-    }
-
-    .section.product {
-      padding: 20px 15px 80px;
-    }
-  }
-
-  main > .section:first-of-type {
-    margin-top: 0;
   }
 
   .bg-image-container {

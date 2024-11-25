@@ -137,7 +137,7 @@
   background: var(--white);
   color: var(--text-color);
   padding: 20px 0;
-  border-radius: 20px;
+  border-radius: 50px;
   margin-bottom: 40px;
 
   .carousel-slide-content p {
