@@ -4,7 +4,7 @@
     .posts-list {
         padding-top: 15px;
         margin-bottom: 10px;
-        border-bottom: 1px solid #var(--light-gray);
+        border-bottom: 1px solid var(--light-gray);
 
         &:last-child {
             border-bottom: none;
@@ -16,6 +16,11 @@
             line-height: 1.45;
             margin-bottom: 1em;
             font-family: var(--body-font-family);
+        }
+
+        a h3:hover {
+            color: var(--theme-heading-color);
+            text-decoration: underline;
         }
     }
 }

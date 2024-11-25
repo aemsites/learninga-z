@@ -1,36 +1,49 @@
 .table {
   overflow-x: auto;
+  margin-bottom: 24px;
 
   table {
     width: 100%;
     min-width: 600px;
 
-      th {
-        padding: 1em;
-        text-align: left;
-        font-weight: bold;
-        background: var(--product-red); /* make var(--table-header) background */
+    th {
+      padding: 1em;
+      text-align: left;
+      font-weight: bold;
+      background-color: var(--theme-table-head-bg);
+      color: var(--theme-table-head-txt);
 
-        p {
-          color: var(--white);
-          margin: 0;
+      h1, h2, h3, h4, h5, p {
+        margin: 0;
+
+        + p {
+          margin-top: 0.25em
         }
-
-}
+      }
+    }
 
     tbody tr {
       border-top: 1px solid #ccc;
       background: #F2F2F2;
-      &:last-child { border-bottom: 1px solid #ccc }
-      &:nth-child(even) { background: #E5E6E5 }
+
+      &:last-child {
+        border-bottom: 1px solid #ccc
+      }
+
+      &:nth-child(even) {
+        background: #E5E6E5
+      }
 
       td {
         padding: 1em;
         text-align: left;
 
-        p {
+        h1, h2, h3, h4, h5, p {
           margin: 0;
-          + p { margin-top: 0.25em }
+
+          + p {
+            margin-top: 0.25em
+          }
         }
       }
     }
@@ -38,96 +51,60 @@
 
   /* variant styles */
 
-/* these can be cleaned up better */
+  &.berry thead th {
+        --theme-table-head-bg: var(--product-berry);
+    }
 
-  &.dark-blue table th {
-    background: var(--dark-blue);
-    color: var(--white);
+  &.dark-blue thead th {
+    --theme-table-head-bg: var(--product-dark-blue);
   }
 
-  &.navy-blue table th {
-    background: var(--product-navy-blue);
-    color: var(--white);
+  &.green thead th {
+    --theme-table-head-bg: var(--product-green);
   }
 
-  &.berry table th {
-    background: var(--product-berry);
-    color: var(--white);
+  &.navy thead th {
+    --theme-table-head-bg: var(--product-navy-blue);
   }
 
-  &.red table th {
-    background: var(--product-red);
-    color: var(--white);
+  &.orange thead th {
+    --theme-table-head-bg: var(--product-orange);
   }
 
-  &.green table th {
-    background: var(--product-green);
-    color: var(--white);
+  &.purple thead th {
+    --theme-table-head-bg: var(--product-purple);
   }
 
-  &.yellow table th {
-    background: var(--rpe-gold);
+  &.red thead th {
+    --theme-table-head-bg: var(--product-red);
   }
 
-  &.orange table th {
-    background: var(--product-orange);
-    color: var(--white);
+  &.gold thead th {
+    --theme-table-head-bg: var(--rpe-gold);
   }
 
-  &.purple table th {
-    background: var(--product-purple);
-    color: var(--white);
+  &.laz-blue thead th {
+    --theme-table-head-bg: var(--laz-blue);
   }
 
-  &.laz-blue table th {
-    background: var(--laz-blue);
-    color: var(--white);
+  &.logo-blue thead th {
+    --theme-table-head-bg: var(--laz-blue);
+  }
+
+  &.center {
+    thead th, tbody td {
+      text-align: center;
+    }
   }
 
   &.plain {
     table {
       border-collapse: collapse;
 
-      thead th {
+      tbody tr, thead th {
         background: transparent;
-        p { color: unset }
+        color: unset;
       }
-
-      tbody tr { background: transparent }
     }
   }
-}
-
-@media (width >= 1024px) {
-  .table {
-    display: flex;
-
-    &.width-33 {
-      table {
-        width: 33%;
-        min-width: unset;
-      }
-    }
-
-    &.width-50 {
-      table {
-        width: 50%;
-        min-width: unset;
-      }
-  }
-
-  &.width-66 {
-    table {
-      width: 66%;
-      min-width: unset;
-    }
- }
-
-    &.width-75 {
-      table {
-        width: 75%;
-        min-width: unset;
-      }
-   }
- }
 }

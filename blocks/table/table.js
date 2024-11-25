@@ -3,10 +3,10 @@
  * Recreate a table
  * https://www.hlx.live/developer/block-collection/table
  */
-
+// each rowIndex is a row in the table but repeated for each cell in the row
 function buildCell(rowIndex) {
   const cell = rowIndex ? document.createElement('td') : document.createElement('th');
-  if (!rowIndex) cell.setAttribute('scope', 'col');
+  if (!rowIndex) cell.setAttribute('scope', 'col'); // add scope to th only
   return cell;
 }
 
@@ -26,6 +26,9 @@ export default async function decorate(block) {
     [...child.children].forEach((col) => {
       const cell = buildCell(header ? i : i + 1);
       cell.innerHTML = col.innerHTML;
+      if (col.className) {
+        cell.className = col.className; // to allow cell color overrides
+      }
       row.append(cell);
     });
   });
