@@ -21,3 +21,16 @@
     margin: 20px 0;
     box-shadow: 0 2px 5px rgba(0 0 0 / 10%);
   }
+
+  .quick-tip.has-image {
+    > div > div {
+      display: flex;
+      gap: 20px;
+
+      /* make the flex child containing picture 25% wide avoiding grow on both children */
+      > p:has(picture) {
+        flex: 0 0 25%;
+      }
+    }
+    
+  }
