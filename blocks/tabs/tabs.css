@@ -6,6 +6,14 @@
   flex-wrap: wrap;
 }
 
+.tab-square-content p {
+  position: relative;
+  margin: 0 0 10px;
+  width: 80%;
+  top: -50px;
+  text-align: center;
+}
+
 .tabs .tabs-list button {
   flex: 0 0 max-content;
   margin: 0;
@@ -79,6 +87,11 @@
   transition: filter 0.1s ease;
 }
 
+.tab-square-content img {
+  max-width: 40%;
+  max-height: 5em;
+}
+
 .tab-square.active img {
   filter: brightness(0) invert(1);
 }
@@ -106,6 +119,83 @@
   color: black;
 }
 
+.tab-content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tab-content-container .embed {
+  width: 650px;
+}
+
 .tab-square-content.active {
   display: block;
+}
+
+.tab-square-content .carousel {
+  width:660px;
+}
+
+@media (width <= 1296px) {
+  .tabs-square-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    top: 100px;
+  }
+
+  .tabs-square {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  height: 320px;
+  width: 320px;
+  order: 1;
+  position: relative;
+  top: -50px;
+  }
+
+  .tab-square {
+  width: 135px;
+  height: 135px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  margin: 5px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  text-align: center;
+  font-weight: bold;
+  }
+
+  .tab-square img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1px;
+    transition: filter 0.1s ease;
+  }
+
+  .tab-square-content img {
+    max-width: 20%;
+    max-height: 2em;
+  }
+
+  .tab-square-content p {
+    top: 10px;
+  }
+  
+  .tab-square-content {
+    padding: 20px;
+    background-color: white;
+    border-radius: 20px;
+    width: 840px;
+    height: 650px;
+    display: none;
+    color: black;
+    order: 0;
+  }
 }
