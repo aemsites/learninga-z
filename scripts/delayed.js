@@ -83,7 +83,8 @@ loadScript('https://widget.intercom.io/widget/x8m18b9a', {
 
 // eslint-disable-next-line no-unused-vars
 const pricingApi = async () => {
-  const response = await fetch('https://api.learninga-z.com/v1/marketing/get-ip-address');
+  const response = await fetch('https://www.cloudflare.com/cdn-cgi/trace');
+  console.log('response : ', response);
   const data = await response.json();
   if (data.ip) {
     const pricingJson = await fetch('https://api.learninga-z.com/v1/marketing/get-price', {
