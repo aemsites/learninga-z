@@ -1098,11 +1098,11 @@ THEMES
   background-color: var(--product-purple);
 }
 
-:is(h1, h2, h3, h4).dark-purple {
+:is(h1, h2, h3, h4).purple {
   color: var(--product-purple);
 }
 
-.bg-purple {
+.bg-dark-purple {
   background-color: var(--dark-purple);
 }
 
