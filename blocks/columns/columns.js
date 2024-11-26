@@ -16,6 +16,17 @@ export default function decorate(block) {
           picWrapper.classList.add('columns-img-col');
         }
       }
+      if (block.classList.contains('tile') && col.querySelector('a')) {
+        const link = document.createElement('a');
+        link.href = col.querySelector('a').href;
+        const text = col.querySelector('a').textContent;
+        col.querySelector('a').replaceWith(text);
+        const children = [...col.children];
+        children.forEach((child) => {
+          link.append(child);
+        });
+        col.appendChild(link);
+      }
     });
   });
 }

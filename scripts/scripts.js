@@ -159,8 +159,8 @@ function buildHeroBlock(main) {
       h1.innerHTML = h1.querySelector('u').innerHTML;
       section.querySelector('.hero').classList.add('hero-picture-only');
     } else {
-      heroContent.append(h1);
-      if (heroSubText && h1.nextElementSibling === heroSubText) {
+      heroContent.append(h1.cloneNode(true));
+      if (heroSubText && h1.nextElementSibling === heroSubText.parentElement) {
         const h2 = document.createElement('h2');
         h2.append(heroSubText.textContent);
         heroSubText.remove();
@@ -169,6 +169,7 @@ function buildHeroBlock(main) {
       } else {
         section.append(buildBlock('hero', { elems: [picture, heroContent] }));
       }
+      h1.remove();
     }
     main.prepend(section);
   }
