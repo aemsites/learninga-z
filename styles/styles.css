@@ -515,6 +515,23 @@ main > .section-outer {
   }
 }
 
+.section.benefits {
+  :has(:not(.columns)) {
+  p, h1, h2, h3 {
+    text-align: center;
+    }
+
+    .col-has-content p, .col-has-content h1, .col-has-content h2, .col-has-content h3 {
+      text-align: unset;
+    }
+  }
+
+ img {
+   border-radius: 20px;
+   margin-bottom: 16px;
+ }
+}
+
 main > .section:first-of-type {
   margin-top: 0;
 }
@@ -1121,7 +1138,7 @@ THEMES
 
 /* custom backgound colors for when in a P tag by itself */
 .bg-dark-blue, .bg-navy, .bg-red, .bg-berry, .bg-orange, .bg-purple,
-.bg-green, .bg-laz-blue, .bg-gray, .bg-black, .bg-gold, .bg-blue, .bg-orange-red {
+.bg-green, .bg-laz-blue, .bg-black, .bg-gold, .bg-blue, .bg-orange-red {
   .columns {
     padding: 10px 10px 5px !important;
   }
