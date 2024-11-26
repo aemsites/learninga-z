@@ -1,103 +1,126 @@
-.news-filter form select {
-    font-size: var(--body-font-size-xs);
-    font-weight: bold;
-    text-transform: uppercase;
-    padding: 0 50px 0 20px;
-    margin: 3% 0;
-    color: var(--dark-gray);
-    background-color: white;
-    height: 40px;
-    cursor: pointer;
-    border: 1px solid var(--dark-gray);
-    background-image: url("/icons/down.svg");
-    background-size: 20px;
-    background-repeat: no-repeat;
-    background-position: right 15px center;
-    appearance: none;
+form.search {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+
+    h2 {
+        margin: 0;
+    }
+
+    .right {
+        display: flex;
+        align-items: center;
+
+        h3 {
+            margin: 0 20px 0;
+            color: var(--rpe-dark-purple);
+        }
+
+        select {
+            font-size: var(--body-font-size-xs);
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 0 50px 0 20px;
+            margin: 3% 0;
+            color: var(--dark-gray);
+            background-color: white;
+            height: 40px;
+            cursor: pointer;
+            border: 1px solid var(--dark-gray);
+            background-image: url("/icons/down.svg");
+            background-size: 20px;
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            appearance: none;
+        }
+    }
 }
 
-.news-cards .card {
+.search-cards .card {
     display: flex;
     justify-content: space-between;
     width: 100%;
     border-top: 1px solid var(--light-gray);
     flex-direction: column-reverse;
-}
 
-.news-cards .card .card-left,
-.news-cards .card .card-right {
-    display: flex;
-    padding: 10px 0;
-    align-items: flex-start;
-}
-
-.news-cards .card .card-left {
-    flex-direction: column;
-}
-
-.news-cards .card .card-right {
-    margin-left: 10px;
-}
-
-.news-cards .card .card-body {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-    height: auto;
-
-    p>span::after {
-        content: "-";
-        padding: 0 5px;
+    @media screen and (width >=768px) {
+        flex-direction: row;
     }
 
-    h3 {
-        margin: 0;
+    .card-left,
+    .card-right {
+        display: flex;
+        padding: 10px 0;
+        align-items: flex-start;
+
+        @media screen and (width >=768px) {
+            padding: 25px 10px;
+        }
+
     }
-}
 
-.news-cards .card .card-thumbnail {
-    picture {
-        width: 140px; 
-        height: 140px;
+    .card-left {
+        flex-direction: column;
 
-        img {
-            width: 100%;
-            object-fit: cover;
-            aspect-ratio: 4/3;
+        @media screen and (width >=576px) {
+            flex-direction: row;
+            gap: 20px;
+        }
+
+        @media screen and (width >=768px) {
+            width: 90%;
         }
     }
-}
 
-.news-cards .card .news-date {
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--dark-gray);
-    text-transform: uppercase;
-}
+    .card-right {
+        margin-left: 10px;
+    }
 
-@media screen and (width >=576px) {
-    .news-cards .card .card-left {
-        flex-direction: row;
-        gap: 20px;
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        height: auto;
+
+        @media screen and (width >=768px) {
+            width: 80%;
+        }
+
+        p>span::after {
+            content: "-";
+            padding: 0 5px;
+        }
+
+        h3 {
+            margin: 0;
+        }
+    }
+
+    .card-thumbnail {
+        picture {
+            width: 140px;
+            height: 140px;
+
+            img {
+                width: 100%;
+                object-fit: cover;
+                aspect-ratio: 4/3;
+            }
+        }
+    }
+
+    .news-date {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--dark-gray);
+        text-transform: uppercase;
     }
 }
 
-@media screen and (width >=768px) {
-    .news-cards .card {
-        flex-direction: row;
-    }
 
-    .news-cards .card .card-left {
-        width: 90%;
-    }
 
-    .news-cards .card .card-body {
-        width: 80%;
-    }
 
-    .news-cards .card .card-left,
-    .news-cards .card .card-right {
-        padding: 25px 10px;
-    }
-}
+
+
