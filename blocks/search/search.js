@@ -2,6 +2,7 @@
 import { getSiteIndexData } from '../../scripts/utils.js';
 import { loadCSS } from '../../scripts/aem.js';
 import { renderCardList } from '../cards/cards.js';
+import { h1 } from '../../scripts/dom-helpers.js';
 
 export default async function decorate(block) {
   await loadCSS(`${window.hlx.codeBasePath}/blocks/cards/cards.css`);
@@ -16,6 +17,9 @@ export default async function decorate(block) {
   }
 
   const filteredResults = filterSiteIndex(siteIndex, searchTerm);
+
+  const $h1 = h1(`Searching for "${searchTerm}"`);
+  block.append($h1);
 
   const form = document.createElement('form');
   form.setAttribute('class', 'news-filter-form');
