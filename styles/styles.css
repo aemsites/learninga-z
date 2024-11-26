@@ -72,6 +72,7 @@
   --light-pink: #F1CBE4;
   --gradient-rad-berry: radial-gradient(ellipse at center bottom, var(--product-berry), var(--product-berry), var(--product-purple));
   --gradient-lin-berry: linear-gradient(var(--product-berry), var(--product-purple), var(--product-berry));
+  --gradient-sticky-berry: linear-gradient(110deg, var(--gold) 0%, var(--gold) 49%, var(--product-berry) 49%, var(--product-berry) 100%);
 
 
   /* Raz-kids product dark-blue */
@@ -83,35 +84,41 @@
   --dark-blue: #005CB9; /* headlines, top btn bg */
   --gradient-rad-dark-blue: radial-gradient(ellipse at center bottom, var(--rk-blue-dark), var(--product-dark-blue), var(--product-dark-blue));
   --gradient-lin-dark-blue: linear-gradient(var(--rk-blue-dark), var(--product-dark-blue), var(--product-dark-blue));
+  --gradient-sticky-dark-blue: linear-gradient(110deg, var(--gold) 0%, var(--gold) 49%, var(--product-dark-blue) 49%, var(--product-dark-blue) 100%);
 
   /* Science a-z green */
   --product-green: #128641; /* repeated */
   --b-green: #419e66;
   --gradient-rad-green: radial-gradient(ellipse at center bottom, var(--b-green), var(--b-green), var(--product-green));
   --gradient-lin-green: linear-gradient(var(--b-green), var(--product-green), var(--b-green));
+  --gradient-sticky-green: linear-gradient(110deg, var(--gold) 0%, var(--gold) 49%, var(--product-green) 49%, var(--product-green) 100%);
 
   /* Foundations a-z navy */
   --product-navy-blue: #0E4482;
   --gradient-rad-navy: radial-gradient(ellipse at center bottom, var(--product-berry), var(--product-purple), var(--product-navy-blue));
   --gradient-lin-navy: linear-gradient(var(--product-navy-blue), var(--product-purple), var(--product-berry));
+  --gradient-sticky-navy: linear-gradient(110deg, var(--gold) 0%, var(--gold) 49%, var(--product-navy-blue) 49%, var(--product-navy-blue) 100%);
 
   /* writing a-z orange */
   --product-orange: #f05b32;
   --gradient-rad-orange: radial-gradient(ellipse at center bottom, var(--orange), var(--orange), var(--product-orange));
   --gradient-lin-orange: linear-gradient(var(--orange), var(--orange), var(--product-orange));
   --orange: #F48C21;
+  --gradient-sticky-orange: linear-gradient(110deg, var(--gold) 0%, var(--gold) 49%, var(--product-orange) 49%, var(--product-orange) 100%);
 
   /* vocabulary a-z purple */
   --product-purple: #904799;
   --faz-purple: #5D2C8A; /* cta button */
   --gradient-rad-purple: radial-gradient(ellipse at center bottom, var(--faz-purple), var(--product-purple), var(--faz-purple));
   --gradient-lin-purple: linear-gradient(var(--faz-purple), var(--product-purple), var(--faz-purple));
+  --gradient-sticky-purple: linear-gradient(110deg, var(--gold) 0%, var(--gold) 49%, var(--faz-purple) 49%, var(--faz-purple) 100%);
 
   /* Reading a-z red, Resources */
   --product-red: #E21D46;
   --vaz-red-pastel: #FFCECB; /* section bg */
   --gradient-rad-red: radial-gradient(ellipse at center, var(--white) 0%, var(--light-red) 0%, #e21f48 60%, var(--product-red) 100%);
   --gradient-lin-red: linear-gradient(var(--light-red), var(--product-red), var(--dark-blue));
+  --gradient-sticky-red: linear-gradient(110deg, var(--gold) 0%, var(--gold) 49%, var(--product-red) 49%, var(--product-red) 100%);
 
 /* yellow for what we do */
   --rpe-gold: #D5A13D; /* use for What We Do pages still only 2.3 contrast */
@@ -172,7 +179,7 @@
   --theme-heading-color: var(--laz-logo-blue);
   --theme-link-color: var(--laz-logo-blue);
   --theme-breadcrumbs-bg: var(--laz-logo-blue);
-  --theme-cards-circle-bg: var(--laz-logo-blue);
+
 
 } /* end root */
 
@@ -653,22 +660,24 @@ THEMES
   --theme-checkmark-circle: url('/icons/checkmark-circle-berry.svg');
 }
 
-[data-theme="berry"],
+[data-theme="berry"],[data-theme="gradient-sticky-berry"],
 [data-theme="gradient-rad-berry"], [data-theme="gradient-lin-berry"] {
   --theme-bg: var(--product-berry);
   --theme-btn-primary-txt: var(--product-berry);
   --theme-btn-secondary-txt-hov: var(--product-berry);
   --theme-gradient-linear: var(--gradient-lin-berry);
   --theme-gradient-radial: var(--gradient-rad-berry);
+  --theme-gradient-sticky: var(--gradient-sticky-berry);
 }
 
-[data-theme="dark-blue"], [data-theme="blue"],
+[data-theme="dark-blue"], [data-theme="blue"], [data-theme="gradient-dark-blue"], [data-theme="gradient-sticky-dark-blue"],
 [data-theme="gradient-rad-dark-blue"], [data-theme="gradient-lin-dark-blue"]{
   --theme-bg: var(--product-dark-blue);
   --theme-btn-primary-txt: var(--product-dark-blue);
   --theme-btn-secondary-txt-hov: var(--product-dark-blue);
   --theme-gradient-radial: var(--gradient-rad-dark-blue);
   --theme-gradient-linear: var(--gradient-lin-dark-blue);
+  --theme-gradient-sticky: var(--gradient-sticky-dark-blue);
 }
 
 .green main {
@@ -690,12 +699,14 @@ THEMES
   --theme-checkmark-circle: url('/icons/checkmark-circle-green.svg');
 }
 
-[data-theme="green"],[data-theme="gradient-rad-green"], [data-theme="gradient-lin-green"]  {
+[data-theme="green"], [data-theme="gradient-sticky-green"],
+[data-theme="gradient-rad-green"], [data-theme="gradient-lin-green"]  {
   --theme-bg: var(--product-green);
   --theme-btn-primary-txt: var(--product-green);
   --theme-btn-secondary-txt-hov: var(--product-green);
   --theme-gradient-linear: var(--gradient-lin-green);
   --theme-gradient-radial: var(--gradient-rad-green);
+  --theme-gradient-sticky: var(--gradient-sticky-green);
 }
 
 .navy main {
@@ -717,12 +728,14 @@ THEMES
   --theme-checkmark-circle: url('/icons/checkmark-circle-navy.svg');
 }
 
-[data-theme="navy"], [data-theme="gradient-rad-navy"], [data-theme="gradient-lin-navy"]  {
+[data-theme="navy"], [data-theme="gradient-sticky-navy"],
+[data-theme="gradient-rad-navy"], [data-theme="gradient-lin-navy"]  {
   --theme-bg: var(--product-navy-blue);
   --theme-btn-primary-txt: var(--product-navy-blue);
   --theme-btn-secondary-txt-hov: var(--product-navy-blue);
   --theme-gradient-linear: var(--gradient-lin-navy);
   --theme-gradient-radial: var(--gradient-rad-navy);
+  --theme-gradient-sticky: var(--gradient-sticky-navy);
 }
 
 .orange main {
@@ -744,12 +757,14 @@ THEMES
   --theme-checkmark-circle: url('/icons/checkmark-circle-orange.svg');
 }
 
-[data-theme="orange"],[data-theme="gradient-rad-orange"], [data-theme="gradient-lin-orange"]  {
+[data-theme="orange"], [data-theme="gradient-sticky-orange"],
+[data-theme="gradient-rad-orange"], [data-theme="gradient-lin-orange"]  {
   --theme-bg: var(--product-orange);
   --theme-btn-primary-txt: var(--product-orange);
   --theme-btn-secondary-txt-hov: var(--product-orange);
   --theme-gradient-linear: var(--gradient-lin-orange);
   --theme-gradient-radial: var(--gradient-rad-orange);
+  --theme-gradient-sticky: var(--gradient-sticky-orange);
 }
 
 .purple main {
@@ -778,12 +793,14 @@ THEMES
   }
 }
 
-[data-theme="purple"], [data-theme="gradient-rad-purple"], [data-theme="gradient-lin-purple"] {
+[data-theme="purple"], [data-theme="gradient-sticky-purple"],
+[data-theme="gradient-rad-purple"], [data-theme="gradient-lin-purple"] {
   --theme-bg: var(--product-purple);
   --theme-btn-primary-txt: var(--product-purple);
   --theme-btn-secondary-txt-hov: var(--product-purple);
   --theme-gradient-linear: var(--gradient-lin-purple);
   --theme-gradient-radial: var(--gradient-rad-purple);
+  --theme-gradient-sticky: var(--gradient-sticky-purple);
 }
 
 .red main {
@@ -798,15 +815,46 @@ THEMES
   --theme-checkmark-circle: url('/icons/checkmark-circle-red.svg');
 }
 
-[data-theme="red"], [data-theme="gradient-rad-red"], [data-theme="gradient-lin-red"] {
+[data-theme="red"], [data-theme="gradient-sticky-red"],
+[data-theme="gradient-rad-red"], [data-theme="gradient-lin-red"] {
   --theme-bg: var(--product-red);
   --theme-btn-primary-txt: var(--product-red);
   --theme-btn-secondary-txt-hov: var(--product-red);
   --theme-gradient-linear: var(--gradient-lin-red);
   --theme-gradient-radial: var(--gradient-rad-red);
+  --theme-gradient-sticky: var(--gradient-sticky-red);
 }
 
 .gold main {
+  --theme-breadcrumbs-bg: var(--gold);
+  --theme-heading-color: var(--laz-logo-blue);
+  --theme-link-color: var(--gold);
+  --theme-btn-primary-border: var(--gold);
+  --theme-btn-primary-bg: var(--gold);
+  --theme-btn-primary-border-hov: var(--gold);
+  --theme-btn-primary-txt: var(--laz-logo-blue);
+  --theme-btn-primary-txt-hov: var(--gold);
+  --theme-btn-secondary-border: var(--gold);
+  --theme-btn-secondary-txt: var(--gold);
+  --theme-btn-secondary-border-hov: var(--gold);
+  --theme-btn-secondary-bg-hov: var(--gold);
+  --theme-table-head-bg: var(--gold);
+  --theme-table-head-txt: var(--laz-logo-blue);
+  --theme-accordion-border: var(--gold);
+  --theme-accordion-txt: var(--gold);
+  --theme-cards-circle-bg: var(--gold);
+  --theme-checkmark-circle: url('/icons/checkmark-circle-logo-blue.svg');
+}
+
+[data-theme="gold"] {
+  --theme-bg: var(--gold);
+  --theme-txt: var(--text-color);
+  --theme-heading-color: var(--laz-logo-blue);
+  --theme-btn-primary-txt: var(--gold);
+  --theme-btn-secondary-txt-hov: var(--gold);
+}
+
+.rpe-gold main {
   --theme-breadcrumbs-bg: var(--rpe-gold);
   --theme-heading-color: var(--laz-logo-blue);
   --theme-link-color: var(--rpe-gold);
@@ -827,7 +875,7 @@ THEMES
   --theme-checkmark-circle: url('/icons/checkmark-circle-logo-blue.svg');
 }
 
-[data-theme="gold"] {
+[data-theme="rpe-gold"] {
   --theme-bg: var(--rpe-gold);
   --theme-txt: var(--text-color);
   --theme-heading-color: var(--laz-logo-blue);
@@ -1027,6 +1075,46 @@ THEMES
   }
 }
 
+:is([data-theme^="gradient-sticky-"]) {
+  &:has(+ :not(.section.inner)) {
+    background: var(--theme-gradient-sticky);
+  }
+
+  &:has(.section.inner) {
+    background: none;
+
+    .section.inner {
+      background: var(--theme-gradient-sticky);
+
+      &:has(.bg-image-container) {
+        padding: 0;
+
+        h1 {
+          margin-top: 0;
+        }
+
+        .bg-image-container {
+          padding: 30px;
+        }
+      }
+    }
+  }
+
+  @media (width >= 1024px) {
+    &:has(.section.inner) {
+      padding: 0;
+
+      .section.inner {
+        &:has(.bg-image-container) {
+          .bg-image-container {
+            padding: 60px;
+          }
+        }
+      }
+    }
+  }
+}
+
   /* end themes */
 
 /* custom overrides for H1 - H3 text color */
@@ -1130,10 +1218,18 @@ THEMES
 }
 
 .bg-gold {
-  background-color: var(--rpe-gold);
+  background-color: var(--gold);
 }
 
 :is(h1, h2, h3, h4).gold {
+  color: var(--gold);
+}
+
+.bg-rpe-gold {
+  background-color: var(--rpe-gold);
+}
+
+:is(h1, h2, h3, h4).rpe-gold {
   color: var(--rpe-gold);
 }
 
@@ -1182,6 +1278,17 @@ THEMES
   }
 
   &.bgcolor-gold {
+    background-color: var(--gold);
+    border-color: var(--gold);
+    color: var(--laz-black);
+
+    &:hover {
+      color: var(--gold);
+      border-color: var(--gold);
+    }
+  }
+
+  &.bgcolor-rpe-gold {
     background-color: var(--rpe-gold);
     border-color: var(--rpe-gold);
 
@@ -1318,6 +1425,17 @@ button.secondary {
   }
 
   &.textcolor-gold {
+    color: var(--gold);
+    border-color: var(--gold);
+
+    &:hover {
+      background-color: var(--gold);
+      border-color: var(--gold);
+      color: var(--laz-black)
+    }
+  }
+
+  &.textcolor-rpe-gold {
     color: var(--rpe-gold);
     border-color: var(--rpe-gold);
 

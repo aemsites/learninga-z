@@ -8,6 +8,7 @@
 
 .icon-grid sp-card {
     height: unset;
+    margin: 10px;
 }
 
 .grid-container {
