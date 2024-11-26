@@ -1158,6 +1158,10 @@ THEMES
   color: var(--laz-black);
 }
 
+:is(h1, h2, h3, h4).white {
+  color: var(--white);
+}
+
 .bg-dark-blue, .bg-blue {
   background-color: var(--product-dark-blue);
 }
@@ -1210,7 +1214,7 @@ THEMES
   color: var(--orange);
 }
 
-.bg-orange-red {
+.bg-orange-red, .bg-red-orange {
   background-color: var(--product-orange);
 }
 
@@ -1301,6 +1305,16 @@ THEMES
   }
 
   &.bgcolor-orange {
+    background-color: var(--orange);
+    border-color: var(--orange);
+
+    &:hover {
+      color: var(--orange);
+      border-color: var(--orange);
+    }
+  }
+
+  &.bgcolor-orange-red, &.bgcolor-red-orange {
     background-color: var(--product-orange);
     border-color: var(--product-orange);
 
@@ -1501,6 +1515,16 @@ button.secondary {
   }
 
   &.textcolor-orange {
+    color: var(--orange);
+    border-color: var(--orange);
+
+    &:hover {
+      background-color: var(--orange);
+      border-color: var(--orange);
+    }
+  }
+
+  &.textcolor-red-orange {
     color: var(--product-orange);
     border-color: var(--product-orange);
 
