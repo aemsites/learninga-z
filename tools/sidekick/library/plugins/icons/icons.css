@@ -1,0 +1,18 @@
+@import url('../../library-config.css');
+
+.icon-grid {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 64px auto;
+}
+
+.icon-grid sp-card {
+    height: unset;
+    margin: 10px;
+}
+
+.grid-container {
+    display: flex;
+    width: calc(100% - 128px);
+    margin: 0 auto;
+}

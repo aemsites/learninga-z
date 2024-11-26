@@ -445,6 +445,8 @@ function decorateIcons(element, prefix = '') {
 
 /**
  * Decorates all sections in a container element.
+ * Amended from boilerplate to add an outer div for full width background styling.
+ * Added section metadata processing to lower case, no spaces.
  * @param {Element} main The container element
  */
 function decorateSections(main) {
@@ -484,8 +486,8 @@ function decorateSections(main) {
           // style name is appended to div.section
           styles.forEach((style) => section.classList.add(style));
         } else {
-          // Theme + other meta is appended to div.section-outer
-          sectionOuter.dataset[toCamelCase(key)] = meta[key];
+          // Theme + other meta is appended to div.section-outer as lower case, no spaces
+          sectionOuter.dataset[toCamelCase(key)] = meta[key].toLowerCase().trim().replaceAll(' ', '-');
         }
       });
       sectionMeta.parentNode.remove();
