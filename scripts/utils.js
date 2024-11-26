@@ -129,6 +129,19 @@ export async function getEventsListData() {
   return structuredClone(eventsListData);
 }
 
+const siteIndexData = [];
+/**
+ * Retrieves the videos index data.
+ * @returns {Promise<Array>} A promise that resolves to an array of videos index data.
+ */
+export async function getSiteIndexData() {
+  if (!siteIndexData.length) {
+    siteIndexData.push(...await getIndexData(INDEX));
+  }
+  // Protected against callers modifying the objects
+  return structuredClone(siteIndexData);
+}
+
 const newsIndexData = [];
 /**
  * Retrieves the videos index data.
