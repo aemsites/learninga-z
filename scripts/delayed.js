@@ -83,34 +83,43 @@ loadScript('https://widget.intercom.io/widget/x8m18b9a', {
 
 // eslint-disable-next-line no-unused-vars
 const pricingApi = async () => {
-  const response = await fetch('https://www.cloudflare.com/cdn-cgi/trace');
-  console.log('response : ', response);
-  const data = await response.json();
-  if (data.ip) {
-    const pricingJson = await fetch('https://api.learninga-z.com/v1/marketing/get-price', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        ipAddress: '',
-        product: [
-          {
-            productNumber: 'WAZ-AZ-INDV',
-          },
-          {
-            productNumber: 'RP-INDV',
-            coupon: '10PERCENTOFF',
-          },
-          {
-            productNumber: 'FAZ-INDV',
-            referralCode: 'ROXDNXMAHQ',
-          },
-        ],
-      }),
+  const response1 = await fetch('https://www.cloudflare.com/cdn-cgi/trace');
+  const text = await response1.text();
+  const ip = text.match(/ip=(.*)/)[1];
+  if (ip) {
+    const myHeaders = new Headers();
+    myHeaders.append('Content-Type', 'application/json');
+    myHeaders.append('Accept', 'application/json');
+    myHeaders.append('Cookie', '__cf_bm=lV3H_Es1WB6GoGSUBrChuXg2Q2fcmRuBgWuvzv3hAik-1732405742-1.0.1.1-SfttXcQNVo3zTTUsZZYFj.gVF04yo755Ratg3hwF76YtxZRRZHhflUjkx43IqHMzZODj9yIU30smKW2dwsgMWQ; BIGipServerlaz_prod_learninga-z=!404C0XFqK2kLejRTPKHt4XOpEQDDQiVAY5CJzkIkxvnfMRf2VqHRXrekTemV8W16cz7u/xevztPKFQ==');
+
+    const raw = JSON.stringify({
+      ipAddress: ip,
+      product: [
+        {
+          productNumber: 'WAZ-AZ-INDV',
+        },
+        {
+          productNumber: 'RP-INDV',
+          coupon: '10PERCENTOFF',
+        },
+        {
+          productNumber: 'FAZ-INDV',
+          referralCode: 'ROXDNXMAHQ',
+        },
+      ],
     });
-    const pricingData = await pricingJson.json();
-    console.log('pricingData : ', pricingData);
+
+    const requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow',
+    };
+
+    fetch('https://api.learninga-z.com/v1/marketing/get-price', requestOptions)
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.error(error));
   }
 };
 pricingApi();
