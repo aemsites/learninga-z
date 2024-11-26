@@ -1153,6 +1153,14 @@ THEMES
   color: var(--laz-logo-blue);
 }
 
+.bg-sky-blue {
+  background-color: var(--sky-blue);
+}
+
+:is(h1, h2, h3, h4).sky-blue {
+  color: var(--sky-blue);
+}
+
 .bg-berry {
   background-color: var(--product-berry);
 }
@@ -1181,11 +1189,15 @@ THEMES
   background-color: var(--orange);
 }
 
+:is(h1, h2, h3, h4).orange {
+  color: var(--orange);
+}
+
 .bg-orange-red {
   background-color: var(--product-orange);
 }
 
-:is(h1, h2, h3, h4).orange {
+:is(h1, h2, h3, h4).orange-red {
   color: var(--product-orange);
 }
 
