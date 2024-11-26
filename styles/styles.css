@@ -1121,7 +1121,7 @@ THEMES
 
 /* custom backgound colors for when in a P tag by itself */
 .bg-dark-blue, .bg-navy, .bg-red, .bg-berry, .bg-orange, .bg-purple,
-.bg-green, .bg-laz-blue, .bg-gray, .bg-black, .bg-gold {
+.bg-green, .bg-laz-blue, .bg-gray, .bg-black, .bg-gold, .bg-blue {
   .columns {
     padding: 10px 10px 5px !important;
   }
@@ -1178,6 +1178,10 @@ THEMES
 }
 
 .bg-orange {
+  background-color: var(--orange);
+}
+
+.bg-orange-red {
   background-color: var(--product-orange);
 }
 
