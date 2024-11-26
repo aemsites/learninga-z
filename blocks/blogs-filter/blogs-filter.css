@@ -1,0 +1,17 @@
+.blogs-filter form select {
+    font-size: var(--body-font-size-xs);
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 0 50px 0 20px;
+    margin: 3% 0;
+    color: var(--dark-gray);
+    background-color: white;
+    height: 40px;
+    cursor: pointer;
+    border: 1px solid var(--dark-gray);
+    background-image: url("/icons/down.svg");
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    appearance: none;
+}
