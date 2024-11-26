@@ -81,7 +81,7 @@
   > div > div {
     border-radius: 20px;
   }
-  
+
   .icon {
     width: 72px;
     height: 72px;
@@ -95,7 +95,10 @@
     line-height: 1.2;
     font-size: 18px;
     font-weight: 700;
-    text-transform: capitalize;
+  }
+
+  a {
+    text-transform: uppercase;
   }
 }
 
