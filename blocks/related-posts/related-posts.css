@@ -16,6 +16,7 @@
             line-height: 1.45;
             margin-bottom: 1em;
             font-family: var(--body-font-family);
+            color: var(--laz-logo-blue);
         }
 
         a h3:hover {
