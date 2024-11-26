@@ -7,25 +7,26 @@ import { div, form } from '../../scripts/dom-helpers.js';
 export default async function decorate(block) {
   await loadCSS(`${window.hlx.codeBasePath}/blocks/cards/cards.css`);
   const siteIndex = await getSiteIndexData();
-
-  // Create a URL object
   const searchParams = new URLSearchParams(window.location.search);
-  const searchTerm = searchParams.get('search');
-  const filter = searchParams.get('filter');
-  console.log(filter);
+  const searchQuery = searchParams.get('search');
+  const filterQuery = searchParams.get('filter');
 
-  function filterSiteIndex(index, keyword) {
-    return index.filter((item) => Object.values(item).some((value) => value && value.toString().toLowerCase().includes(keyword.toLowerCase()),));
+  function filterSiteIndex(index, search, filter) {
+    return index.filter((item) => {
+      const searchMatch = Object.values(item).some((value) => value && value.toString().toLowerCase().includes(search.toLowerCase()));
+      const filterMatch = !filter || (item.path && item.path.toLowerCase().includes(filter.toLowerCase()));
+      return searchMatch && filterMatch;
+    });
   }
 
-  const filteredResults = filterSiteIndex(siteIndex, searchTerm);
+  let searchResults = filterSiteIndex(siteIndex, searchQuery, filterQuery);
 
   const $form = form({ class: 'search', method: 'get' });
   $form.innerHTML = `
-    <h2>Searching for "${searchTerm}"</h2>
+    <h2>Searching for "${searchQuery}"</h2>
     <div class="right">
       <h3>Filter by:</h3>
-      <select id="filter" name="filter" onchange="window.location.hash = 'page=1';this.form.submit();">
+      <select id="filter" name="filter">
           <option value="">Show All Content</option>
           <option value="general">General</option>
           <option value="news">Company News</option>
@@ -40,12 +41,29 @@ export default async function decorate(block) {
     </div>
   `;
 
+  // set the currently selected filter in the dropdown
+  const filterSelect = $form.querySelector('#filter');
+  if (filterQuery) filterSelect.value = filterQuery;
+
   const $search = div({ class: 'search-cards' });
   block.append($form, $search);
 
-  renderCardList($search, filteredResults, 10, 'news');
+  await renderCardList($search, searchResults, 10, 'news');
 
+  // Handle filter change
+  filterSelect.addEventListener('change', (event) => {
+    // Update the URL with the new filter value
+    const newFilter = event.target.value;
+    searchParams.set('filter', newFilter);
+    window.history.pushState({}, '', `${window.location.pathname}?${searchParams.toString()}`);
+
+    // reapply the filter and search term to fetch new results
+    searchResults = filterSiteIndex(siteIndex, searchQuery, newFilter);
+    renderCardList($search, searchResults, 10, 'news');
+  });
+
+  // listen for hash changes (e.g., when pagination changes)
   window.addEventListener('hashchange', async () => {
-    renderCardList($search, filteredResults, 10, 'news');
+    await renderCardList($search, searchResults, 10, 'news');
   });
 }
