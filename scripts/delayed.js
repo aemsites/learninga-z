@@ -53,6 +53,26 @@ async function enableGoogleTagManager() {
 }
 enableGoogleTagManager();
 
+async function enablePardot() {
+  const pardotScript = document.createElement('script');
+  pardotScript.type = 'text/javascript';
+  pardotScript.innerHTML = ` piAId = '711503';
+ piCId = '5272';
+ piHostname = '[pi.pardot.com](http://pi.pardot.com/)';
+(function() {
+ function async_load(){
+ var s = document.createElement('script'); s.type = 'text/javascript';
+ s.src = ('https:' == document.location.protocol ? 'https://pi/' : 'http://cdn/') + '.[pardot.com/pd.js](http://pardot.com/pd.js)';
+ var c = document.getElementsByTagName('script')[0]; c.parentNode.insertBefore(s, c);
+ }
+ if(window.attachEvent) { window.attachEvent('onload', async_load); }
+ else { window.addEventListener('load', async_load, false); }
+ })();`;
+  pardotScript.async = true;
+  document.body.append(pardotScript);
+}
+enablePardot();
+
 /**
  * Writes a script element with the LD JSON struct to the page
  * @param {HTMLElement} parent
