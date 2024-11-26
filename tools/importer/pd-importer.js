@@ -116,6 +116,23 @@ const createMetadataBlock = (main, document, url) => {
     meta.title = title.innerHTML.replace(/[\n\t]/gm, '');
   }
 
+  // accordion
+  const accordions = main.querySelectorAll('.accordion');
+  accordions.forEach((accordion) => {
+    const accordionSections = accordion.querySelectorAll('.accordion-section');
+    const cells = [];
+    cells.push(['Accordion(faq)']);
+    accordionSections.forEach((section) => {
+      const h4 = section.querySelector('h4');
+      const p = section.querySelector('p');
+      if (h4 && p) {
+        cells.push([h4, p]);
+      }
+    });
+    const accordionTable = WebImporter.DOMUtils.createTable(cells, document);
+    accordion.replaceWith(accordionTable);
+  });
+
   // find the <meta property="og:description"> element
   const desc = document.querySelector('[property="og:description"]');
   if (desc) {
