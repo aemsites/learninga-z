@@ -1121,7 +1121,7 @@ THEMES
 
 /* custom backgound colors for when in a P tag by itself */
 .bg-dark-blue, .bg-navy, .bg-red, .bg-berry, .bg-orange, .bg-purple,
-.bg-green, .bg-laz-blue, .bg-gray, .bg-black, .bg-gold, .bg-blue {
+.bg-green, .bg-laz-blue, .bg-gray, .bg-black, .bg-gold, .bg-blue, .bg-orange-red {
   .columns {
     padding: 10px 10px 5px !important;
   }
