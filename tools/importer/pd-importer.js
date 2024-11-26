@@ -116,23 +116,6 @@ const createMetadataBlock = (main, document, url) => {
     meta.title = title.innerHTML.replace(/[\n\t]/gm, '');
   }
 
-  // accordion
-  const accordions = main.querySelectorAll('.accordion');
-  accordions.forEach((accordion) => {
-    const accordionSections = accordion.querySelectorAll('.accordion-section');
-    const cells = [];
-    cells.push(['Accordion(faq)']);
-    accordionSections.forEach((section) => {
-      const h4 = section.querySelector('h4');
-      const p = section.querySelector('p');
-      if (h4 && p) {
-        cells.push([h4, p]);
-      }
-    });
-    const accordionTable = WebImporter.DOMUtils.createTable(cells, document);
-    accordion.replaceWith(accordionTable);
-  });
-
   // find the <meta property="og:description"> element
   const desc = document.querySelector('[property="og:description"]');
   if (desc) {
@@ -145,9 +128,9 @@ const createMetadataBlock = (main, document, url) => {
   el.src = image;
   meta.image = el;
 
-  // if (wideTemplate) {
-  //   meta.template = 'wide';
-  // }
+  if (!wideTemplate) {
+    meta.template = 'two-column';
+  }
 
   meta.date = getPubDate(document);
 
@@ -158,9 +141,9 @@ const createMetadataBlock = (main, document, url) => {
   meta.products = '';
 
   // theme
-  if (wideTemplate) {
-    meta.theme = 'laz-blue, col-1';
-  }
+  // if (wideTemplate) {
+  //   meta.theme = 'laz-blue, col-1';
+  // }
 
   // helper to create the metadata block
   const block = WebImporter.Blocks.getMetadataBlock(document, meta);
@@ -287,6 +270,23 @@ export default {
       ];
       suggestedVideos.replaceWith(WebImporter.DOMUtils.createTable(suggestedVideosCells, document));
     }
+
+    // accordion
+    const accordions = main.querySelectorAll('.accordion');
+    accordions.forEach((accordion) => {
+      const accordionSections = accordion.querySelectorAll('.accordion-section');
+      const cells = [];
+      cells.push(['Accordion(faq)']);
+      accordionSections.forEach((section) => {
+        const h4 = section.querySelector('h4');
+        const p = section.querySelector('p');
+        if (h4 && p) {
+          cells.push([h4, p]);
+        }
+      });
+      const accordionTable = WebImporter.DOMUtils.createTable(cells, document);
+      accordion.replaceWith(accordionTable);
+    });
 
     // if .post-content ends with an ol, add an hr before the ol and add a section metadata table after the ol
     const postContent = main.querySelector('.post-content');
