@@ -1,8 +1,13 @@
 form.search {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 30px;
+
+    @media screen and (width >=1024px) {
+        flex-direction: row;
+    }
 
     h2 {
         margin: 0;
