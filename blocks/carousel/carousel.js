@@ -178,7 +178,7 @@ export default async function decorate(block) {
           col1.innerHTML = createOptimizedPicture(card.image, card.title).outerHTML;
         }
         if (block.classList.contains('featured')) {
-          col2.innerHTML = `<h2>${card.title}</h2>`;
+          col2.innerHTML = '<p> <strong>FEATURED</strong></p>';
         }
         if (card.title) {
           col2.innerHTML += `<h2>${card.title}</h2>`;
