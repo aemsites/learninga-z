@@ -23,11 +23,11 @@ function populateSearchCard(container, cardInfo) {
   const date = new Date(year, month, day);
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
   let dateText;
-  // check if date is valid
-  if (Number.isNaN(date.getTime())) {
-    dateText = '';
-  } else {
+  // check if news and date is valid
+  if (cardInfo.path.includes('/news/') && !Number.isNaN(date.getTime())) {
     dateText = `${date.toLocaleDateString('en-US', options)} - `;
+  } else {
+    dateText = '';
   }
 
   card.innerHTML = `

@@ -30,7 +30,6 @@ export default async function decorate(block) {
       <select id="filter" name="filter">
           <option value="">Show All Content</option>
           <option value="general">General</option>
-          <option value="jobs">Jobs</option>
           <option value="news">Company News</option>
           <option value="products">Products</option>
           <option value="videos">Videos</option>
