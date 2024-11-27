@@ -105,7 +105,8 @@ loadScript('https://widget.intercom.io/widget/x8m18b9a', {
 const pricingApi = async () => {
   const response1 = await fetch('https://www.cloudflare.com/cdn-cgi/trace');
   const text = await response1.text();
-  const ip = text.match(/ip=(.*)/)[1];
+  //const ip = text.match(/ip=(.*)/)[1];
+  const ip = '2607:fea8:a45f:ce20:64f3:aa3a:bbd2:81f5';
   if (ip) {
     const myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
