@@ -1,4 +1,8 @@
 /* stylelint-disable no-descending-specificity */
+.section.cards-container {
+  width: 100%;
+}
+
 .card-wrapper {
   margin-bottom: 36px;
   padding: 0 10px;
