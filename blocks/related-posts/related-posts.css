@@ -16,10 +16,11 @@
             line-height: 1.45;
             margin-bottom: 1em;
             font-family: var(--body-font-family);
+            color: var(--blog-blue);
         }
 
         a h3:hover {
-            color: var(--theme-heading-color);
+            color: var(--blog-blue);
             text-decoration: underline;
         }
     }

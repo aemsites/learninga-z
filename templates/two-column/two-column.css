@@ -1,6 +1,10 @@
 .two-column main {
     .section-outer {
         margin: unset;
+        
+        .section {
+            width: 100%;
+        }
 
         h2 {
             font-size: var(--body-font-size-m);

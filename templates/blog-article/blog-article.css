@@ -1,7 +1,8 @@
+h3 {
+    color: var(--product-purple);
+}
+
 .blog-article main {
-    h3 {
-        color: var(--product-purple);
-    }
     .section-outer {
         margin: unset;
 
