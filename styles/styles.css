@@ -272,6 +272,10 @@ h4 {
   color: var(--theme-heading-color);
 }
 
+.faq h4 {
+  color: var(--faq-blue)
+}
+
 .center {
   text-align: center;
 
@@ -453,14 +457,6 @@ main {
 
   a, a:any-link {
     color: var(--theme-link-color);
-  }
-
-  .accordion.round .accordion-item-label {
-    border: 2px solid var(--theme-accordion-border);
-  }
-
-  .accordion.round details summary {
-    color: var(--theme-accordion-txt);
   }
 
   .cards.circle-image .card picture {
