@@ -9,6 +9,39 @@ import { createOptimizedPicture, decorateExternalLinks } from '../../scripts/scr
 const indexData = await getGenericIndexData();
 let imgWidth = '750';
 
+/**
+ * Populates a news card with the provided card information and appends it to the specified container.
+ */
+function populateSearchCard(container, cardInfo) {
+  const card = document.createElement('div');
+  card.className = 'card';
+  const dateParts = cardInfo.date.split('-');
+  const year = parseInt(dateParts[0], 10);
+  const month = parseInt(dateParts[1], 10) - 1;
+  const day = parseInt(dateParts[2], 10);
+  const date = new Date(year, month, day);
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  const bodyDate = date.toLocaleDateString('en-US', options);
+
+
+  card.innerHTML = `
+        <div class="card-left">
+          <div class="card-thumbnail">
+            ${createOptimizedPicture(cardInfo.image, cardInfo.title, false, [{ width: 200 }]).outerHTML}
+          </div>
+          <div class="card-body">
+            <div class="path-category">Path | Path | Category</div>
+            <a href="${cardInfo.path}">
+                <h2>${cardInfo.title}</h2>
+            </a>
+            <p><span>${bodyDate}</span>${cardInfo.description}</p>
+          </div>
+        </div>
+    `;
+  container.append(card);
+}
+
+
 /** function to populate general card */
 export function populateCard(container, cardInfo, type = 'card') {
   const card = document.createElement('div');
@@ -197,7 +230,9 @@ export async function renderCardList(wrapper, cards, limit = 9, type = 'card') {
   const cardsList = cards.slice((currentPage - 1) * limitPerPage, currentPage * limitPerPage);
 
   cardsList.forEach((card) => {
-    if (type === 'events') {
+    if (type === 'search') {
+      populateSearchCard(wrapper, card);
+    } else if (type === 'events') {
       populateEventsCard(wrapper, card);
     } else if (type === 'news') {
       populateNewsCard(wrapper, card);

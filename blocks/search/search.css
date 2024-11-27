@@ -48,34 +48,24 @@ form.search {
         flex-direction: row;
     }
 
-    .card-left,
-    .card-right {
+    .card-left {
         display: flex;
+        flex-direction: column;
         padding: 10px 0;
         align-items: flex-start;
 
         @media screen and (width >=768px) {
             padding: 25px 10px;
+            width: 90%;
         }
-
-    }
-
-    .card-left {
-        flex-direction: column;
 
         @media screen and (width >=576px) {
             flex-direction: row;
             gap: 20px;
         }
 
-        @media screen and (width >=768px) {
-            width: 90%;
-        }
     }
 
-    .card-right {
-        margin-left: 10px;
-    }
 
     .card-body {
         display: flex;
@@ -91,6 +81,10 @@ form.search {
         p>span::after {
             content: "-";
             padding: 0 5px;
+        }
+
+        .path-category {
+            font-weight: bold;
         }
 
         h3 {
@@ -109,13 +103,6 @@ form.search {
                 aspect-ratio: 4/3;
             }
         }
-    }
-
-    .news-date {
-        font-size: 16px;
-        font-weight: 600;
-        color: var(--dark-gray);
-        text-transform: uppercase;
     }
 }
 

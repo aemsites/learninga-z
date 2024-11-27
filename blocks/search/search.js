@@ -48,7 +48,7 @@ export default async function decorate(block) {
   const $search = div({ class: 'search-cards' });
   block.append($form, $search);
 
-  await renderCardList($search, searchResults, 10, 'news');
+  await renderCardList($search, searchResults, 10, 'search');
 
   // Handle filter change
   filterSelect.addEventListener('change', (event) => {
@@ -59,11 +59,11 @@ export default async function decorate(block) {
 
     // reapply the filter and search term to fetch new results
     searchResults = filterSiteIndex(siteIndex, searchQuery, newFilter);
-    renderCardList($search, searchResults, 10, 'news');
+    renderCardList($search, searchResults, 10, 'search');
   });
 
   // listen for hash changes (e.g., when pagination changes)
   window.addEventListener('hashchange', async () => {
-    await renderCardList($search, searchResults, 10, 'news');
+    await renderCardList($search, searchResults, 10, 'search');
   });
 }
