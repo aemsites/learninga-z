@@ -173,11 +173,15 @@ export default async function decorate(block) {
       if (card) {
         const col1 = document.createElement('div');
         const col2 = document.createElement('div');
+        col2.innerHTML = '';
         if (card.image) {
           col1.innerHTML = createOptimizedPicture(card.image, card.title).outerHTML;
         }
-        if (card.title) {
+        if (block.classList.contains('featured')) {
           col2.innerHTML = `<h2>${card.title}</h2>`;
+        }
+        if (card.title) {
+          col2.innerHTML += `<h2>${card.title}</h2>`;
         }
         if (card.description) {
           col2.innerHTML += `<p>${card.description}</p>`;
