@@ -10,4 +10,12 @@
             max-height: 140px;
         }
     }
+
+    a {
+        cursor: pointer;
+
+        &:hover {
+            cursor: hand;
+        }
+    }
 }
