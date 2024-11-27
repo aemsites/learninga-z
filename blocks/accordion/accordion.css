@@ -17,7 +17,7 @@
   width: 85%;
 }
 
-.accordion h4 {
+.accordion h3, .accordion h4 {
   font-family: var(--heading-font-family);
   font-size: 20px;
   line-height: 1.4286;
@@ -54,7 +54,13 @@
   transition: transform 0.4s;
 }
 
-.accordion.round details summary::after {
+.accordion.round details summary,
+.accordion.border details summary {
+  color: var(--theme-accordion-txt);
+}
+
+.accordion.round details summary::after,
+.accordion.border details summary::after {
   top: 30%;
 }
 
@@ -77,22 +83,29 @@
   border-top: 2px solid #ccc;
   transition: all 0.4s ease-in-out;
   opacity: 1;
+  padding-top: 30px;
 }
 
-.accordion.round details[open] .accordion-item-body {
+.accordion.round details[open] .accordion-item-body,
+.accordion.border details[open] .accordion-item-body{
   border: 1px solid var(--gray);
   margin-top: 10px;
 }
 
-.accordion.round .accordion-item-label{
+.accordion.round .accordion-item-label,
+.accordion.border .accordion-item-label {
   padding: 15px 20px;
   border-radius: 6px;
+  border: 2px solid var(--theme-accordion-border);
 }
 
-.accordion.round details {
+.accordion.gray .accordion-item-label,
+.accordion.gray details summary {
+  border: 2px solid var(--light-gray);
+  color: var(--medium-light-gray);
+}
+
+.accordion.round details,
+.accordion.border details {
   border: 0;
-}
-
-.accordion.faq summary p, .accordion.faq summary h4 {
-  color: var(--faq-blue);
 }
