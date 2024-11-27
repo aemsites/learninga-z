@@ -9,6 +9,43 @@ import { createOptimizedPicture, decorateExternalLinks } from '../../scripts/scr
 const indexData = await getGenericIndexData();
 let imgWidth = '750';
 
+/**
+ * Populates a news card with the provided card information and appends it to the specified container.
+ */
+function populateSearchCard(container, cardInfo) {
+  const card = document.createElement('div');
+  card.className = 'card';
+
+  const dateParts = cardInfo.date.split('-');
+  const year = parseInt(dateParts[0], 10);
+  const month = parseInt(dateParts[1], 10) - 1;
+  const day = parseInt(dateParts[2], 10);
+  const date = new Date(year, month, day);
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  let dateText;
+  // check if news and date is valid
+  if (cardInfo.path.includes('/news/') && !Number.isNaN(date.getTime())) {
+    dateText = `${date.toLocaleDateString('en-US', options)} - `;
+  } else {
+    dateText = '';
+  }
+
+  card.innerHTML = `
+        <div class="card-left">
+          <div class="card-thumbnail">
+            ${createOptimizedPicture(cardInfo.image, cardInfo.title, false, [{ width: 200 }]).outerHTML}
+          </div>
+          <div class="card-body">
+            <a href="${cardInfo.path}">
+                <h2>${cardInfo.title.replace(/ \| Learning A-Z$|- Learning A-Z$/, '')}</h2>
+            </a>
+            <p><span>${dateText}</span>${cardInfo.description}</p>
+          </div>
+        </div>
+    `;
+  container.append(card);
+}
+
 /** function to populate general card */
 export function populateCard(container, cardInfo, type = 'card') {
   const card = document.createElement('div');
@@ -197,7 +234,9 @@ export async function renderCardList(wrapper, cards, limit = 9, type = 'card') {
   const cardsList = cards.slice((currentPage - 1) * limitPerPage, currentPage * limitPerPage);
 
   cardsList.forEach((card) => {
-    if (type === 'events') {
+    if (type === 'search') {
+      populateSearchCard(wrapper, card);
+    } else if (type === 'events') {
       populateEventsCard(wrapper, card);
     } else if (type === 'news') {
       populateNewsCard(wrapper, card);
