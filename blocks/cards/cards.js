@@ -15,14 +15,20 @@ let imgWidth = '750';
 function populateSearchCard(container, cardInfo) {
   const card = document.createElement('div');
   card.className = 'card';
+
   const dateParts = cardInfo.date.split('-');
   const year = parseInt(dateParts[0], 10);
   const month = parseInt(dateParts[1], 10) - 1;
   const day = parseInt(dateParts[2], 10);
   const date = new Date(year, month, day);
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
-  const bodyDate = date.toLocaleDateString('en-US', options);
-
+  let dateText;
+  // check if date is valid
+  if (Number.isNaN(date.getTime())) {
+    dateText = '';
+  } else {
+    dateText = `${date.toLocaleDateString('en-US', options)} - `;
+  }
 
   card.innerHTML = `
         <div class="card-left">
@@ -30,17 +36,15 @@ function populateSearchCard(container, cardInfo) {
             ${createOptimizedPicture(cardInfo.image, cardInfo.title, false, [{ width: 200 }]).outerHTML}
           </div>
           <div class="card-body">
-            <div class="path-category">Path | Path | Category</div>
             <a href="${cardInfo.path}">
-                <h2>${cardInfo.title}</h2>
+                <h2>${cardInfo.title.replace(/ \| Learning A-Z$|- Learning A-Z$/, '')}</h2>
             </a>
-            <p><span>${bodyDate}</span>${cardInfo.description}</p>
+            <p><span>${dateText}</span>${cardInfo.description}</p>
           </div>
         </div>
     `;
   container.append(card);
 }
-
 
 /** function to populate general card */
 export function populateCard(container, cardInfo, type = 'card') {

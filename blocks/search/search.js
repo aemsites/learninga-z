@@ -1,12 +1,13 @@
 /* eslint-disable max-len */
-import { getSiteIndexData } from '../../scripts/utils.js';
+import { getSiteSearchIndexData } from '../../scripts/utils.js';
 import { loadCSS } from '../../scripts/aem.js';
 import { renderCardList } from '../cards/cards.js';
 import { div, form } from '../../scripts/dom-helpers.js';
 
 export default async function decorate(block) {
   await loadCSS(`${window.hlx.codeBasePath}/blocks/cards/cards.css`);
-  const siteIndex = await getSiteIndexData();
+  const siteIndex = await getSiteSearchIndexData();
+  console.log(siteIndex);
   const searchParams = new URLSearchParams(window.location.search);
   const searchQuery = searchParams.get('search');
   const filterQuery = searchParams.get('filter');
@@ -29,6 +30,7 @@ export default async function decorate(block) {
       <select id="filter" name="filter">
           <option value="">Show All Content</option>
           <option value="general">General</option>
+          <option value="jobs">Jobs</option>
           <option value="news">Company News</option>
           <option value="products">Products</option>
           <option value="videos">Videos</option>

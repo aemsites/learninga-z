@@ -2,7 +2,8 @@ import ffetch from './ffetch.js';
 
 const INDEX = '/query-index.json';
 const VIDEO_INDEX = '/site/resources/videos/query-index.json';
-const NEWS_INDEX = '/site/company/news/query-index.json';
+const NEWS_INDEX = '/site/company/news/query-index.json?sheet=news-sorted';
+const EXTERNAL_NEWS_INDEX = '/site/company/news/query-index.json?sheet=external_news';
 const EVENTS_LIST = '/site/company/events/events-list.json';
 const DOWNLOAD_LIBRARY_INDEX = '/site/resources/download-library/query-index.json';
 const AWARDS_LIST = '/site/company/awards-n-accolades/awards.json';
@@ -35,7 +36,11 @@ export function getRelativePath(path) {
 async function getIndexData(index = INDEX) {
   const retrievedData = [];
   const limit = 500;
-  const first = await fetch(`${index}?limit=${limit}`)
+
+  // Helper function to append query parameters correctly
+  const appendQuery = (url, param) => (url.includes('?') ? `${url}&${param}` : `${url}?${param}`);
+
+  const first = await fetch(appendQuery(index, `limit=${limit}`))
     .then((resp) => {
       if (resp.ok) {
         return resp.json();
@@ -51,7 +56,7 @@ async function getIndexData(index = INDEX) {
     for (let i = 1; i < buckets; i += 1) {
       promises.push(new Promise((resolve) => {
         const offset = i * limit;
-        fetch(`${INDEX}?offset=${offset}&limit=${limit}`)
+        fetch(appendQuery(index, `offset=${offset}&limit=${limit}`))
           .then((resp) => {
             if (resp.ok) {
               return resp.json();
@@ -129,17 +134,19 @@ export async function getEventsListData() {
   return structuredClone(eventsListData);
 }
 
-const siteIndexData = [];
+const siteSearchIndex = [];
 /**
  * Retrieves the videos index data.
  * @returns {Promise<Array>} A promise that resolves to an array of videos index data.
  */
-export async function getSiteIndexData() {
-  if (!siteIndexData.length) {
-    siteIndexData.push(...await getIndexData(INDEX));
+// TODO: Add https://main--learninga-z--aemsites.hlx.page/site/company/news/query-index.json?sheet=external_news
+export async function getSiteSearchIndexData() {
+  if (!siteSearchIndex.length) {
+    siteSearchIndex.push(...await getIndexData(INDEX));
+    siteSearchIndex.push(...await getIndexData(EXTERNAL_NEWS_INDEX));
   }
   // Protected against callers modifying the objects
-  return structuredClone(siteIndexData);
+  return structuredClone(siteSearchIndex);
 }
 
 const newsIndexData = [];

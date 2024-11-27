@@ -64,8 +64,10 @@ form.search {
             gap: 20px;
         }
 
+        h2 {
+            margin: 0;
+        }
     }
-
 
     .card-body {
         display: flex;
@@ -76,19 +78,6 @@ form.search {
 
         @media screen and (width >=768px) {
             width: 80%;
-        }
-
-        p>span::after {
-            content: "-";
-            padding: 0 5px;
-        }
-
-        .path-category {
-            font-weight: bold;
-        }
-
-        h3 {
-            margin: 0;
         }
     }
 
