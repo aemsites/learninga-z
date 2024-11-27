@@ -146,6 +146,13 @@
   }
 }
 
+.carousel.featured {
+  & p>strong {
+    color: var(--bright-blue);
+    font-size: var(--body-font-size-m);
+  }
+}
+
 @media (width >= 1296px) {
   .carousel .carousel-slide {
     flex-direction: row;

@@ -284,19 +284,22 @@ header .megamenu>.section-outer {
   margin-bottom: 38px;
   gap: 10px;
   list-style: none;
+  padding-inline-start: 0;
+
 }
 
 .header .tabs.columns .tabs-panel ul.tags-list li {
   background-color: #EBECF5;
   border-radius: 19px;
-  max-height: 20px;
   padding: 2px 15px;
+  text-align: center;
 }
 
 .header .tabs.columns .tabs-panel ul.tags-list li p {
   color: var(--laz-logo-blue);
   font-weight: var(--font-weight-bold);
   font-size: 11px;
+  margin: 0;
 }
 
 .header .tabs.columns .tabs-panel .icon,

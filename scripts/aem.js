@@ -485,9 +485,11 @@ function decorateSections(main) {
             .map((style) => toClassName(style.trim()));
           // style name is appended to div.section
           styles.forEach((style) => section.classList.add(style));
-        } else {
+        } else if (key === !'background') {
           // Theme + other meta is appended to div.section-outer as lower case, no spaces
           sectionOuter.dataset[toCamelCase(key)] = meta[key].toLowerCase().trim().replaceAll(' ', '-');
+        } else {
+          sectionOuter.dataset[toCamelCase(key)] = meta[key];
         }
       });
       sectionMeta.parentNode.remove();

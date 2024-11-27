@@ -1,4 +1,8 @@
-import { fetchPlaceholders } from '../../scripts/aem.js';
+import { fetchPlaceholders, decorateButtons } from '../../scripts/aem.js';
+import { createOptimizedPicture } from '../../scripts/scripts.js';
+import {
+  getRelativePath, getGenericIndexData,
+} from '../../scripts/utils.js';
 
 function updateActiveSlide(slide) {
   const block = slide.closest('.carousel');
@@ -77,6 +81,7 @@ function createSlide(row, slideIndex, carouselId) {
   slide.classList.add('carousel-slide');
 
   row.querySelectorAll(':scope > div').forEach((column, colIdx) => {
+    console.log(column);
     column.classList.add(`carousel-slide-${colIdx === 0 ? 'image' : 'content'}`);
     slide.append(column);
   });
@@ -89,12 +94,43 @@ function createSlide(row, slideIndex, carouselId) {
   return slide;
 }
 
+function buildSlides(rows, slideIndicators, carouselId, placeholders, slidesWrapper) {
+  rows.forEach((row, idx) => {
+    const slide = createSlide(row, idx, carouselId);
+    slidesWrapper.append(slide);
+
+    if (slideIndicators) {
+      const indicator = document.createElement('li');
+      indicator.classList.add('carousel-slide-indicator');
+      indicator.dataset.targetSlide = idx;
+      indicator.innerHTML = `<button type="button" aria-label="${placeholders.showSlide || 'Show Slide'} ${idx + 1} ${placeholders.of || 'of'} ${rows.length}"></button>`;
+      slideIndicators.append(indicator);
+    }
+    row.remove();
+  });
+}
+
+function getCardObject(link, indexData) {
+  const path = link?.getAttribute('href');
+  const relPath = getRelativePath(path);
+  return indexData.find((item) => item.path === relPath);
+}
+
 let carouselId = 0;
 export default async function decorate(block) {
   carouselId += 1;
   block.setAttribute('id', `carousel-${carouselId}`);
+  const linkedCarousel = block.classList.contains('card-links');
   const rows = block.querySelectorAll(':scope > div');
-  const isSingleSlide = rows.length < 2;
+  let isSingleSlide = false;
+  if (linkedCarousel) {
+    const cardLinks = block.querySelectorAll('a');
+    if (cardLinks.length < 2) {
+      isSingleSlide = true;
+    }
+  } else if (rows.length < 2) {
+    isSingleSlide = true;
+  }
 
   const placeholders = await fetchPlaceholders();
 
@@ -127,22 +163,47 @@ export default async function decorate(block) {
     block.append(slideNavButtons);
   }
 
-  rows.forEach((row, idx) => {
-    const slide = createSlide(row, idx, carouselId);
-    slidesWrapper.append(slide);
-
-    if (slideIndicators) {
-      const indicator = document.createElement('li');
-      indicator.classList.add('carousel-slide-indicator');
-      indicator.dataset.targetSlide = idx;
-      indicator.innerHTML = `<button type="button" aria-label="${placeholders.showSlide || 'Show Slide'} ${idx + 1} ${placeholders.of || 'of'} ${rows.length}"></button>`;
-      slideIndicators.append(indicator);
-    }
-    row.remove();
-  });
+  if (block.classList.contains('card-links')) {
+    const rows1 = [];
+    const cardLinks = block.querySelectorAll('a');
+    const indexData = await getGenericIndexData();
+    Array.from(cardLinks).forEach((cardLink) => {
+      const row = document.createElement('div');
+      const card = getCardObject(cardLink, indexData);
+      if (card) {
+        const col1 = document.createElement('div');
+        const col2 = document.createElement('div');
+        col2.innerHTML = '';
+        if (card.image) {
+          col1.innerHTML = createOptimizedPicture(card.image, card.title).outerHTML;
+        }
+        if (block.classList.contains('featured')) {
+          col2.innerHTML = '<p> <strong>FEATURED</strong></p>';
+        }
+        if (card.title) {
+          col2.innerHTML += `<h2>${card.title}</h2>`;
+        }
+        if (card.description) {
+          col2.innerHTML += `<p>${card.description}</p>`;
+        }
+        col2.innerHTML += `<p><em><a href="${card.path}">Learn More</a></em></p>`;
+        if (col1.innerHTML || col2.innerHTML) {
+          row.append(col1);
+          row.append(col2);
+          rows1.push(row);
+        }
+      }
+    });
+    buildSlides(rows1, slideIndicators, carouselId, placeholders, slidesWrapper);
+    block.querySelector(':scope > div').remove();
+  } else {
+    buildSlides(rows, slideIndicators, carouselId, placeholders, slidesWrapper);
+  }
 
   container.append(slidesWrapper);
   block.prepend(container);
+
+  decorateButtons(block);
 
   if (!isSingleSlide) {
     bindEvents(block);

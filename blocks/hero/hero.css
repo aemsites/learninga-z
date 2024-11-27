@@ -22,13 +22,12 @@ main > .section-outer > .section.hero-container{
   padding: 0;
 }
 
-.hero h1 {
+h1 {
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
   color: var(--white);
   font-size: var(--heading-font-size-xxl);
-  text-shadow: 1px 1px 6px var(--medium-gray);
 }
 
 .hero .hero-content h2 {
