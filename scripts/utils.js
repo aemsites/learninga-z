@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import ffetch from './ffetch.js';
 import { BLOCKED_COUNTRIES } from './constants.js';
 
@@ -454,38 +455,87 @@ export function getDateRange(startDate, endDate) {
  */
 export function extractPrices() {
   const pricingCookie = document.cookie.split('; ').find((row) => row.startsWith('pricing'));
+  if (!pricingCookie) return;
+
   const pricing = JSON.parse(pricingCookie.substring(pricingCookie.indexOf('=') + 1));
-  if (pricing) {
-    window.pricing.razOriginalPrice = pricing.productPrice.find((product) => product.productNumber === 'RAZ-INDV').price;
-    window.pricing.razDiscountPrice = pricing.productPrice.find((product) => product.productNumber === 'RAZ-INDV').discountPrice;
-    window.pricing.razOrderUrl = pricing.productPrice.find((product) => product.productNumber === 'RAZ-INDV').orderUrl;
-    window.pricing.rkOriginalPrice = pricing.productPrice.find((product) => product.productNumber === 'RK-INDV').price;
-    window.pricing.rkDiscountPrice = pricing.productPrice.find((product) => product.productNumber === 'RK-INDV').discountPrice;
-    window.pricing.rkOrderUrl = pricing.productPrice.find((product) => product.productNumber === 'RK-INDV').orderUrl;
-    window.pricing.rpOriginalPrice = pricing.productPrice.find((product) => product.productNumber === 'RP-INDV').price;
-    window.pricing.rpDiscountPrice = pricing.productPrice.find((product) => product.productNumber === 'RP-INDV').discountPrice;
-    window.pricing.rpOrderUrl = pricing.productPrice.find((product) => product.productNumber === 'RP-INDV').orderUrl;
-    window.pricing.fazOriginalPrice = pricing.productPrice.find((product) => product.productNumber === 'FAZ-INDV').price;
-    window.pricing.fazDiscountPrice = pricing.productPrice.find((product) => product.productNumber === 'FAZ-INDV').discountPrice;
-    window.pricing.fazOrderUrl = pricing.productPrice.find((product) => product.productNumber === 'FAZ-INDV').orderUrl;
-    window.pricing.vocabOriginalPrice = pricing.productPrice.find((product) => product.productNumber === 'VOCAB-INDV').price;
-    window.pricing.vocabDiscountPrice = pricing.productPrice.find((product) => product.productNumber === 'VOCAB-INDV').discountPrice;
-    window.pricing.vocabOrderUrl = pricing.productPrice.find((product) => product.productNumber === 'VOCAB-INDV').orderUrl;
-    window.pricing.sazOriginalPrice = pricing.productPrice.find((product) => product.productNumber === 'SAZ-INDV').price;
-    window.pricing.sazDiscountPrice = pricing.productPrice.find((product) => product.productNumber === 'SAZ-INDV').discountPrice;
-    window.pricing.sazOrderUrl = pricing.productPrice.find((product) => product.productNumber === 'SAZ-INDV').orderUrl;
-    window.pricing.wazOriginalPrice = pricing.productPrice.find((product) => product.productNumber === 'WAZ-AZ-INDV').price;
-    window.pricing.wazDiscountPrice = pricing.productPrice.find((product) => product.productNumber === 'WAZ-AZ-INDV').discountPrice;
-    window.pricing.wazOrderUrl = pricing.productPrice.find((product) => product.productNumber === 'WAZ-AZ-INDV').orderUrl;
-    window.pricing.rpccOriginalPrice = pricing.productPrice.find((product) => product.productNumber === 'RPCC-INDV').price;
-    window.pricing.rpccDiscountPrice = pricing.productPrice.find((product) => product.productNumber === 'RPCC-INDV').discountPrice;
-    window.pricing.rpccOrderUrl = pricing.productPrice.find((product) => product.productNumber === 'RPCC-INDV').orderUrl;
-    window.pricing.razEllOriginalPrice = pricing.productPrice.find((product) => product.productNumber === 'RAZ-ELL-INDV').price;
-    window.pricing.razEllDiscountPrice = pricing.productPrice.find((product) => product.productNumber === 'RAZ-ELL-INDV').discountPrice;
-    window.pricing.razEllOrderUrl = pricing.productPrice.find((product) => product.productNumber === 'RAZ-ELL-INDV').orderUrl;
-    window.pricing.espOriginalPrice = pricing.productPrice.find((product) => product.productNumber === 'ESP-INDV').price;
-    window.pricing.espDiscountPrice = pricing.productPrice.find((product) => product.productNumber === 'ESP-INDV').discountPrice;
-    window.pricing.espOrderUrl = pricing.productPrice.find((product) => product.productNumber === 'ESP-INDV').orderUrl;
+  if (!pricing || !pricing.productPrice) return;
+
+  // if prices have only 0s after the decimal point, remove them
+  const formatPrice = (price) => {
+    const numPrice = Number(price);
+    return (numPrice % 1 === 0 ? numPrice.toFixed(0) : numPrice.toFixed(2));
+  };
+
+  const findProduct = (productNumber) => pricing.productPrice.find((product) => product.productNumber === productNumber);
+
+  const razProduct = findProduct('RAZ-INDV');
+  if (razProduct) {
+    window.pricing.razOriginalPrice = formatPrice(razProduct.price);
+    window.pricing.razDiscountPrice = formatPrice(razProduct.discountPrice);
+    window.pricing.razOrderUrl = razProduct.orderUrl;
+  }
+
+  const rkProduct = findProduct('RK-INDV');
+  if (rkProduct) {
+    window.pricing.rkOriginalPrice = formatPrice(rkProduct.price);
+    window.pricing.rkDiscountPrice = formatPrice(rkProduct.discountPrice);
+    window.pricing.rkOrderUrl = rkProduct.orderUrl;
+  }
+
+  const rpProduct = findProduct('RP-INDV');
+  if (rpProduct) {
+    window.pricing.rpOriginalPrice = formatPrice(rpProduct.price);
+    window.pricing.rpDiscountPrice = formatPrice(rpProduct.discountPrice);
+    window.pricing.rpOrderUrl = rpProduct.orderUrl;
+  }
+
+  const fazProduct = findProduct('FAZ-INDV');
+  if (fazProduct) {
+    window.pricing.fazOriginalPrice = formatPrice(fazProduct.price);
+    window.pricing.fazDiscountPrice = formatPrice(fazProduct.discountPrice);
+    window.pricing.fazOrderUrl = fazProduct.orderUrl;
+  }
+
+  const vocabProduct = findProduct('VOCAB-INDV');
+  if (vocabProduct) {
+    window.pricing.vocabOriginalPrice = formatPrice(vocabProduct.price);
+    window.pricing.vocabDiscountPrice = formatPrice(vocabProduct.discountPrice);
+    window.pricing.vocabOrderUrl = vocabProduct.orderUrl;
+  }
+
+  const sazProduct = findProduct('SAZ-INDV');
+  if (sazProduct) {
+    window.pricing.sazOriginalPrice = formatPrice(sazProduct.price);
+    window.pricing.sazDiscountPrice = formatPrice(sazProduct.discountPrice);
+    window.pricing.sazOrderUrl = sazProduct.orderUrl;
+  }
+
+  const wazProduct = findProduct('WAZ-AZ-INDV');
+  if (wazProduct) {
+    window.pricing.wazOriginalPrice = formatPrice(wazProduct.price);
+    window.pricing.wazDiscountPrice = formatPrice(wazProduct.discountPrice);
+    window.pricing.wazOrderUrl = wazProduct.orderUrl;
+  }
+
+  const rpccProduct = findProduct('RPCC-INDV');
+  if (rpccProduct) {
+    window.pricing.rpccOriginalPrice = formatPrice(rpccProduct.price);
+    window.pricing.rpccDiscountPrice = formatPrice(rpccProduct.discountPrice);
+    window.pricing.rpccOrderUrl = rpccProduct.orderUrl;
+  }
+
+  const razEllProduct = findProduct('RAZ-ELL-INDV');
+  if (razEllProduct) {
+    window.pricing.razEllOriginalPrice = formatPrice(razEllProduct.price);
+    window.pricing.razEllDiscountPrice = formatPrice(razEllProduct.discountPrice);
+    window.pricing.razEllOrderUrl = razEllProduct.orderUrl;
+  }
+
+  const espProduct = findProduct('ESP-INDV');
+  if (espProduct) {
+    window.pricing.espOriginalPrice = formatPrice(espProduct.price);
+    window.pricing.espDiscountPrice = formatPrice(espProduct.discountPrice);
+    window.pricing.espOrderUrl = espProduct.orderUrl;
   }
 }
 
