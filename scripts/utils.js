@@ -440,3 +440,7 @@ export function getDateRange(startDate, endDate) {
     year: 'numeric',
   })}`;
 }
+
+export function getPrice(){
+
+}

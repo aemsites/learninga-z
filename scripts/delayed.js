@@ -180,8 +180,12 @@ const pricingApi = async (ip) => {
   };
 
   fetch('https://api.learninga-z.com/v1/marketing/get-price', requestOptions)
-    .then((response) => response.text())
-    .then((result) => console.log(result))
+    .then((response) => response.json())
+    .then((result) => {
+      const expiryDate = new Date();
+      expiryDate.setTime(expiryDate.getTime() + (48 * 60 * 60 * 1000)); // 48 hours from now
+      document.cookie = `pricing=${JSON.stringify(result)};expires=${expiryDate.toUTCString()};path=/`;
+    })
     .catch((error) => console.error(error));
 };
 
@@ -196,11 +200,14 @@ const getLocation = async () => {
   const text = await response.text();
   const ip = text.match(/ip=(.*)/)[1];
   const loc = text.match(/loc=(.*)/)[1];
+  window.pricing = window.pricing || {};
   if (BLOCKED_COUNTRIES.includes(loc)) {
     window.pricing.blocked = true;
   } else {
     window.pricing.blocked = false;
-    pricingApi(ip);
+    if (!document.cookie.includes('pricing')) {
+      pricingApi(ip);
+    }
   }
 };
 
