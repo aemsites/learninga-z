@@ -146,8 +146,40 @@
   }
 }
 
+.carousel.featured {
+  & p>strong {
+    color: var(--bright-blue);
+    font-size: var(--body-font-size-m);
+  }
+}
+
+.carousel.vertical {
+  .carousel-slides-container {
+    padding: 20px 0;
+  }
+
+  .carousel-slide {
+    flex: 0 0 32%;
+    border: 2px solid #D8D8D9;
+    margin: 0 10px;
+    justify-content: space-between;
+
+    .carousel-slide-image picture > img {
+      border-radius: 0;
+    }
+
+    .carousel-slide-content {
+      margin: 0 20px;
+    }
+
+    .button-container {
+     margin: 0 auto;
+    }
+  }
+}
+
 @media (width >= 1296px) {
-  .carousel .carousel-slide {
+  .carousel:not(.vertical) .carousel-slide {
     flex-direction: row;
     padding-left: 80px;
     padding-right: 80px;

@@ -1,8 +1,11 @@
+/* eslint-disable max-len */
 import ffetch from './ffetch.js';
+import { BLOCKED_COUNTRIES } from './constants.js';
 
 const INDEX = '/query-index.json';
 const VIDEO_INDEX = '/site/resources/videos/query-index.json';
-const NEWS_INDEX = '/site/company/news/query-index.json';
+const NEWS_INDEX = '/site/company/news/query-index.json?sheet=news-sorted';
+const EXTERNAL_NEWS_INDEX = '/site/company/news/query-index.json?sheet=external_news';
 const EVENTS_LIST = '/site/company/events/events-list.json';
 const DOWNLOAD_LIBRARY_INDEX = '/site/resources/download-library/query-index.json';
 const AWARDS_LIST = '/site/company/awards-n-accolades/awards.json';
@@ -35,7 +38,11 @@ export function getRelativePath(path) {
 async function getIndexData(index = INDEX) {
   const retrievedData = [];
   const limit = 500;
-  const first = await fetch(`${index}?limit=${limit}`)
+
+  // Helper function to append query parameters correctly
+  const appendQuery = (url, param) => (url.includes('?') ? `${url}&${param}` : `${url}?${param}`);
+
+  const first = await fetch(appendQuery(index, `limit=${limit}`))
     .then((resp) => {
       if (resp.ok) {
         return resp.json();
@@ -51,7 +58,7 @@ async function getIndexData(index = INDEX) {
     for (let i = 1; i < buckets; i += 1) {
       promises.push(new Promise((resolve) => {
         const offset = i * limit;
-        fetch(`${INDEX}?offset=${offset}&limit=${limit}`)
+        fetch(appendQuery(index, `offset=${offset}&limit=${limit}`))
           .then((resp) => {
             if (resp.ok) {
               return resp.json();
@@ -127,6 +134,21 @@ export async function getEventsListData() {
   }
   // Protected against callers modifying the objects
   return structuredClone(eventsListData);
+}
+
+const siteSearchIndex = [];
+/**
+ * Retrieves the videos index data.
+ * @returns {Promise<Array>} A promise that resolves to an array of videos index data.
+ */
+// TODO: Add https://main--learninga-z--aemsites.hlx.page/site/company/news/query-index.json?sheet=external_news
+export async function getSiteSearchIndexData() {
+  if (!siteSearchIndex.length) {
+    siteSearchIndex.push(...await getIndexData(INDEX));
+    siteSearchIndex.push(...await getIndexData(EXTERNAL_NEWS_INDEX));
+  }
+  // Protected against callers modifying the objects
+  return structuredClone(siteSearchIndex);
 }
 
 const newsIndexData = [];
@@ -420,3 +442,217 @@ export function getDateRange(startDate, endDate) {
     year: 'numeric',
   })}`;
 }
+
+/**
+ * Extracts pricing information from the pricing cookie and assigns it to the global
+ * window.pricing object.
+ * The function looks for specific product numbers and assigns their prices,
+ * discount prices, and order URLs
+ * to corresponding properties in the window.pricing object.
+ *
+ * @function
+ * @name extractPrices
+ */
+export function extractPrices() {
+  const pricingCookie = document.cookie.split('; ').find((row) => row.startsWith('pricing'));
+  if (!pricingCookie) return;
+
+  const pricing = JSON.parse(pricingCookie.substring(pricingCookie.indexOf('=') + 1));
+  if (!pricing || !pricing.productPrice) return;
+
+  // if prices have only 0s after the decimal point, remove them
+  const formatPrice = (price) => {
+    const numPrice = Number(price);
+    return (numPrice % 1 === 0 ? numPrice.toFixed(0) : numPrice.toFixed(2));
+  };
+
+  const findProduct = (productNumber) => pricing.productPrice.find((product) => product.productNumber === productNumber);
+
+  const razProduct = findProduct('RAZ-INDV');
+  if (razProduct) {
+    window.pricing.razOriginalPrice = formatPrice(razProduct.price);
+    window.pricing.razDiscountPrice = formatPrice(razProduct.discountPrice);
+    window.pricing.razOrderUrl = razProduct.orderUrl;
+  }
+
+  const rkProduct = findProduct('RK-INDV');
+  if (rkProduct) {
+    window.pricing.rkOriginalPrice = formatPrice(rkProduct.price);
+    window.pricing.rkDiscountPrice = formatPrice(rkProduct.discountPrice);
+    window.pricing.rkOrderUrl = rkProduct.orderUrl;
+  }
+
+  const rpProduct = findProduct('RP-INDV');
+  if (rpProduct) {
+    window.pricing.rpOriginalPrice = formatPrice(rpProduct.price);
+    window.pricing.rpDiscountPrice = formatPrice(rpProduct.discountPrice);
+    window.pricing.rpOrderUrl = rpProduct.orderUrl;
+  }
+
+  const fazProduct = findProduct('FAZ-INDV');
+  if (fazProduct) {
+    window.pricing.fazOriginalPrice = formatPrice(fazProduct.price);
+    window.pricing.fazDiscountPrice = formatPrice(fazProduct.discountPrice);
+    window.pricing.fazOrderUrl = fazProduct.orderUrl;
+  }
+
+  const vocabProduct = findProduct('VOCAB-INDV');
+  if (vocabProduct) {
+    window.pricing.vocabOriginalPrice = formatPrice(vocabProduct.price);
+    window.pricing.vocabDiscountPrice = formatPrice(vocabProduct.discountPrice);
+    window.pricing.vocabOrderUrl = vocabProduct.orderUrl;
+  }
+
+  const sazProduct = findProduct('SAZ-INDV');
+  if (sazProduct) {
+    window.pricing.sazOriginalPrice = formatPrice(sazProduct.price);
+    window.pricing.sazDiscountPrice = formatPrice(sazProduct.discountPrice);
+    window.pricing.sazOrderUrl = sazProduct.orderUrl;
+  }
+
+  const wazProduct = findProduct('WAZ-AZ-INDV');
+  if (wazProduct) {
+    window.pricing.wazOriginalPrice = formatPrice(wazProduct.price);
+    window.pricing.wazDiscountPrice = formatPrice(wazProduct.discountPrice);
+    window.pricing.wazOrderUrl = wazProduct.orderUrl;
+  }
+
+  const rpccProduct = findProduct('RPCC-INDV');
+  if (rpccProduct) {
+    window.pricing.rpccOriginalPrice = formatPrice(rpccProduct.price);
+    window.pricing.rpccDiscountPrice = formatPrice(rpccProduct.discountPrice);
+    window.pricing.rpccOrderUrl = rpccProduct.orderUrl;
+  }
+
+  const razEllProduct = findProduct('RAZ-ELL-INDV');
+  if (razEllProduct) {
+    window.pricing.razEllOriginalPrice = formatPrice(razEllProduct.price);
+    window.pricing.razEllDiscountPrice = formatPrice(razEllProduct.discountPrice);
+    window.pricing.razEllOrderUrl = razEllProduct.orderUrl;
+  }
+
+  const espProduct = findProduct('ESP-INDV');
+  if (espProduct) {
+    window.pricing.espOriginalPrice = formatPrice(espProduct.price);
+    window.pricing.espDiscountPrice = formatPrice(espProduct.discountPrice);
+    window.pricing.espOrderUrl = espProduct.orderUrl;
+  }
+}
+
+// eslint-disable-next-line no-unused-vars
+/**
+ * Fetches pricing information from the Learning A-Z API.
+ *
+ * @param {string} ip - The IP address to be sent in the request payload.
+ * @returns {Promise<void>} - A promise that resolves when the API call is complete.
+ *
+ * The function constructs a request payload including the IP address and a list of products.
+ * If a referral code (refc) is found in the cookies, it is included in the payload.
+ * The request is sent to the Learning A-Z pricing API endpoint.
+ * On success, the response is logged to the console.
+ * On failure, the error is logged to the console.
+ */
+const makePricingApiCall = async (ip) => {
+  // get refc cookie value
+  const refcCookie = document.cookie.split('; ').find((row) => row.startsWith('refc'));
+  const refc = refcCookie ? refcCookie.split('=')[1] : '';
+
+  const pricingHeaders = new Headers();
+  pricingHeaders.append('Content-Type', 'application/json');
+  pricingHeaders.append('Accept', 'application/json');
+
+  const raw = JSON.stringify({
+    ipAddress: ip,
+    product: [
+      {
+        productNumber: 'RAZ-INDV',
+        ...(refc && { referralCode: refc }),
+      },
+      {
+        productNumber: 'RK-INDV',
+        ...(refc && { referralCode: refc }),
+      },
+      {
+        productNumber: 'RP-INDV',
+        ...(refc && { referralCode: refc }),
+      },
+      {
+        productNumber: 'FAZ-INDV',
+        ...(refc && { referralCode: refc }),
+      },
+      {
+        productNumber: 'VOCAB-INDV',
+        ...(refc && { referralCode: refc }),
+      },
+      {
+        productNumber: 'SAZ-INDV',
+        ...(refc && { referralCode: refc }),
+      },
+      {
+        productNumber: 'WAZ-AZ-INDV',
+        ...(refc && { referralCode: refc }),
+      },
+      {
+        productNumber: 'RPCC-INDV',
+        ...(refc && { referralCode: refc }),
+      },
+      {
+        productNumber: 'RAZ-ELL-INDV',
+        ...(refc && { referralCode: refc }),
+      },
+      {
+        productNumber: 'ESP-INDV',
+        ...(refc && { referralCode: refc }),
+      },
+    ],
+  });
+
+  const requestOptions = {
+    method: 'POST',
+    headers: pricingHeaders,
+    body: raw,
+    redirect: 'follow',
+  };
+
+  fetch('https://api.learninga-z.com/v1/marketing/get-price', requestOptions)
+    .then((response) => response.json())
+    .then((result) => {
+      if (result) {
+        const expiryDate = new Date();
+        expiryDate.setTime(expiryDate.getTime() + (48 * 60 * 60 * 1000)); // 48 hours from now
+        document.cookie = `pricing=${JSON.stringify(result)};expires=${expiryDate.toUTCString()};path=/`;
+        extractPrices();
+      }
+    })
+    .catch((error) => console.error(error));
+};
+
+/**
+ * Fetches the user's location and IP address from Cloudflare's trace endpoint.
+ * If the user's location is in the list of blocked countries, sets the pricing
+ * blocked flag to true. Otherwise, sets the pricing blocked flag to false and
+ * calls the pricing API with the user's IP address.
+ */
+export const pricingApi = async (forceSetPrice = false) => {
+  const response = await fetch('https://www.cloudflare.com/cdn-cgi/trace');
+  const text = await response.text();
+  const ipMatch = text.match(/ip=(.*)/);
+  const locMatch = text.match(/loc=(.*)/);
+  const ip = ipMatch ? ipMatch[1] : null;
+  const loc = locMatch ? locMatch[1] : null;
+  window.pricing = window.pricing || {};
+  if (ip == null || loc == null) {
+    window.pricing.blocked = true;
+    return;
+  }
+  if (loc && BLOCKED_COUNTRIES.includes(loc)) {
+    window.pricing.blocked = true;
+  } else {
+    window.pricing.blocked = false;
+    if (ip && (!document.cookie.includes('pricing') || forceSetPrice)) {
+      await makePricingApiCall(ip);
+    } else {
+      extractPrices();
+    }
+  }
+};

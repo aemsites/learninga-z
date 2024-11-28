@@ -272,6 +272,10 @@ h4 {
   color: var(--theme-heading-color);
 }
 
+.faq h4 {
+  color: var(--faq-blue)
+}
+
 .center {
   text-align: center;
 
@@ -455,14 +459,6 @@ main {
     color: var(--theme-link-color);
   }
 
-  .accordion.round .accordion-item-label {
-    border: 2px solid var(--theme-accordion-border);
-  }
-
-  .accordion.round details summary {
-    color: var(--theme-accordion-txt);
-  }
-
   .cards.circle-image .card picture {
     background-color: var(--theme-cards-circle-bg);
   }
@@ -512,6 +508,42 @@ main > .section-outer {
 
   .section.product {
     padding: 20px 15px 80px;
+  }
+}
+
+.section.benefits {
+  :has(:not(.columns)) {
+  p, h1, h2, h3 {
+    text-align: center;
+    }
+
+    .col-has-content p, .col-has-content h1, .col-has-content h2, .col-has-content h3 {
+      text-align: unset;
+    }
+  }
+
+ img {
+   border-radius: 20px;
+   margin-bottom: 16px;
+ }
+}
+
+.section.sitemap {
+  ul {
+    margin-bottom: 15px;
+    border-left: 3px solid var(--sky-blue);
+    margin-left: 0;
+    padding-left: 25px;
+  }
+
+  li {
+    width: 100%;
+    float: none;
+    display: inline-block;
+  }
+
+  h3 {
+    margin-bottom: 50px;
   }
 }
 
@@ -828,7 +860,7 @@ THEMES
 .gold main {
   --theme-breadcrumbs-bg: var(--gold);
   --theme-heading-color: var(--laz-logo-blue);
-  --theme-link-color: var(--gold);
+  --theme-link-color: var(--laz-logo-blue);
   --theme-btn-primary-border: var(--gold);
   --theme-btn-primary-bg: var(--gold);
   --theme-btn-primary-border-hov: var(--gold);
@@ -841,7 +873,7 @@ THEMES
   --theme-table-head-bg: var(--gold);
   --theme-table-head-txt: var(--laz-logo-blue);
   --theme-accordion-border: var(--gold);
-  --theme-accordion-txt: var(--gold);
+  --theme-accordion-txt: var(--laz-logo-blue);
   --theme-cards-circle-bg: var(--gold);
   --theme-checkmark-circle: url('/icons/checkmark-circle-logo-blue.svg');
 }
@@ -857,7 +889,7 @@ THEMES
 .rpe-gold main {
   --theme-breadcrumbs-bg: var(--rpe-gold);
   --theme-heading-color: var(--laz-logo-blue);
-  --theme-link-color: var(--rpe-gold);
+  --theme-link-color: var(--laz-logo-blue);
   --theme-btn-primary-border: var(--rpe-gold);
   --theme-btn-primary-bg: var(--rpe-gold);
   --theme-btn-primary-border-hov: var(--rpe-gold);
@@ -870,7 +902,7 @@ THEMES
   --theme-table-head-bg: var(--rpe-gold);
   --theme-table-head-txt: var(--laz-logo-blue);
   --theme-accordion-border: var(--rpe-gold);
-  --theme-accordion-txt: var(--rpe-gold);
+  --theme-accordion-txt: var(--laz-logo-blue);
   --theme-cards-circle-bg: var(--rpe-gold);
   --theme-checkmark-circle: url('/icons/checkmark-circle-logo-blue.svg');
 }
@@ -886,7 +918,7 @@ THEMES
 .laz-blue main {
   --theme-breadcrumbs-bg: var(--laz-blue);
   --theme-heading-color: var(--laz-logo-blue);
-  --theme-link-color: var(--laz-blue);
+  --theme-link-color: var(--laz-logo-blue);
   --theme-btn-primary-border: var(--blog-blue);
   --theme-btn-primary-bg: var(--blog-blue);
   --theme-btn-primary-border-hov: var(--blog-blue);
@@ -897,7 +929,7 @@ THEMES
   --theme-btn-secondary-bg-hov: var(--blog-blue);
   --theme-table-head-bg: var(--blog-blue);
   --theme-accordion-border: var(--laz-blue);
-  --theme-accordion-txt: var(--laz-blue);
+  --theme-accordion-txt: var(--laz-logo-blue);
   --theme-cards-circle-bg: var(--laz-blue);
   --theme-checkmark-circle: url('/icons/checkmark-circle-blog-blue.svg');
 }
@@ -1121,7 +1153,7 @@ THEMES
 
 /* custom backgound colors for when in a P tag by itself */
 .bg-dark-blue, .bg-navy, .bg-red, .bg-berry, .bg-orange, .bg-purple,
-.bg-green, .bg-laz-blue, .bg-gray, .bg-black, .bg-gold, .bg-blue {
+.bg-green, .bg-laz-blue, .bg-black, .bg-gold, .bg-blue, .bg-orange-red {
   .columns {
     padding: 10px 10px 5px !important;
   }
@@ -1141,6 +1173,10 @@ THEMES
   color: var(--laz-black);
 }
 
+:is(h1, h2, h3, h4).white {
+  color: var(--white);
+}
+
 .bg-dark-blue, .bg-blue {
   background-color: var(--product-dark-blue);
 }
@@ -1151,6 +1187,14 @@ THEMES
 
 :is(h1, h2, h3, h4).logo-blue {
   color: var(--laz-logo-blue);
+}
+
+.bg-sky-blue {
+  background-color: var(--sky-blue);
+}
+
+:is(h1, h2, h3, h4).sky-blue {
+  color: var(--sky-blue);
 }
 
 .bg-berry {
@@ -1181,11 +1225,15 @@ THEMES
   background-color: var(--orange);
 }
 
-.bg-orange-red {
+:is(h1, h2, h3, h4).orange {
+  color: var(--orange);
+}
+
+.bg-orange-red, .bg-red-orange {
   background-color: var(--product-orange);
 }
 
-:is(h1, h2, h3, h4).orange {
+:is(h1, h2, h3, h4).orange-red, :is(h1, h2, h3, h4).red-orange {
   color: var(--product-orange);
 }
 
@@ -1272,6 +1320,16 @@ THEMES
   }
 
   &.bgcolor-orange {
+    background-color: var(--orange);
+    border-color: var(--orange);
+
+    &:hover {
+      color: var(--orange);
+      border-color: var(--orange);
+    }
+  }
+
+  &.bgcolor-orange-red, &.bgcolor-red-orange {
     background-color: var(--product-orange);
     border-color: var(--product-orange);
 
@@ -1472,6 +1530,16 @@ button.secondary {
   }
 
   &.textcolor-orange {
+    color: var(--orange);
+    border-color: var(--orange);
+
+    &:hover {
+      background-color: var(--orange);
+      border-color: var(--orange);
+    }
+  }
+
+  &.textcolor-red-orange {
     color: var(--product-orange);
     border-color: var(--product-orange);
 

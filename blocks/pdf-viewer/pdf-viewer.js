@@ -106,7 +106,7 @@ export default async function decorate(block) {
       const concatenatedClass = `embed-mode--${embedModeCleanedUp}`;
       block.classList.add(concatenatedClass);
     } else {
-      block.classList.add('embed-mode--full-window');
+      block.classList.add('embed-mode-full-window');
     }
     block.textContent = '';
     block.append(docDiv);

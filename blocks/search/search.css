@@ -1,0 +1,107 @@
+form.search {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+
+    @media screen and (width >=1024px) {
+        flex-direction: row;
+    }
+
+    h2 {
+        margin: 0;
+    }
+
+    .right {
+        display: flex;
+        align-items: center;
+
+        h3 {
+            margin: 0 20px;
+            color: var(--rpe-dark-purple);
+        }
+
+        select {
+            font-size: var(--body-font-size-xs);
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 0 50px 0 20px;
+            margin: 3% 0;
+            color: var(--dark-gray);
+            background-color: white;
+            height: 40px;
+            cursor: pointer;
+            border: 1px solid var(--dark-gray);
+            background-image: url("/icons/down.svg");
+            background-size: 20px;
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            appearance: none;
+        }
+    }
+}
+
+.search-cards .card {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    border-top: 1px solid var(--light-gray);
+    flex-direction: column-reverse;
+
+    @media screen and (width >=768px) {
+        flex-direction: row;
+    }
+
+    .card-left {
+        display: flex;
+        flex-direction: column;
+        padding: 10px 0;
+        align-items: flex-start;
+
+        @media screen and (width >=768px) {
+            padding: 25px 10px;
+            width: 90%;
+        }
+
+        @media screen and (width >=576px) {
+            flex-direction: row;
+            gap: 20px;
+        }
+
+        h2 {
+            margin: 0;
+        }
+    }
+
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        height: auto;
+
+        @media screen and (width >=768px) {
+            width: 80%;
+        }
+    }
+
+    .card-thumbnail {
+        picture {
+            width: 140px;
+            height: 140px;
+
+            img {
+                width: 100%;
+                object-fit: cover;
+                aspect-ratio: 4/3;
+            }
+        }
+    }
+}
+
+
+
+
+
+
