@@ -531,7 +531,7 @@ main > .section-outer {
 .section.sitemap {
   ul {
     margin-bottom: 15px;
-    border-left: 3px solid #11b4e440;
+    border-left: 3px solid var(--sky-blue);
     margin-left: 0;
     padding-left: 25px;
   }
