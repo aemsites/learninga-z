@@ -84,11 +84,13 @@
     .card .card-body .card-heading{
         color: var(--laz-logo-blue);
         text-transform: uppercase;
+        font-size: var(--body-font-size-xxs);
     }
 
     .card .card-body h3 {
         font-weight: var(--font-weight-extra-bold);
         margin: 0;
+        font-size: var(--body-font-size-s);
     }
 
     .card .card-body a{
