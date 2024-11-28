@@ -752,6 +752,7 @@ async function buildBreadcrumbs() {
 }
 /* END BREADCRUMBS */
 
+// Setting the referral code eagerly
 function setReferralCode() {
   const url = new URL(window.location.href);
   const params = new URLSearchParams(url.search);
@@ -811,6 +812,18 @@ async function loadEager(doc) {
   });
 }
 
+/**
+ * Asynchronously loads and updates prices on the given main element.
+ *
+ * This function calls the `pricingApi` to fetch pricing information. If the
+ * `window.pricing.blocked` is true, it hides all elements with the class 'price'.
+ * Otherwise, it updates the inner HTML and href attributes of certain elements
+ * (h1, h2, h3, h4, p, a) within the main element by replacing placeholders
+ * (e.g., #{price}) with actual pricing data from `window.pricing`.
+ *
+ * @param {HTMLElement} main - The main element within which prices are to be updated.
+ * @returns {Promise<void>} A promise that resolves when the pricing information has been loaded and applied.
+ */
 async function loadPrices(main) {
   await pricingApi();
   // if window.pricing.blocked = true, hide all elements with class 'price'
