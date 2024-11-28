@@ -19,6 +19,8 @@ import {
   toCamelCase,
 } from './aem.js';
 
+import { pricingApi } from './utils.js';
+
 /**
  * Returns the true origin of the current page in the browser.
  * If the page is running in an iframe with srcdoc, the ancestor origin is returned.
@@ -758,7 +760,12 @@ function setReferralCode() {
     [, referralCode] = window.location.pathname.split('/invite/');
   }
   if (referralCode) {
-    document.cookie = `refc=${referralCode};max-age=${60 * 60 * 48};path=/`;
+    const existingRefc = document.cookie.split('; ').find((row) => row.startsWith('refc='));
+    const existingRefcValue = existingRefc ? existingRefc.split('=')[1] : null;
+    if (existingRefcValue !== referralCode) {
+      document.cookie = `refc=${referralCode};max-age=${60 * 60 * 48};path=/`;
+      pricingApi(true);
+    }
   }
 }
 
@@ -804,6 +811,25 @@ async function loadEager(doc) {
   });
 }
 
+async function loadPrices(main) {
+  await pricingApi();
+  const textNodes = Array.from(main.querySelectorAll('h1, h2, h3, h4, p, a'));
+  textNodes.forEach((node) => {
+    const text = node.innerHTML;
+    const href = node.getAttribute('href');
+    const regex = /#{([^}]+)}/g;
+    if (text.match(regex)) {
+      const replacedText = text.replace(regex, (match, group) => `$${(window.pricing && window.pricing[group]) || match}`);
+      node.innerHTML = replacedText;
+    }
+    const regexHref = /#%7B([^%]+)%7D/g;
+    if (href && href.match(regexHref)) {
+      const replacedHref = href.replace(regexHref, (match, group) => (window.pricing && window.pricing[group]) || match);
+      node.setAttribute('href', replacedHref);
+    }
+  });
+}
+
 /**
  * Loads everything that doesn't need to be delayed.
  * @param {Element} doc The container element
@@ -812,6 +838,7 @@ async function loadLazy(doc) {
   svgImageLinks(doc);
 
   const main = doc.querySelector('main');
+  await loadPrices(main);
   await loadSections(main);
   // const breadcrumb = await breadcrumbs(doc);
   // main.prepend(breadcrumb);

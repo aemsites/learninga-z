@@ -1,4 +1,5 @@
 import ffetch from './ffetch.js';
+import { BLOCKED_COUNTRIES } from './constants.js';
 
 const INDEX = '/query-index.json';
 const VIDEO_INDEX = '/site/resources/videos/query-index.json';
@@ -441,6 +442,161 @@ export function getDateRange(startDate, endDate) {
   })}`;
 }
 
-export function getPrice(){
-
+/**
+ * Extracts pricing information from the pricing cookie and assigns it to the global
+ * window.pricing object.
+ * The function looks for specific product numbers and assigns their prices,
+ * discount prices, and order URLs
+ * to corresponding properties in the window.pricing object.
+ *
+ * @function
+ * @name extractPrices
+ */
+export function extractPrices() {
+  const pricingCookie = document.cookie.split('; ').find((row) => row.startsWith('pricing'));
+  const pricing = JSON.parse(pricingCookie.substring(pricingCookie.indexOf('=') + 1));
+  if (pricing) {
+    window.pricing.razOriginalPrice = pricing.productPrice.find((product) => product.productNumber === 'RAZ-INDV').price;
+    window.pricing.razDiscountPrice = pricing.productPrice.find((product) => product.productNumber === 'RAZ-INDV').discountPrice;
+    window.pricing.razOrderUrl = pricing.productPrice.find((product) => product.productNumber === 'RAZ-INDV').orderUrl;
+    window.pricing.rkOriginalPrice = pricing.productPrice.find((product) => product.productNumber === 'RK-INDV').price;
+    window.pricing.rkDiscountPrice = pricing.productPrice.find((product) => product.productNumber === 'RK-INDV').discountPrice;
+    window.pricing.rkOrderUrl = pricing.productPrice.find((product) => product.productNumber === 'RK-INDV').orderUrl;
+    window.pricing.rpOriginalPrice = pricing.productPrice.find((product) => product.productNumber === 'RP-INDV').price;
+    window.pricing.rpDiscountPrice = pricing.productPrice.find((product) => product.productNumber === 'RP-INDV').discountPrice;
+    window.pricing.rpOrderUrl = pricing.productPrice.find((product) => product.productNumber === 'RP-INDV').orderUrl;
+    window.pricing.fazOriginalPrice = pricing.productPrice.find((product) => product.productNumber === 'FAZ-INDV').price;
+    window.pricing.fazDiscountPrice = pricing.productPrice.find((product) => product.productNumber === 'FAZ-INDV').discountPrice;
+    window.pricing.fazOrderUrl = pricing.productPrice.find((product) => product.productNumber === 'FAZ-INDV').orderUrl;
+    window.pricing.vocabOriginalPrice = pricing.productPrice.find((product) => product.productNumber === 'VOCAB-INDV').price;
+    window.pricing.vocabDiscountPrice = pricing.productPrice.find((product) => product.productNumber === 'VOCAB-INDV').discountPrice;
+    window.pricing.vocabOrderUrl = pricing.productPrice.find((product) => product.productNumber === 'VOCAB-INDV').orderUrl;
+    window.pricing.sazOriginalPrice = pricing.productPrice.find((product) => product.productNumber === 'SAZ-INDV').price;
+    window.pricing.sazDiscountPrice = pricing.productPrice.find((product) => product.productNumber === 'SAZ-INDV').discountPrice;
+    window.pricing.sazOrderUrl = pricing.productPrice.find((product) => product.productNumber === 'SAZ-INDV').orderUrl;
+    window.pricing.wazOriginalPrice = pricing.productPrice.find((product) => product.productNumber === 'WAZ-AZ-INDV').price;
+    window.pricing.wazDiscountPrice = pricing.productPrice.find((product) => product.productNumber === 'WAZ-AZ-INDV').discountPrice;
+    window.pricing.wazOrderUrl = pricing.productPrice.find((product) => product.productNumber === 'WAZ-AZ-INDV').orderUrl;
+    window.pricing.rpccOriginalPrice = pricing.productPrice.find((product) => product.productNumber === 'RPCC-INDV').price;
+    window.pricing.rpccDiscountPrice = pricing.productPrice.find((product) => product.productNumber === 'RPCC-INDV').discountPrice;
+    window.pricing.rpccOrderUrl = pricing.productPrice.find((product) => product.productNumber === 'RPCC-INDV').orderUrl;
+    window.pricing.razEllOriginalPrice = pricing.productPrice.find((product) => product.productNumber === 'RAZ-ELL-INDV').price;
+    window.pricing.razEllDiscountPrice = pricing.productPrice.find((product) => product.productNumber === 'RAZ-ELL-INDV').discountPrice;
+    window.pricing.razEllOrderUrl = pricing.productPrice.find((product) => product.productNumber === 'RAZ-ELL-INDV').orderUrl;
+    window.pricing.espOriginalPrice = pricing.productPrice.find((product) => product.productNumber === 'ESP-INDV').price;
+    window.pricing.espDiscountPrice = pricing.productPrice.find((product) => product.productNumber === 'ESP-INDV').discountPrice;
+    window.pricing.espOrderUrl = pricing.productPrice.find((product) => product.productNumber === 'ESP-INDV').orderUrl;
+  }
 }
+
+// eslint-disable-next-line no-unused-vars
+/**
+ * Fetches pricing information from the Learning A-Z API.
+ *
+ * @param {string} ip - The IP address to be sent in the request payload.
+ * @returns {Promise<void>} - A promise that resolves when the API call is complete.
+ *
+ * The function constructs a request payload including the IP address and a list of products.
+ * If a referral code (refc) is found in the cookies, it is included in the payload.
+ * The request is sent to the Learning A-Z pricing API endpoint.
+ * On success, the response is logged to the console.
+ * On failure, the error is logged to the console.
+ */
+const makePricingApiCall = async (ip) => {
+  // get refc cookie value
+  const refc = document.cookie
+    .split('; ')
+    .find((row) => row.startsWith('refc'))
+    .split('=')[1] || '';
+
+  const pricingHeaders = new Headers();
+  pricingHeaders.append('Content-Type', 'application/json');
+  pricingHeaders.append('Accept', 'application/json');
+
+  const raw = JSON.stringify({
+    ipAddress: ip,
+    product: [
+      {
+        productNumber: 'RAZ-INDV',
+        ...(refc && { referralCode: refc }),
+      },
+      {
+        productNumber: 'RK-INDV ',
+        ...(refc && { referralCode: refc }),
+      },
+      {
+        productNumber: 'RP-INDV',
+        ...(refc && { referralCode: refc }),
+      },
+      {
+        productNumber: 'FAZ-INDV',
+        ...(refc && { referralCode: refc }),
+      },
+      {
+        productNumber: 'VOCAB-INDV',
+        ...(refc && { referralCode: refc }),
+      },
+      {
+        productNumber: 'SAZ-INDV',
+        ...(refc && { referralCode: refc }),
+      },
+      {
+        productNumber: 'WAZ-AZ-INDV',
+        ...(refc && { referralCode: refc }),
+      },
+      {
+        productNumber: 'RPCC-INDV',
+        ...(refc && { referralCode: refc }),
+      },
+      {
+        productNumber: 'RAZ-ELL-INDV',
+        ...(refc && { referralCode: refc }),
+      },
+      {
+        productNumber: 'ESP-INDV',
+        ...(refc && { referralCode: refc }),
+      },
+    ],
+  });
+
+  const requestOptions = {
+    method: 'POST',
+    headers: pricingHeaders,
+    body: raw,
+    redirect: 'follow',
+  };
+
+  fetch('https://api.learninga-z.com/v1/marketing/get-price', requestOptions)
+    .then((response) => response.json())
+    .then((result) => {
+      const expiryDate = new Date();
+      expiryDate.setTime(expiryDate.getTime() + (48 * 60 * 60 * 1000)); // 48 hours from now
+      document.cookie = `pricing=${JSON.stringify(result)};expires=${expiryDate.toUTCString()};path=/`;
+      extractPrices();
+    })
+    .catch((error) => console.error(error));
+};
+
+/**
+ * Fetches the user's location and IP address from Cloudflare's trace endpoint.
+ * If the user's location is in the list of blocked countries, sets the pricing
+ * blocked flag to true. Otherwise, sets the pricing blocked flag to false and
+ * calls the pricing API with the user's IP address.
+ */
+export const pricingApi = async (forceSetPrice = false) => {
+  const response = await fetch('https://www.cloudflare.com/cdn-cgi/trace');
+  const text = await response.text();
+  const ip = text.match(/ip=(.*)/)[1];
+  const loc = text.match(/loc=(.*)/)[1];
+  window.pricing = window.pricing || {};
+  if (BLOCKED_COUNTRIES.includes(loc)) {
+    window.pricing.blocked = true;
+  } else {
+    window.pricing.blocked = false;
+    if (!document.cookie.includes('pricing') || forceSetPrice) {
+      await makePricingApiCall(ip);
+    } else {
+      extractPrices();
+    }
+  }
+};
