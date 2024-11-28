@@ -10,32 +10,20 @@
     overflow: hidden;
   }
   
-  .pdf-viewer.embed-mode--full-window {
+  .pdf-viewer.embed-mode-full-window {
     height: calc(100vh / 2.4);
     display: none;
   }
-  
-  .pdf-viewer.embed-mode--in-line {
-    height: 100%;
-  }
-  
+    
   /** Desktop */
   @media screen and (width >= 1200px) {
     .section.pdf-viewer-container > .pdf-viewer-wrapper {
       position: relative;
     }
   
-    .pdf-viewer.embed-mode--full-window {
+    .pdf-viewer.embed-mode-full-window {
       display: block;
       height: 986px;
-    }
-  
-    .pdf-viewer.embed-mode--in-line {
-      height: 100%;
-    }
-  
-    .pdf-viewer.embed-mode--full-window.pdf-viewer-orientation--portrait {
-      height: 1620px;
     }
   }
   
