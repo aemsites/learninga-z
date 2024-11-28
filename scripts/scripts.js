@@ -813,23 +813,31 @@ async function loadEager(doc) {
 
 async function loadPrices(main) {
   await pricingApi();
-  const textNodes = Array.from(main.querySelectorAll('h1, h2, h3, h4, p, a'));
-  textNodes.forEach((node) => {
-    if (node) {
-      const text = node.innerHTML;
-      const href = node.getAttribute('href');
-      const regex = /#{([^}]+)}/g;
-      if (text && text.match(regex)) {
-        const replacedText = text.replace(regex, (match, group) => `$${(window.pricing && window.pricing[group]) || match}`);
-        node.innerHTML = replacedText;
+  // if window.pricing.blocked = true, hide all elements with class 'price'
+  if (window.pricing && window.pricing.blocked) {
+    const prices = main.querySelectorAll('.price');
+    prices.forEach((price) => {
+      price.style.display = 'none';
+    });
+  } else {
+    const textNodes = Array.from(main.querySelectorAll('h1, h2, h3, h4, p, a'));
+    textNodes.forEach((node) => {
+      if (node) {
+        const text = node.innerHTML;
+        const href = node.getAttribute('href');
+        const regex = /#{([^}]+)}/g;
+        if (text && text.match(regex)) {
+          const replacedText = text.replace(regex, (match, group) => `$${(window.pricing && window.pricing[group]) || match}`);
+          node.innerHTML = replacedText;
+        }
+        const regexHref = /#%7B([^%]+)%7D/g;
+        if (href && href.match(regexHref)) {
+          const replacedHref = href.replace(regexHref, (match, group) => (window.pricing && window.pricing[group]) || match);
+          node.setAttribute('href', replacedHref);
+        }
       }
-      const regexHref = /#%7B([^%]+)%7D/g;
-      if (href && href.match(regexHref)) {
-        const replacedHref = href.replace(regexHref, (match, group) => (window.pricing && window.pricing[group]) || match);
-        node.setAttribute('href', replacedHref);
-      }
-    }
-  });
+    });
+  }
 }
 
 /**
