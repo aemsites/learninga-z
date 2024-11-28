@@ -1,4 +1,5 @@
 import { loadScript } from './aem.js';
+import { BLOCKED_COUNTRIES } from './constants.js';
 
 // metarouter analytics script embed
 
@@ -102,45 +103,105 @@ loadScript('https://widget.intercom.io/widget/x8m18b9a', {
 });
 
 // eslint-disable-next-line no-unused-vars
-const pricingApi = async () => {
-  const response1 = await fetch('https://www.cloudflare.com/cdn-cgi/trace');
-  const text = await response1.text();
-  //const ip = text.match(/ip=(.*)/)[1];
-  const ip = '2607:fea8:a45f:ce20:64f3:aa3a:bbd2:81f5';
-  if (ip) {
-    const myHeaders = new Headers();
-    myHeaders.append('Content-Type', 'application/json');
-    myHeaders.append('Accept', 'application/json');
-    myHeaders.append('Cookie', '__cf_bm=lV3H_Es1WB6GoGSUBrChuXg2Q2fcmRuBgWuvzv3hAik-1732405742-1.0.1.1-SfttXcQNVo3zTTUsZZYFj.gVF04yo755Ratg3hwF76YtxZRRZHhflUjkx43IqHMzZODj9yIU30smKW2dwsgMWQ; BIGipServerlaz_prod_learninga-z=!404C0XFqK2kLejRTPKHt4XOpEQDDQiVAY5CJzkIkxvnfMRf2VqHRXrekTemV8W16cz7u/xevztPKFQ==');
+/**
+ * Fetches pricing information from the Learning A-Z API.
+ *
+ * @param {string} ip - The IP address to be sent in the request payload.
+ * @returns {Promise<void>} - A promise that resolves when the API call is complete.
+ *
+ * The function constructs a request payload including the IP address and a list of products.
+ * If a referral code (refc) is found in the cookies, it is included in the payload.
+ * The request is sent to the Learning A-Z pricing API endpoint.
+ * On success, the response is logged to the console.
+ * On failure, the error is logged to the console.
+ */
+const pricingApi = async (ip) => {
+  // get refc cookie value
+  const refc = document.cookie
+    .split('; ')
+    .find((row) => row.startsWith('refc'))
+    .split('=')[1] || '';
 
-    const raw = JSON.stringify({
-      ipAddress: ip,
-      product: [
-        {
-          productNumber: 'WAZ-AZ-INDV',
-        },
-        {
-          productNumber: 'RP-INDV',
-          coupon: '10PERCENTOFF',
-        },
-        {
-          productNumber: 'FAZ-INDV',
-          referralCode: 'ROXDNXMAHQ',
-        },
-      ],
-    });
+  const pricingHeaders = new Headers();
+  pricingHeaders.append('Content-Type', 'application/json');
+  pricingHeaders.append('Accept', 'application/json');
 
-    const requestOptions = {
-      method: 'POST',
-      headers: myHeaders,
-      body: raw,
-      redirect: 'follow',
-    };
+  const raw = JSON.stringify({
+    ipAddress: ip,
+    product: [
+      {
+        productNumber: 'RAZ-INDV',
+        ...(refc && { referralCode: refc }),
+      },
+      {
+        productNumber: 'RK-INDV ',
+        ...(refc && { referralCode: refc }),
+      },
+      {
+        productNumber: 'RP-INDV',
+        ...(refc && { referralCode: refc }),
+      },
+      {
+        productNumber: 'FAZ-INDV',
+        ...(refc && { referralCode: refc }),
+      },
+      {
+        productNumber: 'VOCAB-INDV',
+        ...(refc && { referralCode: refc }),
+      },
+      {
+        productNumber: 'SAZ-INDV',
+        ...(refc && { referralCode: refc }),
+      },
+      {
+        productNumber: 'WAZ-AZ-INDV',
+        ...(refc && { referralCode: refc }),
+      },
+      {
+        productNumber: 'RPCC-INDV',
+        ...(refc && { referralCode: refc }),
+      },
+      {
+        productNumber: 'RAZ-ELL-INDV',
+        ...(refc && { referralCode: refc }),
+      },
+      {
+        productNumber: 'ESP-INDV',
+        ...(refc && { referralCode: refc }),
+      },
+    ],
+  });
 
-    fetch('https://api.learninga-z.com/v1/marketing/get-price', requestOptions)
-      .then((response) => response.text())
-      .then((result) => console.log(result))
-      .catch((error) => console.error(error));
+  const requestOptions = {
+    method: 'POST',
+    headers: pricingHeaders,
+    body: raw,
+    redirect: 'follow',
+  };
+
+  fetch('https://api.learninga-z.com/v1/marketing/get-price', requestOptions)
+    .then((response) => response.text())
+    .then((result) => console.log(result))
+    .catch((error) => console.error(error));
+};
+
+/**
+ * Fetches the user's location and IP address from Cloudflare's trace endpoint.
+ * If the user's location is in the list of blocked countries, sets the pricing
+ * blocked flag to true. Otherwise, sets the pricing blocked flag to false and
+ * calls the pricing API with the user's IP address.
+ */
+const getLocation = async () => {
+  const response = await fetch('https://www.cloudflare.com/cdn-cgi/trace');
+  const text = await response.text();
+  const ip = text.match(/ip=(.*)/)[1];
+  const loc = text.match(/loc=(.*)/)[1];
+  if (BLOCKED_COUNTRIES.includes(loc)) {
+    window.pricing.blocked = true;
+  } else {
+    window.pricing.blocked = false;
+    pricingApi(ip);
   }
 };
-pricingApi();
+
+getLocation();

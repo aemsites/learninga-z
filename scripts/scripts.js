@@ -750,11 +750,24 @@ async function buildBreadcrumbs() {
 }
 /* END BREADCRUMBS */
 
+function setReferralCode() {
+  const url = new URL(window.location.href);
+  const params = new URLSearchParams(url.search);
+  let referralCode = params.get('referralCode');
+  if (!referralCode && window.location.pathname.startsWith('/invite/')) {
+    [, referralCode] = window.location.pathname.split('/invite/');
+  }
+  if (referralCode) {
+    document.cookie = `refc=${referralCode};max-age=${60 * 60 * 48};path=/`;
+  }
+}
+
 /**
  * Loads everything needed to get to LCP.
  * @param {Element} doc The container element
  */
 async function loadEager(doc) {
+  setReferralCode();
   document.documentElement.lang = 'en';
   // Add below snippet early in the eager phase
   if (getMetadata('experiment')
