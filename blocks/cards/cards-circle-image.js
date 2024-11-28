@@ -71,7 +71,7 @@ export function populateCircleImageCard(wrapper, cardInfo) {
                 <a href="${cardInfo.path}">
                     <h3>${cardInfo.title.replace(/ \| Learning A-Z$|- Learning A-Z$/, '')}</h3>
                 </a>
-                ${cardInfo.isDescription ? ` <a href="${cardInfo.path}"><p>${cardInfo.description}</p></a>` : ''}
+                ${(cardInfo.isDescription && cardInfo.description) ? ` <a href="${cardInfo.path}"><p>${cardInfo.description}</p></a>` : ''}
           </div>
       `;
   wrapper.append(card);
