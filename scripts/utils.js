@@ -636,14 +636,20 @@ const makePricingApiCall = async (ip) => {
 export const pricingApi = async (forceSetPrice = false) => {
   const response = await fetch('https://www.cloudflare.com/cdn-cgi/trace');
   const text = await response.text();
-  const ip = text.match(/ip=(.*)/)[1];
-  const loc = text.match(/loc=(.*)/)[1];
+  const ipMatch = text.match(/ip=(.*)/);
+  const locMatch = text.match(/loc=(.*)/);
+  const ip = ipMatch ? ipMatch[1] : null;
+  const loc = locMatch ? locMatch[1] : null;
   window.pricing = window.pricing || {};
-  if (BLOCKED_COUNTRIES.includes(loc)) {
+  if (ip == null || loc == null) {
+    window.pricing.blocked = true;
+    return;
+  }
+  if (loc && BLOCKED_COUNTRIES.includes(loc)) {
     window.pricing.blocked = true;
   } else {
     window.pricing.blocked = false;
-    if (!document.cookie.includes('pricing') || forceSetPrice) {
+    if (ip && (!document.cookie.includes('pricing') || forceSetPrice)) {
       await makePricingApiCall(ip);
     } else {
       extractPrices();
