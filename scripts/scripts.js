@@ -825,7 +825,6 @@ async function loadEager(doc) {
  * @returns {Promise<void>} A promise that resolves when the pricing information has been loaded and applied.
  */
 async function loadPrices(main) {
-  await pricingApi();
   // if window.pricing.blocked = true, hide all elements with class 'price'
   if (window.pricing && window.pricing.blocked) {
     const prices = main.querySelectorAll('.price');
@@ -858,10 +857,10 @@ async function loadPrices(main) {
  * @param {Element} doc The container element
  */
 async function loadLazy(doc) {
+  await pricingApi();
   svgImageLinks(doc);
 
   const main = doc.querySelector('main');
-  await loadPrices(main);
   await loadSections(main);
   // const breadcrumb = await breadcrumbs(doc);
   // main.prepend(breadcrumb);
@@ -869,6 +868,7 @@ async function loadLazy(doc) {
   if (templateName) {
     await loadTemplate(doc, templateName);
   }
+  await loadPrices(main);
   groupMultipleButtons(main);
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;

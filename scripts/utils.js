@@ -645,7 +645,6 @@ export const pricingApi = async (forceSetPrice = false) => {
     window.pricing.blocked = false;
     if (!document.cookie.includes('pricing') || forceSetPrice) {
       await makePricingApiCall(ip);
-      extractPrices();
     } else {
       extractPrices();
     }
