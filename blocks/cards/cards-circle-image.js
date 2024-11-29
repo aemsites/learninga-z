@@ -22,14 +22,34 @@ export async function getCircleCardsArray(block, indexData, isDescription) {
         }
       }
       if (a) {
-        const path = a.getAttribute('href');
-        const relPath = getRelativePath(path);
-        card = indexData.find((item) => item.path === relPath);
-        if (card) {
-          card.image = img;
-          card.isDescription = isDescription;
-          card.isIcon = isIcon;
+        if (col.querySelector('h3')) {
+          const link = a.getAttribute('href');
+          const heading = col.querySelector('p>strong') || col.querySelector('strong>p');
+          const headingText = heading ? heading.innerText : '';
+          if (heading && heading.parentElement) {
+            heading.parentElement.remove();
+          }
+          const description = col.querySelector('p');
+          card = {
+            title: col.querySelector('h3').innerText,
+            description: description ? description.innerText : '',
+            image: img,
+            isDescription,
+            isIcon,
+            path: getRelativePath(link),
+            heading: headingText,
+          };
           cards.push(card);
+        } else {
+          const path = a.getAttribute('href');
+          const relPath = getRelativePath(path);
+          card = indexData.find((item) => item.path === relPath);
+          if (card) {
+            card.image = img;
+            card.isDescription = isDescription;
+            card.isIcon = isIcon;
+            cards.push(card);
+          }
         }
       }
     });
@@ -47,10 +67,11 @@ export function populateCircleImageCard(wrapper, cardInfo) {
                     </a>
          </div>
           <div class="card-body">
+                ${cardInfo.heading ? `<p class='card-heading'><strong>${cardInfo.heading}</strong></p>` : ''}
                 <a href="${cardInfo.path}">
                     <h3>${cardInfo.title.replace(/ \| Learning A-Z$|- Learning A-Z$/, '')}</h3>
                 </a>
-                ${cardInfo.isDescription ? ` <a href="${cardInfo.path}"><p>${cardInfo.description}</p></a>` : ''}
+                ${(cardInfo.isDescription && cardInfo.description) ? ` <a href="${cardInfo.path}"><p>${cardInfo.description}</p></a>` : ''}
           </div>
       `;
   wrapper.append(card);

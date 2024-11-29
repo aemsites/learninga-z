@@ -19,6 +19,8 @@ import {
   toCamelCase,
 } from './aem.js';
 
+import { pricingApi } from './utils.js';
+
 /**
  * Returns the true origin of the current page in the browser.
  * If the page is running in an iframe with srcdoc, the ancestor origin is returned.
@@ -750,11 +752,30 @@ async function buildBreadcrumbs() {
 }
 /* END BREADCRUMBS */
 
+// Setting the referral code eagerly
+function setReferralCode() {
+  const url = new URL(window.location.href);
+  const params = new URLSearchParams(url.search);
+  let referralCode = params.get('referralCode');
+  if (!referralCode && window.location.pathname.startsWith('/invite/')) {
+    [, referralCode] = window.location.pathname.split('/invite/');
+  }
+  if (referralCode) {
+    const existingRefc = document.cookie.split('; ').find((row) => row.startsWith('refc='));
+    const existingRefcValue = existingRefc ? existingRefc.split('=')[1] : null;
+    if (existingRefcValue !== referralCode) {
+      document.cookie = `refc=${referralCode};max-age=${60 * 60 * 48};path=/`;
+      pricingApi(true);
+    }
+  }
+}
+
 /**
  * Loads everything needed to get to LCP.
  * @param {Element} doc The container element
  */
 async function loadEager(doc) {
+  setReferralCode();
   document.documentElement.lang = 'en';
   // Add below snippet early in the eager phase
   if (getMetadata('experiment')
@@ -792,10 +813,52 @@ async function loadEager(doc) {
 }
 
 /**
+ * Asynchronously loads and updates prices on the given main element.
+ *
+ * This function calls the `pricingApi` to fetch pricing information. If the
+ * `window.pricing.blocked` is true, it hides all elements with the class 'price'.
+ * Otherwise, it updates the inner HTML and href attributes of certain elements
+ * (h1, h2, h3, h4, p, a) within the main element by replacing placeholders
+ * (e.g., #{price}) with actual pricing data from `window.pricing`.
+ *
+ * @param {HTMLElement} main - The main element within which prices are to be updated.
+ * @returns {Promise<void>} A promise that resolves when the pricing information has been loaded and applied.
+ */
+async function loadPrices(main) {
+  // if window.pricing.blocked = true, hide all elements with class 'price'
+  if (window.pricing && window.pricing.blocked) {
+    const prices = main.querySelectorAll('.price');
+    prices.forEach((price) => {
+      price.style.display = 'none';
+    });
+  } else {
+    const textNodes = Array.from(main.querySelectorAll('h1, h2, h3, h4, p, a'));
+    textNodes.forEach((node) => {
+      if (node) {
+        const text = node.innerHTML;
+        const href = node.getAttribute('href');
+        const regex = /#\[(.*?)\]/g;
+        if (text && text.match(regex)) {
+          const replacedText = text.replace(regex, (match, group) => `$${(window.pricing && window.pricing[group]) || match}`);
+          node.innerHTML = replacedText;
+        }
+
+        const hrefRegex = /#%5B(.*?)%5D/g;
+        if (href && href.match(hrefRegex)) {
+          const replacedHref = href.replace(hrefRegex, (match, group) => (window.pricing && window.pricing[group]) || group);
+          node.setAttribute('href', replacedHref);
+        }
+      }
+    });
+  }
+}
+
+/**
  * Loads everything that doesn't need to be delayed.
  * @param {Element} doc The container element
  */
 async function loadLazy(doc) {
+  await pricingApi();
   svgImageLinks(doc);
 
   const main = doc.querySelector('main');
@@ -806,6 +869,7 @@ async function loadLazy(doc) {
   if (templateName) {
     await loadTemplate(doc, templateName);
   }
+  await loadPrices(main);
   groupMultipleButtons(main);
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
