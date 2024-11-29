@@ -206,6 +206,22 @@ export default {
     const footerWidgets = document.querySelector('.footer-widgets');
     if (footerWidgets) main.appendChild(footerWidgets.cloneNode(true));
 
+    // transform all anchors with cta-link class to <a> with <code> inside
+    const ctaLinks = main.querySelectorAll('.cta-link');
+    ctaLinks.forEach((cta) => {
+      const em = document.createElement('em');
+      em.innerText = cta.textContent;
+      cta.replaceChildren(em);
+      // // add a <p> <code> divider after each cta-link
+      const p = document.createElement('p');
+      const divcode = document.createElement('code');
+      divcode.textContent = 'Divider';
+      p.appendChild(divcode);
+      if (cta === ctaLinks[0]) {
+        cta.after(p);
+      }
+    });
+
     // Tables
     // Note: Handling tables before creating any block tables.
     const tables = main.querySelectorAll('table');
@@ -224,16 +240,6 @@ export default {
 
       // Optionally, you can style the new cell
       newCell.style.fontWeight = 'bold';
-    });
-
-    // Dividers
-    const dividers = main.querySelectorAll('hr');
-    dividers.forEach((hr) => {
-      const p = document.createElement('p');
-      const code = document.createElement('code');
-      code.textContent = 'Divider';
-      p.appendChild(code);
-      hr.replaceWith(p);
     });
 
     // if first row has col-12, replace row with a div with content of col-12
@@ -259,6 +265,40 @@ export default {
         }
       });
       firstRow.replaceWith(div);
+    }
+
+    // Related Offerings
+    // select articlelist immediately following h4 with text "Related Offerings" ignoring case
+    const relatedOfferingsHeading = Array.from(main.querySelectorAll('h4')).find((h4) => h4.textContent.trim().toUpperCase() === 'RELATED OFFERINGS');
+    const relatedOfferings = relatedOfferingsHeading ? relatedOfferingsHeading.nextElementSibling : null;
+    if (relatedOfferings) {
+      const offerings = relatedOfferings.querySelectorAll('.thumb-container');
+      const cells = [['Cards (circle-image)']];
+      offerings.forEach((offering) => {
+        const img = offering.querySelector('img');
+        if (img) {
+          const imgEl = document.createElement('img');
+          imgEl.src = img.getAttribute('data-msrc') ? img.getAttribute('data-msrc') : img.src;
+          const heading = document.createElement('p');
+          const h3 = offering.querySelector('h3');
+          if (h3) {
+            heading.innerHTML = `<strong> ${h3.textContent} </strong>`;
+          }
+          const desc = offering.querySelector('.thumb-description');
+          if (desc) {
+            const a = desc.querySelector('a');
+            if (a) {
+              const title = document.createElement('h3');
+              title.append(a);
+              const wrapperDiv = document.createElement('div');
+              wrapperDiv.appendChild(heading);
+              wrapperDiv.appendChild(title);
+              cells.push([imgEl, wrapperDiv]);
+            }
+          }
+        }
+      });
+      relatedOfferings.replaceWith(WebImporter.DOMUtils.createTable(cells, document));
     }
 
     // Suggested Videos
