@@ -164,7 +164,7 @@
   }
 }
 
-.carousel.cards {
+.carousel.card-links {
   .carousel-slides-container {
     padding: 20px 0;
   }
@@ -252,13 +252,13 @@
 }
 
 @media (width >= 768px) {
-  .carousel:not(.cards) {
+  .carousel:not(.card-links) {
     .carousel-slide-image picture img {
       height: unset;
     }
   }
 
-  .carousel.cards {
+  .carousel.card-links {
     .carousel-slide {
       flex: 0 0 48%;
 
@@ -292,7 +292,7 @@
     }
   }
 
-  .carousel.cards {
+  .carousel.card-links {
     .carousel-slides-container {
       width: 780px;
       margin: auto;
@@ -301,7 +301,7 @@
 }
 
 @media (width >= 1200px) {
-  .carousel.cards {
+  .carousel.card-links {
     .carousel-slides-container {
       width: 980px;
       margin: auto;
@@ -312,7 +312,7 @@
     }
   }
 
-  .carousel:not(.cards) {
+  .carousel:not(.card-links) {
     .carousel-slide {
       flex-direction: row;
       gap: 66px;
@@ -368,7 +368,7 @@
 }
 
 @media (width >= 1600px) {
-  .carousel:not(.cards) {
+  .carousel:not(.card-links) {
     .carousel-slide {
         padding-left: 0;
         padding-right: 0;

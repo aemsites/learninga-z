@@ -120,7 +120,7 @@ let carouselId = 0;
 export default async function decorate(block) {
   carouselId += 1;
   block.setAttribute('id', `carousel-${carouselId}`);
-  const linkedCarousel = block.classList.contains('cards') || block.classList.contains('links');
+  const linkedCarousel = block.classList.contains('card-links') || block.classList.contains('links');
   const rows = block.querySelectorAll(':scope > div');
   let isSingleSlide = false;
   if (linkedCarousel) {
@@ -163,7 +163,7 @@ export default async function decorate(block) {
     block.append(slideNavButtons);
   }
 
-  if (block.classList.contains('links') || block.classList.contains('cards')) {
+  if (block.classList.contains('links') || block.classList.contains('card-links')) {
     const rows1 = [];
     const cardLinks = block.querySelectorAll('a');
     const indexData = await getGenericIndexData();
@@ -186,7 +186,7 @@ export default async function decorate(block) {
         if (card.description) {
           col2.innerHTML += `<p>${card.description}</p><p><em><a href="${card.path}">Learn More</a></em></p>`;
         }
-        if (block.classList.contains('cards')) {
+        if (block.classList.contains('card-links')) {
           col2.innerHTML += `<a href="${card.path}"><i class="arrow"><img alt="arrow" src="/icons/solutions-right.svg"></i></a>`;
         }
 
