@@ -1,5 +1,4 @@
 import { loadScript } from './aem.js';
-
 // metarouter analytics script embed
 
 async function enableMetaRouter() {
