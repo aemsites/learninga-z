@@ -1,6 +1,5 @@
 // eslint-disable-next-line import/no-unresolved
 import { toClassName } from '../../scripts/aem.js';
-import { decorateButtons } from '../../scripts/scripts.js';
 import { loadFragment } from '../fragment/fragment.js';
 
 export default async function decorate(block) {
