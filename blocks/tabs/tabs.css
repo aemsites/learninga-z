@@ -6,7 +6,7 @@
   flex-wrap: wrap;
 }
 
-.tab-square-content p {
+.tab-square-content:not:has('.carousel.within-tabs') p {
   position: relative;
   margin: 0 0 10px;
   width: 80%;

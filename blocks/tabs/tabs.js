@@ -1,5 +1,6 @@
 // eslint-disable-next-line import/no-unresolved
 import { toClassName } from '../../scripts/aem.js';
+import { decorateButtons } from '../../scripts/scripts.js';
 import { loadFragment } from '../fragment/fragment.js';
 
 export default async function decorate(block) {
@@ -37,6 +38,7 @@ export default async function decorate(block) {
           tabsSquare.append(squareTab);
         } else if (colIdx === 1) {
           squareContent.classList.add('tab-square-content');
+          squareContent.setAttribute('data-theme', 'white');
           squareContent.id = `tab-square-content-${rowIdx}`;
           if (rowIdx === 0) {
             squareContent.classList.add('active');

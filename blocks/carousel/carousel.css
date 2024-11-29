@@ -178,6 +178,27 @@
   }
 }
 
+/* Carousel within tabs */
+.carousel.within-tabs {
+  margin: 0 auto;
+  
+  .carousel-slide {
+    padding: 0;
+
+    > div {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      justify-content: center;
+      text-align: center;
+
+      & .embed.block{
+        min-height: unset;
+      }
+    }
+  }
+}
+
 @media (width >= 1296px) {
   .carousel:not(.vertical) .carousel-slide {
     flex-direction: row;
