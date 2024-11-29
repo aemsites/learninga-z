@@ -67,6 +67,7 @@
     max-width: 800px;
     border-radius: 15px;
     aspect-ratio: 16 / 9;
+    margin: auto;
 
     &::before {
       content: '';

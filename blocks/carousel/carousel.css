@@ -181,7 +181,9 @@
 /* Carousel within tabs */
 .carousel.within-tabs {
   margin: 0 auto;
-  
+  width: unset;
+  padding: 0 15%;
+
   .carousel-slide {
     padding: 0;
 
@@ -200,11 +202,15 @@
 }
 
 @media (width >= 1296px) {
-  .carousel:not(.vertical) .carousel-slide {
+  .carousel:not(.vertical,.within-tabs) .carousel-slide {
     flex-direction: row;
     padding-left: 80px;
     padding-right: 80px;
     }
+
+    .carousel.within-tabs .carousel-slide {
+      padding: 0 20px;
+      }
 
     .carousel .carousel-slide .carousel-slide-content h2 {
       font-size: 30px;
