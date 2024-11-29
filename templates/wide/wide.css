@@ -105,6 +105,15 @@
 
         .carousel-slide-image {
             width: 10%;
+
+            picture {
+                height: unset;
+
+                > img {
+                    object-fit: unset;
+                    height: unset;
+                }
+            }
         }
     }
 
@@ -112,6 +121,7 @@
         margin-top: -80px;
         padding-left: 10px;
         padding-right: 10px;
+        top: 0;
     }
 }
 
