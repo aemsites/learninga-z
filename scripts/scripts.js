@@ -274,7 +274,10 @@ function buildAutoBlocks(main, templateModule = undefined) {
       buildHeroBlock(main);
     }
     buildPageDivider(main);
-    buildFragmentBlocks(main);
+    const url = new URL(window.location.href);
+    if (url.pathname !== '/') {
+      buildFragmentBlocks(main);
+    }
     if (templateModule && templateModule.default) {
       templateModule.default(main);
     }
