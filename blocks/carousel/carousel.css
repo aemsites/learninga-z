@@ -330,6 +330,28 @@
   }
 }
 
+/* Carousel within tabs */
+.carousel.within-tabs {
+  margin: 0 auto;
+  width: unset;
+  padding: 0 15%;
+
+  .carousel-slide {
+    padding: 0;
+
+    > div {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      justify-content: center;
+      text-align: center;
+
+      & .embed.block{
+        min-height: unset;
+      }
+    }
+  }
+}
 
 @media (width >= 768px) {
   .carousel:not(.card-links) {
@@ -564,6 +586,11 @@
         height: 35px;
         width: 35px;
     }
+  }
+
+  .carousel.within-tabs .carousel-slide-container .carousel-slides .carousel-slide {
+    padding: 0 20px;
+    flex-direction: row;
   }
 }
 
