@@ -179,6 +179,7 @@
   --theme-heading-color: var(--laz-logo-blue);
   --theme-link-color: var(--laz-logo-blue);
   --theme-breadcrumbs-bg: var(--laz-logo-blue);
+  --theme-carousel-arrow: var(--light-gray);
 
 
 } /* end root */
@@ -596,6 +597,7 @@ THEMES
   --theme-btn-secondary-txt: var(--white);
   --theme-btn-secondary-bg-hov: var(--white);
   --theme-btn-secondary-border-hov: var(--white);
+  --theme-carousel-h3: var(--theme-heading-color);
 
   h1, h2 {
     color: var(--white)
@@ -628,6 +630,10 @@ THEMES
           border-color: var(--theme-btn-secondary-bg-hov);
         }
     }
+  }
+
+  .carousel-navigation-buttons button {
+    background-color: var(--theme-carousel-arrow);
   }
 
   &:has(.inner) {
@@ -710,6 +716,7 @@ THEMES
   --theme-gradient-radial: var(--gradient-rad-dark-blue);
   --theme-gradient-linear: var(--gradient-lin-dark-blue);
   --theme-gradient-sticky: var(--gradient-sticky-dark-blue);
+  --theme-carousel-arrow: var(--product-navy-blue);
 }
 
 .green main {
@@ -833,6 +840,8 @@ THEMES
   --theme-gradient-linear: var(--gradient-lin-purple);
   --theme-gradient-radial: var(--gradient-rad-purple);
   --theme-gradient-sticky: var(--gradient-sticky-purple);
+  --theme-carousel-arrow: var(--rpe-dark-purple);
+  --theme-carousel-h3: var(--rpe-dark-purple);
 }
 
 .red main {
@@ -938,6 +947,7 @@ THEMES
   --theme-bg: var(--laz-blue);
   --theme-btn-primary-txt: var(--laz-blue);
   --theme-btn-secondary-txt-hov: var(--laz-blue);
+  --theme-carousel-arrow: var(--product-dark-blue);
 }
 
 [data-theme="gray"], [data-theme="white"] {
@@ -985,6 +995,7 @@ THEMES
   --theme-btn-secondary-border-hov: var(--product-berry);
   --theme-btn-secondary-bg-hov: var(--product-berry);
   --theme-checkmark-circle: url('/icons/checkmark-circle-berry.svg');
+  --theme-carousel-arrow: var(--product-berry);
 
   color: var(--text-color);
 

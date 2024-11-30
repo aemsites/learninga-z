@@ -91,40 +91,6 @@
 
     }
 
-.carousel.white {
-    .carousel-slide {
-        flex-direction: row;
-        padding-left: 20px;
-        justify-content: unset;
-
-        .carousel-slide-content {
-            display: block;
-            flex: 1;
-            margin: 20px 30px 40px 20px;
-        }
-
-        .carousel-slide-image {
-            width: 10%;
-
-            picture {
-                height: unset;
-
-                > img {
-                    object-fit: unset;
-                    height: unset;
-                }
-            }
-        }
-    }
-
-    .carousel-navigation-buttons {
-        margin-top: -80px;
-        padding-left: 10px;
-        padding-right: 10px;
-        top: 0;
-    }
-}
-
 .section-outer:not(:nth-child(2)) .section.product {
     max-width: 750px;
     padding-bottom: 200px;
@@ -185,42 +151,10 @@
             }
 
         }
-
-        .carousel.white {
-            padding: 60px 0 40px;
-
-            .carousel-slide {
-                padding-left: 100px;
-                padding-right: 100px;
-
-                .carousel-slide-image {
-                    width: 55%;
-                }
-
-                .carousel-slide-content {
-                    flex: 0 100%;
-                    margin: 40px 0 40px 60px;
-                }
-            }
-
-            .carousel-navigation-buttons {
-                padding-left: 10px;
-                padding-right: 10px;
-                transform: translateY(-180%);
-            }
-        }
     }
 }
 
 @media (width >= 1200px) {
-    .carousel.white .carousel-navigation-buttons button.slide-prev {
-        left: 0;
-    }
-
-    .carousel.white .carousel-navigation-buttons button.slide-next {
-        right: 0;
-    }
-
     .wide .section.sticky .columns.hide {
         > div > div:first-child, > div > div:nth-child(3) {
             display: block;
