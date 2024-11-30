@@ -37,6 +37,7 @@ export default async function decorate(block) {
           tabsSquare.append(squareTab);
         } else if (colIdx === 1) {
           squareContent.classList.add('tab-square-content');
+          squareContent.setAttribute('data-theme', 'white');
           squareContent.id = `tab-square-content-${rowIdx}`;
           if (rowIdx === 0) {
             squareContent.classList.add('active');
