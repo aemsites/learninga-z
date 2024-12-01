@@ -978,6 +978,8 @@ THEMES
 
 [data-theme="bright-yellow"]  {
   --theme-bg: var(--bright-yellow);
+  --theme-txt: var(--text-color);
+  --theme-heading-color: var(--laz-logo-blue);
 }
 
 [data-theme="pink"] {
