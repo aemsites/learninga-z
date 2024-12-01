@@ -2,6 +2,59 @@ main > .section-outer > .section, main > .section-outer > .bg-image-container >.
     max-width: 100%;
 }
 
+.homepage .home-three-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        margin: 0 auto;
+    }
+}
+
+.homepage .home-three-col > div {
+    flex: 0;
+    text-align: center;
+}
+
+.homepage .home-three-col > div:nth-child(1),
+.homepage .home-three-col > div:nth-child(3) {
+    flex: 25%;
+    text-align: center;
+}
+
+.homepage .home-three-col > div:nth-child(2) {
+    flex: 60%;
+    text-align: center;
+}
+
+@media screen and (width < 1200px) {
+    .homepage .home-three-col {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .homepage .home-three-col > div{
+        width: 100%;
+    }
+
+    .flipcards {
+        flex-direction: row !important;
+    }
+
+    .homepage .home-three-col > div:nth-child(1){
+        order: 1;
+    }
+
+    .homepage .home-three-col > div:nth-child(3) {
+        order: 2;
+    }
+
+    .homepage .home-three-col > div:nth-child(2) {
+        order: 3;
+    }
+}
+
 .home-hero {
     & h1, h2, p, a, a:any-link, li {
         color: white;
