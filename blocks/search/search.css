@@ -72,9 +72,9 @@ form.search {
 
         em{
             font-size: 0;
-            
+
             &::before {
-                content: url(/icons/search-white.svg);
+                content: url('/icons/search-white.svg');
                 width: 20px;
                 height: 20px;
                 display: inline-block;
