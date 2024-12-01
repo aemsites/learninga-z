@@ -174,8 +174,11 @@
   .tabs-square-container {
     display: flex;
     flex-direction: row-reverse;
+    min-height: 500px;
 
     .tab-square-content-container {
+      max-width: 680px;
+
       .embed {
         min-height: auto;
       }
@@ -189,8 +192,14 @@
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-gap: 5px;
-        height: 320px;
         color: var(--text-color);
+        margin: 120px auto auto 0;
+
+
+        .tab-square {
+          height: 160px;
+          width: 160px;
+        }
       }
 
       .tab-square-image {
@@ -200,13 +209,24 @@
   }
 
 @media (width >= 1600px) {
-  .tab-square {
-    width: 235px;
-    height: 235px;
+  .tabs-square-container {
+    min-height: 660px;
 
-      img {
-        width: 128px;
-        height: 128px;
+    .tab-square-content-container {
+      max-width: 880px;
     }
-  }
+
+      .tabs-square {
+        .tab-square {
+          width: 15em;
+          height: 15em;
+
+          img {
+            width: 128px;
+            height: 128px;
+          }
+        }
+      }
+    }
+
 }

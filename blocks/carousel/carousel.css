@@ -346,6 +346,7 @@
 
     .carousel-slide {
       flex-direction: column;
+      margin-bottom: 16px;
 
         .carousel-slide-image {
           width: unset;
@@ -473,6 +474,11 @@
     .carousel-slide {
       flex: 0 0 32%;
     }
+
+    .carousel-slides {
+      margin-left: 0;
+      margin-right: 0;
+    }
   }
 
   .carousel.featured {
@@ -570,7 +576,7 @@
         margin-right: 0;
 
         .carousel-slide {
-          flex: 0 0 31%;
+          flex: 0 0 31.5%;
 
           .carousel-slide-image {
             width: unset;
@@ -599,6 +605,10 @@
 }
 
 @media (width >= 1600px) {
+  main > .section-outer > .carousel-container:not(:has(.carousel.support)) {
+    max-width: 1400px;
+  }
+
   .carousel:not(.testimonial, .video), .carousel.links {
     .carousel-slides-container {
       width: unset;
@@ -616,6 +626,34 @@
 
       button.slide-prev {
         left: -80px
+      }
+    }
+  }
+
+  .carousel.support {
+    .carousel-slides-container {
+      .carousel-slides {
+        margin-left: 36px;
+      }
+    }
+
+    .carousel-navigation-buttons {
+      button.slide-next {
+        right: -20px;
+      }
+
+      button.slide-prev {
+        left: -20px;
+      }
+    }
+  }
+
+  .carousel.card-links {
+    .carousel-slide {
+       .carousel-slide-image picture {
+         img {
+          height: auto;
+        }
       }
     }
   }
