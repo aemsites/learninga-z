@@ -473,6 +473,11 @@
     .carousel-slide {
       flex: 0 0 32%;
     }
+
+    .carousel-slides {
+      margin-left: 0;
+      margin-right: 0;
+    }
   }
 
   .carousel.featured {
