@@ -1,7 +1,3 @@
-main > .section-outer > .section, main > .section-outer > .bg-image-container >.section  {
-    max-width: 100%;
-}
-
 .homepage .home-three-col {
     display: flex;
     justify-content: center;
