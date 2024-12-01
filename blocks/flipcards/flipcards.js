@@ -3,7 +3,6 @@ import { createOptimizedPicture } from '../../scripts/scripts.js';
 export default function decorate(block) {
   const rows = block.querySelectorAll(':scope > div');
   block.innerHTML = '';
-  console.log(rows);
   rows.forEach((row) => {
     const container = document.createElement('div');
     container.classList.add('flip-card');
@@ -21,7 +20,7 @@ export default function decorate(block) {
         card.append(column);
       }
       container.append(plus);
-    container.append(card);
+      container.append(card);
     });
     block.append(container);
   });

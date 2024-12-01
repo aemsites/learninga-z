@@ -7,7 +7,6 @@ import { div, form } from '../../scripts/dom-helpers.js';
 export default async function decorate(block) {
   await loadCSS(`${window.hlx.codeBasePath}/blocks/cards/cards.css`);
   const siteIndex = await getSiteSearchIndexData();
-  console.log(siteIndex);
   const searchParams = new URLSearchParams(window.location.search);
   const searchQuery = searchParams.get('search');
   const filterQuery = searchParams.get('filter');
