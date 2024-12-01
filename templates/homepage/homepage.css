@@ -28,7 +28,7 @@ main > .section-outer > .section, main > .section-outer > .bg-image-container >.
     text-align: center;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (width < 1200px) {
     .homepage .home-three-col {
         flex-direction: column;
         gap: 20px;
