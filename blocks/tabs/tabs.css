@@ -134,6 +134,10 @@
 
       .carousel.video {
        margin-bottom: 0;
+
+        .carousel-slide {
+          text-align: center;
+        }
       }
 
       .tab-content-container {

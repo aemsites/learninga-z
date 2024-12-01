@@ -1,3 +1,11 @@
+.homepage .default-content-wrapper {
+    h2 {
+        font-size: 44px;
+        line-height: 1.2;
+        margin-bottom: 8px;
+    }
+}
+
 .homepage .home-three-col {
     display: flex;
     justify-content: center;
@@ -24,6 +32,10 @@
     text-align: center;
 }
 
+.homepage .greenarrow .default-content-wrapper {
+    display: none;
+}
+
 @media screen and (width < 1200px) {
     .homepage .home-three-col {
         flex-direction: column;
@@ -36,6 +48,8 @@
 
     .flipcards {
         flex-direction: row !important;
+        max-width: 480px;
+        margin: 0 auto;
     }
 
     .homepage .home-three-col > div:nth-child(1){
@@ -66,11 +80,14 @@
         font-weight: 500 !important;
     }
 
+    li {
+        text-align: left;
+    }
+
     .columns > div {
         display: flex;
         flex-direction: column-reverse;
         gap: 20px;
-        padding: 15%;
         text-align: center;
     }
 }
@@ -87,12 +104,23 @@
     }
 }
 
+@media (width >= 768px) {
+    .homepage .greenarrow .default-content-wrapper {
+        margin-bottom: -50px;
+        display: block;
+
+        picture {
+            z-index: 5;
+            animation: bounce 5s infinite both;
+        }
+    }
+}
+
 @media screen and (width >= 1200px) {
-    .home-hero {
+    .homepage .home-hero {
         .columns > div {
             display: flex;
             flex-direction: row;
-            padding: 0 0 10%;
             text-align: left;
         }
     }
@@ -107,5 +135,19 @@
 @media screen and (width >= 1600px) {
     main > .section-outer > .section, main > .section-outer > .bg-image-container >.section  {
         max-width: 1527px
+    }
+}
+
+@keyframes bounce {
+    0%, 4%, 10%, 16%, 100% {
+        transform: translateY(0);
+    }
+
+    8% {
+        transform: translateY(-30px);
+    }
+
+    12% {
+        transform: translateY(-15px);
     }
 }
