@@ -263,7 +263,7 @@ export async function renderCardList(wrapper, cards, limit = 9, type = 'card') {
 }
 
 /** function to get an array of card objects from indexData */
-function getCardObject(link) {
+export function getCardObject(link) {
   const path = link?.getAttribute('href');
   const relPath = getRelativePath(path);
   return indexData.find((item) => item.path === relPath);
