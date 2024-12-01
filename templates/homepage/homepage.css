@@ -1,0 +1,42 @@
+main > .section-outer > .section, main > .section-outer > .bg-image-container >.section  {
+    max-width: 100%;
+}
+
+.home-hero {
+    & h1, h2, p, a, a:any-link, li {
+        color: white;
+    }
+
+    & h1 {
+        font-size: var(--heading-font-size-3xl);
+    }
+
+    & p, li {
+        font-size: var(--body-font-size-l);
+        line-height: 28px;
+        font-weight: 500px !important;
+    }
+
+    .columns > div {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 20px;
+        padding: 15%;
+        text-align: center;
+    }
+}
+
+@media screen and (width >= 1200px) {
+    main > .section-outer > .section, main > .section-outer > .bg-image-container >.section  {
+        max-width: 90%;
+    }
+
+    .home-hero {
+        .columns > div {
+            display: flex;
+            flex-direction: row;
+            padding: 0 0 10%;
+            text-align: left;
+        }
+    }
+}
