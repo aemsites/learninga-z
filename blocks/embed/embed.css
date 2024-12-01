@@ -5,7 +5,7 @@
     margin: 32px auto;
 
   &.youtube, &.vimeo {
-    min-height: 280px;
+    min-height: 225px;
    }
   }
 
@@ -141,10 +141,26 @@
   width: 1px;
 }
 
+@media (width >= 600px) {
+    .embed {
+        &.youtube, &.vimeo {
+        min-height: 280px;
+        }
+    }
+}
+
+@media (width >= 768px) {
+    .embed {
+        &.youtube, &.vimeo {
+        min-height: 370px;
+        }
+    }
+}
+
 @media (width >= 1024px) {
     .embed {
       &.youtube, &.vimeo {
-        min-height: 400px;
+        min-height: 420px;
       }
     }
 }
