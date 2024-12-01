@@ -348,6 +348,11 @@
       flex-direction: column;
       margin-bottom: 16px;
 
+        .embed-wrapper {
+          width: auto;
+          height: auto;
+        }
+
         .carousel-slide-image {
           width: unset;
 
