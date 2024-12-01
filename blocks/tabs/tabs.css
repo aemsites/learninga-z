@@ -52,11 +52,6 @@
   display: none;
 }
 
-.section:has(.tabs-square)
-{
-  max-width: 80% !important;
-}
-
 .tabs-square-container {
   display: flex;
   flex-direction: row;

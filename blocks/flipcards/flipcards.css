@@ -1,3 +1,9 @@
+.flipcards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .flip-card {
   background-color: transparent;
   width: 100%;
@@ -69,7 +75,7 @@
   transform: rotateY(180deg);
 }
 
-.flipcard .plus-icon {
+.flipcards .plus-icon {
   content: url("/icons/flip-tile-plus.svg");
   background-size: cover;
   border-radius: 50%;
