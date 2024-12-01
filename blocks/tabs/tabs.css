@@ -6,14 +6,6 @@
   flex-wrap: wrap;
 }
 
-.tab-square-content:not:has('.carousel.within-tabs') p {
-  position: relative;
-  margin: 0 0 10px;
-  width: 80%;
-  top: -50px;
-  text-align: center;
-}
-
 .tabs .tabs-list button {
   flex: 0 0 max-content;
   margin: 0;
@@ -52,9 +44,10 @@
   display: none;
 }
 
-.section:has(.tabs-square)
-{
-  max-width: 80% !important;
+.tab-square-content:not(:has(.carousel.within-tabs)) p {
+  position: relative;
+  margin: 0 0 30px;
+  text-align: center;
 }
 
 .tabs-square-container {
@@ -67,11 +60,12 @@
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 5px;
   height: 320px;
+  color: var(--text-color);
 }
 
 .tab-square {
-  width: 235px;
-  height: 235px;
+  width: 135px;
+  height: 135px;
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -83,18 +77,19 @@
   cursor: pointer;
   text-align: center;
   font-weight: bold;
-}
 
-.tab-square img {
-  width: 128px;
-  height: 128px;
-  margin-bottom: 20px;
-  transition: filter 0.1s ease;
+  img {
+    margin-bottom: 20px;
+    transition: filter 0.1s ease;
+  }
+
+  p {
+    margin-bottom: 0;
+  }
 }
 
 .tab-square-content img {
-  max-width: 40%;
-  max-height: 5em;
+  max-width: 60%;
 }
 
 .tab-square.active img {
@@ -114,8 +109,7 @@
 }
 
 .tab-square-content {
-  margin-left: 50px;
-  padding: 20px;
+  padding: 36px 36px 0;
   background-color: white;
   border-radius: 20px;
   display: none;
@@ -136,11 +130,7 @@
   display: block;
 }
 
-.tab-square-content .carousel {
-  width:660px;
-}
-
-@media (width <= 1296px) {
+@media (width <= 1200px) {
   .tabs-square-container {
     display: flex;
     flex-direction: column;
@@ -157,15 +147,13 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   height: 320px;
-  width: 320px;
   order: 1;
   position: relative;
   top: -50px;
+    padding-bottom: 24px;
   }
 
   .tab-square {
-  width: 135px;
-  height: 135px;
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -187,21 +175,22 @@
   }
 
   .tab-square-content img {
-    max-width: 20%;
-    max-height: 2em;
+
   }
 
   .tab-square-content p {
     top: 10px;
   }
-  
-  .tab-square-content {
-    margin: 0;
-    padding: 20px;
-    background-color: white;
-    border-radius: 20px;
-    display: none;
-    color: black;
-    order: 0;
+}
+
+@media (width >= 1600px) {
+  .tab-square {
+    width: 235px;
+    height: 235px;
+
+      img {
+        width: 128px;
+        height: 128px;
+    }
   }
 }

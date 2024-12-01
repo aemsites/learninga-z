@@ -30,6 +30,14 @@
   user-select: none;
   justify-content: space-between;
 
+  /* TODO: why don't button color classes get applied in Carousel?
+       Setting to red as a default for now */
+  .button.primary, .button.primary.bg-theme {
+    color: var(--white);
+    background-color: var(--product-red);
+    border-color: var(--product-red);
+  }
+
   .carousel-slide-content {
     flex: 0 60%;
     margin: 40px 0;
@@ -283,7 +291,7 @@
   .arrow { display: none; }
 }
 
-.carousel.testimonial {
+.carousel.testimonial, .carousel.video {
   background: var(--white);
   color: var(--text-color);
   padding: 20px 0;
@@ -319,10 +327,6 @@
           height: unset;
         }
       }
-
-    .carousel.within-tabs .carousel-slide {
-      padding: 0 20px;
-      }
     }
   }
 
@@ -334,25 +338,22 @@
   }
 }
 
-/* Carousel within tabs */
-.carousel.within-tabs {
-  margin: 0 auto;
-  width: unset;
-  padding: 0 15%;
+.carousel.video {
+  border-radius: 20px;
 
-  .carousel-slide {
-    padding: 0;
+  .carousel-slides {
+    text-align: center;
 
-    > div {
-      display: flex;
+    .carousel-slide {
       flex-direction: column;
-      width: 100%;
-      justify-content: center;
-      text-align: center;
 
-      & .embed.block{
-        min-height: unset;
-      }
+        .carousel-slide-image {
+          width: unset;
+
+          picture img {
+            flex: 0;
+          }
+        }
     }
   }
 }
@@ -402,7 +403,7 @@
     }
   }
 
-  .carousel.testimonial {
+  .carousel.testimonial, .carousel.video {
     padding: 50px 0 30px;
 
     .carousel-navigation-buttons {
@@ -505,7 +506,7 @@
     }
   }
 
-  .carousel:not(.card-links) {
+  .carousel:not(.card-links, .testimonial, .video) {
     .carousel-slides {
       .carousel-slide {
         flex-direction: row;
@@ -533,7 +534,7 @@
     }
   }
 
-  .carousel.testimonial {
+  .carousel.testimonial, .carousel.video {
     .carousel-navigation-buttons {
       button.slide-prev {
         left: 0;
@@ -543,17 +544,21 @@
         right: 0;
       }
     }
+  }
 
-    .carousel-slides {
-      .carousel-slide {
-        padding-left: 95px;
-        padding-right: 95px;
-
-        .carousel-slide-image picture img {
-          height: unset;
-        }
-      }
+  .carousel.video {
+   .embed, .embed lite-vimeo, .embed lite-youtube {
+      max-width: 100%;
     }
+
+    .carousel-slides .carousel-slide .carousel-slide-image {
+        width: 100%;
+
+      picture, picture img {
+        height: unset;
+        width: 100%;
+      }
+      }
   }
 
   .carousel.support {
@@ -591,15 +596,10 @@
         width: 35px;
     }
   }
-
-  .carousel.within-tabs .carousel-slide-container .carousel-slides .carousel-slide {
-    padding: 0 20px;
-    flex-direction: row;
-  }
 }
 
 @media (width >= 1600px) {
-  .carousel:not(.testimonial), .carousel.links {
+  .carousel:not(.testimonial, .video), .carousel.links {
     .carousel-slides-container {
       width: unset;
 
