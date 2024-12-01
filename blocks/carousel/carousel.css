@@ -346,6 +346,7 @@
 
     .carousel-slide {
       flex-direction: column;
+      margin-bottom: 16px;
 
         .carousel-slide-image {
           width: unset;

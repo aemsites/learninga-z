@@ -51,7 +51,7 @@
     }
 }
 
-.home-hero {
+.homepage .home-hero {
     & h1, h2, p, a, a:any-link, li {
         color: white;
     }
@@ -75,6 +75,18 @@
     }
 }
 
+.homepage .solutions .default-content-wrapper {
+    h2 {
+        font-size: 44px;
+        line-height: 1.2;
+        margin: 0;
+    }
+
+    p, a, a:any-link {
+        color: var(--laz-logo-blue);
+    }
+}
+
 @media screen and (width >= 1200px) {
     .home-hero {
         .columns > div {
@@ -83,6 +95,12 @@
             padding: 0 0 10%;
             text-align: left;
         }
+    }
+
+    .homepage .solutions .default-content-wrapper {
+        width: 320px;
+        margin-bottom: -90px;
+        padding-top: 30px;
     }
 }
 

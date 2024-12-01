@@ -193,7 +193,7 @@
         grid-template-columns: repeat(2, 1fr);
         grid-gap: 5px;
         color: var(--text-color);
-        margin: auto auto auto 0;
+        margin: 120px auto auto 0;
 
 
         .tab-square {
@@ -210,6 +210,8 @@
 
 @media (width >= 1600px) {
   .tabs-square-container {
+    min-height: 660px;
+
     .tab-square-content-container {
       max-width: 880px;
     }
