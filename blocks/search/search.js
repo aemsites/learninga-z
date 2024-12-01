@@ -11,6 +11,13 @@ export default async function decorate(block) {
   const searchQuery = searchParams.get('search');
   const filterQuery = searchParams.get('filter');
 
+  const searchBar = document.createElement('div');
+  searchBar.innerHTML = `
+    <form id="searchbar" method="get" action="/site/search"><input type="text" name="search" placeholder="${searchQuery || 'What are you searching for?'}" title="site search">
+    <button type="submit" class="fa fa-search"><em>Search</em></button></form>
+  `;
+  block.append(searchBar);
+
   function filterSiteIndex(index, search, filter) {
     return index.filter((item) => {
       const searchMatch = Object.values(item).some((value) => value && value.toString().toLowerCase().includes(search.toLowerCase()));
