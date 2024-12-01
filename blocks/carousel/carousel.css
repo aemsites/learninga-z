@@ -359,6 +359,12 @@
   }
 }
 
+.carousel:not(.card-links, .testimonial, .links) {
+  .carousel-slide .carousel-slide-content {
+    text-align: center;
+  }
+}
+
 @media (width >= 768px) {
   .carousel:not(.card-links) {
     .carousel-slide-image picture img {
@@ -509,6 +515,12 @@
       button.slide-prev {
         left: -5px
       }
+    }
+  }
+
+  .carousel:not(.card-links, .testimonial, .links) {
+    .carousel-slide-content {
+      text-align: unset;
     }
   }
 
