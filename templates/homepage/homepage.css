@@ -2,6 +2,32 @@ main > .section-outer > .section, main > .section-outer > .bg-image-container >.
     max-width: 100%;
 }
 
+.homepage .home-three-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        margin: 0 auto;
+    }
+}
+
+.homepage .home-three-col > div {
+    flex: 0;
+    text-align: center;
+}
+
+.homepage .home-three-col > div:nth-child(1),
+.homepage .home-three-col > div:nth-child(3) {
+    flex: 20%;
+    text-align: center;
+}
+
+.homepage .home-three-col > div:nth-child(2) {
+    flex: 60%;
+    text-align: center;
+}
+
 .home-hero {
     & h1, h2, p, a, a:any-link, li {
         color: white;
