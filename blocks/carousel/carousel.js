@@ -183,7 +183,7 @@ export default async function decorate(block) {
           col2.innerHTML += `<a href="${card.path}"><h3>${card.title.replace(/ \| Learning A-Z$|- Learning A-Z$/, '')}</h3></a>`;
         }
         if (card.description) {
-          col2.innerHTML += `<p>${card.description}</p><p><em><a href="${card.path}">Learn More</a></em></p>`;
+          col2.innerHTML += `<p>${card.description}</p><p><em><a href="${card.path}" title="More about ${card.title}">Learn More</a></em></p>`;
         }
         if (block.classList.contains('card-links')) {
           col2.innerHTML += `<a href="${card.path}"><i class="arrow"><img alt="More about ${card.title}" src="/icons/solutions-right.svg"></i></a>`;
