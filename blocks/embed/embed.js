@@ -6,11 +6,16 @@
 
 import { loadScript } from '../../scripts/aem.js';
 
-const getDefaultEmbed = (url, height) => `<div style="left: 0; width: 100%; height: ${`${height}px` || '0'}; position: relative; padding-bottom: 56.25%;">
-      <iframe src="${url.href}" style="border: 0; top: 0; left: 0; width: 100%; height: ${`${height}px` || '100%'}; position: absolute;" allowfullscreen=""
+const getDefaultEmbed = (url, height) => {
+  const divHeight = height ? `${height}px` : '0';
+  const iframeHeight = height ? `${height}px` : '100%';
+
+  return `<div style="left: 0; width: 100%; height: ${divHeight}; position: relative; padding-bottom: 56.25%;">
+      <iframe src="${url.href}" style="border: 0; top: 0; left: 0; width: 100%; height: ${iframeHeight}; position: absolute;" allowfullscreen=""
         scrolling="yes" allow="encrypted-media" title="Content from ${url.hostname}" loading="lazy">
       </iframe>
     </div>`;
+};
 
 // Function to extract videoId from YouTube and Vimeo URLs
 const getVideoId = (url) => {
@@ -133,9 +138,8 @@ const loadEmbed = async (block, service, url, height) => {
 export default async function decorate(block) {
   const url = new URL(block.querySelector('a').href.replace(/%5C%5C_/, '_'));
   const { text } = block.querySelector('a');
-  let height = parseInt(text.match(/height:\s*(\d+)px/)[1], 10); // Convert the captured group to a number
-  // if height is not numeric, nothing to do
-  if (Number.isNaN(height)) height = '';
+  const getHeightVal = text.match(/height:\s*(\d+)px/);
+  const height = (getHeightVal) ? parseInt(getHeightVal[1], 10) : null;
 
   block.textContent = '';
   const service = getPlatform(url);
