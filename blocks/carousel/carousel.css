@@ -364,7 +364,7 @@
   }
 }
 
-.carousel:not(.card-links, .testimonial, .links) {
+.carousel:not(.card-links, .testimonial, .links, .featured) {
   .carousel-slide .carousel-slide-content {
     text-align: center;
   }
