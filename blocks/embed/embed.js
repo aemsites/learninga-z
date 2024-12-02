@@ -6,8 +6,8 @@
 
 import { loadScript } from '../../scripts/aem.js';
 
-const getDefaultEmbed = (url) => `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
-      <iframe src="${url.href}" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allowfullscreen=""
+const getDefaultEmbed = (url, height) => `<div style="left: 0; width: 100%; height: ${`${height}px` || '0'}; position: relative; padding-bottom: 56.25%;">
+      <iframe src="${url.href}" style="border: 0; top: 0; left: 0; width: 100%; height: ${`${height}px` || '100%'}; position: absolute;" allowfullscreen=""
         scrolling="yes" allow="encrypted-media" title="Content from ${url.hostname}" loading="lazy">
       </iframe>
     </div>`;
@@ -103,13 +103,13 @@ function getPlatform(url) {
   return service;
 }
 
-const loadEmbed = async (block, service, url) => {
+const loadEmbed = async (block, service, url, height) => {
   block.classList.toggle('skeleton', true);
 
   const embed = EMBEDS_CONFIG[service];
   if (!embed) {
     block.classList.toggle('generic', true);
-    block.innerHTML = getDefaultEmbed(url);
+    block.innerHTML = getDefaultEmbed(url, height);
     return;
   }
 
@@ -132,6 +132,10 @@ const loadEmbed = async (block, service, url) => {
  */
 export default async function decorate(block) {
   const url = new URL(block.querySelector('a').href.replace(/%5C%5C_/, '_'));
+  const { text } = block.querySelector('a');
+  let height = parseInt(text.match(/height:\s*(\d+)px/)[1], 10); // Convert the captured group to a number
+  // if height is not numeric, nothing to do
+  if (Number.isNaN(height)) height = '';
 
   block.textContent = '';
   const service = getPlatform(url);
@@ -142,7 +146,7 @@ export default async function decorate(block) {
         return;
       }
 
-      loadEmbed(block, service, url);
+      loadEmbed(block, service, url, height);
       observer.unobserve(block);
     });
     observer.observe(block);
