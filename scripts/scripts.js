@@ -835,6 +835,11 @@ async function loadPrices(main) {
     prices.forEach((price) => {
       price.style.display = 'none';
     });
+
+    const blockedLocElements = main.querySelectorAll('.block-location');
+    blockedLocElements.forEach((loc) => {
+      loc.style.display = 'block';
+    });
   } else {
     const textNodes = Array.from(main.querySelectorAll('h1, h2, h3, h4, p, a'));
     textNodes.forEach((node) => {

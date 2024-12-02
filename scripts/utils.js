@@ -641,7 +641,9 @@ export const pricingApi = async (forceSetPrice = false) => {
   const ip = ipMatch ? ipMatch[1] : null;
   const loc = locMatch ? locMatch[1] : null;
   window.pricing = window.pricing || {};
-  if (ip == null || loc == null) {
+  // this queryparam is for testing purposes only
+  const urlParams = new URLSearchParams(window.location.search);
+  if (ip == null || loc == null || (urlParams.get('pricingBlocked') === 'true')) {
     window.pricing.blocked = true;
     return;
   }
