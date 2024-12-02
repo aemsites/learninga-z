@@ -9,6 +9,7 @@ export default function decorate(block) {
     const plus = document.createElement('img');
     plus.classList.add('plus-icon');
     const card = document.createElement('div');
+    plus.alt = 'Plus icon';
     card.classList.add('flip-card-inner');
     row.querySelectorAll(':scope > div').forEach((column, colIdx) => {
       if (colIdx === 0) {

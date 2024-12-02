@@ -3,9 +3,14 @@ footer {
   background-color: var(--very-light-gray);
 }
 
-footer .email-banner h3 {
-  font-weight: var(--font-weight-medium);
-  color: var(--text-color);
+footer .email-banner {
+  padding: 25px 0;
+
+  h3, p strong {
+    font-weight: var(--font-weight-medium);
+    color: var(--text-color);
+    font-size: var(--body-font-size-m);
+  }
 }
 
 footer .footer > div {
@@ -32,10 +37,6 @@ footer .footer .section.cambium-banner {
 
 footer .footer .section-outer:nth-child(2) .default-content-wrapper p {
   font-size: var(--body-font-size-xxs);
-}
-
-footer .email-banner {
- padding: 25px 0;
 }
 
 footer .email-banner a {
