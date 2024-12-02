@@ -552,6 +552,11 @@ main > .section:first-of-type {
   margin-top: 0;
 }
 
+/* Pricing API specific styling: Hide content for blocked locations by default */
+.block-location {
+  display: none;
+}
+
 /*********
 THEMES
 *********/

@@ -1,4 +1,4 @@
-import { fetchPlaceholders, decorateButtons } from '../../scripts/aem.js';
+import { fetchPlaceholders } from '../../scripts/aem.js';
 import { createOptimizedPicture } from '../../scripts/scripts.js';
 import {
   getRelativePath, getGenericIndexData,
@@ -205,8 +205,6 @@ export default async function decorate(block) {
 
   container.append(slidesWrapper);
   block.prepend(container);
-
-  decorateButtons(block);
 
   if (!isSingleSlide) {
     bindEvents(block);

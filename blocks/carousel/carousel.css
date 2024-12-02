@@ -364,7 +364,7 @@
   }
 }
 
-.carousel:not(.card-links, .testimonial, .links) {
+.carousel:not(.card-links, .testimonial, .links, .featured) {
   .carousel-slide .carousel-slide-content {
     text-align: center;
   }
@@ -495,6 +495,12 @@
   .carousel.featured {
     .carousel-navigation-buttons {
       position: relative;
+      top:0;
+    }
+
+    nav {
+      position: relative;
+      top: 50px;
     }
 
     .carousel-slide {
