@@ -788,6 +788,11 @@ THEMES
   --theme-btn-secondary-txt-hov: var(--laz-logo-blue);
 }
 
+[data-theme="black"] {
+  --theme-bg: var(--laz-black);
+  --theme-btn-primary-txt: var(--laz-black);
+}
+
 .orange main {
   --theme-breadcrumbs-bg: var(--product-orange);
   --theme-heading-color: var(--laz-logo-blue);
@@ -1586,7 +1591,7 @@ button.secondary {
     }
   }
 
-  &.textcolor-red-orange {
+  &.textcolor-red-orange, &.textcolor-orange-red {
     color: var(--product-orange);
     border-color: var(--product-orange);
 
