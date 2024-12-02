@@ -831,7 +831,7 @@ async function loadEager(doc) {
 async function loadPrices(main) {
   // if window.pricing.blocked = true, hide all elements with class 'price'
   if (window.pricing && window.pricing.blocked) {
-    const prices = main.querySelectorAll('.price');
+    const prices = main.querySelectorAll('.price, .bg-price');
     prices.forEach((price) => {
       price.style.display = 'none';
     });
