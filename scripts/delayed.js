@@ -94,8 +94,4 @@ if (jsonLdMeta) {
   document.querySelector('meta[name="json-ld"]').remove();
 }
 
-loadScript('https://widget.intercom.io/widget/x8m18b9a', {
-  type: 'text/javascript',
-  charset: 'utf-8',
-  async: true,
-});
+

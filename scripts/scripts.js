@@ -809,6 +809,13 @@ async function loadEager(doc) {
   } catch (e) {
     // do nothing
   }
+  // testing adding the Intercom script here instead of Delayed
+  /* loadScript('https://widget.intercom.io/widget/x8m18b9a', { */
+  loadScript('https://widget.intercom.io/widget/l13iokf2', {
+    type: 'text/javascript',
+    charset: 'utf-8',
+    async: true,
+  });
   // load convert script that they want in the head
   loadScript('https://cdn-4.convertexperiments.com/v1/js/10047477-10048673.js', {
     type: 'text/javascript',
