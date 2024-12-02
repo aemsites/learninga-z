@@ -44,7 +44,7 @@
   }
 }
 
-.columns.price {
+.columns.pricing-callout {
   background: var(--white);
   padding: 10px;
   border-radius: 10px;
@@ -258,7 +258,7 @@
     }
   }
 
-  .columns.price {
+  .columns.priceing-callout {
     font-size: var(--body-font-size-m);
   }
 
