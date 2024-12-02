@@ -14,9 +14,11 @@ export default async function decorate(main) {
   if (!subHeading) {
     subHeading = main.querySelector('strong>p');
   }
-  let headingSection = div(h1);
-  if (subHeading && subHeading.innerText === subHeading.closest('p').innerText) {
+  let headingSection;
+  if (subHeading && (subHeading.innerText === subHeading.parentElement.innerText) && h1.nextElementSibling === subHeading.parentElement) {
     headingSection = div(h1, subHeading);
+  } else {
+    headingSection = div(h1);
   }
   main.prepend(div(authorInfo));
   main.prepend(headingSection);

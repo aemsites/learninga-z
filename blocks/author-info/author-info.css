@@ -1,3 +1,7 @@
+.section.author-info-container{
+    margin: 0 !important;
+}
+
 .author-info {
     display: flex;
     align-items: center;
