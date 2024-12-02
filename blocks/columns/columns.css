@@ -21,6 +21,12 @@
   > div {
     display: contents;
     padding-bottom: 0;
+
+    .bg-price {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+    }
   }
 }
 
@@ -258,7 +264,7 @@
     }
   }
 
-  .columns.priceing-callout {
+  .columns.pricing-callout {
     font-size: var(--body-font-size-m);
   }
 
