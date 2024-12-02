@@ -857,6 +857,16 @@ async function loadPrices(main) {
   }
 }
 
+// mostly for the contact subnav; maybe this should go in a new template
+function highlightActiveLink() {
+  const subNavLinks = document.querySelectorAll('.subnav a');
+  subNavLinks.forEach((link) => {
+    if (link.href && link.href === window.location.href) {
+      link.classList.add('active');
+    }
+  });
+}
+
 /**
  * Loads everything that doesn't need to be delayed.
  * @param {Element} doc The container element
@@ -864,6 +874,7 @@ async function loadPrices(main) {
 async function loadLazy(doc) {
   await pricingApi();
   svgImageLinks(doc);
+  highlightActiveLink();
 
   const main = doc.querySelector('main');
   await loadSections(main);
