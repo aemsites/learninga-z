@@ -777,6 +777,12 @@ THEMES
   --theme-gradient-sticky: var(--gradient-sticky-navy);
 }
 
+[data-theme="logo-blue"] {
+  --theme-bg: var(--laz-logo-blue);
+  --theme-btn-primary-txt: var(--laz-logo-blue);
+  --theme-btn-secondary-txt-hov: var(--laz-logo-blue);
+}
+
 .orange main {
   --theme-breadcrumbs-bg: var(--product-orange);
   --theme-heading-color: var(--laz-logo-blue);
@@ -854,6 +860,23 @@ THEMES
   --theme-cards-circle-bg: var(--product-red);
   --theme-btn-secondary-txt-hov: var(--product-red);
   --theme-checkmark-circle: url('/icons/checkmark-circle-red.svg');
+
+  .subnav-wrapper {
+    ul li a {
+      &:hover, &:focus {
+        text-decoration: none;
+        border-bottom: 6px solid var(--product-red);
+      }
+    }
+
+    .subnav {
+      margin-bottom: -26px;
+
+      .active {
+        border-bottom: 6px solid var(--product-red);
+      }
+    }
+  }
 }
 
 [data-theme="red"], [data-theme="gradient-sticky-red"],
@@ -974,6 +997,12 @@ THEMES
 
 [data-theme="white"]  {
   --theme-bg: var(--white);
+}
+
+[data-theme="light-gray"] {
+  --theme-bg: var(--very-light-gray);
+  --theme-txt: var(--text-color);
+  --theme-heading-color: var(--laz-logo-blue);
 }
 
 [data-theme="bright-yellow"]  {
