@@ -1,4 +1,4 @@
-import { fetchPlaceholders, decorateButtons } from '../../scripts/aem.js';
+import { fetchPlaceholders } from '../../scripts/aem.js';
 import { createOptimizedPicture } from '../../scripts/scripts.js';
 import {
   getRelativePath, getGenericIndexData,
@@ -81,7 +81,6 @@ function createSlide(row, slideIndex, carouselId) {
   slide.classList.add('carousel-slide');
 
   row.querySelectorAll(':scope > div').forEach((column, colIdx) => {
-    console.log(column);
     column.classList.add(`carousel-slide-${colIdx === 0 ? 'image' : 'content'}`);
     slide.append(column);
   });
@@ -120,7 +119,7 @@ let carouselId = 0;
 export default async function decorate(block) {
   carouselId += 1;
   block.setAttribute('id', `carousel-${carouselId}`);
-  const linkedCarousel = block.classList.contains('card-links');
+  const linkedCarousel = block.classList.contains('card-links') || block.classList.contains('links');
   const rows = block.querySelectorAll(':scope > div');
   let isSingleSlide = false;
   if (linkedCarousel) {
@@ -163,7 +162,7 @@ export default async function decorate(block) {
     block.append(slideNavButtons);
   }
 
-  if (block.classList.contains('card-links')) {
+  if (block.classList.contains('links') || block.classList.contains('card-links')) {
     const rows1 = [];
     const cardLinks = block.querySelectorAll('a');
     const indexData = await getGenericIndexData();
@@ -175,18 +174,21 @@ export default async function decorate(block) {
         const col2 = document.createElement('div');
         col2.innerHTML = '';
         if (card.image) {
-          col1.innerHTML = createOptimizedPicture(card.image, card.title).outerHTML;
+          col1.innerHTML = createOptimizedPicture(card.image, card.title, false).outerHTML;
         }
-        if (block.classList.contains('featured')) {
-          col2.innerHTML = '<p> <strong>FEATURED</strong></p>';
-        }
-        if (card.title) {
-          col2.innerHTML += `<h2>${card.title}</h2>`;
+        if (card.title && block.classList.contains('featured')) {
+          col2.innerHTML += `<p> <strong>FEATURED</strong></p>
+               <a href="${card.path}"><h1>${card.title.replace(/ \| Learning A-Z$|- Learning A-Z$/, '')}</h1></a>`;
+        } else if (card.title) {
+          col2.innerHTML += `<a href="${card.path}"><h3>${card.title.replace(/ \| Learning A-Z$|- Learning A-Z$/, '')}</h3></a>`;
         }
         if (card.description) {
-          col2.innerHTML += `<p>${card.description}</p>`;
+          col2.innerHTML += `<p>${card.description}</p><p><em><a href="${card.path}" title="More about ${card.title}">Learn More</a></em></p>`;
         }
-        col2.innerHTML += `<p><em><a href="${card.path}">Learn More</a></em></p>`;
+        if (block.classList.contains('card-links')) {
+          col2.innerHTML += `<a href="${card.path}" title="More about ${card.title}"><i class="arrow"><img alt="arrow icon" src="/icons/solutions-right.svg"></i></a>`;
+        }
+
         if (col1.innerHTML || col2.innerHTML) {
           row.append(col1);
           row.append(col2);
@@ -194,6 +196,7 @@ export default async function decorate(block) {
         }
       }
     });
+
     buildSlides(rows1, slideIndicators, carouselId, placeholders, slidesWrapper);
     block.querySelector(':scope > div').remove();
   } else {
@@ -202,8 +205,6 @@ export default async function decorate(block) {
 
   container.append(slidesWrapper);
   block.prepend(container);
-
-  decorateButtons(block);
 
   if (!isSingleSlide) {
     bindEvents(block);

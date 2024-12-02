@@ -42,6 +42,48 @@ form.search {
     }
 }
 
+#searchbar {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 20px 0;
+
+    @media screen and (width >=992px) {
+       display: none;
+    }
+
+    input {
+        width: 100%;
+        height: 40px;
+        padding: 0 10px;
+        border: 1px solid var(--light-gray);
+        border-radius: 5px;
+        font-size: var(--body-font-size-xs);
+    }
+
+    button {
+        background-color: var(--rpe-dark-purple);
+        color: var(--white);
+        border: none;
+        border-radius: 5px;
+        padding: 0 10px;
+        cursor: pointer;
+        font-size: var(--body-font-size-xs);
+
+        em{
+            font-size: 0;
+
+            &::before {
+                content: url('/icons/search-white.svg');
+                width: 20px;
+                height: 20px;
+                display: inline-block;
+                margin: auto;
+            }
+        }
+    }
+}
+
 .search-cards .card {
     display: flex;
     justify-content: space-between;
@@ -99,9 +141,3 @@ form.search {
         }
     }
 }
-
-
-
-
-
-

@@ -21,6 +21,12 @@
   > div {
     display: contents;
     padding-bottom: 0;
+
+    .bg-price {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+    }
   }
 }
 
@@ -44,7 +50,7 @@
   }
 }
 
-.columns.price {
+.columns.pricing-callout {
   background: var(--white);
   padding: 10px;
   border-radius: 10px;
@@ -258,7 +264,7 @@
     }
   }
 
-  .columns.price {
+  .columns.pricing-callout {
     font-size: var(--body-font-size-m);
   }
 

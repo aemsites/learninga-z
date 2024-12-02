@@ -37,6 +37,7 @@ export default async function decorate(block) {
           tabsSquare.append(squareTab);
         } else if (colIdx === 1) {
           squareContent.classList.add('tab-square-content');
+          squareContent.setAttribute('data-theme', 'white');
           squareContent.id = `tab-square-content-${rowIdx}`;
           if (rowIdx === 0) {
             squareContent.classList.add('active');
@@ -50,14 +51,7 @@ export default async function decorate(block) {
           } else {
             const slide = document.createElement('div');
             slide.classList.add('tab-content-container');
-            if (column.firstElementChild.firstElementChild.tagName.toLowerCase() === 'span') {
-              slide.append(column.firstElementChild.firstElementChild.firstElementChild);
-            } else if (column.firstElementChild.firstElementChild.tagName.toLowerCase() === 'picture') {
-              slide.append(column.firstElementChild.firstElementChild.children[3]);
-            }
-            slide.append(column.children[1].firstElementChild);
-            slide.append(column.children[2]);
-
+            while (column.firstElementChild) slide.append(column.firstElementChild);
             squareContent.append(slide);
           }
           tabsContentContainer.append(squareContent);

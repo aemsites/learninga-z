@@ -7,10 +7,16 @@ import { div, form } from '../../scripts/dom-helpers.js';
 export default async function decorate(block) {
   await loadCSS(`${window.hlx.codeBasePath}/blocks/cards/cards.css`);
   const siteIndex = await getSiteSearchIndexData();
-  console.log(siteIndex);
   const searchParams = new URLSearchParams(window.location.search);
   const searchQuery = searchParams.get('search');
   const filterQuery = searchParams.get('filter');
+
+  const searchBar = document.createElement('div');
+  searchBar.innerHTML = `
+    <form id="searchbar" method="get" action="/site/search"><input type="text" name="search" placeholder="${searchQuery || 'What are you searching for?'}" title="site search">
+    <button type="submit" class="fa fa-search"><em>Search</em></button></form>
+  `;
+  block.append(searchBar);
 
   function filterSiteIndex(index, search, filter) {
     return index.filter((item) => {
