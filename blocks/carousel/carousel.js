@@ -1,4 +1,4 @@
-import { fetchPlaceholders, decorateButtons } from '../../scripts/aem.js';
+import { fetchPlaceholders } from '../../scripts/aem.js';
 import { createOptimizedPicture } from '../../scripts/scripts.js';
 import {
   getRelativePath, getGenericIndexData,
