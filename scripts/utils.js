@@ -624,7 +624,10 @@ const makePricingApiCall = async (ip) => {
         extractPrices();
       }
     })
-    .catch((error) => console.error(error));
+    .catch((error) => {
+      console.error(error);
+      window.pricing.blocked = true;
+    });
 };
 
 /**
