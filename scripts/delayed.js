@@ -26,6 +26,25 @@ async function enableMetaRouter() {
 }
 enableMetaRouter();
 
+// Intercom script embed
+async function enableIntercom() {
+  const intercomScript = document.createElement('script');
+  intercomScript.type = 'text/javascript';
+  intercomScript.innerHTML = ` window.intercomSettings = {
+   api_base: "https://api-iam.intercom.io",
+   app_id: "l13iokf2",
+ }; // We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/l13iokf2'
+ (function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');
+ ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};
+ i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');
+ s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/l13iokf2';
+ var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();
+ }else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();`;
+  intercomScript.async = true;
+  document.body.appendChild(intercomScript);
+}
+enableIntercom();
+
 // Google Tag Manager script embed
 
 async function enableGoogleTagManager() {
@@ -93,5 +112,10 @@ if (jsonLdMeta) {
   addLdJsonScript(document.querySelector('head'), jsonLdMeta.content);
   document.querySelector('meta[name="json-ld"]').remove();
 }
-
-
+// testing adding the Intercom script here instead of Delayed
+/* loadScript('https://widget.intercom.io/widget/x8m18b9a', {
+  type: 'text/javascript',
+  charset: 'utf-8',
+  async: true,
+});
+*/
