@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 import { buildBlock, getMetadata } from '../../scripts/aem.js';
 import { div } from '../../scripts/dom-helpers.js';
+import { buildArticleSchema } from '../../scripts/schema.js';
 
 export default async function decorate(main) {
   const author = getMetadata('author');
@@ -22,4 +23,5 @@ export default async function decorate(main) {
   }
   main.prepend(div(authorInfo));
   main.prepend(headingSection);
+  buildArticleSchema();
 }

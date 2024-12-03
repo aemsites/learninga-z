@@ -757,6 +757,27 @@ async function buildBreadcrumbs() {
 }
 /* END BREADCRUMBS */
 
+/**
+ * Set the JSON-LD script in the head - new
+ * @param {*} data
+ * @param {string} name
+ */
+// eslint-disable-next-line import/prefer-default-export
+export function setJsonLd(data, name) {
+  const existingScript = document.head.querySelector(`script[data-name="${name}"]`);
+  if (existingScript) {
+    existingScript.innerHTML = JSON.stringify(data);
+    return;
+  }
+
+  const script = document.createElement('script');
+  script.type = 'application/ld+json';
+
+  script.innerHTML = JSON.stringify(data);
+  script.dataset.name = name;
+  document.body.appendChild(script);
+}
+
 // Setting the referral code eagerly
 function setReferralCode() {
   const url = new URL(window.location.href);
@@ -918,6 +939,7 @@ function loadDelayed() {
  * Redirect tag page with url parameter to
  * tag page in url path.
  */
+/* confirm before deleting that these are redirecting at the CDN
 export function redirectTagPage() {
   const windowHref = window.location.href;
   const url = new URL(windowHref);
@@ -945,10 +967,13 @@ export function redirectTagPage() {
   }
 }
 
+ */
+
 /**
  * Redirect video page with url parameter to
  * video page in url path.
  */
+/* can be deleted since these were added to the CDN
 export function redirectVideoPage() {
   const windowHref = window.location.href;
   const url = new URL(windowHref);
@@ -982,9 +1007,11 @@ export function redirectVideoPage() {
   }
 }
 
+ */
+
 async function loadPage() {
-  redirectTagPage();
-  redirectVideoPage();
+//  redirectTagPage();
+//  redirectVideoPage();
   await loadEager(document);
   await loadLazy(document);
   loadDelayed();
