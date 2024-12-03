@@ -5,6 +5,12 @@ loadScript('https://cdn-4.convertexperiments.com/v1/js/10047477-10048673.js', {
   charset: 'utf-8',
 });
 
+loadScript('https://cdn.popupsmart.com/accounts/6030/21310/13/main.js', {
+  type: 'text/javascript',
+  async: true,
+  defer: true,
+})
+
 // metarouter analytics script embed
 
 async function enableMetaRouter() {
