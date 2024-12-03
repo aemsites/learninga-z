@@ -284,7 +284,7 @@ function preloadBgImage() {
 
   const templateName = toClassName(getMetadata('template'));
   if (templateName === 'wide') {
-    link.setAttribute('href', '/images/svgs/banner-bg-product.svg');
+    link.setAttribute('href', '/images/svgs/banner-bg-product.svg?width=1181.25&format=webply&optimize=highest');
   } else {
     return;
   }
