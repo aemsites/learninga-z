@@ -5,12 +5,15 @@ loadScript('https://cdn-4.convertexperiments.com/v1/js/10047477-10048673.js', {
   charset: 'utf-8',
 });
 
+/*
 loadScript('https://cdn.popupsmart.com/bundle.js', {
   type: 'text/javascript',
   async: true,
   defer: true,
   'data-id': '6030',
 });
+
+ */
 
 // metarouter analytics script embed
 
