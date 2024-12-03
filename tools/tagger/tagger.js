@@ -116,7 +116,7 @@ function initTaxonomy(taxonomy) {
   results.innerHTML = html;
 }
 
-function filter() {
+function filtered() {
   const searchTerm = document.getElementById('search').value.toLowerCase();
   document.querySelectorAll('#results .tag').forEach((tag) => {
     const { title } = tag.dataset;
@@ -232,7 +232,7 @@ async function init() {
     copyButton.disabled = false;
   });
 
-  document.querySelector('#search').addEventListener('keyup', filter);
+  document.querySelector('#search').addEventListener('keyup', filtered);
 
   document.addEventListener('click', (e) => {
     const target = e.target.closest('.category .path');
