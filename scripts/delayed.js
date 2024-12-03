@@ -5,16 +5,6 @@ loadScript('https://cdn-4.convertexperiments.com/v1/js/10047477-10048673.js', {
   charset: 'utf-8',
 });
 
-/*
-loadScript('https://cdn.popupsmart.com/bundle.js', {
-  type: 'text/javascript',
-  async: true,
-  defer: true,
-  'data-id': '6030',
-});
-
- */
-
 // metarouter analytics script embed
 
 async function enableMetaRouter() {
@@ -129,3 +119,10 @@ if (jsonLdMeta) {
   addLdJsonScript(document.querySelector('head'), jsonLdMeta.content);
   document.querySelector('meta[name="json-ld"]').remove();
 }
+
+loadScript('https://cdn.popupsmart.com/bundle.js', {
+  type: 'text/javascript',
+  //  async: true,
+  //  defer: true,
+  'data-id': '6030',
+});
