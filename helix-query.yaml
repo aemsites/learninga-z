@@ -39,7 +39,6 @@ indices:
       tags:
         select: head > meta[name="article:tag"]
         value: attribute(el, "content")
-
   news:
     include:
       - /site/company/news/**
