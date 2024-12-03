@@ -600,11 +600,13 @@ export function buildEmbedBlocks(main) {
 function stickyCloseButton() {
   const $sticky = document.querySelector('.section.sticky');
   if ($sticky) {
-    const $close = Button({ class: 'close' }, '×');
-    $close.addEventListener('click', () => {
-      $sticky.style.display = 'none';
-    });
-    $sticky.prepend($close);
+    if (!$sticky.querySelector('.close')) {
+      const $close = Button({ class: 'close' }, '×');
+      $close.addEventListener('click', () => {
+        $sticky.style.display = 'none';
+      });
+      $sticky.prepend($close);
+    }
   }
 }
 
