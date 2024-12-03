@@ -766,6 +766,7 @@ function setReferralCode() {
     [, referralCode] = window.location.pathname.split('/invite/');
   }
   if (referralCode) {
+    referralCode = referralCode.toLowerCase();
     const existingRefc = document.cookie.split('; ').find((row) => row.startsWith('refc='));
     const existingRefcValue = existingRefc ? existingRefc.split('=')[1] : null;
     if (existingRefcValue !== referralCode) {
