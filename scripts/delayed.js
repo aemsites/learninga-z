@@ -1,3 +1,12 @@
+
+// load convert script that they want in the head
+import { loadScript } from './aem.js';
+
+loadScript('https://cdn-4.convertexperiments.com/v1/js/10047477-10048673.js', {
+  type: 'text/javascript',
+  charset: 'utf-8',
+});
+
 // metarouter analytics script embed
 
 async function enableMetaRouter() {

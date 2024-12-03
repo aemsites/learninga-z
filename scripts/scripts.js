@@ -810,11 +810,6 @@ async function loadEager(doc) {
     // do nothing
   }
 
-  // load convert script that they want in the head
-  loadScript('https://cdn-4.convertexperiments.com/v1/js/10047477-10048673.js', {
-    type: 'text/javascript',
-    charset: 'utf-8',
-  });
 }
 
 /**
