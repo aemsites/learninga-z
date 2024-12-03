@@ -786,7 +786,6 @@ async function loadEager(doc) {
     await loadSection(main.querySelector('.section'), waitForFirstImage);
     main.prepend(await buildBreadcrumbs());
   }
-  preloadBgImage();
   sampleRUM.enhance();
 
   try {
