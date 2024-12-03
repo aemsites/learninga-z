@@ -5,10 +5,11 @@ loadScript('https://cdn-4.convertexperiments.com/v1/js/10047477-10048673.js', {
   charset: 'utf-8',
 });
 
-loadScript('https://cdn.popupsmart.com/accounts/6030/21310/13/main.js', {
+loadScript('https://cdn.popupsmart.com/bundle.js', {
   type: 'text/javascript',
   async: true,
   defer: true,
+  'data-id': '6030',
 });
 
 // metarouter analytics script embed
@@ -131,6 +132,7 @@ if (jsonLdMeta) {
  * @param {*} data
  * @param {string} name
  */
+// eslint-disable-next-line import/prefer-default-export
 export function setJsonLd(data, name) {
   const existingScript = document.head.querySelector(`script[data-name="${name}"]`);
   if (existingScript) {
@@ -143,5 +145,5 @@ export function setJsonLd(data, name) {
 
   script.innerHTML = JSON.stringify(data);
   script.dataset.name = name;
-  document.head.appendChild(script);
+  document.body.appendChild(script);
 }
