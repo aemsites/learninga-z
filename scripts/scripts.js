@@ -275,22 +275,6 @@ function buildAutoBlocks(main, templateModule = undefined) {
   }
 }
 
-// Preload the background SVG for the wide template for better performance
-function preloadBgImage() {
-  const link = document.createElement('link');
-  link.setAttribute('rel', 'preload');
-  link.setAttribute('fetchpriority', 'high');
-  link.setAttribute('as', 'image');
-
-  const templateName = toClassName(getMetadata('template'));
-  if (templateName === 'wide') {
-    link.setAttribute('href', '/images/svgs/banner-bg-product.svg?width=1181.25&format=webply&optimize=highest');
-  } else {
-    return;
-  }
-  document.head.append(link);
-}
-
 /**
  * Extracts color information from the given anchor element's text content.
  * @param {HTMLElement} anchor - The anchor element from which to extract color information.
