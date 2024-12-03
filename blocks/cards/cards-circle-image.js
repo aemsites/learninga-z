@@ -36,7 +36,7 @@ export async function getCircleCardsArray(block, indexData, isDescription) {
             image: img,
             isDescription,
             isIcon,
-            path: getRelativePath(link),
+            path: link,
             heading: headingText,
           };
           cards.push(card);
