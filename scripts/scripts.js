@@ -20,7 +20,7 @@ import {
 } from './aem.js';
 
 import { pricingApi } from './utils.js';
-import { button } from './dom-helpers.js';
+import { button as Button } from './dom-helpers.js';
 
 /**
  * Returns the true origin of the current page in the browser.
@@ -612,7 +612,7 @@ export function buildEmbedBlocks(main) {
 function stickyCloseButton() {
   const $sticky = document.querySelector('.section.sticky');
   if ($sticky) {
-    const $close = button({ class: 'close' }, '×');
+    const $close = Button({ class: 'close' }, '×');
     $close.addEventListener('click', () => {
       $sticky.style.display = 'none';
     });
