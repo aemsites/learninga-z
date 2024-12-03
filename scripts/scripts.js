@@ -15,7 +15,6 @@ import {
   getMetadata,
   toClassName,
   decorateBlock,
-  loadScript,
   toCamelCase,
 } from './aem.js';
 
@@ -121,7 +120,6 @@ const pluginContext = {
   getAllMetadata,
   getMetadata,
   loadCSS,
-  loadScript,
   sampleRUM,
   toCamelCase,
   toClassName,
@@ -175,16 +173,6 @@ function buildHeroBlock(main) {
     }
     main.prepend(section);
   }
-}
-
-/**
- * Determine if we are serving content for a specific keyword
- * @param {string} keyword - The keyword to check in the URL path
- * @returns {boolean} True if we are loading content for the specified keyword
- */
-// Might need this for the breadcrumbs and other things
-export function locationCheck(keyword) {
-  return window.location.pathname.includes(keyword);
 }
 
 /**
@@ -285,6 +273,22 @@ function buildAutoBlocks(main, templateModule = undefined) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
   }
+}
+
+// Preload the background SVG for the wide template for better performance
+function preloadBgImage() {
+  const link = document.createElement('link');
+  link.setAttribute('rel', 'preload');
+  link.setAttribute('fetchpriority', 'high');
+  link.setAttribute('as', 'image');
+
+  const templateName = toClassName(getMetadata('template'));
+  if (templateName === 'wide') {
+    link.setAttribute('href', '/images/svgs/banner-bg-product.svg');
+  } else {
+    return;
+  }
+  document.head.append(link);
 }
 
 /**
@@ -798,7 +802,7 @@ async function loadEager(doc) {
     await loadSection(main.querySelector('.section'), waitForFirstImage);
     main.prepend(await buildBreadcrumbs());
   }
-
+  preloadBgImage();
   sampleRUM.enhance();
 
   try {
@@ -809,7 +813,6 @@ async function loadEager(doc) {
   } catch (e) {
     // do nothing
   }
-
 }
 
 /**
