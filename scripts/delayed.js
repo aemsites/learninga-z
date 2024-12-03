@@ -127,6 +127,7 @@ loadScript('https://cdn.popupsmart.com/accounts/6030/21310/13/main.js', {
 });
 
 // load css https://cdn.popupsmart.com/accounts/6030/21310/13/main.css for popupsmart
+setTimeout(() => {
   const popupSmartContainer = document.querySelector('#popupsmart-container-21310');
   if (popupSmartContainer) {
     let shadowRoot;
@@ -140,3 +141,4 @@ loadScript('https://cdn.popupsmart.com/accounts/6030/21310/13/main.js', {
     popupSmartCss.href = 'https://cdn.popupsmart.com/accounts/6030/21310/13/main.css';
     shadowRoot.appendChild(popupSmartCss);
   }
+}, 1000);
