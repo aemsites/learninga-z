@@ -17,8 +17,30 @@ indices:
       - '**/icons/**'
       - '**/fragments/**'
       - '**/user_area/**'
+      - /tags
       - /nav
       - /footer
+      - /site/lp2/implement-sor-pd-webinar
+      - /site/lp2/raz-plus-essentials-thanks
+      - /site/lp2/virtual-writing-summit-webinar
+      - /site/lp2/sor-high-impact-practice-webinar
+      - /site/lp2/sor-read-alouds-webinar
+      - /site/lp2/virtual-writing-summit-2-webinar
+      - /site/lp2/easy-to-teach-fun-to-learn-register
+      - /site/lp2/easy-to-teach-fun-to-learn-webinar
+      - /site/lp2/writinga-z-downloads
+      - /site/lp2/raz-plus-espanol-contact
+      - /site/lp2/raz-plus-sel
+      - /site/lp2/we-missed-you
+      - /site/lp2/welcome-10p-intl
+      - /site/lp2/welcome-10p
+      - /site/lp2/foundations-a-z-raz-plus-powerful-duo
+      - /site/lp2/foundationsa-z-downloads
+      - /site/lp2/foundationsa-z-phonics
+      - /site/lp2/inspire-curiosity-with-learninga-z
+      - /site/lp2/navigating-new-school-year
+      - /site/lp2/razplus-canada-immersion
+      - /site/lp2/tx-summer-challenge
     target: /query-index.json
     properties:
       title:
