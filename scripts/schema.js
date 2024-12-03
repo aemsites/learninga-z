@@ -1,6 +1,6 @@
 import { getMetadata } from './aem.js';
 // eslint-disable-next-line import/no-cycle
-import { setJsonLd } from './delayed.js';
+import { setJsonLd } from './scripts.js';
 
 // eslint-disable-next-line import/prefer-default-export
 export function buildArticleSchema() {
