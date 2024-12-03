@@ -15,7 +15,6 @@ import {
   getMetadata,
   toClassName,
   decorateBlock,
-  loadScript,
   toCamelCase,
 } from './aem.js';
 
@@ -122,7 +121,6 @@ const pluginContext = {
   getAllMetadata,
   getMetadata,
   loadCSS,
-  loadScript,
   sampleRUM,
   toCamelCase,
   toClassName,
@@ -176,16 +174,6 @@ function buildHeroBlock(main) {
     }
     main.prepend(section);
   }
-}
-
-/**
- * Determine if we are serving content for a specific keyword
- * @param {string} keyword - The keyword to check in the URL path
- * @returns {boolean} True if we are loading content for the specified keyword
- */
-// Might need this for the breadcrumbs and other things
-export function locationCheck(keyword) {
-  return window.location.pathname.includes(keyword);
 }
 
 /**
@@ -812,7 +800,6 @@ async function loadEager(doc) {
     await loadSection(main.querySelector('.section'), waitForFirstImage);
     main.prepend(await buildBreadcrumbs());
   }
-
   sampleRUM.enhance();
 
   try {
@@ -823,11 +810,6 @@ async function loadEager(doc) {
   } catch (e) {
     // do nothing
   }
-  // load convert script that they want in the head
-  loadScript('https://cdn-4.convertexperiments.com/v1/js/10047477-10048673.js', {
-    type: 'text/javascript',
-    charset: 'utf-8',
-  });
 }
 
 /**
@@ -928,7 +910,7 @@ async function loadLazy(doc) {
  */
 function loadDelayed() {
   // eslint-disable-next-line import/no-cycle
-  window.setTimeout(() => import('./delayed.js'), 3000);
+  window.setTimeout(() => import('./delayed.js'), 3500);
   // load anything that can be postponed to the latest here
 }
 
