@@ -120,9 +120,8 @@ if (jsonLdMeta) {
   document.querySelector('meta[name="json-ld"]').remove();
 }
 
-loadScript('https://cdn.popupsmart.com/bundle.js', {
+loadScript('https://cdn.popupsmart.com/accounts/6030/21310/13/main.js', {
   type: 'text/javascript',
-  //  async: true,
-  //  defer: true,
-  'data-id': '6030',
+  async: true,
+  defer: true,
 });
