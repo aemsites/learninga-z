@@ -757,27 +757,6 @@ async function buildBreadcrumbs() {
 }
 /* END BREADCRUMBS */
 
-/**
- * Set the JSON-LD script in the head - new
- * @param {*} data
- * @param {string} name
- */
-// eslint-disable-next-line import/prefer-default-export
-export function setJsonLd(data, name) {
-  const existingScript = document.head.querySelector(`script[data-name="${name}"]`);
-  if (existingScript) {
-    existingScript.innerHTML = JSON.stringify(data);
-    return;
-  }
-
-  const script = document.createElement('script');
-  script.type = 'application/ld+json';
-
-  script.innerHTML = JSON.stringify(data);
-  script.dataset.name = name;
-  document.body.appendChild(script);
-}
-
 // Setting the referral code eagerly
 function setReferralCode() {
   const url = new URL(window.location.href);

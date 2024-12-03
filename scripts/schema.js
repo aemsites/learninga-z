@@ -1,6 +1,6 @@
 import { getMetadata } from './aem.js';
 // eslint-disable-next-line import/no-cycle
-import { setJsonLd } from './scripts.js';
+import { setJsonLd } from './delayed.js';
 
 // eslint-disable-next-line import/prefer-default-export
 export function buildArticleSchema() {
@@ -69,7 +69,7 @@ export function buildOfferSchema() {
     '@type': 'Offer',
     properties: {
       priceCurrency: '',
-      price: '', // TODO get price from page
+      price: '', // TODO: get price from API
       availability: 'https://schema.org/InStock',
       url: 'ORDER NOW',
     },
