@@ -19,6 +19,7 @@ import {
 } from './aem.js';
 
 import { pricingApi } from './utils.js';
+import { button as Button } from './dom-helpers.js';
 
 /**
  * Returns the true origin of the current page in the browser.
@@ -596,6 +597,17 @@ export function buildEmbedBlocks(main) {
   });
 }
 
+function stickyCloseButton() {
+  const $sticky = document.querySelector('.section.sticky');
+  if ($sticky) {
+    const $close = Button({ class: 'close' }, '×');
+    $close.addEventListener('click', () => {
+      $sticky.style.display = 'none';
+    });
+    $sticky.prepend($close);
+  }
+}
+
 /**
  * Decorates the main element.
  * @param {Element} main The main element
@@ -615,6 +627,7 @@ export function decorateMain(main, templateModule) {
   buildEmbedBlocks(main);
   centerHeadlines(main);
   extractElementsColor();
+  stickyCloseButton();
 }
 
 /**

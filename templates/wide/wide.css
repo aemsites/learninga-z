@@ -59,12 +59,25 @@
     .section.sticky {
         max-width: 1527px;
 
-            .button.primary, .button.secondary {
-                padding: 8px 20px 6px;
-            }
+        .button.primary, .button.secondary {
+            padding: 8px 20px 6px;
+        }
 
         h2 {
             font-size: var(--body-font-size-s);
+        }
+
+        .close {
+            position: absolute;
+            top: 0;
+            right: 7px;
+            border: 0;
+            background: transparent;
+            color: #fff;
+            font-size: 2em;
+            font-weight: 300;
+            text-shadow: 0 1px 0 #fff;
+            cursor: pointer;
         }
 
         .columns.hide {
