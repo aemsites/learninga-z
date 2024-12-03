@@ -44,7 +44,6 @@
     .card>.card-thumbnail a {
         position: relative;
         display: block;
-        pointer-events: none;
         text-align: center;
     }
 
