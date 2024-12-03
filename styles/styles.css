@@ -18,12 +18,14 @@
   ascent-override: 93%;
   descent-override: 12%;
   line-gap-override: normal;
+  font-display: swap;
   src: local("Arial");
 }
 
 @font-face {
   font-family: solway-normal-fallback;
   size-adjust: 113.741%;
+  font-display: swap;
   src: local("Arial");
 }
 

@@ -1,4 +1,10 @@
 import { loadScript } from './aem.js';
+
+loadScript('https://cdn-4.convertexperiments.com/v1/js/10047477-10048673.js', {
+  type: 'text/javascript',
+  charset: 'utf-8',
+});
+
 // metarouter analytics script embed
 
 async function enableMetaRouter() {
@@ -25,6 +31,26 @@ async function enableMetaRouter() {
   document.head.appendChild(metaRouterScript);
 }
 enableMetaRouter();
+
+// Intercom script embed
+// test ID is l13iokf2, prod ID is x8m18b9a
+async function enableIntercom() {
+  const intercomScript = document.createElement('script');
+  intercomScript.type = 'text/javascript';
+  intercomScript.innerHTML = ` window.intercomSettings = {
+   api_base: "https://api-iam.intercom.io",
+   app_id: "x8m18b9a",
+ }; // We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/x8m18b9a'
+ (function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');
+ ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};
+ i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');
+ s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/x8m18b9a';
+ var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();
+ }else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();`;
+  intercomScript.async = true;
+  document.body.appendChild(intercomScript);
+}
+enableIntercom();
 
 // Google Tag Manager script embed
 
@@ -94,8 +120,9 @@ if (jsonLdMeta) {
   document.querySelector('meta[name="json-ld"]').remove();
 }
 
-loadScript('https://widget.intercom.io/widget/x8m18b9a', {
+loadScript('https://cdn.popupsmart.com/bundle.js', {
   type: 'text/javascript',
-  charset: 'utf-8',
-  async: true,
+  //  async: true,
+  //  defer: true,
+  'data-id': '6030',
 });

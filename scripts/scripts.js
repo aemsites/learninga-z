@@ -15,7 +15,6 @@ import {
   getMetadata,
   toClassName,
   decorateBlock,
-  loadScript,
   toCamelCase,
 } from './aem.js';
 
@@ -122,7 +121,6 @@ const pluginContext = {
   getAllMetadata,
   getMetadata,
   loadCSS,
-  loadScript,
   sampleRUM,
   toCamelCase,
   toClassName,
@@ -176,16 +174,6 @@ function buildHeroBlock(main) {
     }
     main.prepend(section);
   }
-}
-
-/**
- * Determine if we are serving content for a specific keyword
- * @param {string} keyword - The keyword to check in the URL path
- * @returns {boolean} True if we are loading content for the specified keyword
- */
-// Might need this for the breadcrumbs and other things
-export function locationCheck(keyword) {
-  return window.location.pathname.includes(keyword);
 }
 
 /**
@@ -612,11 +600,13 @@ export function buildEmbedBlocks(main) {
 function stickyCloseButton() {
   const $sticky = document.querySelector('.section.sticky');
   if ($sticky) {
-    const $close = Button({ class: 'close' }, '×');
-    $close.addEventListener('click', () => {
-      $sticky.style.display = 'none';
-    });
-    $sticky.prepend($close);
+    if (!$sticky.querySelector('.close')) {
+      const $close = Button({ class: 'close' }, '×');
+      $close.addEventListener('click', () => {
+        $sticky.style.display = 'none';
+      });
+      $sticky.prepend($close);
+    }
   }
 }
 
@@ -769,6 +759,27 @@ async function buildBreadcrumbs() {
 }
 /* END BREADCRUMBS */
 
+/**
+ * Set the JSON-LD script in the head - new
+ * @param {*} data
+ * @param {string} name
+ */
+// eslint-disable-next-line import/prefer-default-export
+export function setJsonLd(data, name) {
+  const existingScript = document.head.querySelector(`script[data-name="${name}"]`);
+  if (existingScript) {
+    existingScript.innerHTML = JSON.stringify(data);
+    return;
+  }
+
+  const script = document.createElement('script');
+  script.type = 'application/ld+json';
+
+  script.innerHTML = JSON.stringify(data);
+  script.dataset.name = name;
+  document.body.appendChild(script);
+}
+
 // Setting the referral code eagerly
 function setReferralCode() {
   const url = new URL(window.location.href);
@@ -812,7 +823,6 @@ async function loadEager(doc) {
     await loadSection(main.querySelector('.section'), waitForFirstImage);
     main.prepend(await buildBreadcrumbs());
   }
-
   sampleRUM.enhance();
 
   try {
@@ -823,11 +833,6 @@ async function loadEager(doc) {
   } catch (e) {
     // do nothing
   }
-  // load convert script that they want in the head
-  loadScript('https://cdn-4.convertexperiments.com/v1/js/10047477-10048673.js', {
-    type: 'text/javascript',
-    charset: 'utf-8',
-  });
 }
 
 /**
@@ -928,7 +933,7 @@ async function loadLazy(doc) {
  */
 function loadDelayed() {
   // eslint-disable-next-line import/no-cycle
-  window.setTimeout(() => import('./delayed.js'), 3000);
+  window.setTimeout(() => import('./delayed.js'), 3500);
   // load anything that can be postponed to the latest here
 }
 
@@ -936,6 +941,7 @@ function loadDelayed() {
  * Redirect tag page with url parameter to
  * tag page in url path.
  */
+/* confirm before deleting that these are redirecting at the CDN
 export function redirectTagPage() {
   const windowHref = window.location.href;
   const url = new URL(windowHref);
@@ -963,10 +969,13 @@ export function redirectTagPage() {
   }
 }
 
+ */
+
 /**
  * Redirect video page with url parameter to
  * video page in url path.
  */
+/* can be deleted since these were added to the CDN
 export function redirectVideoPage() {
   const windowHref = window.location.href;
   const url = new URL(windowHref);
@@ -1000,9 +1009,11 @@ export function redirectVideoPage() {
   }
 }
 
+ */
+
 async function loadPage() {
-  redirectTagPage();
-  redirectVideoPage();
+//  redirectTagPage();
+//  redirectVideoPage();
   await loadEager(document);
   await loadLazy(document);
   loadDelayed();

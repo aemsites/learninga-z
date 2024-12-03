@@ -1,5 +1,9 @@
 h3 {
-    color: var(--product-purple);
+    color: var(--faz-purple);
+}
+
+h1 {
+    margin: 48px 0;
 }
 
 .blog-article main {
