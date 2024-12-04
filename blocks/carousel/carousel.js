@@ -4,6 +4,30 @@ import {
   getRelativePath, getGenericIndexData,
 } from '../../scripts/utils.js';
 
+function addLdJsonReview(parent, json) {
+  const script = document.createElement('script');
+  script.type = 'application/ld+json';
+  script.innerHTML = JSON.stringify(json);
+  parent.append(script);
+}
+
+// eslint-disable-next-line import/prefer-default-export
+function buildReviewSchema(block) {
+  const data = {
+    '@context': 'https://schema.org',
+    '@type': 'Review',
+    properties: [...block.querySelectorAll('.carousel-slide-content')].map((reviewItem) => {
+      const info = {
+        reviewbody: reviewItem.querySelector('p:nth-child(1)').textContent,
+        author: reviewItem.querySelector('p:nth-child(2)').textContent.trim(),
+      };
+      return info;
+    }),
+  };
+
+  addLdJsonReview(document.querySelector('head'), data, 'Review');
+}
+
 function updateActiveSlide(slide) {
   const block = slide.closest('.carousel');
   const slideIndex = parseInt(slide.dataset.slideIndex, 10);
@@ -208,5 +232,9 @@ export default async function decorate(block) {
 
   if (!isSingleSlide) {
     bindEvents(block);
+  }
+
+  if (block.classList.contains('testimonial')) {
+    buildReviewSchema(block);
   }
 }
