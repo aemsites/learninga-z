@@ -4,28 +4,22 @@ import {
   getRelativePath, getGenericIndexData,
 } from '../../scripts/utils.js';
 
-function addLdJsonReview(parent, json) {
-  const script = document.createElement('script');
-  script.type = 'application/ld+json';
-  script.innerHTML = JSON.stringify(json);
-  parent.append(script);
-}
-
 // eslint-disable-next-line import/prefer-default-export
 function buildReviewSchema(block) {
-  const data = {
-    '@context': 'https://schema.org',
-    '@type': 'Review',
-    properties: [...block.querySelectorAll('.carousel-slide-content')].map((reviewItem) => {
-      const info = {
-        reviewbody: reviewItem.querySelector('p:nth-child(1)').textContent,
-        author: reviewItem.querySelector('p:nth-child(2)').textContent.trim(),
-      };
-      return info;
-    }),
-  };
-
-  addLdJsonReview(document.querySelector('head'), data, 'Review');
+  const srOnly = document.createElement('div');
+  srOnly.classList.add('sr-only-review');
+  srOnly.style.display = 'none';
+  srOnly.setAttribute('itemscope', '');
+  srOnly.setAttribute('itemtype', 'https://schema.org/Review');
+  srOnly.setAttribute('itemprop', 'review');
+  const reviewBody = document.createElement('div');
+  reviewBody.setAttribute('itemprop', 'reviewBody');
+  reviewBody.textContent = block.querySelector('.carousel-slide-content p:nth-child(1)').textContent;
+  const reviewAuthor = document.createElement('div');
+  reviewAuthor.setAttribute('itemprop', 'author');
+  reviewAuthor.textContent = block.querySelector('.carousel-slide-content p:nth-child(2)').textContent.trim();
+  srOnly.append(reviewBody, reviewAuthor);
+  block.append(srOnly);
 }
 
 function updateActiveSlide(slide) {
