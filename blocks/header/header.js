@@ -122,6 +122,15 @@ function toggleSecondaryNav(nav) {
   });
 }
 
+function preventInterComLinks(navChildFragment) {
+  const chatbotLinks = navChildFragment.querySelectorAll('a[href*="#chatbot"]');
+  chatbotLinks.forEach((link) => {
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+    });
+  });
+}
+
 function loadSecondaryNavFragment(navChildFragmentLink, secondaryNav) {
   const navChildFragmentPath = navChildFragmentLink.getAttribute('href');
   const navChildFragment = document.createElement('div');
@@ -134,6 +143,7 @@ function loadSecondaryNavFragment(navChildFragmentLink, secondaryNav) {
         link.setAttribute('title', 'More about this product');
       }
     });
+    preventInterComLinks(navChildFragment);
   });
 }
 
