@@ -76,7 +76,7 @@ async function enableGoogleTagManager() {
   document.head.appendChild(gtmScript);
   document.body.insertAdjacentElement('afterbegin', noscriptElement);
 }
-enableGoogleTagManager();
+await enableGoogleTagManager();
 
 async function enablePardot() {
   const pardotScript = document.createElement('script');
@@ -120,14 +120,13 @@ if (jsonLdMeta) {
   document.querySelector('meta[name="json-ld"]').remove();
 }
 
-loadScript('https://cdn.popupsmart.com/accounts/6030/21310/13/main.js', {
-  type: 'text/javascript',
-  async: true,
-  defer: true,
-});
-
 // load css https://cdn.popupsmart.com/accounts/6030/21310/13/main.css for popupsmart
-setTimeout(() => {
+setTimeout(async () => {
+  await loadScript('https://cdn.popupsmart.com/accounts/6030/21310/13/main.js', {
+    type: 'text/javascript',
+    async: true,
+    defer: true,
+  });
   const popupSmartContainer = document.querySelector('#popupsmart-container-21310');
   if (popupSmartContainer) {
     let shadowRoot;
