@@ -852,7 +852,12 @@ async function loadPrices(main) {
 
         const hrefRegex = /#%5B(.*?)%5D/g;
         if (href && (href.match(hrefRegex) || href.match(regex))) {
-          const replacedHref = href.replace(hrefRegex, (match, group) => (window.pricing && window.pricing[group]) || group);
+          let replacedHref = href;
+          if (href.match(hrefRegex)) {
+            replacedHref = href.replace(hrefRegex, (match, group) => (window.pricing && window.pricing[group]) || group);
+          } else if (href.match(regex)) {
+            replacedHref = href.replace(regex, (match, group) => (window.pricing && window.pricing[group]) || group);
+          }
           node.setAttribute('href', replacedHref);
         }
 
