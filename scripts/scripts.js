@@ -463,6 +463,9 @@ function decorateStyledSections(main) {
 export function decorateButtons(element) {
   element.querySelectorAll('a').forEach((a) => {
     a.title = a.title || a.textContent;
+    if (a.title) {
+      a.setAttribute('aria-label', a.title);
+    }
     if (a.href !== a.textContent) {
       const up = a.parentElement;
       const twoup = a.parentElement.parentElement;
