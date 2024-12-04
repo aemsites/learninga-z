@@ -301,7 +301,6 @@ export function extractButtonColor(anchor) {
 
 /**
  * Extracts color information from the h1-h4, p text content.
- * @param {HTMLElement} textNodes - The elements from which to extract color information.
  * @returns {Object|null} - An object containing the extracted color
  * or null if no color information is found.
  */
@@ -759,27 +758,6 @@ async function buildBreadcrumbs() {
 }
 /* END BREADCRUMBS */
 
-/**
- * Set the JSON-LD script in the head - new
- * @param {*} data
- * @param {string} name
- */
-// eslint-disable-next-line import/prefer-default-export
-export function setJsonLd(data, name) {
-  const existingScript = document.head.querySelector(`script[data-name="${name}"]`);
-  if (existingScript) {
-    existingScript.innerHTML = JSON.stringify(data);
-    return;
-  }
-
-  const script = document.createElement('script');
-  script.type = 'application/ld+json';
-
-  script.innerHTML = JSON.stringify(data);
-  script.dataset.name = name;
-  document.body.appendChild(script);
-}
-
 // Setting the referral code eagerly
 function setReferralCode() {
   const url = new URL(window.location.href);
@@ -860,11 +838,12 @@ async function loadPrices(main) {
       loc.style.display = 'block';
     });
   } else {
-    const textNodes = Array.from(main.querySelectorAll('h1, h2, h3, h4, p, a'));
+    const textNodes = Array.from(main.querySelectorAll('h1, h2, h3, h4, p, a, span[itemprop][content]'));
     textNodes.forEach((node) => {
       if (node) {
         const text = node.innerHTML;
         const href = node.getAttribute('href');
+        const content = node.getAttribute('content');
         const regex = /#\[(.*?)\]/g;
         if (text && text.match(regex)) {
           const replacedText = text.replace(regex, (match, group) => `$${(window.pricing && window.pricing[group]) || match}`);
@@ -872,9 +851,19 @@ async function loadPrices(main) {
         }
 
         const hrefRegex = /#%5B(.*?)%5D/g;
-        if (href && href.match(hrefRegex)) {
-          const replacedHref = href.replace(hrefRegex, (match, group) => (window.pricing && window.pricing[group]) || group);
+        if (href && (href.match(hrefRegex) || href.match(regex))) {
+          let replacedHref = href;
+          if (href.match(hrefRegex)) {
+            replacedHref = href.replace(hrefRegex, (match, group) => (window.pricing && window.pricing[group]) || group);
+          } else if (href.match(regex)) {
+            replacedHref = href.replace(regex, (match, group) => (window.pricing && window.pricing[group]) || group);
+          }
           node.setAttribute('href', replacedHref);
+        }
+
+        if (content && content.match(regex)) {
+          const replacedContent = content.replace(regex, (match, group) => `$${(window.pricing && window.pricing[group]) || match}`);
+          node.setAttribute('content', replacedContent);
         }
       }
     });
