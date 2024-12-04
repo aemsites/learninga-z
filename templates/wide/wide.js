@@ -4,7 +4,7 @@ import { getMetadata } from '../../scripts/aem.js';
 // eslint-disable-next-line import/prefer-default-export
 function buildProductSchema() {
   const srOnly = document.createElement('div');
-  srOnly.classList.add('sr-only');
+  srOnly.classList.add('sr-only', 'price');
   srOnly.style.display = 'none';
   srOnly.setAttribute('itemscope', '');
   srOnly.setAttribute('itemtype', 'https://schema.org/Product');
@@ -20,14 +20,17 @@ function buildProductSchema() {
   const offers = document.createElement('div');
   offers.setAttribute('itemscope', '');
   offers.setAttribute('itemtype', 'https://schema.org/Offer');
+  const originalPrice = `${getMetadata('price-code')}OriginalPrice`;
+  const orderUrl = `${getMetadata('price-code')}OrderUrl`;
   offers.innerHTML = `
-    <meta itemprop="priceCurrency" content=""></meta>
-    <span itemprop="price" content=""></span>
+    <meta itemprop="priceCurrency" content="USD"/>
+    <span itemprop="price" content="#[${originalPrice}]"></span>
     <span itemprop="availability" content="https://schema.org/InStock"></span>
-    <a itemprop="url" href="" class="rect-btn">ORDER NOW</a>
+    <a itemprop="url" href="#[${orderUrl}]" class="rect-btn">ORDER NOW</a>
   `;
   srOnly.append(offers);
-  document.body.append(srOnly);
+  const main = document.querySelector('main');
+  main.append(srOnly);
 }
 
 export default function lcpImage() {
