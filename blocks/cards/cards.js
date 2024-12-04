@@ -197,14 +197,26 @@ function populateAwardsCard(container, cardInfo) {
 function populateReviewsCard(container, cardInfo) {
   const card = document.createElement('div');
   card.className = 'card';
+  card.setAttribute('itemscope', '');
+  card.setAttribute('itemtype', 'https://schema.org/Review');
+  const productSchema = document.createElement('div');
+  productSchema.style.display = 'none';
+  productSchema.setAttribute('itemscope', '');
+  productSchema.setAttribute('itemtype', 'https://schema.org/Product');
+  // TODO: add properly escaped product URLs instead of /products
+  productSchema.innerHTML = `
+        <span itemprop="name">${cardInfo.Product}</span>
+        <span itemprop="url">https://www.learninga-z.com/site/products</span>
+    `;
   card.innerHTML = `
-        <div class="testimonial-statement">
+        <div class="testimonial-statement" itemprop="reviewBody">
             <p>${cardInfo.Testimonial}</p>
         </div>
-        <div class="testimonial-customer">
+        <div class="testimonial-customer" itemprop="author">
                --<b>${cardInfo.Name}</b>; ${cardInfo.Title}; ${cardInfo.State}
         </div>
     `;
+  card.append(productSchema);
   container.append(card);
 }
 
