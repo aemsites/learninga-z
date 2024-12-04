@@ -50,7 +50,8 @@ function bindChatbotLinks() {
 
   // Iterate over each link and bind the click event
   chatbotLinks.forEach((link) => {
-    link.addEventListener('click', () => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault(); // Prevent the default behavior of the link
       openChatbot(); // Call the function to open the chatbot
     });
   });
