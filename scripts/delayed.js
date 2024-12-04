@@ -32,6 +32,30 @@ async function enableMetaRouter() {
 }
 enableMetaRouter();
 
+// Function to open the chatbot
+function openChatbot() {
+  // Trigger a click event on the Intercom launcher frame
+  const intercomLauncher = document.querySelector('.intercom-launcher');
+  if (intercomLauncher) {
+    intercomLauncher.click();
+  } else {
+    console.error('Intercom launcher not found.');
+  }
+}
+
+// Function to bind click events on links with href="#chatbot"
+function bindChatbotLinks() {
+  // Select all links with href="#chatbot"
+  const chatbotLinks = document.querySelectorAll('a[href="#chatbot"]');
+
+  // Iterate over each link and bind the click event
+  chatbotLinks.forEach((link) => {
+    link.addEventListener('click', () => {
+      openChatbot(); // Call the function to open the chatbot
+    });
+  });
+}
+
 // Intercom script embed
 // test ID is l13iokf2, prod ID is x8m18b9a
 async function enableIntercom() {
@@ -49,11 +73,35 @@ async function enableIntercom() {
  }else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();`;
   intercomScript.async = true;
   document.body.appendChild(intercomScript);
+  bindChatbotLinks();
 }
 enableIntercom();
 
-// Google Tag Manager script embed
+// load css https://cdn.popupsmart.com/accounts/6030/21310/13/main.css for popupsmart
+async function enablePopupSmart() {
+  setTimeout(async () => {
+    await loadScript('https://cdn.popupsmart.com/accounts/6030/21310/13/main.js', {
+      type: 'text/javascript',
+      async: true,
+      defer: true,
+    });
+    const popupSmartContainer = document.querySelector('#popupsmart-container-21310');
+    if (popupSmartContainer) {
+      let shadowRoot;
+      if (popupSmartContainer.shadowRoot) {
+        shadowRoot = popupSmartContainer.shadowRoot;
+      } else {
+        shadowRoot = popupSmartContainer.attachShadow({ mode: 'open' });
+      }
+      const popupSmartCss = document.createElement('link');
+      popupSmartCss.rel = 'stylesheet';
+      popupSmartCss.href = 'https://cdn.popupsmart.com/accounts/6030/21310/13/main.css';
+      shadowRoot.appendChild(popupSmartCss);
+    }
+  }, 1000);
+}
 
+// Google Tag Manager script embed
 async function enableGoogleTagManager() {
   const gtmScript = document.createElement('script');
   gtmScript.type = 'text/javascript';
@@ -75,8 +123,9 @@ async function enableGoogleTagManager() {
 
   document.head.appendChild(gtmScript);
   document.body.insertAdjacentElement('afterbegin', noscriptElement);
+  enablePopupSmart();
 }
-await enableGoogleTagManager();
+enableGoogleTagManager();
 
 async function enablePardot() {
   const pardotScript = document.createElement('script');
@@ -119,25 +168,3 @@ if (jsonLdMeta) {
   addLdJsonScript(document.querySelector('head'), jsonLdMeta.content);
   document.querySelector('meta[name="json-ld"]').remove();
 }
-
-// load css https://cdn.popupsmart.com/accounts/6030/21310/13/main.css for popupsmart
-setTimeout(async () => {
-  await loadScript('https://cdn.popupsmart.com/accounts/6030/21310/13/main.js', {
-    type: 'text/javascript',
-    async: true,
-    defer: true,
-  });
-  const popupSmartContainer = document.querySelector('#popupsmart-container-21310');
-  if (popupSmartContainer) {
-    let shadowRoot;
-    if (popupSmartContainer.shadowRoot) {
-      shadowRoot = popupSmartContainer.shadowRoot;
-    } else {
-      shadowRoot = popupSmartContainer.attachShadow({ mode: 'open' });
-    }
-    const popupSmartCss = document.createElement('link');
-    popupSmartCss.rel = 'stylesheet';
-    popupSmartCss.href = 'https://cdn.popupsmart.com/accounts/6030/21310/13/main.css';
-    shadowRoot.appendChild(popupSmartCss);
-  }
-}, 1000);
