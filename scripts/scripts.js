@@ -462,11 +462,15 @@ function decorateStyledSections(main) {
  */
 export function decorateButtons(element) {
   element.querySelectorAll('a').forEach((a) => {
-    a.title = a.title || a.textContent;
+    // Ensure the link has a meaningful title or text content
+    a.title = a.title || a.textContent.trim();
+    
+    // Set the aria-label attribute to provide descriptive text
     if (a.title) {
       a.setAttribute('aria-label', a.title);
     }
-    if (a.href !== a.textContent) {
+
+    if (a.href !== a.textContent.trim()) {
       const up = a.parentElement;
       const twoup = a.parentElement.parentElement;
       if (!a.querySelector('img')) {
