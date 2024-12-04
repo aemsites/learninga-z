@@ -38,3 +38,42 @@ export function buildArticleSchema() {
 
   setJsonLd(data, 'blogPosting');
 }
+
+// eslint-disable-next-line import/prefer-default-export
+export function buildProductSchema() {
+  const data = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    properties: {
+      brand: 'Learning A-Z',
+      url: 'ORDER NOW',
+      description: getMetadata('description'),
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.learninga-z.com/laz_clg_logo-rgb.png',
+      },
+      image: getMetadata('og:image'),
+      name: getMetadata('product'),
+      sku: getMetadata('product'),
+      // sameAs: 'TODO: add url of that product here',
+    },
+  };
+
+  setJsonLd(data, 'Product');
+}
+
+// eslint-disable-next-line import/prefer-default-export
+export function buildOfferSchema() {
+  const data = {
+    '@context': 'https://schema.org',
+    '@type': 'Offer',
+    properties: {
+      priceCurrency: '',
+      price: '', // TODO: get price from API
+      availability: 'https://schema.org/InStock',
+      url: 'ORDER NOW',
+    },
+  };
+
+  setJsonLd(data, 'Offer');
+}

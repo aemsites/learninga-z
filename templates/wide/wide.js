@@ -1,4 +1,5 @@
-/* template specific JavaScript goes here */
+import { buildOfferSchema, buildProductSchema } from '../../scripts/schema.js';
+
 export default function lcpImage() {
   const bgSection = document.querySelector('.bg-image-container');
   if (bgSection) {
@@ -14,3 +15,5 @@ export default function lcpImage() {
   }
 }
 lcpImage();
+buildProductSchema();
+buildOfferSchema();
