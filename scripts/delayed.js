@@ -63,60 +63,73 @@ async function enableIntercom() {
   // Create an instance of the Web Worker
   const intercomWorker = new Worker(`${window.hlx.codeBasePath}/scripts/intercom-worker.js`);
 
-  // Send a message to the Web Worker to load the GTM script
+  // Send a message to the Web Worker to load the Intercom script
   intercomWorker.postMessage('loadIntercom');
 
   // Optional: Listen for messages from the Web Worker
   intercomWorker.onmessage = function (event) {
     if (event.data.error) {
-      console.error('Error in Web Worker:', event.data.error);
+      console.error('Error in Intercom Web Worker:', event.data.error);
     } else {
       const intercomScript = document.createElement('script');
       intercomScript.type = 'text/javascript';
-      intercomScript.innerHTML = ` window.intercomSettings = {
-   api_base: "https://api-iam.intercom.io",
-   app_id: "x8m18b9a",
- }; // We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/x8m18b9a'
- (function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');
- ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};
- i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');
- s.type='text/javascript';s.async=true;s.innerHTML=${event.data};
- var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();
- }else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();`;
+      // Construct the script content as a single string
+      const scriptContent = ` window.intercomSettings = {
+        api_base: "https://api-iam.intercom.io",
+        app_id: "x8m18b9a",
+      }; // We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/x8m18b9a'
+      (function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');
+      ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};
+      i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');
+      s.type='text/javascript';s.async=true;s.innerHTML=${JSON.stringify(event.data)};
+      var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();
+      }else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();`;
+      intercomScript.innerHTML = scriptContent;
       intercomScript.async = true;
       document.body.appendChild(intercomScript);
       bindChatbotLinks();
     }
   };
-
-  // Optional: Handle errors from the Web Worker
-  intercomWorker.onerror = function (error) {
-    console.error('Error in Web Worker:', error);
-  };
 }
 enableIntercom();
 
 async function enablePopupSmart() {
-  setTimeout(async () => {
-    await loadScript('https://cdn.popupsmart.com/accounts/6030/21310/13/main.js', {
-      type: 'text/javascript',
-      async: true,
-      defer: true,
-    });
-    const popupSmartContainer = document.querySelector('#popupsmart-container-21310');
-    if (popupSmartContainer) {
-      let shadowRoot;
-      if (popupSmartContainer.shadowRoot) {
-        shadowRoot = popupSmartContainer.shadowRoot;
-      } else {
-        shadowRoot = popupSmartContainer.attachShadow({ mode: 'open' });
+  // Create an instance of the Web Worker
+  const popupWorker = new Worker(`${window.hlx.codeBasePath}/scripts/popupSmart-worker.js`);
+
+  // Send a message to the Web Worker to load the Popupsmart script
+  popupWorker.postMessage('loadPopupSmart');
+
+  // Optional: Listen for messages from the Web Worker
+  popupWorker.onmessage = function (event) {
+    if (event.data.error) {
+      console.error('Error in Popupsmart Web Worker:', event.data.error);
+    } else {
+      const popupSmartScript = document.createElement('script');
+      popupSmartScript.type = 'text/javascript';
+      popupSmartScript.innerHTML = event.data;
+      popupSmartScript.async = true;
+      document.head.append(popupSmartScript);
+      const popupSmartContainer = document.querySelector('#popupsmart-container-21310');
+      if (popupSmartContainer) {
+        let shadowRoot;
+        if (popupSmartContainer.shadowRoot) {
+          shadowRoot = popupSmartContainer.shadowRoot;
+        } else {
+          shadowRoot = popupSmartContainer.attachShadow({ mode: 'open' });
+        }
+        const popupSmartCss = document.createElement('link');
+        popupSmartCss.rel = 'stylesheet';
+        popupSmartCss.href = 'https://cdn.popupsmart.com/accounts/6030/21310/13/main.css';
+        shadowRoot.appendChild(popupSmartCss);
       }
-      const popupSmartCss = document.createElement('link');
-      popupSmartCss.rel = 'stylesheet';
-      popupSmartCss.href = 'https://cdn.popupsmart.com/accounts/6030/21310/13/main.css';
-      shadowRoot.appendChild(popupSmartCss);
     }
-  }, 1000);
+  };
+
+  // Optional: Handle errors from the Web Worker
+  popupWorker.onerror = function (error) {
+    console.error('Error in Web Worker:', error);
+  };
 }
 
 function enableGoogleTagManager() {
@@ -129,7 +142,7 @@ function enableGoogleTagManager() {
   // Optional: Listen for messages from the Web Worker
   gtmWorker.onmessage = function (event) {
     if (event.data.error) {
-      console.error('Error in Web Worker:', event.data.error);
+      console.error('Error in GTM Web Worker:', event.data.error);
     } else {
       // Create a script element and inject the GTM script into the DOM
       const gtmScript = document.createElement('script');
@@ -153,7 +166,9 @@ function enableGoogleTagManager() {
       noscriptElement.appendChild(iframeElement);
 
       document.body.insertAdjacentElement('afterbegin', noscriptElement);
-      enablePopupSmart();
+      setTimeout(() => {
+        enablePopupSmart();
+      }, 1000);
     }
   };
 
