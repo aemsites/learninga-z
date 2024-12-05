@@ -880,6 +880,24 @@ function highlightActiveLink() {
   });
 }
 
+function loadGTMScript() {
+  // Create an instance of the Web Worker
+  const gtmWorker = new Worker(`${window.hlx.codeBasePath}/scripts/martech-worker.js`);
+
+  // Send a message to the Web Worker to load the GTM script
+  gtmWorker.postMessage('loadGTM');
+
+  // Optional: Listen for messages from the Web Worker
+  gtmWorker.onmessage = function (event) {
+    console.log('Message from Web Worker:', event.data);
+  };
+
+  // Optional: Handle errors from the Web Worker
+  gtmWorker.onerror = function (error) {
+    console.error('Error in Web Worker:', error);
+  };
+}
+
 /**
  * Loads everything that doesn't need to be delayed.
  * @param {Element} doc The container element
@@ -922,6 +940,7 @@ async function loadLazy(doc) {
  */
 function loadDelayed() {
   // eslint-disable-next-line import/no-cycle
+  loadGTMScript();
   window.setTimeout(() => import('./delayed.js'), 3500);
   // load anything that can be postponed to the latest here
 }
