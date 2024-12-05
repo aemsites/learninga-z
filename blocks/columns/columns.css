@@ -30,6 +30,13 @@
   }
 }
 
+
+.embed-wrapper:has(.vimeo, .youtube) {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
   .columns.middle > div {
     align-items: center;
 
