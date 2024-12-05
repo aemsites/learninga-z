@@ -16,6 +16,7 @@ import {
   toClassName,
   decorateBlock,
   toCamelCase,
+  loadScript,
 } from './aem.js';
 
 import { pricingApi } from './utils.js';
@@ -880,6 +881,29 @@ function highlightActiveLink() {
   });
 }
 
+async function enablePopupSmart() {
+  setTimeout(async () => {
+    await loadScript('https://cdn.popupsmart.com/accounts/6030/21310/13/main.js', {
+      type: 'text/javascript',
+      async: true,
+      defer: true,
+    });
+    const popupSmartContainer = document.querySelector('#popupsmart-container-21310');
+    if (popupSmartContainer) {
+      let shadowRoot;
+      if (popupSmartContainer.shadowRoot) {
+        shadowRoot = popupSmartContainer.shadowRoot;
+      } else {
+        shadowRoot = popupSmartContainer.attachShadow({ mode: 'open' });
+      }
+      const popupSmartCss = document.createElement('link');
+      popupSmartCss.rel = 'stylesheet';
+      popupSmartCss.href = 'https://cdn.popupsmart.com/accounts/6030/21310/13/main.css';
+      shadowRoot.appendChild(popupSmartCss);
+    }
+  }, 1000);
+}
+
 function loadGTMScript() {
   // Create an instance of the Web Worker
   const gtmWorker = new Worker(`${window.hlx.codeBasePath}/scripts/martech-worker.js`);
@@ -889,7 +913,26 @@ function loadGTMScript() {
 
   // Optional: Listen for messages from the Web Worker
   gtmWorker.onmessage = function (event) {
-    console.log('Message from Web Worker:', event.data);
+    if (event.data.error) {
+      console.error('Error in Web Worker:', event.data.error);
+    } else {
+      // Create a script element and inject the GTM script into the DOM
+      const gtmScript = document.createElement('script');
+      gtmScript.type = 'text/javascript';
+      gtmScript.text = event.data;
+      const noscriptElement = document.createElement('noscript');
+      const iframeElement = document.createElement('iframe');
+      iframeElement.src = 'https://www.googletagmanager.com/ns.html?id=GTM-NXTTWP';
+      iframeElement.height = '0';
+      iframeElement.width = '0';
+      iframeElement.style.display = 'none';
+      iframeElement.style.visibility = 'hidden';
+      noscriptElement.appendChild(iframeElement);
+
+      document.head.appendChild(gtmScript);
+      document.body.insertAdjacentElement('afterbegin', noscriptElement);
+      enablePopupSmart();
+    }
   };
 
   // Optional: Handle errors from the Web Worker
@@ -940,7 +983,7 @@ async function loadLazy(doc) {
  */
 function loadDelayed() {
   // eslint-disable-next-line import/no-cycle
-  loadGTMScript();
+  //loadGTMScript();
   window.setTimeout(() => import('./delayed.js'), 3500);
   // load anything that can be postponed to the latest here
 }
