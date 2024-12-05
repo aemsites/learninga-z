@@ -919,7 +919,15 @@ function loadGTMScript() {
       // Create a script element and inject the GTM script into the DOM
       const gtmScript = document.createElement('script');
       gtmScript.type = 'text/javascript';
-      gtmScript.text = event.data;
+      gtmScript.innerHTML = event.data;
+      const l = 'dataLayer';
+      window[l] = window[l] || [];
+      window[l].push({
+        'gtm.start': new Date().getTime(),
+        event: 'gtm.js',
+      });
+      const f = document.getElementsByTagName('script')[0];
+      f.parentNode.insertBefore(gtmScript, f);
       const noscriptElement = document.createElement('noscript');
       const iframeElement = document.createElement('iframe');
       iframeElement.src = 'https://www.googletagmanager.com/ns.html?id=GTM-NXTTWP';
@@ -929,7 +937,6 @@ function loadGTMScript() {
       iframeElement.style.visibility = 'hidden';
       noscriptElement.appendChild(iframeElement);
 
-      document.head.appendChild(gtmScript);
       document.body.insertAdjacentElement('afterbegin', noscriptElement);
       enablePopupSmart();
     }

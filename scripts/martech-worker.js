@@ -1,8 +1,7 @@
 // Listen for messages from the main thread
 onmessage = function (event) {
   if (event.data === 'loadGTM') {
-    const scriptPath = 'https://www.googletagmanager.com/gtm.js?id=GTM-NXTTWP';
-    fetch(scriptPath)
+    fetch('https://www.googletagmanager.com/gtm.js?id=GTM-NXTTWP')
       .then((response) => response.text())
       .then((data) => {
         // Send the data back to the main thread
