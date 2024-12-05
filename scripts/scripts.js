@@ -16,7 +16,6 @@ import {
   toClassName,
   decorateBlock,
   toCamelCase,
-  loadScript,
 } from './aem.js';
 
 import { pricingApi } from './utils.js';
