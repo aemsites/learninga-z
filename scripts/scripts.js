@@ -21,6 +21,11 @@ import {
 import { pricingApi } from './utils.js';
 import { button as Button } from './dom-helpers.js';
 
+// eslint-disable-next-line import/no-cycle
+import initAccessibilityMode from '../tools/sidekick/plugins/accessibility-mode/accessibility-mode.js';
+
+let isA11yModeActive = false;
+
 /**
  * Returns the true origin of the current page in the browser.
  * If the page is running in an iframe with srcdoc, the ancestor origin is returned.
@@ -175,6 +180,75 @@ function buildHeroBlock(main) {
     main.prepend(section);
   }
 }
+
+/**
+ * create an element.
+ * @param {string} tagName the tag for the element
+ * @param {object} props properties to apply
+ * @param {string|Element} html content to add
+ * @returns the element
+ */
+export function createElement(tagName, props, html) {
+  const elem = document.createElement(tagName);
+  if (props) {
+    Object.keys(props).forEach((propName) => {
+      const val = props[propName];
+      if (propName === 'class') {
+        const classesArr = (typeof val === 'string') ? [val] : val;
+        elem.classList.add(...classesArr);
+      } else {
+        elem.setAttribute(propName, val);
+      }
+    });
+  }
+
+  if (html) {
+    const appendEl = (el) => {
+      if (el instanceof HTMLElement || el instanceof SVGElement) {
+        elem.append(el);
+      } else {
+        elem.insertAdjacentHTML('beforeend', el);
+      }
+    };
+
+    if (Array.isArray(html)) {
+      html.forEach(appendEl);
+    } else {
+      appendEl(html);
+    }
+  }
+
+  return elem;
+}
+
+const accessibilityMode = async (e) => {
+  const pluginButton = e.target.shadowRoot.querySelector('.accessibility-mode > button');
+
+  isA11yModeActive = !isA11yModeActive;
+
+  if (isA11yModeActive) {
+    pluginButton.style.backgroundColor = '#fb0f01';
+    pluginButton.style.color = '#fff';
+  } else {
+    pluginButton.removeAttribute('style');
+  }
+
+  document.querySelector('body').classList.toggle('accessibility-mode-active');
+  await initAccessibilityMode(isA11yModeActive);
+};
+
+const sk = document.querySelector('helix-sidekick');
+
+if (sk) {
+  sk.addEventListener('custom:accessibility-mode', accessibilityMode);
+} else {
+  document.addEventListener('sidekick-ready', () => {
+    document.querySelector('helix-sidekick').addEventListener('custom:accessibility-mode', accessibilityMode);
+  }, {
+    once: true,
+  });
+}
+
 
 /**
  * load fonts.css and set a session storage flag
