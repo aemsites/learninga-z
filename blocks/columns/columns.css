@@ -7,6 +7,12 @@
   align-items: stretch;
 }
 
+.columns > div > div:has(.vimeo, .youtube) {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
 .columns.stacked {
   display: grid;
   grid-template-columns: 1fr;
