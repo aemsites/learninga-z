@@ -6,6 +6,7 @@
   width: 100vw;
   z-index: 2147483645;
   background-color: rgba(0 0 0 / 70%);
+  color: white;
   display: flex;
   flex-flow: column;
   align-items: center;

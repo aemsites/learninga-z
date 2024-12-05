@@ -237,18 +237,18 @@ const accessibilityMode = async (e) => {
   await initAccessibilityMode(isA11yModeActive);
 };
 
-const sk = document.querySelector('helix-sidekick');
+let sk = document.querySelector('helix-sidekick') || document.querySelector('aem-sidekick');
 
 if (sk) {
   sk.addEventListener('custom:accessibility-mode', accessibilityMode);
 } else {
   document.addEventListener('sidekick-ready', () => {
-    document.querySelector('helix-sidekick').addEventListener('custom:accessibility-mode', accessibilityMode);
+    sk = document.querySelector('helix-sidekick') || document.querySelector('aem-sidekick');
+    sk.addEventListener('custom:accessibility-mode', accessibilityMode);
   }, {
     once: true,
   });
 }
-
 
 /**
  * load fonts.css and set a session storage flag
