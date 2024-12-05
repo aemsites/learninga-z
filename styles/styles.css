@@ -35,7 +35,7 @@
   --very-light-gray: #f8f8f8; /* subnav */
   --light-gray: #CBCBCB;
   --gray: #eee; /* columns bg */
-  --medium-light-gray: #777; /* header text */
+  --medium-light-gray: #757575; /* 777 doesn't pass contrast */
   --dark-gray: #56524e; /* various text */
   --charcoal-gray: #45423f; /* head + foot text */
   --link-color: #31409A; /* laz-blue repeat */
@@ -237,7 +237,7 @@ h3,
 h4,
 h5,
 h6 {
-  margin-top: 0;
+  margin-top: .5em;
   margin-bottom: .5em;
   font-weight: var(--font-weight-extra-bold);
   line-height: 1.1;
@@ -496,7 +496,7 @@ main > .section-outer {
 
     .columns {
       h1, h2, h3, h4, p {
-        margin-bottom: 0;
+        margin: .5em auto;
       }
 
       > div {
@@ -688,8 +688,8 @@ THEMES
 
 .berry main {
   --theme-breadcrumbs-bg: var(--product-berry);
-  --theme-heading-color: var(--product-berry);
-  --theme-link-color: var(--product-berry);
+  --theme-heading-color: var(--laz-logo-blue);
+  --theme-link-color: var(--laz-logo-blue);
   --theme-btn-primary-border: var(--product-berry);
   --theme-btn-primary-bg: var(--product-berry);
   --theme-btn-primary-border-hov: var(--product-berry);
