@@ -759,16 +759,18 @@ async function buildBreadcrumbs() {
     const fragmentpath = getFragmentPath(window.location.pathname);
     // load the fragment and add it to the breadcrumb
     const fragment = await loadFragment(fragmentpath);
-    const breadcrumbLinks = fragment.querySelectorAll('a');
-    breadcrumbLinks.forEach((link, index) => {
-      breadcrumb.appendChild(link);
-      if (index < breadcrumbLinks.length - 1) {
-        const separator = document.createElement('span');
-        separator.className = 'breadcrumb-separator';
-        separator.textContent = ' / ';
-        breadcrumb.appendChild(separator);
-      }
-    });
+    if (fragment) {
+      const breadcrumbLinks = fragment.querySelectorAll('a');
+      breadcrumbLinks.forEach((link, index) => {
+        breadcrumb.appendChild(link);
+        if (index < breadcrumbLinks.length - 1) {
+          const separator = document.createElement('span');
+          separator.className = 'breadcrumb-separator';
+          separator.textContent = ' / ';
+          breadcrumb.appendChild(separator);
+        }
+      });
+    }
     outerSection.appendChild(container);
     container.appendChild(breadcrumb);
   }
