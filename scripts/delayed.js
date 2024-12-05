@@ -146,28 +146,6 @@ function enableGoogleTagManager() {
 }
 enableGoogleTagManager();
 
-// function loadGTM() {
-//   const gtagWorker = new Worker(`${window.hlx.codeBasePath}/scripts/gtag-worker.js`);
-//   gtagWorker.postMessage('loadGtag');
-//   gtagWorker.onmessage = function (event) {
-//     if (event.data.error) {
-//       console.error('Error in Web Worker:', event.data.error);
-//     } else {
-//       const tag = document.createElement('script');
-//       tag.type = 'text/javascript';
-//       tag.innerHTML = event.data;
-//       tag.async = true;
-//       tag.id = 'google-gtagjs-js';
-//       document.querySelector('head').append(tag);
-//       const script = document.createElement('script');
-//       script.type = 'text/javascript';
-//       script.id = 'google_gtagjs-js-after';
-//       script.innerHTML = GTM_SCRIPT;
-//       tag.insertAdjacentElement('afterend', script);
-//     }
-//   };
-// }
-
 async function enablePardot() {
   const pardotScript = document.createElement('script');
   pardotScript.type = 'text/javascript';
