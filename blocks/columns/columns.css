@@ -11,6 +11,7 @@
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
+  min-height: 270px;
 }
 
 .columns.stacked {
