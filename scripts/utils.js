@@ -533,7 +533,7 @@ const makePricingApiCall = async (ip) => {
  * calls the pricing API with the user's IP address.
  */
 export const pricingApi = async (forceSetPrice = false) => {
-  const apiUrl = window.location.hostname === 'learninga-z.com' ? '/cdn-cgi/trace' : 'https://www.cloudflare.com/cdn-cgi/trace';
+  const apiUrl = ['learninga-z.com', 'www.learninga-z.com'].includes(window.location.hostname) ? '/cdn-cgi/trace' : 'https://www.cloudflare.com/cdn-cgi/trace';
   const response = await fetch(apiUrl);
   if (!response.ok) {
     window.pricing.blocked = true;
