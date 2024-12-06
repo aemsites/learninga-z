@@ -1040,7 +1040,6 @@ nav[aria-expanded="false"] {
   header .nav-tools ul>li {
     margin-left: 10px;
     margin-right: 10px;
-    cursor: pointer;
   }
 
   header .nav-sections ul.primary-nav-items>li a,
