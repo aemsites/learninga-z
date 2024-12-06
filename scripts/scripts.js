@@ -693,39 +693,55 @@ export async function lookupBlogs(pathNames) {
 }
 
 /* BREADCRUMBS START */
+async function loadFragment(path) {
+  if (path && path.startsWith('/')) {
+    const resp = await fetch(`${path}.plain.html`);
+    if (resp.ok) {
+      const main = document.createElement('main');
+      main.innerHTML = await resp.text();
 
-const getPageTitle = async (url) => {
-  const resp = await fetch(url); // invalid URL will return 404 in console
-  if (resp.ok) {
-    const html = document.createElement('div');
-    html.innerHTML = await resp.text();
-    return html.querySelector('title').innerText;
+      // reset base path for media to fragment base
+      const resetAttributeBase = (tag, attr) => {
+        main.querySelectorAll(`${tag}[${attr}^="./media_"]`).forEach((elem) => {
+          elem[attr] = new URL(elem.getAttribute(attr), new URL(path, window.location)).href;
+        });
+      };
+      resetAttributeBase('img', 'src');
+      resetAttributeBase('source', 'srcset');
+
+      decorateMain(main);
+      await loadSections(main);
+      return main;
+    }
   }
   return null;
-};
+}
 
-const getAllPathsExceptCurrent = async (paths) => {
-  const result = [];
-  // remove first and last slash characters
-  const pathsList = paths.replace(/^\/|\/$/g, '').split('/');
-  for (let i = 0; i < pathsList.length - 1; i += 1) {
-    const pathPart = pathsList[i];
-    const prevPath = result[i - 1] ? result[i - 1].path : '';
-    const path = `${prevPath}/${pathPart}`;
-    const url = `${window.location.origin}${path}`;
-    /* eslint-disable-next-line no-await-in-loop */
-    const name = await getPageTitle(url);
-    result.push({ path, name, url });
+const getFragmentPath = (path) => {
+  let fragmentPath;
+  switch (true) {
+    case path.includes('/site/company'):
+      fragmentPath = '/fragments/breadcrumbs/site/company/breadcrumbs';
+      break;
+    case path.includes('/site/resources/professional-development'):
+      fragmentPath = '/fragments/breadcrumbs/site/resources/professional-development/breadcrumbs';
+      break;
+    case path.includes('/site/resources/breakroom-blog'):
+      fragmentPath = '/fragments/breadcrumbs/site/resources/breakroom-blog/breadcrumbs';
+      break;
+    case path.includes('/site/resources'):
+      fragmentPath = '/fragments/breadcrumbs/site/resources/breadcrumbs';
+      break;
+    case path.includes('/site/contact'):
+      fragmentPath = '/fragments/breadcrumbs/site/contact/breadcrumbs';
+      break;
+    case path.includes('/site/products'):
+      fragmentPath = '/fragments/breadcrumbs/site/products/breadcrumbs';
+      break;
+    default:
+      fragmentPath = '/fragments/breadcrumbs/site/breadcrumbs';
   }
-  return result.filter(Boolean).slice(1); // remove first element ('site') from the array
-};
-
-const createLink = (path) => {
-  if (!path.name) return { outerHTML: '' };
-  const pathLink = document.createElement('a');
-  pathLink.href = path.url;
-  pathLink.innerText = path.name;
-  return pathLink;
+  return fragmentPath;
 };
 
 async function buildBreadcrumbs() {
@@ -740,17 +756,21 @@ async function buildBreadcrumbs() {
     breadcrumb.className = 'breadcrumbs';
     breadcrumb.setAttribute('aria-label', 'Breadcrumb');
     breadcrumb.innerHTML = '';
-    const HomeLink = createLink({ path: '', name: 'Home', url: window.location.origin });
-    const breadcrumbLinks = [HomeLink.outerHTML];
-    const path = window.location.pathname;
-    const paths = await getAllPathsExceptCurrent(path);
-    paths.forEach((pathPart) => {
-      const link = createLink(pathPart);
-      if (link.outerHTML !== '') {
-        breadcrumbLinks.push(link.outerHTML);
-      }
-    });
-    breadcrumb.innerHTML = breadcrumbLinks.join('<span class="breadcrumb-separator"> / </span>');
+    const fragmentpath = getFragmentPath(window.location.pathname);
+    // load the fragment and add it to the breadcrumb
+    const fragment = await loadFragment(fragmentpath);
+    if (fragment) {
+      const breadcrumbLinks = fragment.querySelectorAll('a');
+      breadcrumbLinks.forEach((link, index) => {
+        breadcrumb.appendChild(link);
+        if (index < breadcrumbLinks.length - 1) {
+          const separator = document.createElement('span');
+          separator.className = 'breadcrumb-separator';
+          separator.textContent = ' / ';
+          breadcrumb.appendChild(separator);
+        }
+      });
+    }
     outerSection.appendChild(container);
     container.appendChild(breadcrumb);
   }
