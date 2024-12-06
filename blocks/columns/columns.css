@@ -7,13 +7,6 @@
   align-items: stretch;
 }
 
-.columns.video2 > div > div:nth-child(2) {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  min-height: 270px;
-}
-
 .columns.stacked {
   display: grid;
   grid-template-columns: 1fr;

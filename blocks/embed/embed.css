@@ -1,9 +1,12 @@
+/*
 .embed-wrapper:has(.vimeo, .youtube) {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
 }
 
+
+ */
 .embed {
     width: unset;
     text-align: center;
