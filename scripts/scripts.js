@@ -917,7 +917,32 @@ async function loadLazy(doc) {
   if (templateName) {
     await loadTemplate(doc, templateName);
   }
-  await loadPrices(main);
+  // Wait until window.pricing is available and populated
+  const waitForPricing = () => new Promise((resolve) => {
+    const checkPricing = () => {
+      if (window.pricing && Object.keys(window.pricing).length > 0
+        && ['espDiscountPrice', 'espOrderUrl', 'espOriginalPrice',
+          'fazDiscountPrice', 'fazOrderUrl', 'fazOriginalPrice',
+          'razDiscountPrice', 'razEllDiscountPrice', 'razEllOrderUrl', 'razEllOriginalPrice',
+          'razOrderUrl', 'razOriginalPrice', 'rkDiscountPrice', 'rkOrderUrl', 'rkOriginalPrice',
+          'rpDiscountPrice', 'rpOrderUrl', 'rpOriginalPrice', 'rpccDiscountPrice', 'rpccOrderUrl',
+          'rpccOriginalPrice', 'sazDiscountPrice', 'sazOrderUrl', 'sazOriginalPrice',
+          'vocabDiscountPrice', 'vocabOrderUrl', 'vocabOriginalPrice', 'wazDiscountPrice',
+          'wazOrderUrl', 'wazOriginalPrice'].every((key) => key in window.pricing)) {
+        resolve();
+      } else {
+        setTimeout(checkPricing, 100);
+      }
+    };
+    checkPricing();
+  });
+
+  await waitForPricing();
+
+  if (main) {
+    await loadPrices(main);
+  }
+
   groupMultipleButtons(main);
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
