@@ -65,71 +65,122 @@ function bindChatbotLinks() {
 // Intercom script embed
 // test ID is l13iokf2, prod ID is x8m18b9a
 async function enableIntercom() {
-  const intercomScript = document.createElement('script');
-  intercomScript.type = 'text/javascript';
-  intercomScript.innerHTML = ` window.intercomSettings = {
-   api_base: "https://api-iam.intercom.io",
-   app_id: "x8m18b9a",
- }; // We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/x8m18b9a'
- (function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');
- ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};
- i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');
- s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/x8m18b9a';
- var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();
- }else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();`;
-  intercomScript.async = true;
-  document.body.appendChild(intercomScript);
-  bindChatbotLinks();
+  // Create an instance of the Web Worker
+  const intercomWorker = new Worker(`${window.hlx.codeBasePath}/scripts/intercom-worker.js`);
+
+  // Send a message to the Web Worker to load the Intercom script
+  intercomWorker.postMessage('loadIntercom');
+
+  // Optional: Listen for messages from the Web Worker
+  intercomWorker.onmessage = function (event) {
+    if (event.data.error) {
+      console.error('Error in Intercom Web Worker:', event.data.error);
+    } else {
+      const intercomScript = document.createElement('script');
+      intercomScript.type = 'text/javascript';
+      // Construct the script content as a single string
+      const scriptContent = ` window.intercomSettings = {
+        api_base: "https://api-iam.intercom.io",
+        app_id: "x8m18b9a",
+      }; // We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/x8m18b9a'
+      (function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');
+      ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};
+      i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');
+      s.type='text/javascript';s.async=true;s.innerHTML=${JSON.stringify(event.data)};
+      var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();
+      }else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();`;
+      intercomScript.innerHTML = scriptContent;
+      intercomScript.async = true;
+      document.body.appendChild(intercomScript);
+      bindChatbotLinks();
+    }
+  };
 }
 enableIntercom();
 
-// load css https://cdn.popupsmart.com/accounts/6030/21310/13/main.css for popupsmart
 async function enablePopupSmart() {
-  setTimeout(async () => {
-    await loadScript('https://cdn.popupsmart.com/accounts/6030/21310/13/main.js', {
-      type: 'text/javascript',
-      async: true,
-      defer: true,
-    });
-    const popupSmartContainer = document.querySelector('#popupsmart-container-21310');
-    if (popupSmartContainer) {
-      let shadowRoot;
-      if (popupSmartContainer.shadowRoot) {
-        shadowRoot = popupSmartContainer.shadowRoot;
-      } else {
-        shadowRoot = popupSmartContainer.attachShadow({ mode: 'open' });
+  // Create an instance of the Web Worker
+  const popupWorker = new Worker(`${window.hlx.codeBasePath}/scripts/popupSmart-worker.js`);
+
+  // Send a message to the Web Worker to load the Popupsmart script
+  popupWorker.postMessage('loadPopupSmart');
+
+  // Optional: Listen for messages from the Web Worker
+  popupWorker.onmessage = function (event) {
+    if (event.data.error) {
+      console.error('Error in Popupsmart Web Worker:', event.data.error);
+    } else {
+      const popupSmartScript = document.createElement('script');
+      popupSmartScript.type = 'text/javascript';
+      popupSmartScript.innerHTML = event.data;
+      popupSmartScript.async = true;
+      document.head.append(popupSmartScript);
+      const popupSmartContainer = document.querySelector('#popupsmart-container-21310');
+      if (popupSmartContainer) {
+        let shadowRoot;
+        if (popupSmartContainer.shadowRoot) {
+          shadowRoot = popupSmartContainer.shadowRoot;
+        } else {
+          shadowRoot = popupSmartContainer.attachShadow({ mode: 'open' });
+        }
+        const popupSmartCss = document.createElement('link');
+        popupSmartCss.rel = 'stylesheet';
+        popupSmartCss.href = 'https://cdn.popupsmart.com/accounts/6030/21310/13/main.css';
+        shadowRoot.appendChild(popupSmartCss);
       }
-      const popupSmartCss = document.createElement('link');
-      popupSmartCss.rel = 'stylesheet';
-      popupSmartCss.href = 'https://cdn.popupsmart.com/accounts/6030/21310/13/main.css';
-      shadowRoot.appendChild(popupSmartCss);
     }
-  }, 1000);
+  };
+
+  // Optional: Handle errors from the Web Worker
+  popupWorker.onerror = function (error) {
+    console.error('Error in Web Worker:', error);
+  };
 }
 
-// Google Tag Manager script embed
-async function enableGoogleTagManager() {
-  const gtmScript = document.createElement('script');
-  gtmScript.type = 'text/javascript';
-  gtmScript.innerHTML = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-NXTTWP');`;
-  gtmScript.async = true;
+function enableGoogleTagManager() {
+  // Create an instance of the Web Worker
+  const gtmWorker = new Worker(`${window.hlx.codeBasePath}/scripts/googletagmanager-worker.js`);
 
-  const noscriptElement = document.createElement('noscript');
-  const iframeElement = document.createElement('iframe');
-  iframeElement.src = 'https://www.googletagmanager.com/ns.html?id=GTM-NXTTWP';
-  iframeElement.height = '0';
-  iframeElement.width = '0';
-  iframeElement.style.display = 'none';
-  iframeElement.style.visibility = 'hidden';
-  noscriptElement.appendChild(iframeElement);
+  // Send a message to the Web Worker to load the GTM script
+  gtmWorker.postMessage('loadGTM');
 
-  document.head.appendChild(gtmScript);
-  document.body.insertAdjacentElement('afterbegin', noscriptElement);
-  enablePopupSmart();
+  // Optional: Listen for messages from the Web Worker
+  gtmWorker.onmessage = function (event) {
+    if (event.data.error) {
+      console.error('Error in GTM Web Worker:', event.data.error);
+    } else {
+      // Create a script element and inject the GTM script into the DOM
+      const gtmScript = document.createElement('script');
+      gtmScript.type = 'text/javascript';
+      gtmScript.innerHTML = event.data;
+      const l = 'dataLayer';
+      window[l] = window[l] || [];
+      window[l].push({
+        'gtm.start': new Date().getTime(),
+        event: 'gtm.js',
+      });
+      const f = document.getElementsByTagName('script')[0];
+      f.parentNode.insertBefore(gtmScript, f);
+      const noscriptElement = document.createElement('noscript');
+      const iframeElement = document.createElement('iframe');
+      iframeElement.src = 'https://www.googletagmanager.com/ns.html?id=GTM-NXTTWP';
+      iframeElement.height = '0';
+      iframeElement.width = '0';
+      iframeElement.style.display = 'none';
+      iframeElement.style.visibility = 'hidden';
+      noscriptElement.appendChild(iframeElement);
+
+      document.body.insertAdjacentElement('afterbegin', noscriptElement);
+      setTimeout(() => {
+        enablePopupSmart();
+      }, 1000);
+    }
+  };
+
+  // Optional: Handle errors from the Web Worker
+  gtmWorker.onerror = function (error) {
+    console.error('Error in Web Worker:', error);
+  };
 }
 enableGoogleTagManager();
 
