@@ -3,6 +3,15 @@
     "host": "",
     "plugins": [
       {
+        "id": "accessibility-mode",
+        "title": "Accessibility Mode",
+        "environments": [
+          "preview",
+          "dev"
+        ],
+        "event": "accessibility-mode"
+      },
+      {
         "id": "library",
         "title": "Library",
         "environments": [

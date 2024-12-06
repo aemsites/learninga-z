@@ -1,5 +1,10 @@
 import { loadScript } from './aem.js';
 
+// eslint-disable-next-line import/no-cycle
+import initAccessibilityMode from '../tools/sidekick/plugins/accessibility-mode/accessibility-mode.js';
+
+let isA11yModeActive = false;
+
 loadScript('https://cdn-4.convertexperiments.com/v1/js/10047477-10048673.js', {
   type: 'text/javascript',
   charset: 'utf-8',
@@ -219,4 +224,33 @@ const jsonLdMeta = document.querySelector('meta[name="json-ld"]');
 if (jsonLdMeta) {
   addLdJsonScript(document.querySelector('head'), jsonLdMeta.content);
   document.querySelector('meta[name="json-ld"]').remove();
+}
+
+const accessibilityMode = async (e) => {
+  const pluginButton = e.target.shadowRoot.querySelector('.accessibility-mode > button');
+
+  isA11yModeActive = !isA11yModeActive;
+
+  if (isA11yModeActive) {
+    pluginButton.style.backgroundColor = '#fb0f01';
+    pluginButton.style.color = '#fff';
+  } else {
+    pluginButton.removeAttribute('style');
+  }
+
+  document.querySelector('body').classList.toggle('accessibility-mode-active');
+  await initAccessibilityMode(isA11yModeActive);
+};
+
+let sk = document.querySelector('helix-sidekick') || document.querySelector('aem-sidekick');
+
+if (sk) {
+  sk.addEventListener('custom:accessibility-mode', accessibilityMode);
+} else {
+  document.addEventListener('sidekick-ready', () => {
+    sk = document.querySelector('helix-sidekick') || document.querySelector('aem-sidekick');
+    sk.addEventListener('custom:accessibility-mode', accessibilityMode);
+  }, {
+    once: true,
+  });
 }
