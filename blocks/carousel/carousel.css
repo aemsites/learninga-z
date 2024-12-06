@@ -62,9 +62,7 @@
     height: 368px;
     width: 100%;
       overflow: hidden;
-
-   /*   display: flex; */
-
+      display: flex;
       align-items: center;
       justify-content: center;
       border-radius: 20px;
