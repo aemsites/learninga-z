@@ -74,7 +74,7 @@
         user-select: none;
         object-fit: cover;
         height: 100%;
-        width: 100%;
+        width: unset;
       }
     }
   }
@@ -587,7 +587,6 @@
 
       picture, picture img {
         height: unset;
-        width: 100%;
       }
       }
   }
