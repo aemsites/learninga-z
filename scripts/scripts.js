@@ -920,7 +920,9 @@ async function loadLazy(doc) {
   // Wait until window.pricing is available and populated
   const waitForPricing = () => new Promise((resolve) => {
     const checkPricing = () => {
-      if (window.pricing && Object.keys(window.pricing).length > 0
+      if (window.pricing && window.pricing.blocked && window.pricing.blocked === true) {
+        resolve();
+      } else if (window.pricing && Object.keys(window.pricing).length > 0
         && ['espDiscountPrice', 'espOrderUrl', 'espOriginalPrice',
           'fazDiscountPrice', 'fazOrderUrl', 'fazOriginalPrice',
           'razDiscountPrice', 'razEllDiscountPrice', 'razEllOrderUrl', 'razEllOriginalPrice',
