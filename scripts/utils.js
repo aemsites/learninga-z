@@ -534,6 +534,10 @@ const makePricingApiCall = async (ip) => {
  */
 export const pricingApi = async (forceSetPrice = false) => {
   const response = await fetch('https://www.cloudflare.com/cdn-cgi/trace');
+  if (!response.ok) {
+    window.pricing.blocked = true;
+    return;
+  }
   const text = await response.text();
   const ipMatch = text.match(/ip=(.*)/);
   const locMatch = text.match(/loc=(.*)/);
