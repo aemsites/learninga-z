@@ -21,11 +21,6 @@ import {
 import { pricingApi } from './utils.js';
 import { button as Button } from './dom-helpers.js';
 
-// eslint-disable-next-line import/no-cycle
-import initAccessibilityMode from '../tools/sidekick/plugins/accessibility-mode/accessibility-mode.js';
-
-let isA11yModeActive = false;
-
 /**
  * Returns the true origin of the current page in the browser.
  * If the page is running in an iframe with srcdoc, the ancestor origin is returned.
@@ -219,35 +214,6 @@ export function createElement(tagName, props, html) {
   }
 
   return elem;
-}
-
-const accessibilityMode = async (e) => {
-  const pluginButton = e.target.shadowRoot.querySelector('.accessibility-mode > button');
-
-  isA11yModeActive = !isA11yModeActive;
-
-  if (isA11yModeActive) {
-    pluginButton.style.backgroundColor = '#fb0f01';
-    pluginButton.style.color = '#fff';
-  } else {
-    pluginButton.removeAttribute('style');
-  }
-
-  document.querySelector('body').classList.toggle('accessibility-mode-active');
-  await initAccessibilityMode(isA11yModeActive);
-};
-
-let sk = document.querySelector('helix-sidekick') || document.querySelector('aem-sidekick');
-
-if (sk) {
-  sk.addEventListener('custom:accessibility-mode', accessibilityMode);
-} else {
-  document.addEventListener('sidekick-ready', () => {
-    sk = document.querySelector('helix-sidekick') || document.querySelector('aem-sidekick');
-    sk.addEventListener('custom:accessibility-mode', accessibilityMode);
-  }, {
-    once: true,
-  });
 }
 
 /**
