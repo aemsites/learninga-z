@@ -141,6 +141,7 @@ function loadSecondaryNavFragment(navChildFragmentLink, secondaryNav) {
     secondaryNav.querySelectorAll('a.button').forEach((link) => {
       if (link.textContent.toLowerCase() === 'learn more') {
         link.setAttribute('title', 'More about this product');
+        link.setAttribute('role', 'button');
       }
     });
     preventInterComLinks(navChildFragment);
