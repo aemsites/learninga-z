@@ -86,10 +86,15 @@
 
     .columns > div {
         display: flex;
-        flex-direction: column-reverse;
+        flex-direction: column;
         gap: 20px;
         text-align: center;
     }
+
+    .columns.video2 > div > div:nth-child(1) {
+        min-height:290px;
+    }
+
 }
 
 .homepage .solutions .default-content-wrapper {
@@ -120,7 +125,7 @@
     .homepage .home-hero {
         .columns > div {
             display: flex;
-            flex-direction: row;
+            flex-direction: row-reverse;
             text-align: left;
         }
     }
