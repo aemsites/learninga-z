@@ -928,7 +928,7 @@ async function loadLazy(doc) {
           'rpDiscountPrice', 'rpOrderUrl', 'rpOriginalPrice', 'rpccDiscountPrice', 'rpccOrderUrl',
           'rpccOriginalPrice', 'sazDiscountPrice', 'sazOrderUrl', 'sazOriginalPrice',
           'vocabDiscountPrice', 'vocabOrderUrl', 'vocabOriginalPrice', 'wazDiscountPrice',
-          'wazOrderUrl', 'wazOriginalPrice'].every((key) => key in window.pricing)) {
+          'wazOrderUrl', 'wazOriginalPrice', 'blocked'].every((key) => key in window.pricing)) {
         resolve();
       } else {
         setTimeout(checkPricing, 100);
