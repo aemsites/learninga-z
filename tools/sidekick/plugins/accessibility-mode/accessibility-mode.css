@@ -6,7 +6,7 @@
   width: 100vw;
   z-index: 2147483645;
   background-color: rgba(0 0 0 / 70%);
-  color: white;
+  color: var(--text-color);
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -15,7 +15,7 @@
 
 #hlx-a11y-mode-dialog .hlx-a11y-mode-dialog-container {
   position: relative;
-  background: var(--background-color);
+  background: var(--gray);
   padding: 2rem;
   max-width: 500px;
   max-height: 500px;
