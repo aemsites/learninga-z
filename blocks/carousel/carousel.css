@@ -535,7 +535,7 @@
     }
   }
 
-  .carousel:not(.card-links, .testimonial, .video) {
+  .carousel:not(.card-links, .testimonial, .video, .featured) {
     .carousel-slides {
       .carousel-slide {
         flex-direction: row;
