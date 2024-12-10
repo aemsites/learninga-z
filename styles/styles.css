@@ -275,7 +275,8 @@ h4 {
   color: var(--theme-heading-color);
 }
 
-.faq h4 {
+/* don't put in Accordion.css, so heading override colors will work */
+.faq h4, .faq h3 {
   color: var(--faq-blue)
 }
 
