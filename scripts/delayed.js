@@ -227,15 +227,22 @@ if (jsonLdMeta) {
 }
 
 const accessibilityMode = async (e) => {
-  const pluginButton = e.target.shadowRoot.querySelector('.accessibility-mode > button');
+  const oldpluginButton = e.target.shadowRoot.querySelector('.accessibility-mode > button');
+  const newplugginButton = e.target.shadowRoot.querySelector('.accessibility-mode');
 
   isA11yModeActive = !isA11yModeActive;
 
   if (isA11yModeActive) {
-    pluginButton.style.backgroundColor = '#fb0f01';
-    pluginButton.style.color = '#fff';
-  } else {
-    pluginButton.removeAttribute('style');
+    if (oldpluginButton) {
+      oldpluginButton.style.backgroundColor = '#fb0f01';
+      oldpluginButton.style.color = '#fff';
+    } else if (newplugginButton) {
+      newplugginButton.style.backgroundColor = '#f3f3f3';
+    }
+  } else if (oldpluginButton) {
+    oldpluginButton.removeAttribute('style');
+  } else if (newplugginButton) {
+    newplugginButton.removeAttribute('style');
   }
 
   document.querySelector('body').classList.toggle('accessibility-mode-active');
