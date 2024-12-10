@@ -5,6 +5,11 @@
         align-content: center;
         text-align: center;
 
+       > div:first-child img { /* product svg logo */
+            height: 59px;
+            width: auto;
+        }
+
         li {
             text-align: left;
         }
