@@ -156,7 +156,6 @@
 
             .columns-wrapper:last-child {
                 grid-area: image;
-                align-content: center;
             }
 
             h1 {
@@ -168,6 +167,10 @@
 }
 
 @media (width >= 1200px) {
+    .wide .section.product {
+        grid-template-columns: 700px auto;
+    }
+
     .wide .section.sticky .columns.hide {
         > div > div:first-child, > div > div:nth-child(3) {
             display: block;
@@ -179,5 +182,9 @@
     main > .section-outer:nth-child(2) .section {
         max-width: 1527px;
         margin: 0 auto;
+    }
+
+    .wide .section.product {
+        grid-template-columns: 55% auto;
     }
 }

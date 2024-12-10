@@ -1648,12 +1648,6 @@ button.secondary {
 
 /* end secondary button colors */
 
-  main img {
-    max-width: 100%;
-    width: auto;
-    height: auto;
-  }
-
   .icon {
     display: inline-block;
     height: 24px;
