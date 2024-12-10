@@ -1,4 +1,8 @@
 /* stylelint-disable no-descending-specificity */
+.section.columns-container{
+  width: 100%;
+}
+
 .columns > div {
   display: flex;
   flex-flow: column;
