@@ -187,9 +187,6 @@
     main > .section-outer:nth-child(2) .section {
         max-width: 1527px;
         margin: 0 auto;
-    }
-
-    .wide .section.product {
         grid-template-columns: 55% auto;
     }
 }
