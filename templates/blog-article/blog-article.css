@@ -40,6 +40,10 @@ h1 {
                 margin: 30px 0;
             }
         }
+
+        .blog-heading h1{
+            margin-bottom: 0;
+        }
     }
 
 .blog-article.col-1 main .section-outer .section .default-content-wrapper {

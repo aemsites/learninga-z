@@ -77,6 +77,7 @@ export default async function decorate(main) {
   } else {
     headingSection = div(h1);
   }
+  headingSection.classList.add('blog-heading');
   main.prepend(div(authorInfo));
   main.prepend(headingSection);
 }
