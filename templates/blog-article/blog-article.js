@@ -80,4 +80,9 @@ export default async function decorate(main) {
   headingSection.classList.add('blog-heading');
   main.prepend(div(authorInfo));
   main.prepend(headingSection);
+  // make the first image load eagerly
+  const firstImage = main.querySelector('img');
+  if (firstImage) {
+    firstImage.loading = 'eager';
+  }
 }
