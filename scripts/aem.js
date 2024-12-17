@@ -489,7 +489,7 @@ function decorateSections(main) {
           // Theme + other meta is appended to div.section-outer as lower case, no spaces
           sectionOuter.dataset[toCamelCase(key)] = meta[key].toLowerCase().trim().replaceAll(' ', '-');
         } else {
-          sectionOuter.dataset[toCamelCase(key)] = meta[key];
+          sectionOuter.dataset[toCamelCase(key)] = meta[key].toLowerCase().trim().replaceAll(' ', '-');
         }
       });
       sectionMeta.parentNode.remove();
