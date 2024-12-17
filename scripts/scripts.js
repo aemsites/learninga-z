@@ -24,7 +24,7 @@ import { button as Button } from './dom-helpers.js';
 /**
  * Returns the true origin of the current page in the browser.
  * If the page is running in an iframe with srcdoc, the ancestor origin is returned.
- * @returns {String} The true origin
+ * @returns {String} The true origin. needed for library.
  */
 export function getOrigin() {
   const { location } = window;
@@ -890,7 +890,7 @@ async function loadPrices(main) {
   }
 }
 
-// mostly for the contact subnav; maybe this should go in a new template
+// used mostly for the contact subnav
 function highlightActiveLink() {
   const subNavLinks = document.querySelectorAll('.subnav a');
   subNavLinks.forEach((link) => {
@@ -973,83 +973,7 @@ function loadDelayed() {
   // load anything that can be postponed to the latest here
 }
 
-/**
- * Redirect tag page with url parameter to
- * tag page in url path.
- */
-/* confirm before deleting that these are redirecting at the CDN
-export function redirectTagPage() {
-  const windowHref = window.location.href;
-  const url = new URL(windowHref);
-  const basePath = url.pathname;
-  const params = new URLSearchParams(url.search);
-  const productMapping = {
-    8614: 'raz-kids',
-    8602: 'raz-plus',
-    8253: 'foundationsa-z',
-    8619: 'vocabularya-z',
-    8624: 'sciencea-z',
-    8629: 'writinga-z',
-    8607: 'raz-plus-ell',
-    // 8634: 'readinga-z',
-    // that one doesn't exist yet
-  };
-
-  const productId = params.get('product');
-  if (productId && productMapping[productId]) {
-    const newPath = `${basePath}/${productMapping[productId]}`;
-    params.delete('product');
-    // If there are no remaining query parameters, construct the new URL without the question mark.
-    const newLoc = params.toString() ? `${newPath}?${params.toString()}` : newPath;
-    window.location.replace(newLoc);
-  }
-}
-
- */
-
-/**
- * Redirect video page with url parameter to
- * video page in url path.
- */
-/* can be deleted since these were added to the CDN
-export function redirectVideoPage() {
-  const windowHref = window.location.href;
-  const url = new URL(windowHref);
-  const basePath = url.pathname;
-  const params = new URLSearchParams(url.search);
-  const videoMapping = {
-    5204: 'learning-a-z',
-    7867: 'foundations-a-z',
-    5454: 'raz-plus',
-    7300: 'raz-plus-connected-classroom',
-    5097: 'reading-a-z',
-    5103: 'raz-kids',
-    5104: 'science-a-z',
-    5098: 'writing-a-z',
-    5099: 'vocabulary-a-z',
-    6275: 'raz-plus-ell',
-    5384: 'funding',
-    5491: 'testimonials',
-    5592: 'professional-learning',
-    5100: 'learning-a-z',
-  };
-
-  const videoId = params.get('SortByProduct');
-  if (videoId && videoMapping[videoId]) {
-    const newPath = `${basePath}?category=${videoMapping[videoId]}`;
-    params.delete('SortByProduct');
-    // Add additional query parameters, construct the new URL
-    const newLoc = params.toString() ? `${newPath}&${params.toString()}` : newPath;
-    // Set the new window location
-    window.location.replace(newLoc);
-  }
-}
-
- */
-
 async function loadPage() {
-//  redirectTagPage();
-//  redirectVideoPage();
   await loadEager(document);
   await loadLazy(document);
   loadDelayed();
