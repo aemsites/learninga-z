@@ -14,6 +14,7 @@
 .columns.stacked {
   display: grid;
   grid-template-columns: 1fr;
+  min-height: 300px;
 
   &.gray {
     background: var(--gray);
@@ -300,9 +301,10 @@
   }
 
   .columns.signs > div:last-child picture:last-child {
+    text-align: center;
     position: relative;
     right: -54%;
-    top: -450%;
+    bottom: 350%;
   }
 
   .columns.wrap > div > div {
