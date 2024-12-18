@@ -1213,7 +1213,7 @@ THEMES
     padding: 10px 10px 5px !important;
   }
 
-  a,h1,h2,h3,h4,h5,h6,p {
+  a,h1,h2,h3,h4,h5,h6,p,li {
     color: var(--white) !important;
   }
 }
@@ -1228,116 +1228,116 @@ THEMES
   color: var(--laz-black);
 }
 
-:is(h1, h2, h3, h4).white {
-  color: var(--white);
+:is(h1, h2, h3, h4, h5, h6).white {
+  color: var(--white) !important;
 }
 
 .bg-dark-blue, .bg-blue {
   background-color: var(--product-dark-blue);
 }
 
-:is(h1, h2, h3, h4).dark-blue, :is(h1, h2, h3, h4).blue {
-  color: var(--product-dark-blue);
+:is(h1, h2, h3, h4, h5, h6).dark-blue, :is(h1, h2, h3, h4, h5, h6).blue {
+  color: var(--product-dark-blue) !important;
 }
 
-:is(h1, h2, h3, h4).logo-blue {
-  color: var(--laz-logo-blue);
+:is(h1, h2, h3, h4, h5, h6).logo-blue {
+  color: var(--laz-logo-blue) !important;
 }
 
 .bg-sky-blue {
   background-color: var(--sky-blue);
 }
 
-:is(h1, h2, h3, h4).sky-blue {
-  color: var(--sky-blue);
+:is(h1, h2, h3, h4, h5, h6).sky-blue {
+  color: var(--sky-blue)!important;
 }
 
 .bg-berry {
   background-color: var(--product-berry);
 }
 
-:is(h1, h2, h3, h4).berry {
-  color: var(--product-berry);
+:is(h1, h2, h3, h4, h5, h6).berry {
+  color: var(--product-berry) !important;
 }
 
 .bg-navy {
   background-color: var(--product-navy-blue);
 }
 
-:is(h1, h2, h3, h4).navy {
-  color: var(--product-navy-blue);
+:is(h1, h2, h3, h4, h5, h6).navy {
+  color: var(--product-navy-blue) !important;
 }
 
 .bg-red {
   background-color: var(--product-red);
 }
 
-:is(h1, h2, h3, h4).red {
-  color: var(--product-red);
+:is(h1, h2, h3, h4, h5, h6).red {
+  color: var(--product-red) !important;
 }
 
 .bg-orange {
   background-color: var(--orange);
 }
 
-:is(h1, h2, h3, h4).orange {
-  color: var(--orange);
+:is(h1, h2, h3, h4, h5, h6).orange {
+  color: var(--orange) !important;
 }
 
 .bg-orange-red, .bg-red-orange {
   background-color: var(--product-orange);
 }
 
-:is(h1, h2, h3, h4).orange-red, :is(h1, h2, h3, h4).red-orange {
-  color: var(--product-orange);
+:is(h1, h2, h3, h4, h5, h6).orange-red, :is(h1, h2, h3, h4, h5, h6).red-orange {
+  color: var(--product-orange) !important;
 }
 
 .bg-purple {
   background-color: var(--product-purple);
 }
 
-:is(h1, h2, h3, h4).purple {
-  color: var(--product-purple);
+:is(h1, h2, h3, h4, h5, h6).purple {
+  color: var(--product-purple) !important;
 }
 
 .bg-dark-purple {
   background-color: var(--dark-purple);
 }
 
-:is(h1, h2, h3, h4).dark-purple {
-  color: var(--dark-purple);
+:is(h1, h2, h3, h4, h5, h6).dark-purple {
+  color: var(--dark-purple) !important;
 }
 
 .bg-green {
   background-color: var(--product-green);
 }
 
-:is(h1, h2, h3, h4).green {
-  color: var(--product-green);
+:is(h1, h2, h3, h4, h5, h6).green {
+  color: var(--product-green) !important;
 }
 
 .bg-black {
   background-color: var(--laz-black);
 }
 
-:is(h1, h2, h3, h4).black {
-  color: var(--laz-black);
+:is(h1, h2, h3, h4, h5, h6).black {
+  color: var(--laz-black) !important;
 }
 
 .bg-gold {
   background-color: var(--gold);
 }
 
-:is(h1, h2, h3, h4).gold {
-  color: var(--gold);
+:is(h1, h2, h3, h4, h5, h6).gold {
+  color: var(--gold) !important;
 }
 
 .bg-rpe-gold {
   background-color: var(--rpe-gold);
 }
 
-:is(h1, h2, h3, h4).rpe-gold {
-  color: var(--rpe-gold);
+:is(h1, h2, h3, h4, h5, h6).rpe-gold {
+  color: var(--rpe-gold) !important;
 }
 
 
