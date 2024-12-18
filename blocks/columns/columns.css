@@ -14,7 +14,6 @@
 .columns.stacked {
   display: grid;
   grid-template-columns: 1fr;
-  min-height: 300px;
 
   &.gray {
     background: var(--gray);
