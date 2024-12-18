@@ -11,14 +11,13 @@
   margin-top: 14px;
 }
 
-.accordion details p {
-  margin-bottom: .8em;
-  margin-top: .8em;
+.accordion details p, h2, h1 {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
   width: 85%;
 }
 
 .accordion h3, .accordion h4 {
-  font-family: var(--heading-font-family);
   font-size: 20px;
   line-height: 1.4286;
   margin-bottom: .8em;
@@ -31,7 +30,6 @@
   cursor: pointer;
   list-style: none;
   overflow: auto;
-  font-family: var(--heading-font-family);
   font-size: 20px;
   color: var(--product-navy-blue);
 }
@@ -56,17 +54,21 @@
 
 .accordion.round details summary,
 .accordion.border details summary {
-  color: var(--theme-accordion-txt);
-}
-
-.accordion.round details summary::after,
-.accordion.border details summary::after {
-  top: 30%;
+  >* {
+    color: var(--theme-accordion-txt);
+    font-family: var(--heading-font-family);
+  }
 }
 
 .accordion details[open] summary::after {
   transform: rotate(-180deg);
   content: '-';
+}
+
+.accordion.round:not(.gray) details summary::after,
+.accordion.border:not(.gray) details summary::after {
+  top: 30%;
+  color: var(--theme-accordion-txt);
 }
 
 .accordion details .accordion-item-body {
