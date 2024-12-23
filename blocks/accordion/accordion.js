@@ -31,12 +31,22 @@ function addFaqJson(block) {
 }
 
 export default function decorate(block) {
-  [...block.children].forEach((row) => {
+  const initialHash = window.location.hash;
+
+  const section = block.closest('.section');
+  const blockId = section?.getAttribute('data-path')
+    || Array.from(document.querySelectorAll('.accordion'))
+      .indexOf(block).toString();
+
+  [...block.children].forEach((row, index) => {
     // decorate accordion item label
     const label = row.children[0];
     const summary = document.createElement('summary');
     summary.className = 'accordion-item-label';
     summary.append(...label.childNodes);
+
+    const accordionId = `accordion-${blockId}-${index}`;
+
     // decorate accordion item body
     const body = row.children[1];
     body.className = 'accordion-item-body';
@@ -54,24 +64,42 @@ export default function decorate(block) {
       hr.after(subContent);
       hr.remove();
     }
+
     // decorate accordion item
     const details = document.createElement('details');
     details.className = 'accordion-item';
+    details.id = accordionId;
     details.append(summary, body);
+
     row.replaceWith(details);
   });
 
   if (block.classList.contains('faq')) {
     addFaqJson(block);
   }
-  const details = document.querySelectorAll('.accordion details');
-  details.forEach((d, index) => {
-    d.onclick = () => {
-      details.forEach((c, i) => {
-        if (index !== i) {
-          c.removeAttribute('open');
-        }
-      });
-    };
+
+  if (initialHash) {
+    const targetAccordion = document.querySelector(initialHash);
+    if (targetAccordion && targetAccordion.closest('.accordion') === block) {
+      targetAccordion.setAttribute('open', '');
+      targetAccordion.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  const details = block.querySelectorAll('details');
+  details.forEach((d) => {
+    d.addEventListener('toggle', () => {
+      if (d.open) {
+        window.history.pushState(null, '', `#${d.id}`);
+
+        details.forEach((c) => {
+          if (c !== d) {
+            c.removeAttribute('open');
+          }
+        });
+      } else if (window.location.hash === `#${d.id}`) {
+        window.history.pushState(null, '', window.location.pathname);
+      }
+    });
   });
 }
