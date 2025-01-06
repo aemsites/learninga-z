@@ -41,6 +41,11 @@ h1 {
             }
         }
 
+    .section-outer:has(.section.banner) {
+        padding-top:16px;
+        padding-bottom: 16px;
+    }
+
         .blog-heading h1{
             margin-bottom: 0;
         }
@@ -67,6 +72,10 @@ h1 {
 }
 
 @media (width >= 1024px) {
+    .breadcrumbs-outer {
+        grid-area: breadcrumb;
+    }
+
     .blog-article main {
         display: grid;
         grid-template-areas:
@@ -98,6 +107,11 @@ h1 {
             &:first-of-type {
                 grid-area: content;
             }
+        }
+
+        .section-outer:has(.section.banner) {
+            grid-area: breadcrumb;
+            margin-top:50px;
         }
     }
 
