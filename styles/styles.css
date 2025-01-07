@@ -986,6 +986,23 @@ THEMES
   --theme-carousel-arrow: var(--product-dark-blue);
 }
 
+[data-theme="turquoise"], [data-theme="white"] {
+  --theme-bg: var(--turquoise);
+  --theme-txt: var(--text-color);
+  --theme-heading-color: var(--black);
+  --theme-link-color: var(--black);
+  --theme-btn-primary-bg: var(--black);
+  --theme-btn-primary-border: var(--black);
+  --theme-btn-primary-txt: var(--turquoise);
+  --theme-btn-primary-border-hov: var(--black);
+  --theme-btn-primary-txt-hov: var(--black);
+  --theme-btn-secondary-border: var(--black);
+  --theme-btn-secondary-bg: var(--turquoise);
+  --theme-btn-secondary-txt: var(--black);
+  --theme-btn-secondary-border-hov: var(--black);
+  --theme-btn-secondary-bg-hov: var(--black);
+  --theme-checkmark-circle: url('/icons/checkmark-circle-logo-blue.svg');
+  
 [data-theme="gray"], [data-theme="white"] {
   --theme-bg: var(--gray);
   --theme-txt: var(--text-color);
